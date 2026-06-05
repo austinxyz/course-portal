@@ -137,59 +137,47 @@
   <div class="section" id="qa">
     <h2 class="section-title">常用 Q&A</h2>
     <p style="color:var(--text-muted);margin-bottom:8px;">按主题分组，受众 AI 新手——先结论、少术语。标 ⚠️ 的涉及隐私 / 费用 / 数据。</p>
-
+    <!-- 自动生成自 student-qa/anticipated-questions.md，勿手改；改 md 后跑 gen_qa.py / build -->
     <h3>A. 账号 · 注册 · 费用</h3>
     <div class="faq-item"><div class="faq-q">一定要付费吗？免费版够用吗？</div><div class="faq-a">免费版能体验对话；但今天演示的 Projects、连接器、Cowork、Dispatch 多属于付费档（Pro/Team）。想跟着搭完整流水线建议 Pro。先用免费熟悉，觉得有用再升级。</div></div>
     <div class="faq-item"><div class="faq-q">怎么注册？需要特殊网络吗？</div><div class="faq-a">claude.ai 注册，邮箱即可。部分地区访问受限，按你所在地的常规上网方式即可（课上第 7 页有注册步骤）。</div></div>
     <div class="faq-item"><div class="faq-q">手机能用吗？</div><div class="faq-a">能。手机 App 可对话，还能用 Dispatch 在手机上一句话触发电脑端流水线（第 14 页 + 花絮演示）。</div></div>
-
     <h3>B. Claude vs 其他工具</h3>
     <div class="faq-item"><div class="faq-q">和 ChatGPT 有啥区别？已经用 GPT 了还要学这个吗？</div><div class="faq-a">对话能力两者都强。今天重点不是"哪个模型聪明"，而是 <strong>Cowork 的协作方式</strong>——Projects 存文件当长期上下文、连接器接 Gmail/Drive、Dispatch 手机触发、把提示词沉淀成可复用流水线。这套"系统化用法"是差异所在（第 7 页对比）。</div></div>
     <div class="faq-item"><div class="faq-q">中文支持好吗？</div><div class="faq-a">好。全程可中文对话与输出（演示里 Outreach 正文用英文是因为目标读者是英文招聘方，可按需调）。</div></div>
-
     <h3>C. Cowork · Projects · 文件</h3>
     <div class="faq-item"><div class="faq-q">Project 是什么？和普通对话有啥区别？</div><div class="faq-a">Project = 带"项目文件夹 + 长期记忆"的工作区。放进去的文件（简历、方法论）每次对话自动带入，不用反复粘贴（第 10 页）。</div></div>
     <div class="faq-item"><div class="faq-q">记忆文件 / Custom Instructions 干嘛用？</div><div class="faq-a">Custom Instructions 是给这个 Project 定的"长期规矩"（比如触发词「检查新JD」要做什么）。配一次，之后每次自动按规矩走（第 12 页 + 过渡段演示）。</div></div>
     <div class="faq-item"><div class="faq-q">上传的文件 Claude 记多久？换对话还在吗？</div><div class="faq-a">在 Project 里的文件长期保留，跨对话都在；这正是它和一次性对话的区别。</div></div>
-
     <h3>D. 连接器 · 隐私安全 ⚠️</h3>
     <div class="faq-item"><div class="faq-q">连 Gmail 安全吗？它会读我所有邮件吗？</div><div class="faq-a">连接器走 Google 官方授权（OAuth）。Claude 只在你<strong>明确要求时</strong>按那次任务去读（比如"找主题含 JD 的邮件"），不是后台常驻扫描。随时可在 Google 账号的"第三方访问"里撤销。</div></div>
     <div class="faq-item"><div class="faq-q">我的简历/数据会拿去训练模型吗？</div><div class="faq-a">⚠️ 如实说：企业/API 数据默认不用于训练；消费版（claude.ai）是否用于训练取决于你账号的隐私设置，建议进设置确认并按需关闭。<strong>课上我不打包票，以官方隐私设置为准。</strong></div></div>
     <div class="faq-item"><div class="faq-q">连接器怎么撤销 / 取消授权？</div><div class="faq-a">两处都可：Claude 端连接器设置移除；或 Google 账号 → 安全 → 第三方应用访问里撤销。</div></div>
-
     <h3>E. 5C 流水线 · Demo</h3>
     <div class="faq-item"><div class="faq-q">我不是工程师、也不在找工作，这套有用吗？</div><div class="faq-a">有。今天用"找工作"只是例子。核心是<strong>私有信息 + 领域知识 + 4 步流水线</strong>的模式——换成你的场景（销售线索、客户调研、内容生产……）和你的方法论文件，同一套就变成你的系统（第 18/19 页）。</div></div>
     <div class="faq-item"><div class="faq-q">提示词写不好怎么办？</div><div class="faq-a">这正是今天的核心心态：<strong>别想一次写完美</strong>。先写极简版能跑，再让 Claude 帮你补全成专业版，不满意就追问迭代。你的责任是"知道要什么"，不是背框架（Demo Agent 1/3 专门演示迭代）。</div></div>
     <div class="faq-item"><div class="faq-q">4 个 Agent 必须按顺序吗？</div><div class="faq-a">是。后一个读前一个的产出（如 Outreach 读 JD 分析 + 公司调研），所以按 1→2→3→4。顺序写在 pipeline-prompts.md 里，触发后自动执行。</div></div>
     <div class="faq-item"><div class="faq-q">触发词「检查新JD」能改吗？</div><div class="faq-a">能。它只是你在 Custom Instructions 里自定义的词，改成任何你顺口的都行。</div></div>
-
     <h3>F. Skills · Dispatch · 自动化</h3>
     <div class="faq-item"><div class="faq-q">Skill 和提示词文件有啥区别？</div><div class="faq-a">提示词文件是"这个 Project 内"的复用资产；Skill 是打包好、<strong>跨项目一行触发</strong>的能力。今天先把流水线跑通，封装成 Skill 是延伸方向之一（第 20 页）。</div></div>
     <div class="faq-item"><div class="faq-q">Dispatch 是什么？手机怎么触发？</div><div class="faq-a">Dispatch 让你在手机上发一句话，触发电脑端 Cowork 跑任务（第 14 页）。花絮里演示了手机一句话自动批改作业。</div></div>
     <div class="faq-item"><div class="faq-q">能定时自动跑吗？</div><div class="faq-a">能，用 Schedule 设定时（如每天早上自动扫新 JD）。属课后延伸方向（第 19 页）。</div></div>
-
     <h3>G. 学习 · 课后</h3>
     <div class="faq-item"><div class="faq-q">跟不上 / 学不会怎么办？</div><div class="faq-a">课中建 Project、连 Gmail 我会带着一步步做；跟写提示词阶段直接 copy-paste 下载包里的 <code class="inline">pipeline-prompts.md</code>。完整自己跑一遍放课后作业，不用现场全记住。</div></div>
     <div class="faq-item"><div class="faq-q">课后怎么练？作业是什么？</div><div class="faq-a">作业：用 Cowork 搭一条<strong>你自己场景</strong>的流水线，截图发群（第 24 页）。下载包 + homework 指南里有完整材料。</div></div>
-    <div class="faq-item"><div class="faq-q">有回放和材料吗？</div><div class="faq-a">材料：第 3 / 17 页的下载按钮（starter-project + 2 封 JD 邮件 + 提示词表）。回放：上传后补在本页"上课录像"。</div></div>
-
+    <div class="faq-item"><div class="faq-q">有回放和材料吗？</div><div class="faq-a">材料：第 3 / 17 页的下载按钮（starter-project + 2 封 JD 邮件 + 提示词表）。回放：[课后补充安排]。</div></div>
     <h3>H. 上课 · Zoom</h3>
     <div class="faq-item"><div class="faq-q">怎么下载课程材料？</div><div class="faq-a">点幻灯片第 3 页（路线图）或第 17 页（演示入口）的"↓ 下载课程材料"按钮，开课时就能下，跟着一起做。</div></div>
     <div class="faq-item"><div class="faq-q">跟不上 demo 节奏怎么办？</div><div class="faq-a">材料和提示词都在下载包里，课后能自己重跑；课中先看懂"为什么这么做"，细节回放 + 作业再补。</div></div>
-
     <h3>I. 零基础 / 本地文件整理（真实学员案例）</h3>
     <div class="faq-item"><div class="faq-q">我 100% 小白、已退休，群里术语像"天书"，怕跟不上、达不到预期。</div><div class="faq-a">吃定心丸：课为零基础设计，带着一步步做，材料可下载、有回放和作业，不用当场全记住。术语都用大白话讲；会用电脑、会打字、会收发邮件就够。鼓励多问"笨问题"——没有笨问题。</div></div>
-    <div class="faq-item"><div class="faq-q">在哪下载 Claude？用哪个版本？（MacBook）</div><div class="faq-a">最简单：浏览器开 <strong>claude.ai</strong>，邮箱注册即用，不装任何东西。Mac 桌面 App：<strong>claude.ai/download</strong>；手机：App Store 搜 "Claude"。注册后默认最新版，不用选版本。免费版先体验，进阶功能（Projects/连接器）需 Pro。</div></div>
+    <div class="faq-item"><div class="faq-q">在哪下载 Claude？用哪个版本？（MacBook）</div><div class="faq-a">- 最简单：浏览器开 <strong>claude.ai</strong>，邮箱注册即用，不装任何东西。<br>- Mac 桌面 App：<strong>claude.ai/download</strong>；手机：App Store 搜 "Claude"。<br>- 注册后默认最新版，不用选版本。免费版先体验，进阶功能（Projects/连接器）需 Pro。</div></div>
     <div class="faq-item"><div class="faq-q">Claude 基本特点 / 注意什么？</div><div class="faq-a">中文问即可。<strong>默认看不到你电脑里任何文件</strong>——只有你主动上传或授权连接时才看那一部分，随时可撤销。心态：别怕问、别想一次写对，追问会越帮越准。</div></div>
-    <div class="faq-item"><div class="faq-q">⚠️ 能帮我整理 / 清理 / 缩减 Mac 上的 600GB 文件、照片、音视频吗？</div><div class="faq-a"><strong>如实讲清预期</strong>：Claude / Cowork 是<strong>云端</strong>助手，<strong>不能自己进你的 Mac 扫描、移动、删除本地文件，也无法靠"看"批量去重照片视频</strong>；自动清盘不是它的活，硬做有误删风险。它能当<strong>整理顾问 + 私人教练</strong>：帮你定清理计划、一步步教你用 Mac 自带工具做、判断哪类文件能删/怎么转移省空间。真正动手靠 Mac 功能 + 小工具：
-      <ol style="margin-top:8px;">
-        <li><strong>先备份</strong> → 重要文件先拷外置硬盘 / iCloud（动手前第一步！）</li>
-        <li><strong>看哪占地方</strong> → 苹果菜单 → 关于本机 → 储存空间 → 管理</li>
-        <li><strong>照片/视频瘦身</strong> → 「照片」开 iCloud「优化储存」；大视频转外置硬盘</li>
-        <li><strong>找重复/大文件</strong> → 去重工具（如 Gemini）+「管理」里的建议</li>
-        <li><strong>清空废纸篓</strong> → 删除后清空才真正释放空间</li>
-      </ol>
-      课上用法：把目标告诉 Claude，让它把这 5 步细化成"适合我这台 600GB MacBook Air 的清理清单"，照着做、边做边问。<strong>它陪你想、教你做，不替你自动清盘。</strong></div></div>
+    <div class="faq-item"><div class="faq-q">⚠️ 能帮我整理 / 清理 / 缩减 Mac 上的 600GB 文件、照片、音视频吗？</div><div class="faq-a"><strong>如实讲清预期</strong>：Claude / Cowork 是<strong>云端</strong>助手，<strong>不能自己进你的 Mac 扫描、移动、删除本地文件，也无法靠"看"批量去重照片视频</strong>；自动清盘不是它的活，硬做有误删风险。<br>它能当<strong>整理顾问 + 私人教练</strong>：帮你定清理计划、一步步教你用 Mac 自带工具做、判断哪类文件能删/怎么转移省空间。真正动手靠 Mac 功能 + 小工具：<pre style="background:var(--code-bg);padding:12px 16px;border-radius:8px;overflow-x:auto;margin:8px 0;white-space:pre-wrap;font-family:inherit;font-size:0.92em;">① 先备份         → 重要文件先拷外置硬盘 / iCloud（动手前第一步！）
+② 看哪占地方     → 苹果菜单 → 关于本机 → 储存空间 → 管理
+③ 照片/视频瘦身  → 「照片」开 iCloud「优化储存」；大视频转外置硬盘
+④ 找重复/大文件  → 去重工具（如 Gemini）+「管理」里的建议
+⑤ 清空废纸篓     → 删除后清空才真正释放空间</pre>课上用法：把目标告诉 Claude，让它把这 5 步细化成"适合我这台 600GB MacBook Air 的清理清单"，照着做、边做边问。<strong>它陪你想、教你做，不替你自动清盘。</strong></div></div>
     <div class="faq-item"><div class="faq-q">这样的小白，课前需要准备什么？</div><div class="faq-a">只两件：① claude.ai 注册好账号（免费版，能登录即可）；② 想跟做的话，记下自己设备现状（如"600GB MacBook Air，主要音视频+照片"），课上拿真实例子让 Claude 出方案。其余课上带做。</div></div>
   </div>
 
