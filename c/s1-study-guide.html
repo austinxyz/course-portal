@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>课后实操指南 · 把第一节课变成你自己的能力</title>
+<style>
+  body { font-family: "Microsoft YaHei", "PingFang SC", -apple-system, Arial, sans-serif;
+         max-width: 780px; margin: 40px auto; padding: 0 24px; line-height: 1.8;
+         color: #1E1E1E; background: #FAFAF8; }
+  h1 { font-size: 28px; border-left: 5px solid #C96133; padding-left: 14px; line-height: 1.4; }
+  h2 { font-size: 21px; margin-top: 44px; color: #C96133;
+       border-bottom: 1.5px solid #F0E0D6; padding-bottom: 8px; }
+  ol, ul { padding-left: 22px; }
+  li { margin: 8px 0; }
+  code { background: #F0EDE8; padding: 2px 6px; border-radius: 4px; font-size: 14px;
+         font-family: "SF Mono", Consolas, monospace; }
+  pre { background: #2B2620; color: #F0EDE8; padding: 16px 18px; border-radius: 8px;
+        overflow-x: auto; font-size: 13.5px; line-height: 1.6; }
+  pre code { background: none; padding: 0; color: inherit; }
+  a { color: #3D7DE4; }
+  .lead { font-size: 16px; }
+  .card { background: #fff; border: 1.5px solid #F0E8E2; border-radius: 10px;
+          padding: 16px 22px; margin: 18px 0; }
+  .tip { background: #FDF1EB; border-left: 4px solid #C96133; padding: 12px 16px;
+         border-radius: 6px; margin: 16px 0; font-size: 15px; }
+  .prompt { background: #EEF4FF; border-left: 4px solid #3D7DE4; padding: 12px 16px;
+            border-radius: 6px; margin: 14px 0; font-size: 15px; }
+  .prompt b { color: #2456B0; }
+  table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 15px; }
+  th, td { border: 1px solid #E5DDD5; padding: 10px 12px; text-align: left; vertical-align: top; }
+  th { background: #F6EFE9; }
+  .muted { color: #5A5A5A; font-size: 14px; }
+  .summary { background: #fff; border: 2px solid #C96133; border-radius: 12px;
+             padding: 18px 24px; margin: 32px 0; font-size: 16px; }
+  .summary b { color: #C96133; }
+  .step-no { color: #C96133; font-weight: 700; }
+</style>
+</head>
+<body>
+  <h1>课后实操指南<br>把第一节课变成你自己的能力</h1>
+  <p class="lead">恭喜你上完第一节课！但 <strong>听懂 ≠ 会用</strong>。真正的能力，来自你亲手在 cowork 里走一遍。
+     下面五步，请按顺序做，每一步都别跳过「记录心得」——这是整个方法的灵魂。</p>
+
+  <h2><span class="step-no">第 0 步</span> 先搭好你的学习工作区</h2>
+  <p>打开 cowork，新建一个 <strong>空目录</strong> 作为你的课程学习项目（比如 <code>我的AI课程</code>）。
+     空的就对了——接下来的内容由你和 AI 一起长出来。</p>
+  <p>建议的目录结构（边做边建，不用一次到位）：</p>
+  <pre><code>我的AI课程/
+├── 课程心得/
+│   ├── ppt/                  # 把课程 PPT 放这里
+│   ├── 我的心得.md            # 随手记，想到啥写啥
+│   ├── 不懂的名词.md          # 听到没懂的术语/概念
+│   └── 课程总结.md            # 让 AI 帮你生成
+├── 课堂项目/                  # 跟着课程自己做一遍
+└── 作业项目/
+    └── 作业要求.md            # 把作业要求贴进来</code></pre>
+
+  <h2><span class="step-no">第 1 步</span> 记心得 + 让 AI 帮你总结</h2>
+  <p><strong>先你写，再让 AI 补。</strong> 顺序很重要——AI 是来帮你深化的，不是替你回忆的。</p>
+  <div class="card">
+    <ol>
+      <li>在 <code>我的心得.md</code> 里，尽量回忆课上听到的内容，记下你的体会。<strong>不用写得完善</strong>，碎片、半句话都行。</li>
+      <li>在 <code>不懂的名词.md</code> 里，记下你没太懂的术语和概念。</li>
+      <li>把 PPT 放进 <code>ppt/</code> 目录。</li>
+      <li>然后让 AI 结合你的心得和 PPT 帮你总结。<strong>多问几次</strong>，每次问得更细，最后要求它 <strong>输出一个 <code>课程总结.md</code> 文件</strong>，方便你以后回看。</li>
+    </ol>
+  </div>
+  <div class="prompt">
+    <b>Prompt 示例</b>（直接抄，再改成你自己的）：
+    <ul>
+      <li>「请结合我的心得（<code>我的心得.md</code>）和 PPT（<code>ppt/</code> 里的文件），帮我总结这节课，保存到 <code>课程总结.md</code>。」</li>
+      <li>「我对 cowork 里怎么配置 Gmail 不太懂，请给我更详细的步骤指导，并补充到总结文件里。」</li>
+      <li>「对于『如何写好 prompt』我现在还没概念，请帮我系统梳理一下，加到总结里。」</li>
+    </ul>
+  </div>
+  <div class="tip">
+    💡 <strong>技巧</strong>：把「不懂的名词」逐个丢给 AI，让它用大白话 + 例子解释，再让它写回 <code>不懂的名词.md</code>。
+    一节课下来，你就有了一份属于自己的术语词典。
+  </div>
+
+  <h2><span class="step-no">第 2 步</span> 亲手做课堂项目</h2>
+  <p><strong>只有自己做，才有真体会。</strong> 看录像、对着课程资料，自己在 <code>课堂项目/</code> 里从头做一遍。</p>
+  <ul>
+    <li><strong>大胆自由发挥</strong>——AI 是能容错的，做错了不要紧。</li>
+    <li>遇到 AI 给的结果不太对时，<strong>直接告诉它哪里不对，让它纠正</strong>。这个「我说、它改」的来回，本身就是这门课最重要的技能。</li>
+    <li>做的过程中，继续把心得、踩的坑、突然想通的点，记到 <code>课程心得/我的心得.md</code> 里，让 AI 帮你接着总结。</li>
+  </ul>
+
+  <h2><span class="step-no">第 3 步</span> 做作业 = 解决你自己的真实痛点</h2>
+  <p>作业不是交差，是 <strong>用这节课的能力解决你日常工作里的一个痛点</strong>。项目可大可小。</p>
+  <p><strong>先想痛点</strong>——它可能是：</p>
+  <ul>
+    <li>一件 <strong>单调重复</strong> 的事（每天导出报表、整理同样格式的文档）；或者</li>
+    <li>一堆 <strong>琐碎零散</strong> 的事（没有固定流程，但很烦）。</li>
+  </ul>
+  <p><strong>然后分两种情况：</strong></p>
+  <table>
+    <tr><th>你的情况</th><th>怎么做</th></tr>
+    <tr><td>痛点 <strong>已经有固定流程</strong></td><td>试着把这个流程搬进 cowork，做成一个 agent / workflow</td></tr>
+    <tr><td>痛点 <strong>还没成型</strong></td><td>把「作业要求 + 你的痛点描述」一起给 AI，让它给你建议方案，<strong>保存成文件</strong></td></tr>
+  </table>
+  <p><strong>关键是迭代</strong>——拿到 AI 的建议后，别停。和它一起细化，<strong>就像我做 agent 时不断完善 prompt 那样</strong>：你提一点、它改一版、你再提……几轮下来，方案就成型了。全程继续写你的心得体会。</p>
+  <div class="prompt">
+    <b>Prompt 示例</b>：<br>
+    「这是我的作业要求（<code>作业要求.md</code>），我日常工作的痛点是 ___。请帮我分析这个痛点适不适合用 AI/cowork 解决，给我 2-3 个方案，保存成 <code>方案.md</code>，并告诉我最简单能先跑起来的是哪个。」
+  </div>
+
+  <h2><span class="step-no">第 4 步</span> 让 AI 帮你给我写一封邮件 = 提交作业</h2>
+  <p>最后，结合你这一路的 <strong>心得体会</strong> 和 <strong>课后作业</strong>，让 AI 帮你写一封邮件发给我。</p>
+  <div class="tip">
+    📌 <strong>关键说明</strong>：这封邮件 <strong>就是你的作业提交</strong>——「作业要求」邮件里要的每一项内容，邮件里 <strong>一项都不能少</strong>。
+    让 AI 帮你写，不等于让 AI 帮你省。所以 prompt 里要把作业要求的每一项都点给 AI，让它逐项填满。
+  </div>
+  <p><strong>作业要求里要交的（邮件正文必须全部覆盖）：</strong></p>
+  <ol>
+    <li><strong>工作流设计</strong>——你设计了哪几个 Agent，各自职责、数据怎么从上一个传到下一个。</li>
+    <li><strong>每个 Agent 的提示词</strong>——角色 / 任务 / 输出格式三要素齐全，并写明输入格式和 <code>OUTPUTS/</code> 输出路径。</li>
+    <li><strong>实际运行输出</strong>——每个 Agent 真实跑出来的结果（不是占位符、不是「[略]」）。</li>
+    <li><strong>学习心得</strong>——≥200 字，且至少 <strong>3 条具体的个人观察</strong>（「这工具好用」不算，要写你真发现了什么）。</li>
+  </ol>
+  <div class="prompt">
+    <b>Prompt 示例</b>（直接抄，把括号里的路径换成你自己的）：<br>
+    「请结合我的作业项目（<code>作业项目/</code> 目录）和课程心得（<code>课程心得/</code> 目录），帮我写一封发给老师的作业提交邮件。<b>作业要求的每一项内容都必须完整出现在邮件正文里，一项都不能省</b>，按下面四块组织：
+    <ol>
+      <li>工作流设计：列出我设计的每个 Agent、各自职责、Agent 之间怎么传数据；</li>
+      <li>每个 Agent 的提示词：原样贴出，确认角色/任务/输出格式三要素齐全，并带上输入格式和 <code>OUTPUTS/</code> 路径；</li>
+      <li>实际运行输出：把每个 Agent 真实跑出的结果贴进来，不要用占位符；</li>
+      <li>学习心得：≥200 字，至少 3 条我自己的具体观察。</li>
+    </ol>
+    末尾再补一段我还想请教的困惑。语气真诚、简洁。写完先列一个清单核对上面四项有没有遗漏。」
+  </div>
+  <p>我想看到的不是完美，而是 <strong>你真的动手了、真的在想</strong>。困惑和卡点尤其欢迎——那正是下一节课我能帮你的地方。</p>
+
+  <div class="summary">
+    <b>一句话总结</b><br>
+    写心得 → 让 AI 总结 → 自己做 → 解决真痛点 → 反馈给我。<br>
+    每一步都亲手做，每一步都留下记录。这门课的能力，是「做」出来的，不是「听」出来的。
+  </div>
+
+  <p class="muted">—— 看不懂任何一步，截图发学习群，老师和同学帮你。没有笨问题。</p>
+</body>
+</html>
