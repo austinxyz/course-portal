@@ -131,6 +131,11 @@
       &nbsp;
       <a class="btn-download" href="../../dl/session1-homework-materials.zip" target="_blank" style="background:#0f4a31;">下载作业材料</a>
     </p>
+    <div class="callout callout-tip">
+      📋 <strong>不知从何下手？</strong> 先看这份
+      <a href="https://austinxyz.github.io/course-portal/c/s1-study-guide.html" target="_blank" style="font-weight:700;">《课后实操指南 · 5 步学习法》</a>——
+      从搭学习目录、记心得、自己跑 demo，到做作业、写提交邮件，一步步带你把第一节课变成自己的能力。
+    </div>
   </div>
 
   <!-- Q&A -->
@@ -154,6 +159,7 @@
     <div class="faq-item"><div class="faq-q">Project 是什么？和普通对话有啥区别？</div><div class="faq-a">Project = 带"项目文件夹 + 长期记忆"的工作区。放进去的文件（简历、方法论）每次对话自动带入，不用反复粘贴（第 10 页）。</div></div>
     <div class="faq-item"><div class="faq-q">记忆文件 / Custom Instructions 干嘛用？</div><div class="faq-a">Custom Instructions 是给这个 Project 定的"长期规矩"（比如触发词「检查新JD」要做什么）。配一次，之后每次自动按规矩走（第 12 页 + 过渡段演示）。</div></div>
     <div class="faq-item"><div class="faq-q">上传的文件 Claude 记多久？换对话还在吗？</div><div class="faq-a">在 Project 里的文件长期保留，跨对话都在；这正是它和一次性对话的区别。</div></div>
+    <div class="faq-item"><div class="faq-q">记忆文件、CLAUDE.md、Skill 到底有啥区别？</div><div class="faq-a">一句话：<strong>记忆文件让 AI「懂你」，CLAUDE.md 让 AI「懂这个项目怎么干」，Skill 是 AI「随身带的一项能力」。</strong><br>用「带新员工」打比方：<br>| | 是什么 | 作用范围 | 啥时候生效 | 能分享给别人吗 |<br>|---|---|---|---|---|<br>| <strong>记忆文件</strong>（含 Custom Instructions） | 你的个人档案 + 公司手册（简历、5C 方法论、长期规矩） | <strong>只在这个 Project 内</strong> | 这个 Project 里每次对话<strong>自动带入</strong> | 跟着 Project 走 |<br>| <strong>CLAUDE.md</strong> | 贴在某个工作文件夹门口的「这个项目怎么干」便签 | <strong>某个本地文件夹内</strong> | Cowork 一进这个文件夹<strong>自动读取</strong> | 跟着文件夹走 |<br>| <strong>Skill</strong> | 员工随身的一项专业技能 / 工具包（含做法，可带脚本） | <strong>跨所有 Project，全局可用</strong> | 任务<strong>匹配到时才被调用</strong>（不是每次都加载） | ✅ 可单独打包、双击安装、发给朋友 |<br>- <strong>记忆文件 vs CLAUDE.md</strong>：本质都是「记忆」。区别在放哪——记忆文件是你在 claude.ai 的 Project 里上传的；CLAUDE.md 是放进本地工作文件夹、Cowork 按文件名自动认的。新手先掌握记忆文件即可，CLAUDE.md 是进阶（用 Cowork 处理本地文件夹时才会碰到）。<br>- <strong>记忆文件 vs Skill</strong>：记忆文件是「关于你 / 这个项目的信息」，每次都带；Skill 是「一项可复用的本事」，需要时才拿出来用，且能跨项目、能分享。今天把 4 个 Agent 提示词存进 <code class="inline">pipeline-prompts.md</code>，本质就是一个记忆文件（存在 Project 里、可复用）；触发词「检查新JD」时 Claude 去读它依次执行。再进一步打包成「求职流水线 Skill」，就能跨 Project 一行触发、发给别人用（第 13 / 20 页）。</div></div>
     <h3>D. 连接器 · 隐私安全 ⚠️</h3>
     <div class="faq-item"><div class="faq-q">连 Gmail 安全吗？它会读我所有邮件吗？</div><div class="faq-a">连接器走 Google 官方授权（OAuth）。Claude 只在你<strong>明确要求时</strong>按那次任务去读（比如"找主题含 JD 的邮件"），不是后台常驻扫描。随时可在 Google 账号的"第三方访问"里撤销。</div></div>
     <div class="faq-item"><div class="faq-q">我的简历/数据会拿去训练模型吗？</div><div class="faq-a">⚠️ 如实说：企业/API 数据默认不用于训练；消费版（claude.ai）是否用于训练取决于你账号的隐私设置，建议进设置确认并按需关闭。<strong>课上我不打包票，以官方隐私设置为准。</strong></div></div>
