@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>课后实操指南 · 把第二节课变成你自己的能力</title>
+<style>
+  body { font-family: "Microsoft YaHei", "PingFang SC", -apple-system, Arial, sans-serif;
+         max-width: 780px; margin: 40px auto; padding: 0 24px; line-height: 1.8;
+         color: #1E1E1E; background: #FAFAF8; }
+  h1 { font-size: 28px; border-left: 5px solid #C96133; padding-left: 14px; line-height: 1.4; }
+  h2 { font-size: 21px; margin-top: 44px; color: #C96133;
+       border-bottom: 1.5px solid #F0E0D6; padding-bottom: 8px; }
+  ol, ul { padding-left: 22px; }
+  li { margin: 8px 0; }
+  code { background: #F0EDE8; padding: 2px 6px; border-radius: 4px; font-size: 14px;
+         font-family: "SF Mono", Consolas, monospace; }
+  pre { background: #2B2620; color: #F0EDE8; padding: 16px 18px; border-radius: 8px;
+        overflow-x: auto; font-size: 13.5px; line-height: 1.6; }
+  pre code { background: none; padding: 0; color: inherit; }
+  a { color: #3D7DE4; }
+  .lead { font-size: 16px; }
+  .card { background: #fff; border: 1.5px solid #F0E8E2; border-radius: 10px;
+          padding: 16px 22px; margin: 18px 0; }
+  .tip { background: #FDF1EB; border-left: 4px solid #C96133; padding: 12px 16px;
+         border-radius: 6px; margin: 16px 0; font-size: 15px; }
+  .prompt { background: #EEF4FF; border-left: 4px solid #3D7DE4; padding: 12px 16px;
+            border-radius: 6px; margin: 14px 0; font-size: 15px; }
+  .prompt b { color: #2456B0; }
+  table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 15px; }
+  th, td { border: 1px solid #E5DDD5; padding: 10px 12px; text-align: left; vertical-align: top; }
+  th { background: #F6EFE9; }
+  .muted { color: #5A5A5A; font-size: 14px; }
+  .summary { background: #fff; border: 2px solid #C96133; border-radius: 12px;
+             padding: 18px 24px; margin: 32px 0; font-size: 16px; }
+  .summary b { color: #C96133; }
+  .step-no { color: #C96133; font-weight: 700; }
+</style>
+</head>
+<body>
+  <h1>课后实操指南<br>把第二节课变成你自己的能力</h1>
+  <p class="lead">第二节课你看到的是：<strong>从空目录建一个知识库，再用它服务客户、出一份 PPT</strong>。
+     但 <strong>看懂 ≠ 会用</strong>。真正的能力，来自你把这套流程搬到<strong>一个你自己有知识的领域</strong>，亲手走一遍。
+     下面四步，请按顺序做，每一步都别跳过「记录心得」——这是整个方法的灵魂。</p>
+
+  <h2><span class="step-no">第 0 步</span> 先搭好你的学习工作区</h2>
+  <p>打开 Claude Code，新建一个 <strong>空目录</strong> 作为你的课程学习项目（比如 <code>我的AI课程-S2</code>）。
+     空的就对了——接下来的内容由你和 AI 一起长出来。</p>
+  <p>建议的目录结构（边做边建，不用一次到位）：</p>
+  <pre><code>我的AI课程-S2/
+├── 课程心得/
+│   ├── ppt/                  # 把课程 PPT 放这里
+│   ├── test-run.md           # 下载包里的课堂演示完整记录（很有用！）
+│   ├── 我的心得.md            # 随手记，想到啥写啥
+│   ├── 不懂的名词.md          # 听到没懂的术语/概念
+│   └── 课程总结.md            # 让 AI 帮你生成
+└── 知识库项目/                # 你自己领域的知识库（作业主体，见第 3 步）
+    ├── raw_material/
+    ├── wiki/
+    └── output/</code></pre>
+  <div class="tip">
+    💡 <strong>怕 <code>.md</code>？用 <code>.txt</code> 一样行。</strong> 上面那些 <code>.md</code> 文件，你嫌麻烦就全建成 <code>.txt</code>（系统自带记事本就能写），
+    AI 照样读得懂、照样帮你总结。<code>.md</code> 只是排版能好看一点，不影响用——别让格式挡住你动手。
+  </div>
+
+  <h2><span class="step-no">第 1 步</span> 记心得 + 让 AI 帮你总结</h2>
+  <p><strong>先你写，再让 AI 补。</strong> 顺序很重要——AI 是来帮你深化的，不是替你回忆的。</p>
+  <div class="card">
+    <ol>
+      <li>在 <code>我的心得.md</code> 里，尽量回忆课上听到的内容，记下你的体会。<strong>不用写得完善</strong>，碎片、半句话都行。</li>
+      <li>在 <code>不懂的名词.md</code> 里，记下你没太懂的术语和概念（比如 raw_material / wiki / Skill / Graph View）。</li>
+      <li>把 PPT 放进 <code>ppt/</code> 目录；再把下载包里的 <strong><code>test-run.md</code></strong> 也放进 <code>课程心得/</code>——它是课堂演示的 <strong>完整逐步记录</strong>，每一步提示词、每个 Skill 怎么跑、输入输出长啥样都在里面。</li>
+      <li>然后让 AI 结合你的心得、PPT 和 <code>test-run.md</code> 帮你总结。<strong>多问几次</strong>，每次问得更细，最后要求它 <strong>输出一个 <code>课程总结.md</code> 文件</strong>，方便你以后回看。</li>
+    </ol>
+  </div>
+  <div class="tip">
+    📎 <strong><code>test-run.md</code> 为什么重要</strong>：PPT 是「讲了什么」，<code>test-run.md</code> 是「实际怎么做的」。
+    你对某一步没看懂、或想不起演示细节时，让 AI 翻 <code>test-run.md</code> 回答你，比凭空解释准得多。
+  </div>
+  <div class="prompt">
+    <b>Prompt 示例</b>（直接抄，再改成你自己的）：
+    <ul>
+      <li>「请结合我的心得（<code>我的心得.md</code>）、PPT（<code>ppt/</code> 里的文件）和 <code>test-run.md</code>，帮我总结这节课，保存到 <code>课程总结.md</code>。」</li>
+      <li>「我对演示里『___ 那一步』没看懂，请结合 <code>test-run.md</code> 给我讲清楚那一步在干嘛、为什么这么做。」</li>
+      <li>「<code>raw_material/</code>、<code>wiki/</code>、<code>output/</code> 三层目录各是干嘛的？为什么要这么分？请加到总结里。」</li>
+      <li>「Skill 到底是什么？和我直接打提示词有啥区别？请用大白话 + 例子讲清楚，加到总结里。」</li>
+    </ul>
+  </div>
+
+  <h2><span class="step-no">第 2 步</span> 亲手走通课堂演示（Part A）</h2>
+  <p><strong>只有自己做，才有真体会。</strong> 对着下载包里的 <code>demo/test-run.md</code>，从一个<strong>空目录</strong>开始，
+     把今天的财务顾问演示自己跑一遍：建三层库 → <code>/wiki-extract</code> 写第一条 wiki → <code>/wealth-client-qa</code> 收集客户 → <code>/ppt-master</code> 出 PPT。约 30-40 分钟。</p>
+  <ul>
+    <li><strong>大胆自由发挥</strong>——AI 是能容错的，做错了不要紧。</li>
+    <li>某一步 Skill 输出质量不够，用 <code>demo/virtual-client-wang.md</code> 或 <code>virtual-client-li.md</code> 直接粘贴继续。</li>
+    <li>做的过程中，继续把心得、踩的坑、突然想通的点，记到 <code>课程心得/我的心得.md</code> 里，让 AI 帮你接着总结。</li>
+  </ul>
+  <p class="muted">Part A 只是找手感、验证环境，<strong>不用提交</strong>。真正要交的是 Part B（第 3 步）。</p>
+
+  <h2><span class="step-no">第 3 步</span> 换成你自己的领域做作业（Part B）</h2>
+  <p>作业不是交差，是 <strong>把这套流程搬到一个你有真实知识的领域</strong>——你能判断 AI 输出对不对的领域。
+     保险 / 律师 / 医疗 / 教育 / 房产都行；实在没有，就跟着做理财库。</p>
+  <p><strong>完整六步在 <code>homework-guide.md</code> 里</strong>，这里是骨架：</p>
+  <table>
+    <tr><th>步骤</th><th>做什么</th><th>要交吗</th></tr>
+    <tr><td>Step 1-2</td><td>选定领域 + 建三层目录（<code>raw_material/ wiki/ output/</code> + CLAUDE.md）</td><td>—</td></tr>
+    <tr><td><strong>Step 3</strong></td><td>先建 <code>/wiki-extract</code> Skill，用它写 <strong>3 篇 wiki</strong>，每篇写完自己 Review 补行业判断</td><td><strong>是</strong></td></tr>
+    <tr><td>Step 4</td><td>用 superpowers（<code>/brainstorming</code>）针对一个具体客户/场景做定制方案</td><td>—</td></tr>
+    <tr><td><strong>Step 5</strong></td><td>用 <code>/ppt-master</code> 出一份 PPT，截图留好</td><td><strong>是</strong></td></tr>
+    <tr><td>Step 6 ★</td><td>（进阶可选）封装你领域的客户咨询 Skill</td><td>否</td></tr>
+  </table>
+  <p><strong>关键是迭代</strong>——质量不够好，先改 <code>output/</code> 里的方案/画像，再跑一次。<strong>知识库质量 &gt; 提示词技巧</strong>。
+     最重要的一步是 Step 3d：<strong>每篇 wiki 写完，把 AI 没提到的行业经验补进去</strong>——这一步让它从「AI 的系统」变成「你的系统」。</p>
+  <div class="prompt">
+    <b>建三层目录的 Prompt</b>（在新空目录里打开 Claude Code）：<br>
+    「请帮我初始化一个 [你的领域] 知识库项目，按三层结构组织：<code>raw_material/</code>（原始素材，留来源链接）、<code>wiki/</code>（结构化知识条目）、<code>output/</code>（客户档案，隐私区不进 Git）。创建这三个目录 + 一份 CLAUDE.md 说明结构和隐私规则，并把 <code>output/</code> 加进 <code>.gitignore</code>。」
+  </div>
+
+  <h2><span class="step-no">第 4 步</span> 让 AI 帮你给我写一封邮件 = 提交作业</h2>
+  <p>最后，结合你这一路的 <strong>心得体会</strong> 和 <strong>作业产出</strong>，让 AI 帮你写一封邮件发给我。</p>
+  <div class="tip">
+    📌 <strong>关键说明</strong>：这封邮件 <strong>就是你的作业提交</strong>——下面三样 <strong>一样都不能少</strong>。
+    让 AI 帮你写，不等于让 AI 帮你省。所以 prompt 里要把三项都点给 AI，让它逐项填满。
+  </div>
+  <p><strong>提交三样（邮件正文必须全部覆盖）：</strong></p>
+  <ol>
+    <li><strong>3 篇 wiki 片段</strong>——把 Step 3 写的 3 篇 wiki 内容贴进邮件（或截图），最好带上你自己补的行业判断。</li>
+    <li><strong><code>/ppt-master</code> 生成的 PPT 截图</strong>——Step 5 PPT 打开后的 1-2 张关键页截图。</li>
+    <li><strong>200 字心得</strong>——这次和 Session 1 的作业有什么不一样的感受？可参考：「工具」和「系统」有什么不同？哪里 AI 的答案让你想修改或补充？如果你有真实客户，会怎么用这套流程？（200 字以上，不设上限）</li>
+  </ol>
+  <div class="prompt">
+    <b>Prompt 示例</b>（直接抄，把括号里的路径换成你自己的）：<br>
+    「请结合我的知识库项目（<code>知识库项目/</code> 目录）和课程心得（<code>课程心得/</code> 目录），帮我写一封发给老师的作业提交邮件。<b>下面三项必须完整出现在邮件正文里，一项都不能省</b>：
+    <ol>
+      <li>我 Step 3 写的 3 篇 wiki：原样贴出内容，标出我自己补充的行业判断；</li>
+      <li>Step 5 的 PPT：说明在哪个领域、为哪个客户/场景做的（截图我会另附）；</li>
+      <li>学习心得：≥200 字，写清楚『工具 vs 系统』的体会、以及哪里我修改/补充了 AI 的输出。</li>
+    </ol>
+    末尾再补一段我还想请教的困惑。语气真诚、简洁。写完先列一个清单核对上面三项有没有遗漏。」
+  </div>
+  <p><strong>发送方式</strong>：邮件发到 <code>austin.aicourse@gmail.com</code>，主题必须是
+     <strong>【Session 2 作业】+ 你的名字</strong>。</p>
+  <p>我想看到的不是完美，而是 <strong>你真的动手了、真的在想</strong>。困惑和卡点尤其欢迎——那正是下一节课我能帮你的地方。</p>
+
+  <div class="summary">
+    <b>一句话总结</b><br>
+    写心得 → 让 AI 总结 → 走通演示 → 换成自己领域建库出 PPT → 反馈给我。<br>
+    每一步都亲手做，每一步都留下记录。这门课的能力，是「做」出来的，不是「听」出来的。
+  </div>
+
+  <p class="muted">—— 看不懂任何一步，截图发学习群，老师和同学帮你。没有笨问题。</p>
+</body>
+</html>
