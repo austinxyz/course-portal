@@ -49,7 +49,7 @@
   <pre><code>我的AI课程/
 ├── 课程心得/
 │   ├── ppt/                  # 把课程 PPT 放这里
-│   ├── test-run.md           # 下载包里的课堂 demo 完整记录（很有用！）
+│   ├── 跟我做-提示词.md       # 下载包里的演示提示词清单，每步带「这步在干嘛」（很有用！）
 │   ├── 我的心得.md            # 随手记，想到啥写啥
 │   ├── 不懂的名词.md          # 听到没懂的术语/概念
 │   └── 课程总结.md            # 让 AI 帮你生成
@@ -67,19 +67,19 @@
     <ol>
       <li>在 <code>我的心得.md</code> 里，尽量回忆课上听到的内容，记下你的体会。<strong>不用写得完善</strong>，碎片、半句话都行。</li>
       <li>在 <code>不懂的名词.md</code> 里，记下你没太懂的术语和概念。</li>
-      <li>把 PPT 放进 <code>ppt/</code> 目录；再把下载包里的 <strong><code>test-run.md</code></strong> 也放进 <code>课程心得/</code>——它是课堂 demo 的 <strong>完整逐步记录</strong>，每个 Agent 怎么跑、输入输出长啥样都在里面。</li>
-      <li>然后让 AI 结合你的心得、PPT 和 <code>test-run.md</code> 帮你总结。<strong>多问几次</strong>，每次问得更细，最后要求它 <strong>输出一个 <code>课程总结.md</code> 文件</strong>，方便你以后回看。</li>
+      <li>把 PPT 放进 <code>ppt/</code> 目录；再把下载包里的 <strong><code>跟我做-提示词.md</code></strong> 也放进 <code>课程心得/</code>——它是课堂 demo 用到的 <strong>提示词清单</strong>，每步还标了「这步在干嘛」，AI 翻它能准确还原每步在做什么。</li>
+      <li>然后让 AI 结合你的心得、PPT 和 <code>跟我做-提示词.md</code> 帮你总结。<strong>多问几次</strong>，每次问得更细，最后要求它 <strong>输出一个 <code>课程总结.md</code> 文件</strong>，方便你以后回看。</li>
     </ol>
   </div>
   <div class="tip">
-    📎 <strong><code>test-run.md</code> 为什么重要</strong>：PPT 是「讲了什么」，<code>test-run.md</code> 是「实际怎么做的」。
-    你对某一步没看懂、或想不起 demo 细节时，让 AI 翻 <code>test-run.md</code> 回答你，比凭空解释准得多。
+    📎 <strong><code>跟我做-提示词.md</code> 为什么重要</strong>：PPT 是「讲了什么」，<code>跟我做-提示词.md</code> 是「实际发了哪些提示词」。
+    你对某一步没看懂、或想不起 demo 细节时，让 AI 翻 <code>跟我做-提示词.md</code> 回答你，比凭空解释准得多。
   </div>
   <div class="prompt">
     <b>Prompt 示例</b>（直接抄，再改成你自己的）：
     <ul>
-      <li>「请结合我的心得（<code>我的心得.md</code>）、PPT（<code>ppt/</code> 里的文件）和 <code>test-run.md</code>，帮我总结这节课，保存到 <code>课程总结.md</code>。」</li>
-      <li>「我对 demo 里『___ 那一步』没看懂，请结合 <code>test-run.md</code> 给我讲清楚那一步在干嘛、为什么这么做。」</li>
+      <li>「请结合我的心得（<code>我的心得.md</code>）、PPT（<code>ppt/</code> 里的文件）和 <code>跟我做-提示词.md</code>，帮我总结这节课，保存到 <code>课程总结.md</code>。」</li>
+      <li>「我对 demo 里『___ 那一步』没看懂，请结合 <code>跟我做-提示词.md</code> 给我讲清楚那一步在干嘛、为什么这么做。」</li>
       <li>「我对 cowork 里怎么配置 Gmail 不太懂，请给我更详细的步骤指导，并补充到总结文件里。」</li>
       <li>「对于『如何写好 prompt』我现在还没概念，请帮我系统梳理一下，加到总结里。」</li>
     </ul>
