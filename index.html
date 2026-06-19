@@ -1,413 +1,430 @@
-﻿<!DOCTYPE html>
-<html lang="zh-CN">
+<!DOCTYPE html>
+<html lang="zh">
 <head>
+<meta charset="UTF-8">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DN5RL2PFE6"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-DN5RL2PFE6');
 </script>
-  <meta charset="UTF-8">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>从零上手 Claude · Console</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAFAF7; --surface:#FFFFFF; --ink:#1A1A17; --muted:#73716A;
+    --line:#E7E4DC; --line-strong:#D6D2C8; --accent:#BF5B38; --accent-soft:#F4E7E0;
+    --mono:'IBM Plex Mono',ui-monospace,monospace;
+    --sans:'IBM Plex Sans','Noto Sans SC',system-ui,sans-serif;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased;font-size:16px}
+  /* language switch */
+  .en{display:none}
+  .lang-en .zh{display:none}
+  .lang-en .en{display:inline}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  .mono{font-family:var(--mono)}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>从零上手 Claude · 课程门户</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    .hero {
-      background: linear-gradient(135deg, var(--primary) 0%, #8a3e1f 100%);
-      color: white; padding: 28px 24px 24px; text-align: center; position: relative;
-    }
-    .hero h1 { font-size: 1.7rem; font-weight: 700; letter-spacing: 0.02em; margin-bottom: 8px; }
-    .hero .subtitle { font-size: 0.95rem; opacity: 0.85; max-width: 580px; margin: 0 auto 14px; }
-    .badge { display: inline-block; background: var(--accent); color: #1e2a22; font-size: 0.8rem; font-weight: 700; padding: 4px 14px; border-radius: 20px; letter-spacing: 0.05em; }
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-    .page-grid { display: grid; grid-template-columns: 1fr 340px; gap: 24px; align-items: start; padding: 24px 0; }
-    .page-main { min-width: 0; }
-    .page-sidebar { position: sticky; top: 24px; display: flex; flex-direction: column; gap: 20px; }
-    .toc { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 24px 28px; margin: 36px auto; max-width: 820px; }
-    .toc h2 { font-size: 1rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; }
-    .toc ol { padding-left: 20px; }
-    .toc li { margin: 6px 0; }
-    .toc a { color: var(--primary); text-decoration: none; font-weight: 500; }
-    .toc a:hover { text-decoration: underline; }
-    .section { background: var(--white); border-radius: 16px; padding: 36px 40px; margin: 0 0 24px 0; border: 1px solid var(--border); box-shadow: var(--shadow-sm); }
-    @media (max-width: 780px) { .page-grid { grid-template-columns: 1fr; } .page-sidebar { position: static; } }
-    .step-header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
-    .step-num { width: var(--step-size); height: var(--step-size); min-width: var(--step-size); background: var(--primary); color: white; border-radius: 50%; font-size: 1.3rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
-    .step-title { font-size: 1.4rem; font-weight: 700; color: var(--text); }
-    h2.section-title { font-size: 1.45rem; font-weight: 800; margin-bottom: 20px; color: var(--primary); letter-spacing: -0.01em; }
-    h3 { font-size: 1.05rem; font-weight: 700; margin: 22px 0 10px; color: var(--text); }
-    p { margin-bottom: 12px; }
-    ol, ul { padding-left: 22px; margin-bottom: 14px; }
-    li { margin: 6px 0; }
-    code.inline { background: var(--code-bg); padding: 2px 7px; border-radius: 4px; font-family: "SF Mono", Consolas, monospace; font-size: 0.88em; color: var(--primary); }
-    .ui { display: inline-block; background: #2a2a2a; color: #e0e0e0; padding: 2px 10px; border-radius: 5px; font-size: 0.85em; font-family: "SF Mono", Consolas, monospace; border: 1px solid #444; }
-    .callout { border-radius: 10px; padding: 14px 18px; margin: 16px 0; font-size: 0.95rem; }
-    .callout-tip { background: var(--accent-light); border-left: 4px solid var(--accent); }
-    .callout-warning { background: #fff3f3; border-left: 4px solid #e05555; }
-    .callout-info { background: var(--primary-light); border-left: 4px solid var(--primary); }
-    .btn-download { display: inline-flex; align-items: center; gap: 10px; background: var(--primary); color: white; text-decoration: none; padding: 13px 26px; border-radius: 999px; font-size: 1rem; font-weight: 700; margin: 16px 0; transition: background 0.2s, transform 0.15s, box-shadow 0.15s; box-shadow: 0 2px 8px rgba(201,97,51,0.25); }
-    .btn-download:hover { background: #8a3e1f; transform: translateY(-2px); box-shadow: 0 4px 16px rgba(201,97,51,0.35); }
-    .os-tabs { display: flex; gap: 8px; margin-bottom: 12px; }
-    .os-tab { padding: 6px 16px; border-radius: 6px; border: 1px solid var(--border); cursor: pointer; font-size: 0.9rem; font-weight: 600; background: white; color: var(--text-muted); font-family: inherit; transition: all 0.15s; }
-    .os-tab.active { background: var(--primary); color: white; border-color: var(--primary); }
-    .os-content { display: none; }
-    .os-content.active { display: block; }
-    .screen-note { background: #1a1a1a; border-radius: 10px; padding: 16px 20px; margin: 16px 0; color: #ccc; font-size: 0.9rem; line-height: 1.7; }
-    .screen-note .loc { color: var(--accent); font-weight: 700; }
-    .screen-note .arrow { color: #888; margin: 0 4px; }
-    .cmd-card { border: 1px solid var(--border); border-radius: 12px; margin: 14px 0; overflow: hidden; }
-    .cmd-card-header { background: #1a1a1a; padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; }
-    .cmd-card-title { font-weight: 700; color: #e0e0e0; font-size: 0.9rem; }
-    .copy-btn { background: var(--primary); color: white; border: none; border-radius: 6px; padding: 6px 14px; font-size: 0.83rem; font-weight: 600; cursor: pointer; transition: background 0.2s; font-family: inherit; }
-    .copy-btn:hover { background: #8a3e1f; }
-    .copy-btn.copied { background: #27ae60; }
-    .cmd-body { background: #0d0d0d; padding: 16px 20px; font-family: "SF Mono", Consolas, monospace; font-size: 0.95rem; line-height: 1.7; white-space: pre-wrap; color: #6ee7a8; }
-    .checklist { list-style: none; padding: 0; }
-    .checklist li { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 1rem; cursor: pointer; }
-    .checklist li:last-child { border-bottom: none; }
-    .check-box { width: 22px; height: 22px; min-width: 22px; border: 2px solid var(--border); border-radius: 5px; margin-top: 2px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
-    .checklist li:hover .check-box { border-color: var(--primary); }
-    .check-box.done { background: var(--primary); border-color: var(--primary); }
-    .check-box.done::after { content: "✓"; color: white; font-size: 0.85rem; font-weight: 700; }
-    .check-label { flex: 1; }
-    .checklist li.done-item .check-label { text-decoration: line-through; color: var(--text-muted); }
-    .faq-item { border-bottom: 1px solid var(--border); padding: 18px 0; }
-    .faq-item:last-child { border-bottom: none; }
-    .faq-q { font-weight: 700; color: var(--primary); margin-bottom: 8px; display: flex; gap: 10px; align-items: flex-start; }
-    .faq-q::before { content: "Q"; background: var(--primary); color: white; border-radius: 4px; padding: 1px 7px; font-size: 0.8rem; flex-shrink: 0; margin-top: 2px; }
-    .faq-a { color: var(--text); padding-left: 30px; }
-    .opt-tag { display:inline-block; background: var(--accent-light); color:#8a5f00; font-size:0.75rem; font-weight:700; padding:2px 10px; border-radius:12px; margin-left:8px; }
-    footer { text-align: center; padding: 36px 20px; color: var(--text-muted); font-size: 0.87rem; }
-    footer a { color: var(--primary); }
-    .dl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 18px; }
-    .dl-card { border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; display: flex; flex-direction: column; gap: 10px; background: var(--white); box-shadow: var(--shadow-sm); transition: box-shadow 0.2s, transform 0.15s; }
-    .dl-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
-    .dl-card-title { font-weight: 700; font-size: 1rem; color: var(--text); }
-    .dl-card-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; }
-    .btn-dl { display: inline-flex; align-items: center; gap: 8px; background: var(--primary); color: white; text-decoration: none; padding: 8px 18px; border-radius: 999px; font-size: 0.88rem; font-weight: 700; transition: background 0.2s, box-shadow 0.15s; align-self: flex-start; box-shadow: 0 2px 6px rgba(201,97,51,0.2); }
-    .btn-dl:hover { background: #8a3e1f; box-shadow: 0 4px 12px rgba(201,97,51,0.3); }
-    .price-box { background: var(--primary-light); border: 1px solid var(--border); border-left: 4px solid var(--primary); border-radius: 14px; padding: 22px 28px; margin: 20px 0 10px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-    .price-num { font-size: 2.2rem; font-weight: 900; color: var(--primary); }
-    .price-desc { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; }
-    @media (max-width: 600px) {
-      .hero h1 { font-size: 1.6rem; }
-      .section { padding: 24px 20px; }
-      .step-title { font-size: 1.2rem; }
-      .dl-grid { grid-template-columns: 1fr; }
-      .price-box { flex-direction: column; align-items: flex-start; }
-    }
-    /* bilingual toggle */
-    body:not(.lang-en) [data-en] { display: none }
-    body.lang-en [data-zh]       { display: none }
-    #lang-toggle {
-      position: absolute; top: 14px; right: 18px; z-index: 10;
-      display: flex; align-items: center; gap: 2px;
-      background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.4);
-      border-radius: 20px; padding: 4px 10px; font-size: 0.82rem;
-    }
-    #lang-toggle button {
-      background: none; border: none; cursor: pointer;
-      font-weight: 700; font-family: inherit; font-size: 0.82rem; padding: 2px 5px;
-      color: rgba(255,255,255,0.6); border-radius: 12px; transition: all 0.15s;
-    }
-    #lang-toggle button.active { color: white; background: rgba(255,255,255,0.2); }
-    #lang-toggle span { color: rgba(255,255,255,0.4); font-size: 0.75rem; }
-  </style>
+  /* top bar */
+  header.bar{position:sticky;top:0;z-index:50;background:rgba(250,250,247,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .bar-in{display:flex;align-items:center;justify-content:space-between;height:60px;gap:18px}
+  .brand{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-weight:600;font-size:15px;letter-spacing:-.01em;white-space:nowrap}
+  .brand .dot{width:9px;height:9px;background:var(--accent);border-radius:2px}
+  .nav{display:flex;align-items:center;gap:26px;font-size:13.5px;color:var(--muted)}
+  .nav a:hover{color:var(--ink)}
+  .nav-cta{font-family:var(--mono);font-size:12.5px;color:var(--ink);border:1px solid var(--line-strong);padding:8px 14px;border-radius:6px;white-space:nowrap}
+  .nav-cta:hover{border-color:var(--accent);color:var(--accent)}
+  /* lang toggle */
+  .langtog{display:inline-flex;border:1px solid var(--line-strong);border-radius:7px;overflow:hidden;font-family:var(--mono);font-size:12.5px}
+  .langtog button{appearance:none;border:0;background:transparent;color:var(--muted);padding:7px 12px;cursor:pointer;font-family:inherit;font-size:inherit;transition:.12s}
+  .langtog button.on{background:var(--ink);color:var(--surface)}
+  .langtog button:not(.on):hover{color:var(--ink)}
+  @media(max-width:820px){.nav .lk{display:none}}
+
+  /* hero */
+  .hero{padding:74px 0 30px;border-bottom:1px solid var(--line)}
+  .hero-grid{display:grid;grid-template-columns:1.35fr .9fr;gap:54px;align-items:start}
+  .hero h1{font-size:clamp(40px,6vw,68px);line-height:1.04;letter-spacing:-.03em;font-weight:700;margin:18px 0 0}
+  .lede{font-size:18px;color:#3a3933;max-width:40ch;margin-top:22px}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+  .tag{font-family:var(--mono);font-size:12px;color:var(--muted);border:1px solid var(--line);background:var(--surface);padding:6px 11px;border-radius:5px;white-space:nowrap}
+  .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:14px;font-weight:500;padding:13px 20px;border-radius:7px;border:1px solid transparent;transition:.15s;white-space:nowrap}
+  .btn-primary{background:var(--accent);color:#fff}
+  .btn-primary:hover{background:#a84c2d}
+  .btn-ghost{border-color:var(--line-strong);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--ink)}
+
+  /* hero side card */
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:12px}
+  .next-card{padding:0;overflow:hidden}
+  .next-head{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .blink{width:8px;height:8px;border-radius:50%;background:#3fa06a;box-shadow:0 0 0 0 rgba(63,160,106,.5);animation:pulse 2s infinite}
+  @keyframes pulse{70%{box-shadow:0 0 0 7px rgba(63,160,106,0)}100%{box-shadow:0 0 0 0 rgba(63,160,106,0)}}
+  .next-body{padding:18px}
+  .next-item{display:flex;gap:13px;padding:13px 0;border-bottom:1px solid var(--line)}
+  .next-item:last-child{border-bottom:0}
+  .next-item .when{font-family:var(--mono);font-size:12px;color:var(--accent);min-width:52px;line-height:1.3}
+  .next-item .what{font-size:14px;font-weight:500}
+  .next-item .what small{display:block;color:var(--muted);font-weight:400;font-size:12.5px;margin-top:2px}
+  .free-pill{font-family:var(--mono);font-size:10.5px;color:#2f7d52;background:#e6f1ea;padding:2px 7px;border-radius:4px;align-self:flex-start;white-space:nowrap}
+
+  /* section scaffold */
+  section{padding:72px 0}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:38px}
+  .sec-num{font-family:var(--mono);font-size:12px;color:var(--accent);padding-top:6px}
+  .sec-head h2{font-size:clamp(26px,3.4vw,36px);letter-spacing:-.02em;font-weight:700;line-height:1.1}
+  .sec-head .sub{font-family:var(--mono);font-size:13px;color:var(--muted);margin-top:6px;letter-spacing:.02em}
+
+  /* instructor */
+  .inst{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .inst-grid{display:grid;grid-template-columns:240px 1fr;gap:46px;align-items:start}
+  .headshot{width:100%;aspect-ratio:1;object-fit:cover;border-radius:12px;border:1px solid var(--line);background:var(--accent-soft)}
+  .inst h3{font-size:23px;letter-spacing:-.01em;margin-top:10px}
+  .inst .role{font-family:var(--mono);font-size:13px;color:var(--accent);margin:4px 0 16px}
+  .inst p{color:#3a3933;max-width:64ch}
+  .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:24px 0;max-width:560px}
+  .stat{border-left:2px solid var(--accent);padding-left:13px}
+  .stat .n{font-family:var(--mono);font-size:23px;font-weight:600;letter-spacing:-.02em}
+  .stat .l{font-size:12px;color:var(--muted);margin-top:2px}
+  .links{display:flex;flex-wrap:wrap;gap:18px;font-family:var(--mono);font-size:13px;margin-top:8px}
+  .links a{color:var(--muted);border-bottom:1px solid var(--line-strong);padding-bottom:1px}
+  .links a:hover{color:var(--accent);border-color:var(--accent)}
+
+  /* curriculum */
+  .courses{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .course{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:26px;display:flex;flex-direction:column}
+  .ctop{display:flex;align-items:center;justify-content:space-between}
+  .ctop .sidx{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.1em}
+  .ctop .price{font-family:var(--mono);font-size:26px;font-weight:600;letter-spacing:-.02em}
+  .ctop .price small{font-size:12px;color:var(--muted);font-weight:400}
+  .course h3{font-size:21px;letter-spacing:-.01em;margin:12px 0 0;line-height:1.25}
+  .course .desc{font-size:14.5px;color:#46443d;margin:12px 0 16px}
+  .meta-list{list-style:none;font-size:13.5px;display:flex;flex-direction:column;gap:9px;margin-bottom:16px}
+  .meta-list li{display:flex;gap:10px;align-items:flex-start;color:#46443d}
+  .meta-list li::before{content:"›";color:var(--accent);font-family:var(--mono)}
+  .when-pill{align-self:flex-start;font-family:var(--mono);font-size:12px;color:var(--accent);background:var(--accent-soft);padding:5px 10px;border-radius:5px;margin-bottom:18px}
+  /* resources */
+  .res{margin-top:auto;border-top:1px solid var(--line);padding-top:16px}
+  .res-label{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+  .rlink{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0;font-size:13.5px;border-bottom:1px solid var(--line);transition:.12s}
+  .rlink:last-child{border-bottom:0}
+  .rlink:hover{color:var(--accent)}
+  .rlink .rt{font-family:var(--mono);font-size:10px;letter-spacing:.04em;white-space:nowrap;padding:3px 7px;border-radius:4px}
+  .rlink .rt.pub{color:#2f7d52;background:#eef6f0}
+  .rlink .rt.lock{color:#9a6a2e;background:#f6efe2}
+  .portal-note{font-size:12px;color:var(--muted);margin-top:12px;line-height:1.5;display:flex;gap:8px}
+  .portal-note::before{content:"🔑";flex:none}
+  .bundle{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;background:var(--ink);color:#f3f1ea;border-radius:12px;padding:20px 26px}
+  .bundle .b-t{font-size:15px}
+  .bundle .b-p{font-family:var(--mono);font-size:24px;font-weight:600}
+  .bundle .b-p del{color:#8b887e;font-size:16px;margin-right:8px}
+
+  /* webinar */
+  .webinar{background:var(--ink);color:#f1efe8}
+  .web-grid{display:grid;grid-template-columns:1fr .9fr;gap:48px;align-items:center}
+  .webinar .eyebrow{color:#e08a64}
+  .webinar h2{font-size:clamp(28px,4vw,42px);letter-spacing:-.02em;line-height:1.12;margin:14px 0}
+  .web-when{font-family:var(--mono);font-size:13.5px;color:#e0ad97;margin-bottom:22px}
+  .web-list{list-style:none;display:flex;flex-direction:column;gap:14px}
+  .web-list li{display:flex;gap:12px;font-size:15px;color:#d8d5cc}
+  .web-list li .k{font-family:var(--mono);color:#e08a64;flex:none}
+  .web-cards{display:flex;flex-direction:column;gap:14px}
+  .web-card{background:#26251d;border:1px solid #36342a;border-radius:10px;padding:18px 20px}
+  .web-card .t{font-size:15px;font-weight:600}
+  .web-card .d{font-size:13px;color:#a6a298;margin:6px 0 12px}
+  .web-card .go{font-family:var(--mono);font-size:12.5px;color:#e08a64}
+  .web-card:hover{border-color:#5a564a}
+  .web-card.lead{background:#e08a64;border-color:#e08a64}
+  .web-card.lead .t,.web-card.lead .go{color:#1a1a17}
+  .web-card.lead .d{color:#5e3a28}
+
+  /* schedule */
+  .sched{display:flex;flex-direction:column}
+  .srow{display:grid;grid-template-columns:170px 1fr auto;gap:24px;align-items:center;padding:18px 0;border-bottom:1px solid var(--line)}
+  .srow:first-child{border-top:1px solid var(--line)}
+  .srow .sd{font-family:var(--mono);font-size:13px;color:var(--accent)}
+  .srow .st{font-size:15.5px;font-weight:500}
+  .srow .sk{font-family:var(--mono);font-size:11.5px;color:var(--muted);border:1px solid var(--line-strong);padding:4px 10px;border-radius:20px;justify-self:end;white-space:nowrap}
+  .srow .sk.free{color:#2f7d52;border-color:#bcdcc8;background:#eef6f0}
+
+  /* demo + enroll split */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:30px}
+  .panel h3{font-size:20px;letter-spacing:-.01em;margin-top:8px}
+  .panel p{font-size:14px;color:#46443d;margin:14px 0}
+  .qr{display:flex;align-items:center;gap:18px;margin:18px 0}
+  .qr img{width:104px;height:104px;border-radius:8px;border:1px solid var(--line);background:#fff}
+  .qr .wid{font-family:var(--mono);font-size:13px}
+  .qr .wid small{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px}
+  .mini{font-size:12.5px;color:var(--muted)}
+
+  footer{border-top:1px solid var(--line);padding:34px 0;margin-top:20px}
+  .foot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;font-size:13px;color:var(--muted)}
+  .foot .fl{display:flex;gap:18px;font-family:var(--mono);font-size:12.5px}
+  .foot .fl a:hover{color:var(--accent)}
+
+  @media(max-width:880px){
+    .hero-grid,.inst-grid,.web-grid,.courses,.split{grid-template-columns:1fr;gap:30px}
+    .srow{grid-template-columns:1fr;gap:6px;align-items:flex-start}
+    .srow .sk{justify-self:start}
+    .bundle{grid-column:auto}
+    .inst-grid{grid-template-columns:140px 1fr;gap:24px}
+  }
+  @media(max-width:520px){.inst-grid{grid-template-columns:1fr}.stat-row{grid-template-columns:1fr 1fr}}
+</style>
 </head>
-<body>
+<body class="lang-zh">
 
-<div class="hero">
-  <div id="lang-toggle">
-    <button id="btn-zh" onclick="setLang('zh')">中</button>
-    <span>|</span>
-    <button id="btn-en" onclick="setLang('en')">EN</button>
+<header class="bar">
+  <div class="wrap bar-in">
+    <a class="brand" href="#top"><span class="dot"></span><span class="zh">从零上手 Claude</span><span class="en">Learn Claude</span></a>
+    <nav class="nav">
+      <a class="lk" href="#instructor"><span class="zh">讲师</span><span class="en">Instructor</span></a>
+      <a class="lk" href="#curriculum"><span class="zh">课程</span><span class="en">Curriculum</span></a>
+      <a class="lk" href="#webinar"><span class="zh">免费公开课</span><span class="en">Free webinar</span></a>
+      <a class="lk" href="#schedule"><span class="zh">日程</span><span class="en">Schedule</span></a>
+      <a class="nav-cta" href="#enroll"><span class="zh">报名</span><span class="en">Enroll</span></a>
+      <div class="langtog" role="group" aria-label="Language">
+        <button data-lang="zh" class="on">中</button>
+        <button data-lang="en">EN</button>
+      </div>
+    </nav>
   </div>
-  <h1><span data-zh>从零上手 Claude</span><span data-en>Learn Claude from Scratch</span></h1>
-  <p class="subtitle">
-    <span data-zh>两节课，从第一次打开 Claude 到搭起你自己的 AI 知识系统——全程动手、零基础友好、专为北美华人。</span>
-    <span data-en>Two sessions — from opening Claude for the first time to building your own AI knowledge system. Hands-on, beginner-friendly, taught in Chinese.</span>
-  </p>
-  <span class="badge"><span data-zh>动手实操 · 零基础 · 中文全程</span><span data-en>Hands-on · Beginner-friendly · Taught in Chinese</span></span>
-</div>
+</header>
 
-<div class="container">
-<div class="page-grid">
+<main id="top">
 
-  <!-- 左栏：课程内容 -->
-  <div class="page-main">
-
-    <!-- 讲师介绍 -->
-    <div class="section" id="about">
-      <h2 class="section-title"><span data-zh>关于讲师</span><span data-en>About the Instructor</span></h2>
-      <img src="img/headshot.jpg" alt="Austin Xu" style="float:left;width:150px;height:150px;border-radius:14px;object-fit:cover;margin:0 22px 12px 0;">
-      <p>
-        <span data-zh>Austin 是硅谷一家 500 强企业的工程经理，写了 20 年代码。从 Startup 基层程序员做到大厂资深工程经理，带领支撑 $74B+ GMV 的云平台团队，浙大硕士毕业。他是公司内部 Claude Code 的头号用户，把 MCP 和 Agent 真正落地到生产环境、个人 PR 产出翻倍；业余自主开发了 10 多个 AI 系统（理财、成长追踪、运动数据等）。生活里是 USTA 全国冠军、网球与匹克球队长，积极参与北美华人社区——和你一样的华人路径，只是早一步踩进了 AI 这条赛道。</span>
-        <span data-en>Austin is an Engineering Manager at a Fortune 500 company in Silicon Valley with 20 years of coding experience. He rose from a startup engineer to a senior EM leading a cloud platform that powers $74B+ GMV, and holds a master's degree from Zhejiang University. He's the #1 internal user of Claude Code at his company — shipping MCP and Agent architectures in production, doubling his own PR output. Outside work he's built 10+ personal AI systems (investing, growth tracking, sports analytics). He's also a USTA national champion and an active member of the Chinese-American community.</span>
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow"><span class="zh">专为北美华人 · 中文全程</span><span class="en">For North American Chinese · Taught in Chinese</span></span>
+      <h1><span class="zh">从零上手 Claude</span><span class="en">Learn Claude from Scratch</span></h1>
+      <p class="lede">
+        <span class="zh">两节课，从第一次打开 Claude，到搭起你自己的 AI 知识系统。全程动手、零基础友好。</span>
+        <span class="en">Two sessions — from opening Claude for the first time to building your own AI knowledge system. Hands-on and beginner-friendly.</span>
       </p>
-      <p style="margin-top:14px;">
-        <a href="https://github.com/austinxyz" target="_blank" style="color:var(--primary);font-weight:700;">GitHub</a> &nbsp;·&nbsp;
-        <a href="https://austinxyz.github.io/blogs/blog" target="_blank" style="color:var(--primary);font-weight:700;"><span data-zh>个人博客</span><span data-en>Blog</span></a> &nbsp;·&nbsp;
-        <a href="https://juejin.cn/user/2719523382507658/posts" target="_blank" style="color:var(--primary);font-weight:700;">掘金</a> &nbsp;·&nbsp;
-        <a href="https://medium.com/@austin.xyz" target="_blank" style="color:var(--primary);font-weight:700;">Medium</a>
-      </p>
-      <div class="callout callout-tip" style="display:flex;gap:16px;align-items:center;">
-        <img src="img/wechat-qr.jpg" alt="公众号二维码" style="width:120px;height:120px;border-radius:8px;">
-        <span>
-          <span data-zh>扫码关注公众号，获取课程更新与更多 AI 实操文章。</span>
-          <span data-en>Follow on WeChat Official Account for course updates and AI articles.</span>
-        </span>
+      <div class="tags">
+        <span class="tag"><span class="zh">动手实操</span><span class="en">Hands-on</span></span>
+        <span class="tag"><span class="zh">零基础</span><span class="en">Beginner-friendly</span></span>
+        <span class="tag"><span class="zh">中文全程</span><span class="en">In Chinese</span></span>
+      </div>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#webinar"><span class="zh">免费公开课 6/24 →</span><span class="en">Free webinar · Jun 24 →</span></a>
+        <a class="btn btn-ghost" href="#curriculum"><span class="zh">查看课程</span><span class="en">See curriculum</span></a>
       </div>
     </div>
+    <div class="card next-card">
+      <div class="next-head"><span class="zh">// 近期开课</span><span class="en">// Upcoming</span><span class="blink"></span></div>
+      <div class="next-body">
+        <div class="next-item"><span class="when">06/24<br>9PM ET</span><span class="what"><span class="zh">免费公开课</span><span class="en">Free webinar</span><small><span class="zh">你的 AI 为什么总是"差点意思"？</span><span class="en">Why your AI feels "almost there"</span></small></span><span class="free-pill">FREE</span></div>
+        <div class="next-item"><span class="when">06/28<br>8:30 ET</span><span class="what"><span class="zh">Session 1 · 第二轮</span><span class="en">Session 1 · Round 2</span><small>Claude &amp; Cowork from Zero</small></span></div>
+        <div class="next-item"><span class="when">07/12<br>8:30 ET</span><span class="what"><span class="zh">Session 2 · 第二轮</span><span class="en">Session 2 · Round 2</span><small>Build with Claude Code</small></span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- 免费公开课 & 预习材料 -->
-    <div class="section" id="free">
-      <h2 class="section-title"><span data-zh>🎁 免费公开课 · 预习材料</span><span data-en>🎁 Free Webinar · Preview Materials</span></h2>
+<!-- INSTRUCTOR -->
+<section class="inst" id="instructor">
+  <div class="wrap inst-grid">
+    <img class="headshot" src="img/headshot.jpg" alt="Austin Xu" loading="lazy">
+    <div>
+      <span class="eyebrow"><span class="zh">关于讲师</span><span class="en">About the instructor</span></span>
+      <h3>Austin Xu</h3>
+      <p class="role"><span class="zh">硅谷 500 强企业 · 工程经理</span><span class="en">Engineering Manager · Fortune 500, Silicon Valley</span></p>
+      <p>
+        <span class="zh">从 Startup 基层程序员做到大厂资深工程经理，带领支撑 $74B+ GMV 的云平台团队，浙大硕士毕业。公司内部 Claude Code 头号用户，把 MCP 和 Agent 真正落地到生产环境、个人 PR 产出翻倍；业余开发了 10+ 个 AI 系统。也是 USTA 全国冠军，活跃于北美华人社区——和你一样的华人路径，只是早一步踩进了 AI 这条赛道。</span>
+        <span class="en">From a startup engineer to a senior EM leading a cloud platform powering $74B+ GMV, with a master's from Zhejiang University. He's the #1 internal user of Claude Code — shipping MCP and Agent architectures in production and doubling his own PR output — and has built 10+ personal AI systems on the side. A USTA national champion, active in the Chinese-American community — the same path as you, just a step ahead into AI.</span>
+      </p>
+      <div class="stat-row">
+        <div class="stat"><div class="n">20<span style="font-size:13px"><span class="zh">年</span><span class="en">y</span></span></div><div class="l"><span class="zh">编码经验</span><span class="en">Coding</span></div></div>
+        <div class="stat"><div class="n">$74B+</div><div class="l"><span class="zh">GMV 云平台</span><span class="en">GMV platform</span></div></div>
+        <div class="stat"><div class="n">10+</div><div class="l"><span class="zh">自研 AI 系统</span><span class="en">AI systems built</span></div></div>
+      </div>
+      <div class="links">
+        <a href="https://github.com/austinxyz">GitHub</a>
+        <a href="https://austinxyz.github.io/blogs/blog"><span class="zh">个人博客</span><span class="en">Blog</span></a>
+        <a href="https://juejin.cn/user/2719523382507658/posts">掘金</a>
+        <a href="https://medium.com/@austin.xyz">Medium</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <!-- 公开课 -->
-      <div style="background:var(--accent-light);border:1.5px solid var(--accent);border-radius:12px;padding:18px 20px;margin-bottom:20px;">
-        <div style="font-size:0.78rem;color:#8a5f00;font-weight:700;letter-spacing:0.05em;margin-bottom:8px;">📅 6 月 24 日（下周三）· 9:00 PM ET / 6:00 PM PT · 线上 Zoom · 完全免费</div>
-        <div style="font-size:1.1rem;font-weight:700;margin-bottom:10px;">
-          <span data-zh>你的 AI 为什么总是"差点意思"？</span>
-          <span data-en>Why Does Your AI Always Feel "Almost There"?</span>
-        </div>
-        <ul style="margin:0 0 14px 20px;line-height:2;font-size:0.93rem;">
-          <li><span data-zh>AI 给通用答案的根本原因</span><span data-en>Why AI gives generic answers</span></li>
-          <li><span data-zh>怎么让 AI 调用你的专业积累</span><span data-en>How to make AI use your expertise</span></li>
-          <li><span data-zh>三步走方法 + 真实领域案例演示</span><span data-en>3-step method + real-world case demos</span></li>
+<!-- CURRICULUM -->
+<section id="curriculum">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">01</span><div><h2><span class="zh">课程内容</span><span class="en">Curriculum</span></h2><div class="sub"><span class="zh">两节动手课 · 每节 150 分钟</span><span class="en">Two hands-on sessions · 150 min each</span></div></div></div>
+    <div class="courses">
+      <div class="course">
+        <div class="ctop"><span class="sidx">SESSION 1</span><span class="price">$199<small> <span class="zh">/单节</span><span class="en">/ session</span></small></span></div>
+        <h3><span class="zh">从零开始用 Claude 和 Cowork</span><span class="en">Claude &amp; Cowork from Zero</span></h3>
+        <p class="desc">
+          <span class="zh">先搞懂 Claude 到底强在哪，再亲手搭一条真实的找工作 Agent 流水线——分析 JD、调研公司、写 Outreach、追踪投递。学完你能手写一次 Agent 提示词，然后一句话复用整条流水线。</span>
+          <span class="en">Understand what makes Claude powerful, then build a real job-search Agent pipeline — analyze JDs, research companies, write outreach, track applications. By the end you'll write an Agent prompt from scratch and reuse the whole pipeline with one command.</span>
+        </p>
+        <ul class="meta-list">
+          <li><span class="zh">150 分钟 · 理论 + 实操演示 + 答疑</span><span class="en">150 min · Theory + hands-on demo + Q&amp;A</span></li>
+          <li><span class="zh">录像回放 · 专属学员群 · 作业批改</span><span class="en">Recording · Private student group · Homework review</span></li>
         </ul>
-        <a class="btn-download" href="https://zoom.us/j/96174608721?pwd=uQTHycmiJxhYaedqp3Gub0K6Uziw9p.1" target="_blank" style="background:var(--accent);color:#1e2a22;margin:0;">
-          <span data-zh>🎥 免费参加 · 加入 Zoom →</span>
-          <span data-en>🎥 Join Free · Open Zoom →</span>
-        </a>
-        <div style="font-size:0.82rem;color:var(--text-muted);margin-top:8px;">Meeting ID: 961 7460 8721 &nbsp;·&nbsp; Passcode: 661202</div>
+        <span class="when-pill">6/28 · 8:30 PM ET</span>
+        <div class="res">
+          <div class="res-label"><span class="zh">课程资源与入口</span><span class="en">Resources &amp; portal</span></div>
+          <a class="rlink" href="https://austinxyz.github.io/blogs/session1-preclass.html"><span>📋 <span class="zh">课前准备（装好 Claude + Cowork）</span><span class="en">Pre-class prep (install Claude + Cowork)</span></span><span class="rt pub"><span class="zh">公开</span><span class="en">Public</span></span></a>
+          <a class="rlink" href="https://austinxyz.github.io/course-portal/c/s1-study-guide.html"><span>🧭 <span class="zh">课后实操指南 · 5 步学习法</span><span class="en">Post-class guide · 5-step method</span></span><span class="rt pub"><span class="zh">公开</span><span class="en">Public</span></span></a>
+          <a class="rlink" href="https://austinxyz.github.io/course-portal/c/claude-s1.html"><span>🔑 <span class="zh">学员专区 · 录像 / 作业 / Q&amp;A</span><span class="en">Student portal · videos / homework / Q&amp;A</span></span><span class="rt lock"><span class="zh">需 S1 密码</span><span class="en">S1 password</span></span></a>
+          <a class="rlink" href="https://forms.gle/2pjPiERkZe9RfDWk6"><span>📝 <span class="zh">课后 Feedback</span><span class="en">Course feedback</span></span><span class="rt pub"><span class="zh">公开</span><span class="en">Public</span></span></a>
+        </div>
       </div>
-
-      <!-- 免费材料 -->
-      <p><span data-zh>以下材料完全公开，无需报名，不需要密码。</span><span data-en>The following materials are completely free — no registration, no password.</span></p>
-      <div class="dl-grid" style="margin-top:14px;">
-        <div class="dl-card">
-          <div class="dl-card-title"><span data-zh>💰 财富知识入门教程</span><span data-en>💰 Wealth Knowledge Starter Guide</span></div>
-          <div class="dl-card-desc">
-            <span data-zh>用 AI 建立个人财富知识库：LLM 辅助投资分析、财务规划、美股基础概念速查。适合财富管理零基础。</span>
-            <span data-en>Build a personal wealth knowledge base with AI: LLM-assisted investment analysis, financial planning, and US stock basics. Perfect for beginners.</span>
-          </div>
-          <a class="btn-dl" href="https://austinxyz.github.io/blogs/wealth-guide.html" target="_blank"><span data-zh>→ 访问教程</span><span data-en>→ Open Guide</span></a>
+      <div class="course">
+        <div class="ctop"><span class="sidx">SESSION 2</span><span class="price">$199<small> <span class="zh">/单节</span><span class="en">/ session</span></small></span></div>
+        <h3><span class="zh">先造枪，再打子弹 — 用 Claude Code 建知识库</span><span class="en">Build Your Own AI Tools with Claude Code</span></h3>
+        <p class="desc">
+          <span class="zh">从"用工具"升级到"造工具"。本地装好 Claude Code，吃透 Skills 与 MCP 生态，把专业知识结构化成知识库；再用它赚钱：跑客户诊断流程、生成定制报告——先造枪，再打子弹。</span>
+          <span class="en">Level up from using tools to building them. Install Claude Code locally, master Skills and the MCP ecosystem, and structure your expertise into a knowledge base. Then monetize it: run client diagnostics, generate custom reports — build the gun first, then fire.</span>
+        </p>
+        <ul class="meta-list">
+          <li><span class="zh">150 分钟 · 理论 + 实操演示 + 答疑</span><span class="en">150 min · Theory + hands-on demo + Q&amp;A</span></li>
+          <li><span class="zh">录像回放 · 专属学员群 · 作业批改</span><span class="en">Recording · Private student group · Homework review</span></li>
+        </ul>
+        <span class="when-pill">7/12 · 8:30 PM ET</span>
+        <div class="res">
+          <div class="res-label"><span class="zh">课程资源与入口</span><span class="en">Resources &amp; portal</span></div>
+          <a class="rlink" href="https://austinxyz.github.io/blogs/session2-preclass.html"><span>📋 <span class="zh">课前准备（装好 Claude Code + Obsidian）</span><span class="en">Pre-class prep (install Claude Code + Obsidian)</span></span><span class="rt pub"><span class="zh">公开</span><span class="en">Public</span></span></a>
+          <a class="rlink" href="https://austinxyz.github.io/course-portal/c/claude-s2.html"><span>🔑 <span class="zh">学员专区 · 录像 / 作业 / Q&amp;A</span><span class="en">Student portal · videos / homework / Q&amp;A</span></span><span class="rt lock"><span class="zh">需 S2 密码</span><span class="en">S2 password</span></span></a>
+          <a class="rlink" href="https://forms.gle/2pjPiERkZe9RfDWk6"><span>📝 <span class="zh">课后 Feedback</span><span class="en">Course feedback</span></span><span class="rt pub"><span class="zh">公开</span><span class="en">Public</span></span></a>
         </div>
-        <div class="dl-card">
-          <div class="dl-card-title"><span data-zh>📊 课前直播 PPT</span><span data-en>📊 Pre-class Webinar Slides</span></div>
-          <div class="dl-card-desc">
-            <span data-zh>公开课讲义：AI 如何改变个人财富管理、Claude 实操入门，适合在报名前评估课程。</span>
-            <span data-en>Webinar slides: how AI is changing personal finance, Claude intro — good for evaluating whether the course is right for you.</span>
-          </div>
-          <a class="btn-dl" href="dl/preclass-webinar.pptx" download><span data-zh>⬇ 下载 PPT</span><span data-en>⬇ Download Slides</span></a>
-        </div>
+      </div>
+      <div class="bundle">
+        <div class="b-t"><span class="zh">两节合买 · 一次拿下完整路径</span><span class="en">Bundle both sessions · the complete path</span></div>
+        <div class="b-p"><del>$398</del>$349 <span style="font-size:13px;color:#e0ad97"><span class="zh">省 $49</span><span class="en">save $49</span></span></div>
       </div>
     </div>
+    <p class="portal-note"><span class="zh">学员专区按所报课程分别登录：报了 Session 1 用 S1 密码，报了 Session 2 用 S2 密码，两区互相独立。课前准备与课后指南完全公开，无需密码。</span><span class="en">The student portal is gated per session — use the S1 password if you enrolled in Session 1, the S2 password for Session 2; the two are separate. Pre-class prep and the post-class guide are fully public, no password needed.</span></p>
+  </div>
+</section>
 
-    <!-- Session 1 -->
-    <div class="section" id="s1">
-      <div class="step-header">
-        <div class="step-num">1</div>
-        <div class="step-title">
-          <span data-zh>Session 1 · 从零开始用 Claude 和 Cowork</span>
-          <span data-en>Session 1 · Claude &amp; Cowork from Zero</span>
-        </div>
-      </div>
-      <p>
-        <span data-zh>从零开始：先搞懂 Claude 到底强在哪，再亲手搭一条真实的找工作 Agent 流水线——分析 JD、调研公司、写 Outreach、追踪投递。学完你能手写一次 Agent 提示词，然后一句话复用整条流水线。</span>
-        <span data-en>Start from zero: understand what makes Claude powerful, then build a real job-search Agent pipeline — analyze job descriptions, research companies, write outreach, track applications. By the end you'll write an Agent prompt from scratch and reuse the whole pipeline with one command.</span>
-      </p>
-      <div class="callout callout-info" style="margin:14px 0 10px;font-size:0.9rem;">
-        📅 <span data-zh>下期开课：</span><span data-en>Next session: </span><strong>6 月 28 日（周六）· 8:30 PM ET</strong>
-      </div>
-      <div class="price-box" style="margin:10px 0 14px;">
-        <div>
-          <div class="price-num">$199</div>
-          <div style="font-size:0.82rem;color:var(--text-muted);"><span data-zh>单节买断</span><span data-en>One-time purchase</span></div>
-        </div>
-        <div class="price-desc">
-          <span data-zh>150 分钟 · 理论 + 实操演示 + 答疑<br>录像回放 · 专属学员群 · 作业批改</span>
-          <span data-en>150 min · Theory + hands-on demo + Q&amp;A<br>Recording · Private student group · Homework review</span>
-        </div>
-      </div>
-      <p><a href="https://austinxyz.github.io/blogs/session1-preclass.html" target="_blank" style="color:var(--primary);font-weight:700;">
-        <span data-zh>📋 课前准备（公开，先装好 Claude + Cowork）</span>
-        <span data-en>📋 Pre-class prep (public — install Claude + Cowork first)</span>
-      </a></p>
-      <p><a href="https://austinxyz.github.io/course-portal/c/s1-study-guide.html" target="_blank" style="color:var(--primary);font-weight:700;">
-        <span data-zh>🧭 课后实操指南 · 5 步学习法（公开）</span>
-        <span data-en>🧭 Post-class practice guide · 5-step method (public)</span>
-      </a></p>
-      <a class="btn-download" href="c/claude-s1.html">
-        <span data-zh>🔑 学员入口（需 S1 密码）→ 录像 / 作业 / Q&A</span>
-        <span data-en>🔑 Student Portal (S1 — login with email) → Videos / Homework / Q&amp;A</span>
-      </a>
-      <a href="https://forms.gle/2pjPiERkZe9RfDWk6" target="_blank" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;padding:10px 20px;background:var(--accent-light);border:1.5px solid var(--accent);border-radius:8px;color:#7a4800;font-weight:700;font-size:0.92rem;text-decoration:none;">
-        <span data-zh>📝 上完课了？填写课后 Feedback →</span>
-        <span data-en>📝 Done with class? Leave feedback →</span>
-      </a>
-    </div>
-
-    <!-- Session 2 -->
-    <div class="section" id="s2">
-      <div class="step-header">
-        <div class="step-num">2</div>
-        <div class="step-title">
-          <span data-zh>Session 2 · 先造枪，再打子弹 — 用 Claude Code 建知识库</span>
-          <span data-en>Session 2 · Build Your Own AI Tools with Claude Code</span>
-        </div>
-      </div>
-      <p>
-        <span data-zh>从"用工具"升级到"造工具"。本地装好 Claude Code，吃透 Skills 与 MCP 生态，把专业知识结构化成知识库；再用它赚钱：跑客户诊断流程、生成定制 PPT——先造枪，再打子弹。</span>
-        <span data-en>Level up from using tools to building them. Install Claude Code locally, master Skills and the MCP ecosystem, and structure your expertise into a knowledge base. Then monetize it: run client diagnostics, generate custom reports — build the gun first, then fire.</span>
-      </p>
-      <div class="callout callout-info" style="margin:14px 0 10px;font-size:0.9rem;">
-        📅 <span data-zh>下期开课：</span><span data-en>Next session: </span><strong>7 月 12 日（周六）· 8:30 PM ET</strong>
-      </div>
-      <div class="price-box" style="margin:10px 0 14px;">
-        <div>
-          <div class="price-num">$199</div>
-          <div style="font-size:0.82rem;color:var(--text-muted);"><span data-zh>单节买断</span><span data-en>One-time purchase</span></div>
-          <div style="font-size:0.88rem;margin-top:6px;"><span data-zh>两节合买 <strong>$349</strong>（省$49）</span><span data-en>Bundle (2 sessions) <strong>$349</strong> (save $49)</span></div>
-        </div>
-        <div class="price-desc">
-          <span data-zh>150 分钟 · 理论 + 实操演示 + 答疑<br>录像回放 · 专属学员群 · 作业批改</span>
-          <span data-en>150 min · Theory + hands-on demo + Q&amp;A<br>Recording · Private student group · Homework review</span>
-        </div>
-      </div>
-      <p><a href="https://austinxyz.github.io/blogs/session2-preclass.html" target="_blank" style="color:var(--primary);font-weight:700;">
-        <span data-zh>📋 课前准备（公开，先装好 Claude Code + Obsidian）</span>
-        <span data-en>📋 Pre-class prep (public — install Claude Code + Obsidian first)</span>
-      </a></p>
-      <a class="btn-download" href="c/claude-s2.html">
-        <span data-zh>🔑 学员入口（需 S2 密码）→ 录像 / 作业 / Q&A</span>
-        <span data-en>🔑 Student Portal (S2 — login with email) → Videos / Homework / Q&amp;A</span>
-      </a>
-      <a href="https://forms.gle/2pjPiERkZe9RfDWk6" target="_blank" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;padding:10px 20px;background:var(--accent-light);border:1.5px solid var(--accent);border-radius:8px;color:#7a4800;font-weight:700;font-size:0.92rem;text-decoration:none;">
-        <span data-zh>📝 上完课了？填写课后 Feedback →</span>
-        <span data-en>📝 Done with class? Leave feedback →</span>
-      </a>
-    </div>
-
-  </div><!-- /page-main -->
-
-  <!-- 右栏：行动区 -->
-  <div class="page-sidebar">
-
-    <!-- 近期开课 -->
-    <div class="section" id="upcoming" style="border: 2px solid var(--primary); background: var(--primary-light); margin:0;">
-      <h2 class="section-title"><span data-zh>🗓 近期开课</span><span data-en>🗓 Upcoming</span></h2>
-      <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
-        <li style="background:white;border-radius:10px;padding:12px 14px;border:1px solid var(--border);">
-          <div style="font-size:0.75rem;color:var(--text-muted);font-weight:700;letter-spacing:0.05em;text-transform:uppercase;">6 月 21 日（本周六）</div>
-          <div style="font-weight:700;margin:4px 0 2px;font-size:0.97rem;">Claude Code 实战课</div>
-          <div style="font-size:0.83rem;color:var(--text-muted);"><span data-zh>付费 · 限额报名</span><span data-en>Paid · Limited spots</span></div>
-        </li>
-        <li style="background:var(--accent-light);border-radius:10px;padding:12px 14px;border:1.5px solid var(--accent);">
-          <div style="font-size:0.75rem;color:#8a5f00;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;">6 月 24 日（下周三）· 9PM ET · 免费</div>
-          <div style="font-weight:700;margin:4px 0 2px;font-size:0.97rem;">
-            <span data-zh>你的 AI 为什么总是"差点意思"？</span>
-            <span data-en>Why Does Your AI Always Feel "Almost There"?</span>
-          </div>
-          <div style="font-size:0.83rem;color:#7a4800;"><span data-zh>零基础友好 · 免费参加</span><span data-en>Beginner-friendly · Free</span></div>
-        </li>
-        <li style="background:white;border-radius:10px;padding:12px 14px;border:1px solid var(--border);">
-          <div style="font-size:0.75rem;color:var(--text-muted);font-weight:700;letter-spacing:0.05em;text-transform:uppercase;">6 月 28 日（周六）· 8:30 PM ET</div>
-          <div style="font-weight:700;margin:4px 0 2px;font-size:0.97rem;">Session 1 · <span data-zh>第二轮</span><span data-en>Round 2</span></div>
-          <div style="font-size:0.83rem;color:var(--text-muted);"><span data-zh>付费 · 限额报名</span><span data-en>Paid · Limited spots</span></div>
-        </li>
-        <li style="background:white;border-radius:10px;padding:12px 14px;border:1px solid var(--border);">
-          <div style="font-size:0.75rem;color:var(--text-muted);font-weight:700;letter-spacing:0.05em;text-transform:uppercase;">7 月 12 日（周六）· 8:30 PM ET</div>
-          <div style="font-weight:700;margin:4px 0 2px;font-size:0.97rem;">Session 2 · <span data-zh>第二轮</span><span data-en>Round 2</span></div>
-          <div style="font-size:0.83rem;color:var(--text-muted);"><span data-zh>付费 · 限额报名</span><span data-en>Paid · Limited spots</span></div>
-        </li>
-        <li style="background:white;border-radius:10px;padding:12px 14px;border:1px solid var(--border);">
-          <div style="font-size:0.75rem;color:var(--text-muted);font-weight:700;letter-spacing:0.05em;text-transform:uppercase;"><span data-zh>敬请期待</span><span data-en>Coming Soon</span></div>
-          <div style="font-weight:700;margin:4px 0 2px;font-size:0.97rem;">Claude Cowork / Code · Session 3</div>
-          <div style="font-size:0.83rem;color:var(--text-muted);"><span data-zh>+ 更多新课程开发中</span><span data-en>+ More courses in development</span></div>
-        </li>
+<!-- WEBINAR -->
+<section class="webinar" id="webinar">
+  <div class="wrap web-grid">
+    <div>
+      <span class="eyebrow">🎁 <span class="zh">免费公开课 · 预习材料</span><span class="en">Free webinar · Preview materials</span></span>
+      <h2><span class="zh">你的 AI 为什么总是"差点意思"？</span><span class="en">Why Does Your AI Always Feel "Almost There"?</span></h2>
+      <p class="web-when"><span class="zh">📅 6 月 24 日（下周三）· 9:00 PM ET / 6:00 PM PT · 线上 Zoom · 完全免费</span><span class="en">📅 Wed, Jun 24 · 9:00 PM ET / 6:00 PM PT · Zoom · Completely free</span></p>
+      <ul class="web-list">
+        <li><span class="k">01</span><span><span class="zh">AI 给通用答案的根本原因</span><span class="en">Why AI gives generic answers</span></span></li>
+        <li><span class="k">02</span><span><span class="zh">怎么让 AI 调用你的专业积累</span><span class="en">How to make AI use your expertise</span></span></li>
+        <li><span class="k">03</span><span><span class="zh">三步走方法 + 真实领域案例演示</span><span class="en">3-step method + real case demos</span></span></li>
       </ul>
     </div>
-
-    <!-- 了解 / 报课 -->
-    <div class="section" id="contact" style="margin:0;">
-      <h2 class="section-title"><span data-zh>📞 了解 / 报课</span><span data-en>📞 Contact / Enroll</span></h2>
-      <p style="font-size:0.9rem;margin-bottom:12px;">
-        <span data-zh>扫码加入微信群，获取开课通知及报名信息。</span>
-        <span data-en>Scan to join the WeChat group for enrollment info and updates.</span>
-      </p>
-      <img src="img/wechat-group.jpg" alt="微信群二维码" style="width:100%;border-radius:10px;border:1px solid var(--border);margin-bottom:14px;">
-      <p style="font-size:0.95rem;margin-bottom:6px;"><span data-zh>微信号：</span><span data-en>WeChat: </span><strong>elitecoach101</strong></p>
-      <a class="btn-download" href="https://www.elitecoach101.com/" target="_blank" style="width:100%;box-sizing:border-box;justify-content:center;margin-top:10px;">
-        <span data-zh>前往讲武堂了解更多 →</span>
-        <span data-en>Learn more at 讲武堂 →</span>
+    <div class="web-cards">
+      <a class="web-card lead" href="https://zoom.us/j/96174608721?pwd=uQTHycmiJxhYaedqp3Gub0K6Uziw9p.1">
+        <div class="t"><span class="zh">🎥 免费参加 · 加入 Zoom →</span><span class="en">🎥 Join free · Open Zoom →</span></div>
+        <div class="d">Meeting ID: 961 7460 8721 · Passcode: 661202</div>
+        <div class="go">JOIN FREE · OPEN ZOOM</div>
+      </a>
+      <a class="web-card" href="https://austinxyz.github.io/blogs/wealth-guide.html">
+        <div class="t"><span class="zh">💰 财富知识入门教程</span><span class="en">💰 Wealth Knowledge Starter Guide</span></div>
+        <div class="d"><span class="zh">用 AI 建立个人财富知识库：投资分析、财务规划、美股基础速查。无需报名。</span><span class="en">Build a personal wealth knowledge base with AI: investment analysis, financial planning, US stock basics. No registration.</span></div>
+        <div class="go">OPEN GUIDE →</div>
+      </a>
+      <a class="web-card" href="https://austinxyz.github.io/course-portal/dl/preclass-webinar.pptx">
+        <div class="t"><span class="zh">📊 课前直播 PPT</span><span class="en">📊 Pre-class webinar slides</span></div>
+        <div class="d"><span class="zh">公开课讲义：AI 如何改变个人财富管理、Claude 实操入门。</span><span class="en">Webinar slides: how AI is changing personal finance, plus a Claude intro.</span></div>
+        <div class="go">DOWNLOAD SLIDES ↓</div>
       </a>
     </div>
+  </div>
+</section>
 
-    <!-- Demo Day -->
-    <div class="section" id="demoday" style="border: 2px solid var(--accent); background: var(--accent-light); margin:0;">
-      <h2 class="section-title" style="color:#7a4800;">🎤 Demo Day</h2>
-      <p style="font-size:0.95rem;">
-        <span data-zh>学员成果展示，每人约 <strong>10 分钟</strong>。知识库、Skill、自动化流程……不需要完美，有成果就行。</span>
-        <span data-en>Student project showcase, ~<strong>10 min</strong> each. Knowledge bases, Skills, automation workflows — doesn't need to be perfect.</span>
-      </p>
-      <ul style="margin:10px 0 14px 18px;line-height:2.1;font-size:0.92rem;">
-        <li><span data-zh>📅 6 月底，Zoom 线上</span><span data-en>📅 Late June, Zoom online</span></li>
-        <li><span data-zh>🎯 名额约 10 人（S1 + S2 学员合并）</span><span data-en>🎯 ~10 spots (S1 + S2 students combined)</span></li>
-      </ul>
-      <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:14px;">
-        <span data-zh>超额时按项目类型多样性及作业成绩筛选，一周内通知。</span>
-        <span data-en>Selection based on project diversity and homework scores. Notified within a week if oversubscribed.</span>
-      </p>
-      <p style="font-size:0.88rem;margin-bottom:14px;">📖 <a href="demoday-5c.html" style="color:#7a4800;font-weight:700;">
-        <span data-zh>先导文章：5C 不只是找工作——它是一台可复用的引擎</span>
-        <span data-en>Intro article: 5C — Not just job-hunting, it's a reusable engine</span>
-      </a> <span style="font-size:0.8rem;color:var(--text-muted);">by Nan</span></p>
-      <a class="btn-download" href="https://forms.gle/AyaZj3Vpzdq9q1So9" target="_blank" style="width:100%;box-sizing:border-box;justify-content:center;">
-        <span data-zh>📝 立即报名 →</span>
-        <span data-en>📝 Apply Now →</span>
-      </a>
+<!-- SCHEDULE -->
+<section id="schedule">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">02</span><h2><span class="zh">近期开课</span><span class="en">Upcoming sessions</span></h2></div>
+    <div class="sched">
+      <div class="srow"><span class="sd">06/21 · <span class="zh">本周六</span><span class="en">Sat</span></span><span class="st"><span class="zh">Claude Code 实战课</span><span class="en">Claude Code hands-on</span></span><span class="sk"><span class="zh">付费 · 限额</span><span class="en">Paid · Limited</span></span></div>
+      <div class="srow"><span class="sd">06/24 · 9PM ET</span><span class="st"><span class="zh">你的 AI 为什么总是"差点意思"？</span><span class="en">Why your AI feels "almost there"</span></span><span class="sk free"><span class="zh">免费</span><span class="en">Free</span></span></div>
+      <div class="srow"><span class="sd">06/28 · 8:30 ET</span><span class="st"><span class="zh">Session 1 · 第二轮</span><span class="en">Session 1 · Round 2</span></span><span class="sk"><span class="zh">付费 · 限额</span><span class="en">Paid · Limited</span></span></div>
+      <div class="srow"><span class="sd">07/12 · 8:30 ET</span><span class="st"><span class="zh">Session 2 · 第二轮</span><span class="en">Session 2 · Round 2</span></span><span class="sk"><span class="zh">付费 · 限额</span><span class="en">Paid · Limited</span></span></div>
+      <div class="srow"><span class="sd"><span class="zh">敬请期待</span><span class="en">Coming soon</span></span><span class="st"><span class="zh">Claude Cowork / Code · Session 3 + 更多新课</span><span class="en">Claude Cowork / Code · Session 3 + more in development</span></span><span class="sk"><span class="zh">开发中</span><span class="en">In dev</span></span></div>
     </div>
+  </div>
+</section>
 
-    <!-- Feedback -->
-    <div class="section" id="feedback" style="border: 2px solid var(--primary); margin:0;">
-      <h2 class="section-title"><span data-zh>⭐ 课后 Feedback</span><span data-en>⭐ Course Feedback</span></h2>
-      <p style="font-size:0.92rem;">
-        <span data-zh>上完课花 2 分钟填一下，帮助我们持续改进。</span>
-        <span data-en>Takes 2 minutes — helps us keep improving.</span>
-      </p>
-      <a class="btn-download" href="https://forms.gle/2pjPiERkZe9RfDWk6" target="_blank" style="width:100%;box-sizing:border-box;justify-content:center;margin-top:12px;">
-        <span data-zh>📝 填写 Feedback →</span>
-        <span data-en>📝 Leave Feedback →</span>
-      </a>
+<!-- DEMO + ENROLL -->
+<section id="enroll" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">03</span><h2><span class="zh">报名与社区</span><span class="en">Enroll &amp; community</span></h2></div>
+    <div class="split">
+      <div class="panel">
+        <span class="eyebrow">🎤 Demo Day</span>
+        <h3><span class="zh">学员成果展示</span><span class="en">Student project showcase</span></h3>
+        <p><span class="zh">每人约 10 分钟。知识库、Skill、自动化流程……不需要完美，有成果就行。6 月底 Zoom 线上，名额约 10 人（S1 + S2 合并）。</span><span class="en">~10 min each. Knowledge bases, Skills, automation workflows — doesn't need to be perfect. Late June on Zoom, ~10 spots (S1 + S2 combined).</span></p>
+        <p class="mini"><span class="zh">超额时按项目类型多样性及作业成绩筛选，一周内通知。</span><span class="en">If oversubscribed, selection is by project diversity and homework scores; notified within a week.</span></p>
+        <div class="cta-row" style="margin-top:18px">
+          <a class="btn btn-ghost" href="https://austinxyz.github.io/course-portal/demoday-5c.html"><span class="zh">📖 先导文章 5C</span><span class="en">📖 Intro article: 5C</span></a>
+          <a class="btn btn-primary" href="https://forms.gle/AyaZj3Vpzdq9q1So9"><span class="zh">📝 立即报名 →</span><span class="en">📝 Apply now →</span></a>
+        </div>
+      </div>
+      <div class="panel">
+        <span class="eyebrow"><span class="zh">📞 了解 / 报课</span><span class="en">📞 Contact / Enroll</span></span>
+        <h3><span class="zh">加入微信群</span><span class="en">Join the WeChat group</span></h3>
+        <p><span class="zh">扫码加入微信群，获取开课通知与报名信息。</span><span class="en">Scan to join the WeChat group for enrollment info and updates.</span></p>
+        <div class="qr">
+          <img src="img/wechat-group.jpg" alt="微信群二维码" loading="lazy">
+          <div class="wid"><small><span class="zh">WeChat 微信号</span><span class="en">WeChat</span></small>elitecoach101</div>
+        </div>
+        <div class="links"><a href="https://www.elitecoach101.com/"><span class="zh">前往讲武堂了解更多 →</span><span class="en">Learn more at 讲武堂 →</span></a></div>
+      </div>
     </div>
+  </div>
+</section>
 
-  </div><!-- /page-sidebar -->
-
-</div><!-- /page-grid -->
-</div>
+</main>
 
 <footer>
-  <span data-zh>从零上手 Claude · Austin Xu</span><span data-en>Learn Claude · Austin Xu</span> &nbsp;|&nbsp;
-  <a href="https://github.com/austinxyz" target="_blank">GitHub</a> ·
-  <a href="https://austinxyz.github.io/blogs/blog" target="_blank">Blog</a> ·
-  <a href="https://juejin.cn/user/2719523382507658/posts" target="_blank">掘金</a> ·
-  <a href="https://medium.com/@austin.xyz" target="_blank">Medium</a>
+  <div class="wrap foot">
+    <div><span class="zh">从零上手 Claude · Austin Xu</span><span class="en">Learn Claude from Scratch · Austin Xu</span></div>
+    <div class="fl">
+      <a href="https://github.com/austinxyz">GitHub</a>
+      <a href="https://austinxyz.github.io/blogs/blog">Blog</a>
+      <a href="https://juejin.cn/user/2719523382507658/posts">掘金</a>
+      <a href="https://medium.com/@austin.xyz">Medium</a>
+    </div>
+  </div>
 </footer>
 
 <script>
-function setLang(lang) {
-  document.body.classList.toggle('lang-en', lang === 'en');
-  document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
-  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-  localStorage.setItem('lang', lang);
-}
-(function() { var p = new URLSearchParams(location.search).get('lang'); setLang(p || localStorage.getItem('lang') || 'zh'); })();
+  (function(){
+    var btns = document.querySelectorAll('.langtog button');
+    function setLang(l){
+      document.body.classList.remove('lang-zh','lang-en');
+      document.body.classList.add('lang-'+l);
+      document.documentElement.lang = (l==='en'?'en':'zh');
+      btns.forEach(function(b){ b.classList.toggle('on', b.dataset.lang===l); });
+      try{ localStorage.setItem('cfs-lang', l); }catch(e){}
+    }
+    var saved = 'zh';
+    try{
+      var p = new URLSearchParams(location.search).get('lang');
+      saved = p || localStorage.getItem('cfs-lang') || 'zh';
+    }catch(e){}
+    setLang(saved);
+    btns.forEach(function(b){ b.addEventListener('click', function(){ setLang(b.dataset.lang); }); });
+  })();
 </script>
 
 </body>
