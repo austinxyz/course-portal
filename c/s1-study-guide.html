@@ -35,30 +35,49 @@
              padding: 18px 24px; margin: 32px 0; font-size: 16px; }
   .summary b { color: var(--primary); }
   .step-no { color: var(--primary); font-weight: 700; }
+  #lang-toggle { position: fixed; top: 14px; right: 18px; z-index: 100;
+    display: flex; align-items: center; gap: 2px;
+    background: var(--primary); border: 1px solid var(--primary);
+    border-radius: 20px; padding: 4px 10px; font-size: 0.82rem; box-shadow: 0 2px 8px rgba(201,97,51,0.25); }
+  #lang-toggle button { background: none; border: none; cursor: pointer;
+    font-weight: 700; font-family: inherit; font-size: 0.82rem; padding: 2px 5px;
+    color: rgba(255,255,255,0.6); border-radius: 12px; transition: all 0.15s; }
+  #lang-toggle button.active { color: white; background: rgba(255,255,255,0.2); }
+  #lang-toggle span { color: rgba(255,255,255,0.4); font-size: 0.75rem; }
+  body:not(.lang-en) [data-en] { display: none; }
+  body.lang-en [data-zh] { display: none; }
 </style>
 </head>
 <body>
-  <h1>课后实操指南<br>把第一节课变成你自己的能力</h1>
-  <p class="lead">恭喜你上完第一节课！但 <strong>听懂 ≠ 会用</strong>。真正的能力，来自你亲手在 cowork 里走一遍。
-     下面五步，请按顺序做，每一步都别跳过「记录心得」——这是整个方法的灵魂。</p>
+<div id="lang-toggle">
+  <button id="btn-zh" onclick="setLang('zh')">中</button>
+  <span>|</span>
+  <button id="btn-en" onclick="setLang('en')">EN</button>
+</div>
+  <h1><span data-zh>课后实操指南<br>把第一节课变成你自己的能力</span><span data-en>Post-Class Practice Guide<br>Turn Your First Class Into Real Skill</span></h1>
+  <p class="lead"><span data-zh>恭喜你上完第一节课！但 <strong>听懂 ≠ 会用</strong>。真正的能力，来自你亲手在 cowork 里走一遍。
+     下面五步，请按顺序做，每一步都别跳过「记录心得」——这是整个方法的灵魂。</span><span data-en>Congrats on finishing Session 1! But <strong>understanding ≠ being able to do it</strong>. Real skill comes from doing it yourself in Cowork.
+     Follow these five steps in order. Don't skip the "write reflections" part — it's the soul of this method.</span></p>
 
-  <h2><span class="step-no">材料从哪来</span> 先下载，再开始</h2>
-  <p>开始前，先回到 <strong>S1 学员入口页</strong>（你点进来的那个页面），下载两样东西：</p>
+  <h2><span class="step-no"><span data-zh>材料从哪来</span><span data-en>Materials First</span></span> <span data-zh>先下载，再开始</span><span data-en>— Download Before You Begin</span></h2>
+  <p><span data-zh>开始前，先回到 <strong>S1 学员入口页</strong>（你点进来的那个页面），下载两样东西：</span><span data-en>Go back to the <strong>S1 Student Portal page</strong> (where you came from) and download two things:</span></p>
   <div class="card">
     <ol>
-      <li><strong>课程材料包</strong>——点「下载课程材料（含作业）」按钮，下载后 <strong>解压</strong>。里面有 <code>跟我做-提示词.md</code>、<code>starter-project/</code>、两个 JD，还有 <code>homework-guide.md</code>（<strong>这份就是作业要求</strong>），下面都会用到。</li>
-      <li><strong>课程 PPT</strong>——点「下载 Session 1 幻灯片（PPTX）」按钮。</li>
+      <li><strong><span data-zh>课程材料包</span><span data-en>Course Materials Package</span></strong>——<span data-zh>点「下载课程材料（含作业）」按钮，下载后 <strong>解压</strong>。里面有 <code>跟我做-提示词.md</code>、<code>starter-project/</code>、两个 JD，还有 <code>homework-guide.md</code>（<strong>这份就是作业要求</strong>），下面都会用到。</span><span data-en>Click "Download Course Materials (includes homework)" and unzip it. It contains <code>跟我做-提示词.md</code>, <code>starter-project/</code>, two JDs, and <code>homework-guide.md</code> (<strong>this is your homework requirements</strong>) — all of which you'll use below.</span></li>
+      <li><strong><span data-zh>课程 PPT</span><span data-en>Course Slides</span></strong>——<span data-zh>点「下载 Session 1 幻灯片（PPTX）」按钮。</span><span data-en>Click "Download Session 1 Slides (PPTX)".</span></li>
     </ol>
   </div>
   <div class="tip">
-    💡 下面第 0 步要放进 <code>ppt/</code> 的 PPT、要放进 <code>课程心得/</code> 的 <code>跟我做-提示词.md</code>，以及要放进 <code>作业项目/</code> 的作业要求（<strong>就是解压包里的 <code>homework-guide.md</code>，放进去后改名 <code>作业要求.md</code></strong>），都来自这两个下载。<br>
-    另外：跟着 <code>跟我做-提示词.md</code> 跑课堂 demo 时，会让你新建 <strong>另一个</strong> 指向 <code>starter-project</code> 的 Cowork Project——那是独立 Project，和这里的「我的AI课程」并存、随时切换、互不影响。
+    💡 <span data-zh>下面第 0 步要放进 <code>ppt/</code> 的 PPT、要放进 <code>课程心得/</code> 的 <code>跟我做-提示词.md</code>，以及要放进 <code>作业项目/</code> 的作业要求（<strong>就是解压包里的 <code>homework-guide.md</code>，放进去后改名 <code>作业要求.md</code></strong>），都来自这两个下载。<br>
+    另外：跟着 <code>跟我做-提示词.md</code> 跑课堂 demo 时，会让你新建 <strong>另一个</strong> 指向 <code>starter-project</code> 的 Cowork Project——那是独立 Project，和这里的「我的AI课程」并存、随时切换、互不影响。</span><span data-en>In Step 0 below, the PPT goes into <code>ppt/</code>, <code>跟我做-提示词.md</code> goes into <code>课程心得/</code>, and the homework requirements (<strong>the <code>homework-guide.md</code> from the unzipped package, renamed to <code>作业要求.md</code></strong>) all come from these two downloads.<br>
+    Also: when following <code>跟我做-提示词.md</code> for the class demo, you'll create <strong>another</strong> separate Cowork Project pointing to <code>starter-project</code> — it coexists with your "MyAICourse" project, you can switch between them anytime, and they don't affect each other.</span>
   </div>
 
-  <h2><span class="step-no">第 0 步</span> 先搭好你的学习工作区</h2>
-  <p>打开 cowork，新建一个 <strong>空目录</strong> 作为你的课程学习项目（比如 <code>我的AI课程</code>）。
-     空的就对了——接下来的内容由你和 AI 一起长出来。</p>
-  <p>建议的目录结构（边做边建，不用一次到位）：</p>
+  <h2><span class="step-no"><span data-zh>第 0 步</span><span data-en>Step 0</span></span> · <span data-zh>先搭好你的学习工作区</span><span data-en>Set Up Your Learning Workspace</span></h2>
+  <p><span data-zh>打开 cowork，新建一个 <strong>空目录</strong> 作为你的课程学习项目（比如 <code>我的AI课程</code>）。
+     空的就对了——接下来的内容由你和 AI 一起长出来。</span><span data-en>Open Cowork and create an empty directory as your course project (e.g. <code>我的AI课程</code>).
+     Starting empty is correct — you and the AI will grow the content together.</span></p>
+  <p><span data-zh>建议的目录结构（边做边建，不用一次到位）：</span><span data-en>Suggested directory structure (build it gradually, not all at once):</span></p>
   <pre><code>我的AI课程/
 ├── 课程心得/
 │   ├── ppt/                  # 把课程 PPT 放这里
@@ -70,117 +89,130 @@
 └── 作业项目/
     └── 作业要求.md            # 下载包里的 homework-guide.md 放这，改名即可</code></pre>
   <div class="tip">
-    💡 <strong>怕 <code>.md</code>？用 <code>.txt</code> 一样行。</strong> 上面那些 <code>.md</code> 文件，你嫌麻烦就全建成 <code>.txt</code>（系统自带记事本就能写），
-    AI 照样读得懂、照样帮你总结。<code>.md</code> 只是排版能好看一点，不影响用——别让格式挡住你动手。
+    💡 <strong><span data-zh>怕 <code>.md</code>？用 <code>.txt</code> 一样行。</span><span data-en>Scared of <code>.md</code>? <code>.txt</code> works just fine.</span></strong> <span data-zh>上面那些 <code>.md</code> 文件，你嫌麻烦就全建成 <code>.txt</code>（系统自带记事本就能写），
+    AI 照样读得懂、照样帮你总结。<code>.md</code> 只是排版能好看一点，不影响用——别让格式挡住你动手。</span><span data-en>All those <code>.md</code> files can be created as <code>.txt</code> instead (any built-in text editor works),
+    and AI can read and summarize them just the same. <code>.md</code> just looks nicer when formatted — don't let file format stop you from getting started.</span>
   </div>
   <div class="prompt">
-    💬 <b>真实示例（直接抄）</b>——不用自己一个个手动建文件夹，把上面那段结构整段丢给 AI：
-    <p style="margin:8px 0 4px;">「帮我建下面的目录结构，文件我会慢慢放」<br>（把上面「我的AI课程/…」目录结构整段粘进去）</p>
-    <span class="muted">这步在干嘛：让 AI 一次性把整个课程文件夹骨架建好，你只管之后往里放文件。</span>
+    💬 <b><span data-zh>真实示例（直接抄）</span><span data-en>Real Example (copy directly)</span></b>——<span data-zh>不用自己一个个手动建文件夹，把上面那段结构整段丢给 AI：</span><span data-en>No need to manually create each folder — just paste the entire structure above to AI:</span>
+    <p style="margin:8px 0 4px;"><span data-zh>「帮我建下面的目录结构，文件我会慢慢放」<br>（把上面「我的AI课程/…」目录结构整段粘进去）</span><span data-en>"Help me create the following directory structure, I'll add files gradually"<br>(paste the entire 「我的AI课程/…」 structure above)</span></p>
+    <span class="muted"><span data-zh>这步在干嘛：让 AI 一次性把整个课程文件夹骨架建好，你只管之后往里放文件。</span><span data-en>What this does: lets AI build the entire course folder skeleton at once, and you just add files as you go.</span></span>
   </div>
 
-  <h2><span class="step-no">第 1 步</span> 记心得 + 让 AI 帮你总结</h2>
-  <p><strong>先你写，再让 AI 补。</strong> 顺序很重要——AI 是来帮你深化的，不是替你回忆的。</p>
+  <h2><span class="step-no"><span data-zh>第 1 步</span><span data-en>Step 1</span></span> · <span data-zh>记心得 + 让 AI 帮你总结</span><span data-en>Write Reflections + Let AI Summarize</span></h2>
+  <p><strong><span data-zh>先你写，再让 AI 补。</span><span data-en>Write first, then let AI fill in.</span></strong> <span data-zh>顺序很重要——AI 是来帮你深化的，不是替你回忆的。</span><span data-en>Order matters — AI is here to deepen your thinking, not recall it for you.</span></p>
   <div class="card">
     <ol>
-      <li>在 <code>我的心得.md</code> 里，尽量回忆课上听到的内容，记下你的体会。<strong>不用写得完善</strong>，碎片、半句话都行。</li>
-      <li>在 <code>不懂的名词.md</code> 里，记下你没太懂的术语和概念。</li>
-      <li>把 PPT 放进 <code>ppt/</code> 目录；再把下载包里的 <strong><code>跟我做-提示词.md</code></strong> 也放进 <code>课程心得/</code>——它是课堂 demo 用到的 <strong>提示词清单</strong>，每步还标了「这步在干嘛」，AI 翻它能准确还原每步在做什么。</li>
-      <li>然后让 AI 结合你的心得、PPT 和 <code>跟我做-提示词.md</code> 帮你总结。<strong>多问几次</strong>，每次问得更细，最后要求它 <strong>输出一个 <code>课程总结.md</code> 文件</strong>，方便你以后回看。</li>
+      <li><span data-zh>在 <code>我的心得.md</code> 里，尽量回忆课上听到的内容，记下你的体会。<strong>不用写得完善</strong>，碎片、半句话都行。</span><span data-en>In <code>我的心得.md</code>, recall what you heard in class and write down your thoughts. <strong>No need to be thorough</strong> — fragments and half-sentences are fine.</span></li>
+      <li><span data-zh>在 <code>不懂的名词.md</code> 里，记下你没太懂的术语和概念。</span><span data-en>In <code>不懂的名词.md</code>, note down any terms and concepts you didn't quite understand.</span></li>
+      <li><span data-zh>把 PPT 放进 <code>ppt/</code> 目录；再把下载包里的 <strong><code>跟我做-提示词.md</code></strong> 也放进 <code>课程心得/</code>——它是课堂 demo 用到的 <strong>提示词清单</strong>，每步还标了「这步在干嘛」，AI 翻它能准确还原每步在做什么。</span><span data-en>Put the PPT in the <code>ppt/</code> directory; also put <strong><code>跟我做-提示词.md</code></strong> from the download package into <code>课程心得/</code> — it's the <strong>prompt list</strong> used in the class demo, with each step annotated with "what this step does", so AI can accurately reconstruct what each step is doing.</span></li>
+      <li><span data-zh>然后让 AI 结合你的心得、PPT 和 <code>跟我做-提示词.md</code> 帮你总结。<strong>多问几次</strong>，每次问得更细，最后要求它 <strong>输出一个 <code>课程总结.md</code> 文件</strong>，方便你以后回看。</span><span data-en>Then ask AI to summarize by combining your reflections, the PPT, and <code>跟我做-提示词.md</code>. <strong>Ask multiple times</strong>, going deeper each time, and finally ask it to <strong>output a <code>课程总结.md</code> file</strong> for future reference.</span></li>
     </ol>
   </div>
   <div class="tip">
-    📎 <strong><code>跟我做-提示词.md</code> 为什么重要</strong>：PPT 是「讲了什么」，<code>跟我做-提示词.md</code> 是「实际发了哪些提示词」。
-    你对某一步没看懂、或想不起 demo 细节时，让 AI 翻 <code>跟我做-提示词.md</code> 回答你，比凭空解释准得多。
+    📎 <strong><span data-zh><code>跟我做-提示词.md</code> 为什么重要</span><span data-en>Why <code>跟我做-提示词.md</code> matters</span></strong>：<span data-zh>PPT 是「讲了什么」，<code>跟我做-提示词.md</code> 是「实际发了哪些提示词」。
+    你对某一步没看懂、或想不起 demo 细节时，让 AI 翻 <code>跟我做-提示词.md</code> 回答你，比凭空解释准得多。</span><span data-en>The PPT covers "what was taught"; <code>跟我做-提示词.md</code> covers "what prompts were actually sent".
+    When you don't understand a step or can't remember demo details, asking AI to reference <code>跟我做-提示词.md</code> gives much more accurate answers than explaining from scratch.</span>
   </div>
   <div class="prompt">
-    <b>Prompt 示例</b>（直接抄，再改成你自己的）：
+    <b><span data-zh>Prompt 示例</span><span data-en>Prompt Examples</span></b><span data-zh>（直接抄，再改成你自己的）：</span><span data-en>(copy directly, then adapt to your own):</span>
     <ul>
-      <li>「请结合我的心得（<code>我的心得.md</code>）、PPT（<code>ppt/</code> 里的文件）和 <code>跟我做-提示词.md</code>，帮我总结这节课，保存到 <code>课程总结.md</code>。」</li>
-      <li>「我对 demo 里『___ 那一步』没看懂，请结合 <code>跟我做-提示词.md</code> 给我讲清楚那一步在干嘛、为什么这么做。」</li>
-      <li>「我对 cowork 里怎么配置 Gmail 不太懂，请给我更详细的步骤指导，并补充到总结文件里。」</li>
-      <li>「对于『如何写好 prompt』我现在还没概念，请帮我系统梳理一下，加到总结里。」</li>
+      <li>「<span data-zh>请结合我的心得（<code>我的心得.md</code>）、PPT（<code>ppt/</code> 里的文件）和 <code>跟我做-提示词.md</code>，帮我总结这节课，保存到 <code>课程总结.md</code>。」</span><span data-en>Please combine my reflections (<code>我的心得.md</code>), the PPT (files in <code>ppt/</code>), and <code>跟我做-提示词.md</code> to summarize this class for me, and save it to <code>课程总结.md</code>."</span></li>
+      <li>「<span data-zh>我对 demo 里『___ 那一步』没看懂，请结合 <code>跟我做-提示词.md</code> 给我讲清楚那一步在干嘛、为什么这么做。」</span><span data-en>I didn't understand the '___' step in the demo. Please use <code>跟我做-提示词.md</code> to explain clearly what that step does and why."</span></li>
+      <li>「<span data-zh>我对 cowork 里怎么配置 Gmail 不太懂，请给我更详细的步骤指导，并补充到总结文件里。」</span><span data-en>I'm not clear on how to configure Gmail in Cowork. Please give me more detailed step-by-step guidance and add it to the summary file."</span></li>
+      <li>「<span data-zh>对于『如何写好 prompt』我现在还没概念，请帮我系统梳理一下，加到总结里。」</span><span data-en>I have no idea yet about 'how to write good prompts'. Please help me systematically organize this and add it to the summary."</span></li>
     </ul>
   </div>
   <div class="tip">
-    💡 <strong>技巧</strong>：把「不懂的名词」逐个丢给 AI，让它用大白话 + 例子解释，再让它写回 <code>不懂的名词.md</code>。
-    一节课下来，你就有了一份属于自己的术语词典。
+    💡 <strong><span data-zh>技巧</span><span data-en>Tip</span></strong>：<span data-zh>把「不懂的名词」逐个丢给 AI，让它用大白话 + 例子解释，再让它写回 <code>不懂的名词.md</code>。
+    一节课下来，你就有了一份属于自己的术语词典。</span><span data-en>Give each "unknown term" to AI one by one, ask it to explain in plain language with examples, then have it write back to <code>不懂的名词.md</code>.
+    By the end of the class, you'll have your own personal glossary.</span>
   </div>
   <div class="prompt">
-    💬 <b>真实示例（一位同学真实输入的，直接抄、照着改）</b>——核心是你只管 <strong>口述</strong>，开文件 / 写入 / 排版全交给 AI：
+    💬 <b><span data-zh>真实示例（一位同学真实输入的，直接抄、照着改）</span><span data-en>Real Example (from an actual student, copy and adapt)</span></b>——<span data-zh>核心是你只管 <strong>口述</strong>，开文件 / 写入 / 排版全交给 AI：</span><span data-en>The key is you just <strong>dictate</strong>, and AI handles opening files / writing / formatting:</span>
     <ul>
-      <li>记一条心得（说完 AI 自动写进 <code>我的心得.md</code>）：<br><strong>「将这句话计入我的心得：能指挥 cowork 做的，就让 cowork 做，我是指挥者。」</strong></li>
-      <li>记一个不懂的名词（AI 解释完自动存进 <code>不懂的名词.md</code>）：<br><strong>「我不太懂什么叫做 dispatch。」</strong></li>
-      <li>不会的操作直接问步骤（问完顺手记进心得）：<br><strong>「我对 cowork 里怎么配置 Gmail 不太懂，请给我更详细的步骤指导。」</strong></li>
-      <li>随时追加新想法：<br><strong>「继续加入以下内容到我的心得：提示词可以按自己想法写，写不好就和 AI 讨论让它完善，写错了也能让它重做。」</strong></li>
-      <li>让 AI 帮你排版：<br><strong>「每个心得加个标号？显示得更友好一些。」</strong></li>
+      <li><span data-zh>记一条心得（说完 AI 自动写进 <code>我的心得.md</code>）：</span><span data-en>Log a reflection (AI automatically writes it to <code>我的心得.md</code>):</span><br><strong>「<span data-zh>将这句话计入我的心得：能指挥 cowork 做的，就让 cowork 做，我是指挥者。</span><span data-en>Add this to my reflections: whatever Cowork can do under my direction, let Cowork do it — I am the commander.</span>」</strong></li>
+      <li><span data-zh>记一个不懂的名词（AI 解释完自动存进 <code>不懂的名词.md</code>）：</span><span data-en>Log an unknown term (AI explains and saves it to <code>不懂的名词.md</code>):</span><br><strong>「<span data-zh>我不太懂什么叫做 dispatch。</span><span data-en>I don't quite understand what "dispatch" means.</span>」</strong></li>
+      <li><span data-zh>不会的操作直接问步骤（问完顺手记进心得）：</span><span data-en>Ask directly about operations you don't know (then add them to your reflections):</span><br><strong>「<span data-zh>我对 cowork 里怎么配置 Gmail 不太懂，请给我更详细的步骤指导。</span><span data-en>I'm not clear on how to configure Gmail in Cowork. Please give me more detailed step-by-step guidance.</span>」</strong></li>
+      <li><span data-zh>随时追加新想法：</span><span data-en>Add new thoughts anytime:</span><br><strong>「<span data-zh>继续加入以下内容到我的心得：提示词可以按自己想法写，写不好就和 AI 讨论让它完善，写错了也能让它重做。</span><span data-en>Continue adding the following to my reflections: prompts can be written however you like — if not good enough, discuss with AI to refine it, and if it's wrong, you can have AI redo it.</span>」</strong></li>
+      <li><span data-zh>让 AI 帮你排版：</span><span data-en>Ask AI to format for you:</span><br><strong>「<span data-zh>每个心得加个标号？显示得更友好一些。</span><span data-en>Add a number to each reflection? Make it display more cleanly.</span>」</strong></li>
     </ul>
-    <span class="muted">一句话窍门：你是指挥者——口述内容，建文件、写入、排版都交给 AI。</span>
+    <span class="muted"><span data-zh>一句话窍门：你是指挥者——口述内容，建文件、写入、排版都交给 AI。</span><span data-en>One-line tip: you're the commander — dictate the content, and let AI handle creating files, writing, and formatting.</span></span>
   </div>
 
-  <h2><span class="step-no">第 2 步</span> 亲手做课堂项目</h2>
-  <p><strong>只有自己做，才有真体会。</strong> 看录像、对着课程资料，自己在 <code>课堂项目/</code> 里从头做一遍。</p>
+  <h2><span class="step-no"><span data-zh>第 2 步</span><span data-en>Step 2</span></span> · <span data-zh>亲手做课堂项目</span><span data-en>Do the Class Project Yourself</span></h2>
+  <p><strong><span data-zh>只有自己做，才有真体会。</span><span data-en>You only truly learn by doing.</span></strong> <span data-zh>看录像、对着课程资料，自己在 <code>课堂项目/</code> 里从头做一遍。</span><span data-en>Watch the recording, follow the materials, and redo everything from scratch in the <code>课堂项目/</code> folder.</span></p>
   <ul>
-    <li><strong>大胆自由发挥</strong>——AI 是能容错的，做错了不要紧。</li>
-    <li>遇到 AI 给的结果不太对时，<strong>直接告诉它哪里不对，让它纠正</strong>。这个「我说、它改」的来回，本身就是这门课最重要的技能。</li>
-    <li>做的过程中，继续把心得、踩的坑、突然想通的点，记到 <code>课程心得/我的心得.md</code> 里，让 AI 帮你接着总结。</li>
+    <li><strong><span data-zh>大胆自由发挥</span><span data-en>Be bold and experiment freely</span></strong>——<span data-zh>AI 是能容错的，做错了不要紧。</span><span data-en>AI is forgiving, making mistakes is fine.</span></li>
+    <li><span data-zh>遇到 AI 给的结果不太对时，<strong>直接告诉它哪里不对，让它纠正</strong>。这个「我说、它改」的来回，本身就是这门课最重要的技能。</span><span data-en>When AI's output isn't quite right, <strong>just tell it what's wrong and ask it to fix it</strong>. This back-and-forth of "I say, it revises" is itself the most important skill in this course.</span></li>
+    <li><span data-zh>做的过程中，继续把心得、踩的坑、突然想通的点，记到 <code>课程心得/我的心得.md</code> 里，让 AI 帮你接着总结。</span><span data-en>As you work, keep logging your reflections, pitfalls you hit, and sudden realizations in <code>课程心得/我的心得.md</code>, and ask AI to keep summarizing for you.</span></li>
   </ul>
 
-  <h2><span class="step-no">第 3 步</span> 做作业 = 解决你自己的真实痛点</h2>
-  <p>作业不是交差，是 <strong>用这节课的能力解决你日常工作里的一个痛点</strong>。项目可大可小。</p>
-  <p><strong>先想痛点</strong>——它可能是：</p>
+  <h2><span class="step-no"><span data-zh>第 3 步</span><span data-en>Step 3</span></span> · <span data-zh>做作业 = 解决你自己的真实痛点</span><span data-en>Homework = Solve Your Real Problem</span></h2>
+  <p><span data-zh>作业不是交差，是 <strong>用这节课的能力解决你日常工作里的一个痛点</strong>。项目可大可小。</span><span data-en>Homework isn't just a formality — it's about <strong>using this class's skills to solve a real pain point in your daily work</strong>. The project can be large or small.</span></p>
+  <p><strong><span data-zh>先想痛点</span><span data-en>Start by identifying your pain point</span></strong>——<span data-zh>它可能是：</span><span data-en>it might be:</span></p>
   <ul>
-    <li>一件 <strong>单调重复</strong> 的事（每天导出报表、整理同样格式的文档）；或者</li>
-    <li>一堆 <strong>琐碎零散</strong> 的事（没有固定流程，但很烦）。</li>
+    <li><span data-zh>一件 <strong>单调重复</strong> 的事（每天导出报表、整理同样格式的文档）；或者</span><span data-en>Something <strong>monotonously repetitive</strong> (exporting reports daily, formatting documents the same way); or</span></li>
+    <li><span data-zh>一堆 <strong>琐碎零散</strong> 的事（没有固定流程，但很烦）。</span><span data-en>A bunch of <strong>scattered small tasks</strong> (no fixed process, but annoying).</span></li>
   </ul>
-  <p><strong>然后分两种情况：</strong></p>
+  <p><strong><span data-zh>然后分两种情况：</span><span data-en>Then handle it in one of two ways:</span></strong></p>
   <table>
-    <tr><th>你的情况</th><th>怎么做</th></tr>
-    <tr><td>痛点 <strong>已经有固定流程</strong></td><td>试着把这个流程搬进 cowork，做成一个 agent / workflow</td></tr>
-    <tr><td>痛点 <strong>还没成型</strong></td><td>把「作业要求 + 你的痛点描述」一起给 AI，让它给你建议方案，<strong>保存成文件</strong></td></tr>
+    <tr><th><span data-zh>你的情况</span><span data-en>Your situation</span></th><th><span data-zh>怎么做</span><span data-en>What to do</span></th></tr>
+    <tr><td><span data-zh>痛点 <strong>已经有固定流程</strong></span><span data-en>Pain point <strong>already has a fixed process</strong></span></td><td><span data-zh>试着把这个流程搬进 cowork，做成一个 agent / workflow</span><span data-en>Try moving that process into Cowork and turning it into an agent / workflow</span></td></tr>
+    <tr><td><span data-zh>痛点 <strong>还没成型</strong></span><span data-en>Pain point <strong>doesn't have a clear process yet</strong></span></td><td><span data-zh>把「作业要求 + 你的痛点描述」一起给 AI，让它给你建议方案，<strong>保存成文件</strong></span><span data-en>Give AI both "homework requirements + your pain point description" and ask it for a suggested solution, <strong>saved as a file</strong></span></td></tr>
   </table>
-  <p><strong>关键是迭代</strong>——拿到 AI 的建议后，别停。和它一起细化，<strong>就像我做 agent 时不断完善 prompt 那样</strong>：你提一点、它改一版、你再提……几轮下来，方案就成型了。全程继续写你的心得体会。</p>
+  <p><strong><span data-zh>关键是迭代</span><span data-en>The key is iteration</span></strong>——<span data-zh>拿到 AI 的建议后，别停。和它一起细化，<strong>就像我做 agent 时不断完善 prompt 那样</strong>：你提一点、它改一版、你再提……几轮下来，方案就成型了。全程继续写你的心得体会。</span><span data-en>Once you have AI's suggestions, don't stop there. Refine together, <strong>just like I kept improving prompts when building agents</strong>: you suggest something, it revises, you suggest again… after a few rounds, the solution takes shape. Keep writing your reflections throughout.</span></p>
   <div class="prompt">
-    <b>Prompt 示例</b>：<br>
-    「这是我的作业要求（<code>作业要求.md</code>），我日常工作的痛点是 ___。请帮我分析这个痛点适不适合用 AI/cowork 解决，给我 2-3 个方案，保存成 <code>方案.md</code>，并告诉我最简单能先跑起来的是哪个。」
+    <b><span data-zh>Prompt 示例</span><span data-en>Prompt Example</span></b>：<br>
+    「<span data-zh>这是我的作业要求（<code>作业要求.md</code>），我日常工作的痛点是 ___。请帮我分析这个痛点适不适合用 AI/cowork 解决，给我 2-3 个方案，保存成 <code>方案.md</code>，并告诉我最简单能先跑起来的是哪个。」</span><span data-en>Here are my homework requirements (<code>作业要求.md</code>). My daily work pain point is ___. Please help me analyze whether this pain point is suitable for solving with AI/Cowork, give me 2-3 approaches, save them as <code>方案.md</code>, and tell me which one is the simplest to get running first."</span>
   </div>
   <div class="prompt">
-    💬 <b>真实示例（填好的样子，照着换成你的痛点）</b>：<br>
-    「这是我的作业要求（<code>作业要求.md</code>，就是 <code>homework-guide.md</code>），我日常工作的痛点是 <strong>要花很多时间写周报</strong>。请帮我分析这个痛点适不适合用 AI/cowork 解决，给我 2-3 个方案，保存成 <code>方案.md</code>，并告诉我最简单能先跑起来的是哪个。」
+    💬 <b><span data-zh>真实示例（填好的样子，照着换成你的痛点）</span><span data-en>Real Example (filled in — swap your own pain point)</span></b>：<br>
+    「<span data-zh>这是我的作业要求（<code>作业要求.md</code>，就是 <code>homework-guide.md</code>），我日常工作的痛点是 <strong>要花很多时间写周报</strong>。请帮我分析这个痛点适不适合用 AI/cowork 解决，给我 2-3 个方案，保存成 <code>方案.md</code>，并告诉我最简单能先跑起来的是哪个。」</span><span data-en>Here are my homework requirements (<code>作业要求.md</code>, i.e. <code>homework-guide.md</code>). My daily work pain point is <strong>spending too much time writing weekly reports</strong>. Please help me analyze whether this pain point is suitable for solving with AI/Cowork, give me 2-3 approaches, save them as <code>方案.md</code>, and tell me which one is the simplest to get running first."</span>
   </div>
 
-  <h2><span class="step-no">第 4 步</span> 让 AI 帮你给我写一封邮件 = 提交作业</h2>
-  <p>最后，结合你这一路的 <strong>心得体会</strong> 和 <strong>课后作业</strong>，让 AI 帮你写一封邮件发给我。</p>
+  <h2><span class="step-no"><span data-zh>第 4 步</span><span data-en>Step 4</span></span> · <span data-zh>让 AI 帮你给我写一封邮件 = 提交作业</span><span data-en>Let AI Help You Write a Submission Email</span></h2>
+  <p><span data-zh>最后，结合你这一路的 <strong>心得体会</strong> 和 <strong>课后作业</strong>，让 AI 帮你写一封邮件发给我。</span><span data-en>Finally, draw on your <strong>reflections</strong> and <strong>homework</strong> throughout this process, and ask AI to help you write an email to send me.</span></p>
   <div class="tip">
-    📌 <strong>关键说明</strong>：这封邮件 <strong>就是你的作业提交</strong>——「作业要求」邮件里要的每一项内容，邮件里 <strong>一项都不能少</strong>。
-    让 AI 帮你写，不等于让 AI 帮你省。所以 prompt 里要把作业要求的每一项都点给 AI，让它逐项填满。
+    📌 <strong><span data-zh>关键说明</span><span data-en>Important note</span></strong>：<span data-zh>这封邮件 <strong>就是你的作业提交</strong>——「作业要求」邮件里要的每一项内容，邮件里 <strong>一项都不能少</strong>。
+    让 AI 帮你写，不等于让 AI 帮你省。所以 prompt 里要把作业要求的每一项都点给 AI，让它逐项填满。</span><span data-en>This email <strong>is your homework submission</strong> — every item the "homework requirements" asks for must appear in the email, <strong>not a single one left out</strong>.
+    Having AI help you write it doesn't mean having AI help you skip things. So make sure your prompt points out every requirement item so AI fills each one in.</span>
   </div>
-  <p><strong>作业要求里要交的（邮件正文必须全部覆盖）：</strong></p>
+  <p><strong><span data-zh>作业要求里要交的（邮件正文必须全部覆盖）：</span><span data-en>What the homework requires (the email body must cover all of these):</span></strong></p>
   <ol>
-    <li><strong>工作流设计</strong>——你设计了哪几个 Agent，各自职责、数据怎么从上一个传到下一个。</li>
-    <li><strong>每个 Agent 的提示词</strong>——角色 / 任务 / 输出格式三要素齐全，并写明输入格式和 <code>OUTPUTS/</code> 输出路径。</li>
-    <li><strong>实际运行输出</strong>——每个 Agent 真实跑出来的结果（不是占位符、不是「[略]」）。</li>
-    <li><strong>学习心得</strong>——≥200 字，且至少 <strong>3 条具体的个人观察</strong>（「这工具好用」不算，要写你真发现了什么）。</li>
+    <li><strong><span data-zh>工作流设计</span><span data-en>Workflow design</span></strong>——<span data-zh>你设计了哪几个 Agent，各自职责、数据怎么从上一个传到下一个。</span><span data-en>which Agents you designed, their respective responsibilities, and how data flows from one to the next.</span></li>
+    <li><strong><span data-zh>每个 Agent 的提示词</span><span data-en>Each Agent's prompts</span></strong>——<span data-zh>角色 / 任务 / 输出格式三要素齐全，并写明输入格式和 <code>OUTPUTS/</code> 输出路径。</span><span data-en>with all three elements complete: role / task / output format, plus input format and <code>OUTPUTS/</code> path.</span></li>
+    <li><strong><span data-zh>实际运行输出</span><span data-en>Actual run output</span></strong>——<span data-zh>每个 Agent 真实跑出来的结果（不是占位符、不是「[略]」）。</span><span data-en>the real output from each Agent (not placeholders, not "[omitted]").</span></li>
+    <li><strong><span data-zh>学习心得</span><span data-en>Learning reflections</span></strong>——<span data-zh>≥200 字，且至少 <strong>3 条具体的个人观察</strong>（「这工具好用」不算，要写你真发现了什么）。</span><span data-en>≥200 words, with at least <strong>3 specific personal observations</strong> ("this tool is useful" doesn't count — write what you actually discovered).</span></li>
   </ol>
   <div class="prompt">
-    <b>Prompt 示例</b>（直接抄，把括号里的路径换成你自己的）：<br>
-    「请结合我的作业项目（<code>作业项目/</code> 目录）和课程心得（<code>课程心得/</code> 目录），帮我写一封发给老师的作业提交邮件。<b>作业要求的每一项内容都必须完整出现在邮件正文里，一项都不能省</b>，按下面四块组织：
+    <b><span data-zh>Prompt 示例</span><span data-en>Prompt Example</span></b><span data-zh>（直接抄，把括号里的路径换成你自己的）：</span><span data-en>(copy directly, replace the paths in brackets with your own):</span><br>
+    「<span data-zh>请结合我的作业项目（<code>作业项目/</code> 目录）和课程心得（<code>课程心得/</code> 目录），帮我写一封发给老师的作业提交邮件。<b>作业要求的每一项内容都必须完整出现在邮件正文里，一项都不能省</b>，按下面四块组织：</span><span data-en>Please combine my homework project (<code>作业项目/</code> directory) and course reflections (<code>课程心得/</code> directory) to help me write a homework submission email to the instructor. <b>Every item the homework requires must appear completely in the email body — not one can be skipped</b>. Organize it in these four sections:</span>
     <ol>
-      <li>工作流设计：列出我设计的每个 Agent、各自职责、Agent 之间怎么传数据；</li>
-      <li>每个 Agent 的提示词：原样贴出，确认角色/任务/输出格式三要素齐全，并带上输入格式和 <code>OUTPUTS/</code> 路径；</li>
-      <li>实际运行输出：把每个 Agent 真实跑出的结果贴进来，不要用占位符；</li>
-      <li>学习心得：≥200 字，至少 3 条我自己的具体观察。</li>
+      <li><span data-zh>工作流设计：列出我设计的每个 Agent、各自职责、Agent 之间怎么传数据；</span><span data-en>Workflow design: list each Agent I designed, their responsibilities, and how data passes between Agents;</span></li>
+      <li><span data-zh>每个 Agent 的提示词：原样贴出，确认角色/任务/输出格式三要素齐全，并带上输入格式和 <code>OUTPUTS/</code> 路径；</span><span data-en>Each Agent's prompts: paste them as-is, confirming all three elements (role/task/output format) are complete, along with input format and <code>OUTPUTS/</code> path;</span></li>
+      <li><span data-zh>实际运行输出：把每个 Agent 真实跑出的结果贴进来，不要用占位符；</span><span data-en>Actual run output: paste the real results from each Agent, no placeholders;</span></li>
+      <li><span data-zh>学习心得：≥200 字，至少 3 条我自己的具体观察。</span><span data-en>Learning reflections: ≥200 words, at least 3 of my own specific observations.</span></li>
     </ol>
-    末尾再补一段我还想请教的困惑。语气真诚、简洁。写完先列一个清单核对上面四项有没有遗漏。」
+    <span data-zh>末尾再补一段我还想请教的困惑。语气真诚、简洁。写完先列一个清单核对上面四项有没有遗漏。」</span><span data-en>Add a paragraph at the end about questions I still have. Keep the tone sincere and concise. After writing, list a checklist to verify none of the four items above are missing."</span>
   </div>
-  <p>我想看到的不是完美，而是 <strong>你真的动手了、真的在想</strong>。困惑和卡点尤其欢迎——那正是下一节课我能帮你的地方。</p>
+  <p><span data-zh>我想看到的不是完美，而是 <strong>你真的动手了、真的在想</strong>。困惑和卡点尤其欢迎——那正是下一节课我能帮你的地方。</span><span data-en>What I want to see is not perfection, but that <strong>you truly worked on it and truly thought about it</strong>. Confusion and roadblocks are especially welcome — those are exactly where I can help you in the next class.</span></p>
 
   <div class="summary">
-    <b>一句话总结</b><br>
-    写心得 → 让 AI 总结 → 自己做 → 解决真痛点 → 反馈给我。<br>
-    每一步都亲手做，每一步都留下记录。这门课的能力，是「做」出来的，不是「听」出来的。
+    <b><span data-zh>一句话总结</span><span data-en>One-sentence summary</span></b><br>
+    <span data-zh>写心得 → 让 AI 总结 → 自己做 → 解决真痛点 → 反馈给我。</span><span data-en>Write reflections → Let AI summarize → Do it yourself → Solve a real pain point → Send it back.</span><br>
+    <span data-zh>每一步都亲手做，每一步都留下记录。这门课的能力，是「做」出来的，不是「听」出来的。</span><span data-en>Do every step yourself, and document every step. The skill in this course is built by doing, not listening.</span>
   </div>
 
-  <p class="muted">—— 看不懂任何一步，截图发学习群，老师和同学帮你。没有笨问题。</p>
+  <p class="muted"><span data-zh>—— 看不懂任何一步，截图发学习群，老师和同学帮你。没有笨问题。</span><span data-en>—— If anything is unclear, screenshot it and post in the student group — the instructor and classmates will help. No question is too basic.</span></p>
+<script>
+function setLang(lang) {
+  document.body.classList.toggle('lang-en', lang === 'en');
+  document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  localStorage.setItem('lang', lang);
+}
+(function() { setLang(localStorage.getItem('lang') || 'zh'); })();
+</script>
 </body>
 </html>
