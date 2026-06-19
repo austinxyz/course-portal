@@ -64,78 +64,104 @@
       .hero h1 { font-size: 1.4rem; }
       .container { padding: 28px 18px 48px; }
     }
+    .hero { position: relative; }
+    #lang-toggle { position: absolute; top: 14px; right: 18px; z-index: 10;
+      display: flex; align-items: center; gap: 2px;
+      background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 20px; padding: 4px 10px; font-size: 0.82rem; }
+    #lang-toggle button { background: none; border: none; cursor: pointer;
+      font-weight: 700; font-family: inherit; font-size: 0.82rem; padding: 2px 5px;
+      color: rgba(255,255,255,0.6); border-radius: 12px; transition: all 0.15s; }
+    #lang-toggle button.active { color: white; background: rgba(255,255,255,0.2); }
+    #lang-toggle span { color: rgba(255,255,255,0.4); font-size: 0.75rem; }
+    body:not(.lang-en) [data-en] { display: none; }
+    body.lang-en [data-zh] { display: none; }
   </style>
 </head>
 <body>
 
 <div class="hero">
-  <div class="badge">🎤 Demo Day 先导文章</div>
-  <h1>5C 不只是找工作——它是一台可复用的引擎</h1>
-  <p class="sub">读完这篇，你会找到属于自己的 Demo Day 灵感。</p>
+  <div id="lang-toggle">
+    <button id="btn-zh" onclick="setLang('zh')">中</button>
+    <span>|</span>
+    <button id="btn-en" onclick="setLang('en')">EN</button>
+  </div>
+  <div class="badge"><span data-zh>🎤 Demo Day 先导文章</span><span data-en>🎤 Demo Day Preview</span></div>
+  <h1><span data-zh>5C 不只是找工作——它是一台可复用的引擎</span><span data-en>5C Is Not Just for Job Hunting — It's a Reusable Engine</span></h1>
+  <p class="sub"><span data-zh>读完这篇，你会找到属于自己的 Demo Day 灵感。</span><span data-en>After reading this, you'll find your own Demo Day inspiration.</span></p>
 </div>
 
 <div class="container">
 
   <div class="source-callout">
-    📖 5C 找工作方法论由 Nan 原创：<a href="https://midcareerreboot.substack.com/p/from-growth-year-to-game-plan" target="_blank">From Growth Year to Game Plan →</a><br>
-    <span style="font-size:0.85rem;opacity:0.85;">把它抽象成"可复用引擎"、套到其他目标上的洞察由 Austin 提出。</span>
+    📖 <span data-zh>5C 找工作方法论由 Nan 原创：</span><span data-en>The 5C job search methodology was created by Nan: </span><a href="https://midcareerreboot.substack.com/p/from-growth-year-to-game-plan" target="_blank">From Growth Year to Game Plan →</a><br>
+    <span style="font-size:0.85rem;opacity:0.85;"><span data-zh>把它抽象成"可复用引擎"、套到其他目标上的洞察由 Austin 提出。</span><span data-en>The insight of abstracting it into a "reusable engine" applicable to other goals was proposed by Austin.</span></span>
   </div>
 
-  <p>很多同学知道 5C 是 Nan 的找工作方法论：</p>
+  <p><span data-zh>很多同学知道 5C 是 Nan 的找工作方法论：</span><span data-en>Many of you know 5C as Nan's job search methodology:</span></p>
 
-  <div class="pipeline">C1 方向清晰 → C2 建立底气 → C3 建立人脉 → C4 高效转化 → C5 做出承诺</div>
+  <div class="pipeline"><span data-zh>C1 方向清晰 → C2 建立底气 → C3 建立人脉 → C4 高效转化 → C5 做出承诺</span><span data-en>C1 Clarity → C2 Credibility → C3 Community → C4 Conversion → C5 Commitment</span></div>
 
-  <p>但这几天我想明白一件事，正好可以帮你们找到 Demo Day 的灵感：<strong>5C 根本不是"找工作"专用的，它是一台通用引擎。</strong></p>
+  <p><span data-zh>但这几天我想明白一件事，正好可以帮你们找到 Demo Day 的灵感：<strong>5C 根本不是"找工作"专用的，它是一台通用引擎。</strong></span><span data-en>But I've realized something that can help you find your Demo Day inspiration: <strong>5C is not just for job hunting — it's a universal engine.</strong></span></p>
 
-  <h2>5C 的本质</h2>
+  <h2><span data-zh>5C 的本质</span><span data-en>The Essence of 5C</span></h2>
 
-  <p>把它抽象出来看，5C 其实是一个「<strong>目标驱动的 搜索 → 外联 → 转化</strong>」流程：</p>
+  <p><span data-zh>把它抽象出来看，5C 其实是一个「<strong>目标驱动的 搜索 → 外联 → 转化</strong>」流程：</span><span data-en>Abstracting it, 5C is a <strong>goal-driven Search → Outreach → Conversion</strong> pipeline:</span></p>
 
-  <blockquote>先想清楚要什么(C1)，把自己准备好(C2)，找到对的人(C3)，高效转化(C4)，然后坚持迭代(C5)。</blockquote>
+  <blockquote><span data-zh>先想清楚要什么(C1)，把自己准备好(C2)，找到对的人(C3)，高效转化(C4)，然后坚持迭代(C5)。</span><span data-en>Get clear on what you want (C1), prepare yourself (C2), find the right people (C3), convert efficiently (C4), then iterate (C5).</span></blockquote>
 
-  <p>而几乎所有"我想得到某个机会"的事，都是这个形状。你只要换掉「目标」，同一套引擎就能跑出完全不同的工作流：</p>
+  <p><span data-zh>而几乎所有"我想得到某个机会"的事，都是这个形状。你只要换掉「目标」，同一套引擎就能跑出完全不同的工作流：</span><span data-en>Almost every "I want to get this opportunity" situation has this shape. Just swap the target and the same engine produces a completely different workflow:</span></p>
 
   <ul>
-    <li>目标是<strong>全职岗位</strong> → 这就是原版找工作</li>
-    <li>目标是<strong>付费演讲机会</strong>（有同学正好在愁这个）→ C1 筛会议、C3 找主办方、C4 定制 pitch</li>
-    <li>目标是<strong>客户</strong>（做保险、做咨询、接单）→ C1 锁定人群、C3 触达、C4 跟进成交</li>
-    <li>目标是<strong>学员 / 报名</strong> → 招生本身就是一次 5C</li>
-    <li>目标是<strong>投资人、合作伙伴、供应商</strong> → 同样成立</li>
+    <li><span data-zh>目标是<strong>全职岗位</strong> → 这就是原版找工作</span><span data-en>Target: <strong>full-time job</strong> → the original use case</span></li>
+    <li><span data-zh>目标是<strong>付费演讲机会</strong>（有同学正好在愁这个）→ C1 筛会议、C3 找主办方、C4 定制 pitch</span><span data-en>Target: <strong>paid speaking gig</strong> → C1 filter conferences, C3 find organizers, C4 custom pitch</span></li>
+    <li><span data-zh>目标是<strong>客户</strong>（做保险、做咨询、接单）→ C1 锁定人群、C3 触达、C4 跟进成交</span><span data-en>Target: <strong>clients</strong> (insurance, consulting, freelance) → C1 define audience, C3 reach out, C4 follow up and close</span></li>
+    <li><span data-zh>目标是<strong>学员 / 报名</strong> → 招生本身就是一次 5C</span><span data-en>Target: <strong>students / enrollments</strong> → recruiting is itself a 5C run</span></li>
+    <li><span data-zh>目标是<strong>投资人、合作伙伴、供应商</strong> → 同样成立</span><span data-en>Target: <strong>investors, partners, suppliers</strong> → same structure applies</span></li>
   </ul>
 
-  <p>引擎不变，变的只有四样：<strong>目标、去哪找（来源）、怎么打分（筛选标准）、说什么（话术）。</strong></p>
+  <p><span data-zh>引擎不变，变的只有四样：<strong>目标、去哪找（来源）、怎么打分（筛选标准）、说什么（话术）。</strong></span><span data-en>The engine stays constant. Only four things change: <strong>target, where to find them (source), how to score them (criteria), and what to say (pitch).</strong></span></p>
 
-  <p>而这正是 AI 的用武之地——发现、筛选、起草、跟进这些又累又碎的活，全可以交给 AI 自动跑；你只负责真正需要人的部分：建立关系、谈条件、最后拍板。</p>
+  <p><span data-zh>而这正是 AI 的用武之地——发现、筛选、起草、跟进这些又累又碎的活，全可以交给 AI 自动跑；你只负责真正需要人的部分：建立关系、谈条件、最后拍板。</span><span data-en>And this is exactly where AI shines — discovery, filtering, drafting, follow-up, all the tedious repetitive work can run on autopilot. You handle what only humans can: building relationships, negotiating, making the final call.</span></p>
 
-  <h2>这跟你的 Demo 有什么关系</h2>
+  <h2><span data-zh>这跟你的 Demo 有什么关系</span><span data-en>What Does This Mean for Your Demo?</span></h2>
 
-  <p>Demo Day 不需要你做一个很炫的东西，需要的是一个<strong>真正解决你自己问题</strong>的工作流。而 5C 给了你一个现成的骨架——你不用从零想，只要回答四个问题：</p>
+  <p><span data-zh>Demo Day 不需要你做一个很炫的东西，需要的是一个<strong>真正解决你自己问题</strong>的工作流。而 5C 给了你一个现成的骨架——你不用从零想，只要回答四个问题：</span><span data-en>Demo Day doesn't need something flashy — it needs a workflow that <strong>genuinely solves your own problem</strong>. 5C gives you a ready-made skeleton. You don't have to start from scratch, just answer four questions:</span></p>
 
   <div class="question-box">
     <ol>
-      <li><strong>目标</strong>：我最想得到的那个"机会"是什么？（一份工作 / 一批客户 / 一个演讲 / 一个合作）</li>
-      <li><strong>来源</strong>：这种机会一般出现在哪里？（招聘网站 / 会议 CFP / 行业群 / LinkedIn / 协会名单）</li>
-      <li><strong>打分</strong>：什么样的算"值得投"？（给不给钱、契合度、地域、难度）</li>
-      <li><strong>话术</strong>：我要对他们说什么？（为什么是我、为什么是现在）</li>
+      <li><strong><span data-zh>目标</span><span data-en>Target</span></strong>：<span data-zh>我最想得到的那个"机会"是什么？（一份工作 / 一批客户 / 一个演讲 / 一个合作）</span><span data-en>What is the "opportunity" I want most? (a job / a batch of clients / a speaking slot / a partnership)</span></li>
+      <li><strong><span data-zh>来源</span><span data-en>Source</span></strong>：<span data-zh>这种机会一般出现在哪里？（招聘网站 / 会议 CFP / 行业群 / LinkedIn / 协会名单）</span><span data-en>Where do these opportunities usually appear? (job boards / conference CFPs / industry groups / LinkedIn / association lists)</span></li>
+      <li><strong><span data-zh>打分</span><span data-en>Scoring</span></strong>：<span data-zh>什么样的算"值得投"？（给不给钱、契合度、地域、难度）</span><span data-en>What counts as "worth pursuing"? (compensation, fit, location, difficulty)</span></li>
+      <li><strong><span data-zh>话术</span><span data-en>Pitch</span></strong>：<span data-zh>我要对他们说什么？（为什么是我、为什么是现在）</span><span data-en>What do I say to them? (why me, why now)</span></li>
     </ol>
   </div>
 
-  <p>把这四个变量填进 5C，让 AI 去跑发现、筛选、起草、跟进——<strong>这就是一个完整、可演示的 demo。</strong></p>
+  <p><span data-zh>把这四个变量填进 5C，让 AI 去跑发现、筛选、起草、跟进——<strong>这就是一个完整、可演示的 demo。</strong></span><span data-en>Plug these four variables into 5C, let AI run the discovery, filtering, drafting, and follow-up — <strong>that's a complete, demo-ready workflow.</strong></span></p>
 
-  <h2>给你的思考题</h2>
+  <h2><span data-zh>给你的思考题</span><span data-en>A Question for You</span></h2>
 
-  <p><strong>你自己最想要的那个"机会"，能不能也套进 5C？</strong></p>
+  <p><strong><span data-zh>你自己最想要的那个"机会"，能不能也套进 5C？</span><span data-en>Can the opportunity you want most also fit into 5C?</span></strong></p>
 
-  <p>把它写下来，定义清楚那四个变量。你会发现，你已经拥有了一个属于自己的、AI 驱动的工作流——而且它在 Demo Day 之后还能继续帮你赚到时间和钱。</p>
+  <p><span data-zh>把它写下来，定义清楚那四个变量。你会发现，你已经拥有了一个属于自己的、AI 驱动的工作流——而且它在 Demo Day 之后还能继续帮你赚到时间和钱。</span><span data-en>Write it down and define those four variables. You'll find you already have your own AI-driven workflow — one that keeps generating time and money well after Demo Day.</span></p>
 
-  <p>这，才是学会用 AI 的真正方式：不是记住一个模板，而是看懂底层结构，然后把它套到你自己的目标上。</p>
+  <p><span data-zh>这，才是学会用 AI 的真正方式：不是记住一个模板，而是看懂底层结构，然后把它套到你自己的目标上。</span><span data-en>That is the real way to master AI: not memorizing a template, but understanding the underlying structure and applying it to your own goals.</span></p>
 
-  <div class="closing">Demo Day 见。🚀</div>
+  <div class="closing"><span data-zh>Demo Day 见。🚀</span><span data-en>See you at Demo Day. 🚀</span></div>
 
   <div class="back-link">
-    <p>← <a href="./index.html">返回课程门户</a> &nbsp;·&nbsp; 5C 原文：<a href="https://midcareerreboot.substack.com/p/from-growth-year-to-game-plan" target="_blank">Nan 的 Substack →</a></p>
+    <p>← <a href="./index.html"><span data-zh>返回课程门户</span><span data-en>Back to Course Portal</span></a> &nbsp;·&nbsp; <span data-zh>5C 原文：</span><span data-en>5C original: </span><a href="https://midcareerreboot.substack.com/p/from-growth-year-to-game-plan" target="_blank">Nan's Substack →</a></p>
   </div>
 
 </div>
+<script>
+function setLang(lang) {
+  document.body.classList.toggle('lang-en', lang === 'en');
+  document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  localStorage.setItem('lang', lang);
+}
+(function() { setLang(localStorage.getItem('lang') || 'zh'); })();
+</script>
 </body>
 </html>
