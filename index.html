@@ -106,14 +106,40 @@
       .dl-grid { grid-template-columns: 1fr; }
       .price-box { flex-direction: column; align-items: flex-start; }
     }
+    /* bilingual toggle */
+    body:not(.lang-en) [data-en] { display: none }
+    body.lang-en [data-zh]       { display: none }
+    #lang-toggle {
+      position: fixed; top: 16px; right: 20px; z-index: 999;
+      display: flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,0.92); border-radius: 20px;
+      padding: 4px 12px; font-size: 0.85rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    #lang-toggle button {
+      background: none; border: none; cursor: pointer;
+      font-weight: 700; font-family: inherit; font-size: 0.85rem; padding: 2px 4px;
+    }
+    #lang-toggle button.active { color: var(--primary); }
+    #lang-toggle button:not(.active) { color: var(--text-muted); }
+    #lang-toggle span { color: var(--text-muted); }
   </style>
 </head>
 <body>
 
+<div id="lang-toggle">
+  <button id="btn-zh" onclick="setLang('zh')">中</button>
+  <span>|</span>
+  <button id="btn-en" onclick="setLang('en')">EN</button>
+</div>
+
 <div class="hero">
-  <h1>从零上手 Claude</h1>
-  <p class="subtitle">两节课，从第一次打开 Claude 到搭起你自己的 AI 知识系统——全程动手、零基础友好、专为北美华人。</p>
-  <span class="badge">动手实操 · 零基础 · 中文全程</span>
+  <h1><span data-zh>从零上手 Claude</span><span data-en>Learn Claude from Scratch</span></h1>
+  <p class="subtitle">
+    <span data-zh>两节课，从第一次打开 Claude 到搭起你自己的 AI 知识系统——全程动手、零基础友好、专为北美华人。</span>
+    <span data-en>Two sessions — from opening Claude for the first time to building your own AI knowledge system. Hands-on, beginner-friendly, taught in Chinese.</span>
+  </p>
+  <span class="badge"><span data-zh>动手实操 · 零基础 · 中文全程</span><span data-en>Hands-on · Beginner-friendly · Taught in Chinese</span></span>
 </div>
 
 <div class="container">
@@ -124,85 +150,150 @@
 
     <!-- 讲师介绍 -->
     <div class="section" id="about">
-      <h2 class="section-title">关于讲师</h2>
+      <h2 class="section-title"><span data-zh>关于讲师</span><span data-en>About the Instructor</span></h2>
       <img src="img/headshot.jpg" alt="Austin Xu" style="float:left;width:150px;height:150px;border-radius:14px;object-fit:cover;margin:0 22px 12px 0;">
-      <p>Austin 是硅谷一家 500 强企业的工程经理，写了 20 年代码。从 Startup 基层程序员做到大厂资深工程经理，带领支撑 $74B+ GMV 的云平台团队，浙大硕士毕业。他是公司内部 Claude Code 的头号用户，把 MCP 和 Agent 真正落地到生产环境、个人 PR 产出翻倍；业余自主开发了 10 多个 AI 系统（理财、成长追踪、运动数据等）。生活里是 USTA 全国冠军、网球与匹克球队长，积极参与北美华人社区——和你一样的华人路径，只是早一步踩进了 AI 这条赛道。</p>
+      <p>
+        <span data-zh>Austin 是硅谷一家 500 强企业的工程经理，写了 20 年代码。从 Startup 基层程序员做到大厂资深工程经理，带领支撑 $74B+ GMV 的云平台团队，浙大硕士毕业。他是公司内部 Claude Code 的头号用户，把 MCP 和 Agent 真正落地到生产环境、个人 PR 产出翻倍；业余自主开发了 10 多个 AI 系统（理财、成长追踪、运动数据等）。生活里是 USTA 全国冠军、网球与匹克球队长，积极参与北美华人社区——和你一样的华人路径，只是早一步踩进了 AI 这条赛道。</span>
+        <span data-en>Austin is an Engineering Manager at a Fortune 500 company in Silicon Valley with 20 years of coding experience. He rose from a startup engineer to a senior EM leading a cloud platform that powers $74B+ GMV, and holds a master's degree from Zhejiang University. He's the #1 internal user of Claude Code at his company — shipping MCP and Agent architectures in production, doubling his own PR output. Outside work he's built 10+ personal AI systems (investing, growth tracking, sports analytics). He's also a USTA national champion and an active member of the Chinese-American community.</span>
+      </p>
       <p style="margin-top:14px;">
         <a href="https://github.com/austinxyz" target="_blank" style="color:var(--primary);font-weight:700;">GitHub</a> &nbsp;·&nbsp;
-        <a href="https://austinxyz.github.io/blogs/blog" target="_blank" style="color:var(--primary);font-weight:700;">个人博客</a> &nbsp;·&nbsp;
+        <a href="https://austinxyz.github.io/blogs/blog" target="_blank" style="color:var(--primary);font-weight:700;"><span data-zh>个人博客</span><span data-en>Blog</span></a> &nbsp;·&nbsp;
         <a href="https://juejin.cn/user/2719523382507658/posts" target="_blank" style="color:var(--primary);font-weight:700;">掘金</a> &nbsp;·&nbsp;
         <a href="https://medium.com/@austin.xyz" target="_blank" style="color:var(--primary);font-weight:700;">Medium</a>
       </p>
       <div class="callout callout-tip" style="display:flex;gap:16px;align-items:center;">
         <img src="img/wechat-qr.jpg" alt="公众号二维码" style="width:120px;height:120px;border-radius:8px;">
-        <span>扫码关注公众号，获取课程更新与更多 AI 实操文章。</span>
+        <span>
+          <span data-zh>扫码关注公众号，获取课程更新与更多 AI 实操文章。</span>
+          <span data-en>Follow on WeChat Official Account for course updates and AI articles.</span>
+        </span>
       </div>
     </div>
 
     <!-- 免费公开课 & 预习材料 -->
     <div class="section" id="free">
-      <h2 class="section-title">🎁 免费公开课 · 预习材料</h2>
+      <h2 class="section-title"><span data-zh>🎁 免费公开课 · 预习材料</span><span data-en>🎁 Free Webinar · Preview Materials</span></h2>
 
       <!-- 公开课 -->
       <div style="background:var(--accent-light);border:1.5px solid var(--accent);border-radius:12px;padding:18px 20px;margin-bottom:20px;">
         <div style="font-size:0.78rem;color:#8a5f00;font-weight:700;letter-spacing:0.05em;margin-bottom:8px;">📅 6 月 24 日（下周三）· 9:00 PM ET / 6:00 PM PT · 线上 Zoom · 完全免费</div>
-        <div style="font-size:1.1rem;font-weight:700;margin-bottom:10px;">你的 AI 为什么总是"差点意思"？</div>
+        <div style="font-size:1.1rem;font-weight:700;margin-bottom:10px;">
+          <span data-zh>你的 AI 为什么总是"差点意思"？</span>
+          <span data-en>Why Does Your AI Always Feel "Almost There"?</span>
+        </div>
         <ul style="margin:0 0 14px 20px;line-height:2;font-size:0.93rem;">
-          <li>AI 给通用答案的根本原因</li>
-          <li>怎么让 AI 调用你的专业积累</li>
-          <li>三步走方法 + 真实领域案例演示</li>
+          <li><span data-zh>AI 给通用答案的根本原因</span><span data-en>Why AI gives generic answers</span></li>
+          <li><span data-zh>怎么让 AI 调用你的专业积累</span><span data-en>How to make AI use your expertise</span></li>
+          <li><span data-zh>三步走方法 + 真实领域案例演示</span><span data-en>3-step method + real-world case demos</span></li>
         </ul>
-        <a class="btn-download" href="https://zoom.us/j/96174608721?pwd=uQTHycmiJxhYaedqp3Gub0K6Uziw9p.1" target="_blank" style="background:var(--accent);color:#1e2a22;margin:0;">🎥 免费参加 · 加入 Zoom →</a>
+        <a class="btn-download" href="https://zoom.us/j/96174608721?pwd=uQTHycmiJxhYaedqp3Gub0K6Uziw9p.1" target="_blank" style="background:var(--accent);color:#1e2a22;margin:0;">
+          <span data-zh>🎥 免费参加 · 加入 Zoom →</span>
+          <span data-en>🎥 Join Free · Open Zoom →</span>
+        </a>
         <div style="font-size:0.82rem;color:var(--text-muted);margin-top:8px;">Meeting ID: 961 7460 8721 &nbsp;·&nbsp; Passcode: 661202</div>
       </div>
 
       <!-- 免费材料 -->
-      <p>以下材料完全公开，无需报名，不需要密码。</p>
+      <p><span data-zh>以下材料完全公开，无需报名，不需要密码。</span><span data-en>The following materials are completely free — no registration, no password.</span></p>
       <div class="dl-grid" style="margin-top:14px;">
         <div class="dl-card">
-          <div class="dl-card-title">💰 财富知识入门教程</div>
-          <div class="dl-card-desc">用 AI 建立个人财富知识库：LLM 辅助投资分析、财务规划、美股基础概念速查。适合财富管理零基础。</div>
-          <a class="btn-dl" href="https://austinxyz.github.io/blogs/wealth-guide.html" target="_blank">→ 访问教程</a>
+          <div class="dl-card-title"><span data-zh>💰 财富知识入门教程</span><span data-en>💰 Wealth Knowledge Starter Guide</span></div>
+          <div class="dl-card-desc">
+            <span data-zh>用 AI 建立个人财富知识库：LLM 辅助投资分析、财务规划、美股基础概念速查。适合财富管理零基础。</span>
+            <span data-en>Build a personal wealth knowledge base with AI: LLM-assisted investment analysis, financial planning, and US stock basics. Perfect for beginners.</span>
+          </div>
+          <a class="btn-dl" href="https://austinxyz.github.io/blogs/wealth-guide.html" target="_blank"><span data-zh>→ 访问教程</span><span data-en>→ Open Guide</span></a>
         </div>
         <div class="dl-card">
-          <div class="dl-card-title">📊 课前直播 PPT</div>
-          <div class="dl-card-desc">公开课讲义：AI 如何改变个人财富管理、Claude 实操入门，适合在报名前评估课程。</div>
-          <a class="btn-dl" href="dl/preclass-webinar.pptx" download>⬇ 下载 PPT</a>
+          <div class="dl-card-title"><span data-zh>📊 课前直播 PPT</span><span data-en>📊 Pre-class Webinar Slides</span></div>
+          <div class="dl-card-desc">
+            <span data-zh>公开课讲义：AI 如何改变个人财富管理、Claude 实操入门，适合在报名前评估课程。</span>
+            <span data-en>Webinar slides: how AI is changing personal finance, Claude intro — good for evaluating whether the course is right for you.</span>
+          </div>
+          <a class="btn-dl" href="dl/preclass-webinar.pptx" download><span data-zh>⬇ 下载 PPT</span><span data-en>⬇ Download Slides</span></a>
         </div>
       </div>
     </div>
 
     <!-- Session 1 -->
     <div class="section" id="s1">
-      <div class="step-header"><div class="step-num">1</div><div class="step-title">Session 1 · 从零开始用 Claude 和 Cowork</div></div>
-      <p>从零开始：先搞懂 Claude 到底强在哪，再亲手搭一条真实的找工作 Agent 流水线——分析 JD、调研公司、写 Outreach、追踪投递。学完你能手写一次 Agent 提示词，然后一句话复用整条流水线。</p>
-      <div class="price-box" style="margin:16px 0 14px;">
-        <div><div class="price-num">¥199</div><div style="font-size:0.82rem;color:var(--text-muted);">单节买断</div></div>
-        <div class="price-desc">150 分钟 · 理论 + 实操演示 + 答疑<br>录像回放 · 专属学员群 · 作业批改</div>
+      <div class="step-header">
+        <div class="step-num">1</div>
+        <div class="step-title">
+          <span data-zh>Session 1 · 从零开始用 Claude 和 Cowork</span>
+          <span data-en>Session 1 · Claude &amp; Cowork from Zero</span>
+        </div>
       </div>
-      <p><a href="https://austinxyz.github.io/blogs/session1-preclass.html" target="_blank" style="color:var(--primary);font-weight:700;">📋 课前准备（公开，先装好 Claude + Cowork）</a></p>
-      <p><a href="https://austinxyz.github.io/course-portal/c/s1-study-guide.html" target="_blank" style="color:var(--primary);font-weight:700;">🧭 课后实操指南 · 5 步学习法（公开）</a></p>
-      <a class="btn-download" href="c/claude-s1.html">🔑 学员入口（需 S1 密码）→ 录像 / 作业 / Q&A</a>
-      <a href="https://forms.gle/2pjPiERkZe9RfDWk6" target="_blank" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;padding:10px 20px;background:var(--accent-light);border:1.5px solid var(--accent);border-radius:8px;color:#7a4800;font-weight:700;font-size:0.92rem;text-decoration:none;">📝 上完课了？填写课后 Feedback →</a>
+      <p>
+        <span data-zh>从零开始：先搞懂 Claude 到底强在哪，再亲手搭一条真实的找工作 Agent 流水线——分析 JD、调研公司、写 Outreach、追踪投递。学完你能手写一次 Agent 提示词，然后一句话复用整条流水线。</span>
+        <span data-en>Start from zero: understand what makes Claude powerful, then build a real job-search Agent pipeline — analyze job descriptions, research companies, write outreach, track applications. By the end you'll write an Agent prompt from scratch and reuse the whole pipeline with one command.</span>
+      </p>
+      <div class="price-box" style="margin:16px 0 14px;">
+        <div>
+          <div class="price-num">¥199</div>
+          <div style="font-size:0.82rem;color:var(--text-muted);"><span data-zh>单节买断</span><span data-en>One-time purchase</span></div>
+        </div>
+        <div class="price-desc">
+          <span data-zh>150 分钟 · 理论 + 实操演示 + 答疑<br>录像回放 · 专属学员群 · 作业批改</span>
+          <span data-en>150 min · Theory + hands-on demo + Q&amp;A<br>Recording · Private student group · Homework review</span>
+        </div>
+      </div>
+      <p><a href="https://austinxyz.github.io/blogs/session1-preclass.html" target="_blank" style="color:var(--primary);font-weight:700;">
+        <span data-zh>📋 课前准备（公开，先装好 Claude + Cowork）</span>
+        <span data-en>📋 Pre-class prep (public — install Claude + Cowork first)</span>
+      </a></p>
+      <p><a href="https://austinxyz.github.io/course-portal/c/s1-study-guide.html" target="_blank" style="color:var(--primary);font-weight:700;">
+        <span data-zh>🧭 课后实操指南 · 5 步学习法（公开）</span>
+        <span data-en>🧭 Post-class practice guide · 5-step method (public)</span>
+      </a></p>
+      <a class="btn-download" href="c/claude-s1.html">
+        <span data-zh>🔑 学员入口（需 S1 密码）→ 录像 / 作业 / Q&A</span>
+        <span data-en>🔑 Student Portal (S1 — login with email) → Videos / Homework / Q&amp;A</span>
+      </a>
+      <a href="https://forms.gle/2pjPiERkZe9RfDWk6" target="_blank" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;padding:10px 20px;background:var(--accent-light);border:1.5px solid var(--accent);border-radius:8px;color:#7a4800;font-weight:700;font-size:0.92rem;text-decoration:none;">
+        <span data-zh>📝 上完课了？填写课后 Feedback →</span>
+        <span data-en>📝 Done with class? Leave feedback →</span>
+      </a>
     </div>
 
     <!-- Session 2 -->
     <div class="section" id="s2">
-      <div class="step-header"><div class="step-num">2</div><div class="step-title">Session 2 · 先造枪，再打子弹 — 用 Claude Code 建知识库</div></div>
-      <p>从"用工具"升级到"造工具"。本地装好 Claude Code，吃透 Skills 与 MCP 生态，把专业知识结构化成知识库；再用它赚钱：跑客户诊断流程、生成定制 PPT——先造枪，再打子弹。</p>
+      <div class="step-header">
+        <div class="step-num">2</div>
+        <div class="step-title">
+          <span data-zh>Session 2 · 先造枪，再打子弹 — 用 Claude Code 建知识库</span>
+          <span data-en>Session 2 · Build Your Own AI Tools with Claude Code</span>
+        </div>
+      </div>
+      <p>
+        <span data-zh>从"用工具"升级到"造工具"。本地装好 Claude Code，吃透 Skills 与 MCP 生态，把专业知识结构化成知识库；再用它赚钱：跑客户诊断流程、生成定制 PPT——先造枪，再打子弹。</span>
+        <span data-en>Level up from using tools to building them. Install Claude Code locally, master Skills and the MCP ecosystem, and structure your expertise into a knowledge base. Then monetize it: run client diagnostics, generate custom reports — build the gun first, then fire.</span>
+      </p>
       <div class="price-box" style="margin:16px 0 14px;">
         <div>
           <div class="price-num">¥199</div>
-          <div style="font-size:0.82rem;color:var(--text-muted);">单节买断</div>
-          <div style="font-size:0.88rem;margin-top:6px;">两节合买 <strong>¥349</strong>（省¥49）</div>
+          <div style="font-size:0.82rem;color:var(--text-muted);"><span data-zh>单节买断</span><span data-en>One-time purchase</span></div>
+          <div style="font-size:0.88rem;margin-top:6px;"><span data-zh>两节合买 <strong>¥349</strong>（省¥49）</span><span data-en>Bundle (2 sessions) <strong>¥349</strong> (save ¥49)</span></div>
         </div>
-        <div class="price-desc">150 分钟 · 理论 + 实操演示 + 答疑<br>录像回放 · 专属学员群 · 作业批改</div>
+        <div class="price-desc">
+          <span data-zh>150 分钟 · 理论 + 实操演示 + 答疑<br>录像回放 · 专属学员群 · 作业批改</span>
+          <span data-en>150 min · Theory + hands-on demo + Q&amp;A<br>Recording · Private student group · Homework review</span>
+        </div>
       </div>
-      <p><a href="https://austinxyz.github.io/blogs/session2-preclass.html" target="_blank" style="color:var(--primary);font-weight:700;">📋 课前准备（公开，先装好 Claude Code + Obsidian）</a></p>
-      <a class="btn-download" href="c/claude-s2.html">🔑 学员入口（需 S2 密码）→ 录像 / 作业 / Q&A</a>
-      <a href="https://forms.gle/2pjPiERkZe9RfDWk6" target="_blank" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;padding:10px 20px;background:var(--accent-light);border:1.5px solid var(--accent);border-radius:8px;color:#7a4800;font-weight:700;font-size:0.92rem;text-decoration:none;">📝 上完课了？填写课后 Feedback →</a>
+      <p><a href="https://austinxyz.github.io/blogs/session2-preclass.html" target="_blank" style="color:var(--primary);font-weight:700;">
+        <span data-zh>📋 课前准备（公开，先装好 Claude Code + Obsidian）</span>
+        <span data-en>📋 Pre-class prep (public — install Claude Code + Obsidian first)</span>
+      </a></p>
+      <a class="btn-download" href="c/claude-s2.html">
+        <span data-zh>🔑 学员入口（需 S2 密码）→ 录像 / 作业 / Q&A</span>
+        <span data-en>🔑 Student Portal (S2 — login with email) → Videos / Homework / Q&amp;A</span>
+      </a>
+      <a href="https://forms.gle/2pjPiERkZe9RfDWk6" target="_blank" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;padding:10px 20px;background:var(--accent-light);border:1.5px solid var(--accent);border-radius:8px;color:#7a4800;font-weight:700;font-size:0.92rem;text-decoration:none;">
+        <span data-zh>📝 上完课了？填写课后 Feedback →</span>
+        <span data-en>📝 Done with class? Leave feedback →</span>
+      </a>
     </div>
-
 
   </div><!-- /page-main -->
 
@@ -211,53 +302,80 @@
 
     <!-- 即将开课 -->
     <div class="section" id="upcoming" style="border: 2px solid var(--primary); background: var(--primary-light); margin:0;">
-      <h2 class="section-title">🗓 即将开课</h2>
+      <h2 class="section-title"><span data-zh>🗓 即将开课</span><span data-en>🗓 Upcoming</span></h2>
       <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
         <li style="background:white;border-radius:10px;padding:12px 14px;border:1px solid var(--border);">
           <div style="font-size:0.75rem;color:var(--text-muted);font-weight:700;letter-spacing:0.05em;text-transform:uppercase;">6 月 21 日（本周六）</div>
           <div style="font-weight:700;margin:4px 0 2px;font-size:0.97rem;">Claude Code 实战课</div>
-          <div style="font-size:0.83rem;color:var(--text-muted);">付费 · 限额报名</div>
+          <div style="font-size:0.83rem;color:var(--text-muted);"><span data-zh>付费 · 限额报名</span><span data-en>Paid · Limited spots</span></div>
         </li>
         <li style="background:var(--accent-light);border-radius:10px;padding:12px 14px;border:1.5px solid var(--accent);">
           <div style="font-size:0.75rem;color:#8a5f00;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;">6 月 24 日（下周三）· 9PM ET · 免费</div>
-          <div style="font-weight:700;margin:4px 0 2px;font-size:0.97rem;">你的 AI 为什么总是"差点意思"？</div>
-          <div style="font-size:0.83rem;color:#7a4800;">零基础友好 · 免费参加</div>
+          <div style="font-weight:700;margin:4px 0 2px;font-size:0.97rem;">
+            <span data-zh>你的 AI 为什么总是"差点意思"？</span>
+            <span data-en>Why Does Your AI Always Feel "Almost There"?</span>
+          </div>
+          <div style="font-size:0.83rem;color:#7a4800;"><span data-zh>零基础友好 · 免费参加</span><span data-en>Beginner-friendly · Free</span></div>
         </li>
         <li style="background:white;border-radius:10px;padding:12px 14px;border:1px solid var(--border);">
-          <div style="font-size:0.75rem;color:var(--text-muted);font-weight:700;letter-spacing:0.05em;text-transform:uppercase;">敬请期待</div>
+          <div style="font-size:0.75rem;color:var(--text-muted);font-weight:700;letter-spacing:0.05em;text-transform:uppercase;"><span data-zh>敬请期待</span><span data-en>Coming Soon</span></div>
           <div style="font-weight:700;margin:4px 0 2px;font-size:0.97rem;">Claude Cowork / Code · Session 3</div>
-          <div style="font-size:0.83rem;color:var(--text-muted);">+ 更多新课程开发中</div>
+          <div style="font-size:0.83rem;color:var(--text-muted);"><span data-zh>+ 更多新课程开发中</span><span data-en>+ More courses in development</span></div>
         </li>
       </ul>
     </div>
 
     <!-- 了解 / 报课 -->
     <div class="section" id="contact" style="margin:0;">
-      <h2 class="section-title">📞 了解 / 报课</h2>
-      <p style="font-size:0.9rem;margin-bottom:12px;">扫码加入微信群，获取开课通知及报名信息。</p>
+      <h2 class="section-title"><span data-zh>📞 了解 / 报课</span><span data-en>📞 Contact / Enroll</span></h2>
+      <p style="font-size:0.9rem;margin-bottom:12px;">
+        <span data-zh>扫码加入微信群，获取开课通知及报名信息。</span>
+        <span data-en>Scan to join the WeChat group for enrollment info and updates.</span>
+      </p>
       <img src="img/wechat-group.jpg" alt="微信群二维码" style="width:100%;border-radius:10px;border:1px solid var(--border);margin-bottom:14px;">
-      <p style="font-size:0.95rem;margin-bottom:6px;">微信号：<strong>elitecoach101</strong></p>
-      <a class="btn-download" href="https://www.elitecoach101.com/" target="_blank" style="width:100%;box-sizing:border-box;justify-content:center;margin-top:10px;">前往讲武堂了解更多 →</a>
+      <p style="font-size:0.95rem;margin-bottom:6px;"><span data-zh>微信号：</span><span data-en>WeChat: </span><strong>elitecoach101</strong></p>
+      <a class="btn-download" href="https://www.elitecoach101.com/" target="_blank" style="width:100%;box-sizing:border-box;justify-content:center;margin-top:10px;">
+        <span data-zh>前往讲武堂了解更多 →</span>
+        <span data-en>Learn more at 讲武堂 →</span>
+      </a>
     </div>
 
     <!-- Demo Day -->
     <div class="section" id="demoday" style="border: 2px solid var(--accent); background: var(--accent-light); margin:0;">
       <h2 class="section-title" style="color:#7a4800;">🎤 Demo Day</h2>
-      <p style="font-size:0.95rem;">学员成果展示，每人约 <strong>10 分钟</strong>。知识库、Skill、自动化流程……不需要完美，有成果就行。</p>
+      <p style="font-size:0.95rem;">
+        <span data-zh>学员成果展示，每人约 <strong>10 分钟</strong>。知识库、Skill、自动化流程……不需要完美，有成果就行。</span>
+        <span data-en>Student project showcase, ~<strong>10 min</strong> each. Knowledge bases, Skills, automation workflows — doesn't need to be perfect.</span>
+      </p>
       <ul style="margin:10px 0 14px 18px;line-height:2.1;font-size:0.92rem;">
-        <li>📅 6 月底，Zoom 线上</li>
-        <li>🎯 名额约 10 人（S1 + S2 学员合并）</li>
+        <li><span data-zh>📅 6 月底，Zoom 线上</span><span data-en>📅 Late June, Zoom online</span></li>
+        <li><span data-zh>🎯 名额约 10 人（S1 + S2 学员合并）</span><span data-en>🎯 ~10 spots (S1 + S2 students combined)</span></li>
       </ul>
-      <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:14px;">超额时按项目类型多样性及作业成绩筛选，一周内通知。</p>
-      <p style="font-size:0.88rem;margin-bottom:14px;">📖 <a href="demoday-5c.html" style="color:#7a4800;font-weight:700;">先导文章：5C 不只是找工作——它是一台可复用的引擎</a> <span style="font-size:0.8rem;color:var(--text-muted);">by Nan</span></p>
-      <a class="btn-download" href="https://forms.gle/AyaZj3Vpzdq9q1So9" target="_blank" style="width:100%;box-sizing:border-box;justify-content:center;">📝 立即报名 →</a>
+      <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:14px;">
+        <span data-zh>超额时按项目类型多样性及作业成绩筛选，一周内通知。</span>
+        <span data-en>Selection based on project diversity and homework scores. Notified within a week if oversubscribed.</span>
+      </p>
+      <p style="font-size:0.88rem;margin-bottom:14px;">📖 <a href="demoday-5c.html" style="color:#7a4800;font-weight:700;">
+        <span data-zh>先导文章：5C 不只是找工作——它是一台可复用的引擎</span>
+        <span data-en>Intro article: 5C — Not just job-hunting, it's a reusable engine</span>
+      </a> <span style="font-size:0.8rem;color:var(--text-muted);">by Nan</span></p>
+      <a class="btn-download" href="https://forms.gle/AyaZj3Vpzdq9q1So9" target="_blank" style="width:100%;box-sizing:border-box;justify-content:center;">
+        <span data-zh>📝 立即报名 →</span>
+        <span data-en>📝 Apply Now →</span>
+      </a>
     </div>
 
     <!-- Feedback -->
     <div class="section" id="feedback" style="border: 2px solid var(--primary); margin:0;">
-      <h2 class="section-title">⭐ 课后 Feedback</h2>
-      <p style="font-size:0.92rem;">上完课花 2 分钟填一下，帮助我们持续改进。</p>
-      <a class="btn-download" href="https://forms.gle/2pjPiERkZe9RfDWk6" target="_blank" style="width:100%;box-sizing:border-box;justify-content:center;margin-top:12px;">📝 填写 Feedback →</a>
+      <h2 class="section-title"><span data-zh>⭐ 课后 Feedback</span><span data-en>⭐ Course Feedback</span></h2>
+      <p style="font-size:0.92rem;">
+        <span data-zh>上完课花 2 分钟填一下，帮助我们持续改进。</span>
+        <span data-en>Takes 2 minutes — helps us keep improving.</span>
+      </p>
+      <a class="btn-download" href="https://forms.gle/2pjPiERkZe9RfDWk6" target="_blank" style="width:100%;box-sizing:border-box;justify-content:center;margin-top:12px;">
+        <span data-zh>📝 填写 Feedback →</span>
+        <span data-en>📝 Leave Feedback →</span>
+      </a>
     </div>
 
   </div><!-- /page-sidebar -->
@@ -266,12 +384,22 @@
 </div>
 
 <footer>
-  从零上手 Claude · Austin Xu &nbsp;|&nbsp;
+  <span data-zh>从零上手 Claude · Austin Xu</span><span data-en>Learn Claude · Austin Xu</span> &nbsp;|&nbsp;
   <a href="https://github.com/austinxyz" target="_blank">GitHub</a> ·
   <a href="https://austinxyz.github.io/blogs/blog" target="_blank">Blog</a> ·
   <a href="https://juejin.cn/user/2719523382507658/posts" target="_blank">掘金</a> ·
   <a href="https://medium.com/@austin.xyz" target="_blank">Medium</a>
 </footer>
+
+<script>
+function setLang(lang) {
+  document.body.classList.toggle('lang-en', lang === 'en');
+  document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  localStorage.setItem('lang', lang);
+}
+(function() { setLang(localStorage.getItem('lang') || 'zh'); })();
+</script>
 
 </body>
 </html>
