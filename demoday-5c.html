@@ -161,7 +161,7 @@ function setLang(lang) {
   document.getElementById('btn-en').classList.toggle('active', lang === 'en');
   localStorage.setItem('lang', lang);
 }
-(function() { setLang(localStorage.getItem('lang') || 'zh'); })();
+(function() { var p = new URLSearchParams(location.search).get('lang'); setLang(p || localStorage.getItem('lang') || 'zh'); })();
 </script>
 </body>
 </html>
