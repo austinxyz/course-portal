@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Session 2 学员区 · 从零上手 Claude</title>
+  <title>Session 2 · Student Portal · Build Your AI Knowledge Base with Claude Code</title>
   <link rel="stylesheet" href="../../style.css">
   <style>
     .hero {
@@ -74,53 +74,70 @@
       .section { padding: 24px 20px; }
       .step-title { font-size: 1.2rem; }
     }
+    .hero { position: relative; }
+    #lang-toggle { position: absolute; top: 14px; right: 18px; z-index: 10;
+      display: flex; align-items: center; gap: 2px;
+      background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 20px; padding: 4px 10px; font-size: 0.82rem; }
+    #lang-toggle button { background: none; border: none; cursor: pointer;
+      font-weight: 700; font-family: inherit; font-size: 0.82rem; padding: 2px 5px;
+      color: rgba(255,255,255,0.6); border-radius: 12px; transition: all 0.15s; }
+    #lang-toggle button.active { color: white; background: rgba(255,255,255,0.2); }
+    #lang-toggle span { color: rgba(255,255,255,0.4); font-size: 0.75rem; }
+    body:not(.lang-en) [data-en] { display: none; }
+    body.lang-en [data-zh] { display: none; }
   </style>
 </head>
 <body>
 
 <div class="hero">
-  <h1>Session 2 · 学员区</h1>
-  <p class="subtitle">先造枪，再打子弹 — 用 Claude Code 建知识库 · 录像 / 作业 / 常用 Q&A</p>
+  <div id="lang-toggle">
+    <button id="btn-zh" onclick="setLang('zh')">中</button>
+    <span>|</span>
+    <button id="btn-en" onclick="setLang('en')">EN</button>
+  </div>
+  <h1>Session 2 · <span data-zh>学员区</span><span data-en>Student Portal</span></h1>
+  <p class="subtitle"><span data-zh>先造枪，再打子弹 — 用 Claude Code 建知识库 · 录像 / 作业 / 常用 Q&A</span><span data-en>Build Your Gun First — Claude Code Knowledge Base · Recordings / Homework / FAQ</span></p>
 </div>
 
 <div class="container">
-  <p style="margin:16px 0;"><a href="../../index.html" style="color:var(--primary);font-weight:700;">← 返回课程主页</a></p>
+  <p style="margin:16px 0;"><a href="../../index.html" style="color:var(--primary);font-weight:700;"><span data-zh>← 返回课程主页</span><span data-en>← Back to Course</span></a></p>
 
   <div class="section" id="recording">
-    <h2 class="section-title">上课录像</h2>
-    <a class="btn-download" href="https://www.elitecoach101.com/home/lesson/%E5%85%88%E9%80%A0%E6%9E%AA-%E5%86%8D%E6%89%93%E5%AD%90%E5%BC%B9-%E7%94%A8-claude-code-%E5%BB%BA%E7%9F%A5%E8%AF%86%E5%BA%93-%E5%BD%95%E6%92%AD%E8%AF%BE/154" target="_blank">▶ 观看 Session 2 录像（讲武堂）</a>
+    <h2 class="section-title"><span data-zh>上课录像</span><span data-en>Class Recording</span></h2>
+    <a class="btn-download" href="https://www.elitecoach101.com/home/lesson/%E5%85%88%E9%80%A0%E6%9E%AA-%E5%86%8D%E6%89%93%E5%AD%90%E5%BC%B9-%E7%94%A8-claude-code-%E5%BB%BA%E7%9F%A5%E8%AF%86%E5%BA%93-%E5%BD%95%E6%92%AD%E8%AF%BE/154" target="_blank"><span data-zh>▶ 观看 Session 2 录像（讲武堂）</span><span data-en>▶ Watch Session 2 Recording (EliteCoach101)</span></a>
   </div>
 
   <div class="section" id="slides">
-    <h2 class="section-title">课程幻灯片</h2>
-    <p>本节课完整幻灯片（含可点超链接：llm-wiki 下载、参考资料等）。</p>
-    <a class="btn-download" href="../../dl/claude_course_s2.pptx">下载 Session 2 幻灯片（PPTX）</a>
+    <h2 class="section-title"><span data-zh>课程幻灯片</span><span data-en>Course Slides</span></h2>
+    <p><span data-zh>本节课完整幻灯片（含可点超链接：llm-wiki 下载、参考资料等）。</span><span data-en>Full slides for Session 2 (with clickable links to llm-wiki download, references, etc.).</span></p>
+    <a class="btn-download" href="../../dl/claude_course_s2.pptx"><span data-zh>下载 Session 2 幻灯片（PPTX）</span><span data-en>Download Session 2 Slides (PPTX)</span></a>
   </div>
 
   <div class="section" id="homework">
-    <h2 class="section-title">课后作业（六步）</h2>
-    <p>① 选领域（没有就跟做理财库）② 建三层目录 ③ 先建 /wiki-extract 再写 3 篇 wiki ④ 用 superpowers 做客制化方案 ⑤ ppt-master 出 PPT ⑥（进阶）封装客户咨询 Skill。</p>
-    <p><strong>提交：</strong>发邮件到 <code class="inline">austin.aicourse@gmail.com</code>，主题 <strong>【Session 2 作业】+ 你的名字</strong>；附：3 篇 wiki 片段 + PPT 截图 + 200 字心得。</p>
+    <h2 class="section-title"><span data-zh>课后作业（六步）</span><span data-en>Homework (6 Steps)</span></h2>
+    <p><span data-zh>① 选领域（没有就跟做理财库）② 建三层目录 ③ 先建 /wiki-extract 再写 3 篇 wiki ④ 用 superpowers 做客制化方案 ⑤ ppt-master 出 PPT ⑥（进阶）封装客户咨询 Skill。</span><span data-en>① Pick a domain (or follow along with the wealth KB) ② Build the 3-tier structure ③ Create /wiki-extract then write 3 wiki entries ④ Use superpowers for a custom plan ⑤ Use ppt-master to generate a PPT ⑥ (Advanced) Package a client consultation Skill.</span></p>
+    <p><strong><span data-zh>提交：</span><span data-en>Submit:</span></strong> <span data-zh>发邮件到 <code class="inline">austin.aicourse@gmail.com</code>，主题 <strong>【Session 2 作业】+ 你的名字</strong>；附：3 篇 wiki 片段 + PPT 截图 + 200 字心得。</span><span data-en>Send an email to <code class="inline">austin.aicourse@gmail.com</code>, subject <strong>[Session 2 Homework] + your name</strong>; attach: 3 wiki excerpts + PPT screenshot + 200-character reflection.</span></p>
     <p>
-      <a class="btn-download" href="../../dl/session2-homework-v2.zip" target="_blank">下载课程材料（含作业）</a>
+      <a class="btn-download" href="../../dl/session2-homework-v2.zip" target="_blank"><span data-zh>下载课程材料（含作业）</span><span data-en>Download Course Materials (includes homework)</span></a>
       &nbsp;
-      <a class="btn-download" href="../../dl/wealth-llm-wiki.zip" target="_blank" style="background:#8a3e1f;">下载理财知识库示例（Obsidian 打开）</a>
+      <a class="btn-download" href="../../dl/wealth-llm-wiki.zip" target="_blank" style="background:#8a3e1f;"><span data-zh>下载理财知识库示例（Obsidian 打开）</span><span data-en>Download Wealth KB Example (open with Obsidian)</span></a>
     </p>
-    <p style="color:var(--text-muted);font-size:14px;margin-top:-6px;">一个包搞定：解压后含两版跟做提示词——<code class="inline">跟我做-提示词.md</code>（终端版，原版）和 <code class="inline">跟我做-提示词-desktop版.md</code>（全程不用终端，用 Claude Code 桌面应用）；还有 <code class="inline">homework-guide.md</code>（作业指南）、备用客户画像、《课后实操指南》。没有自己领域，配合右边「理财知识库示例」跟做。</p>
+    <p style="color:var(--text-muted);font-size:14px;margin-top:-6px;"><span data-zh>一个包搞定：解压后含两版跟做提示词——<code class="inline">跟我做-提示词.md</code>（终端版，原版）和 <code class="inline">跟我做-提示词-desktop版.md</code>（全程不用终端，用 Claude Code 桌面应用）；还有 <code class="inline">homework-guide.md</code>（作业指南）、备用客户画像、《课后实操指南》。没有自己领域，配合右边「理财知识库示例」跟做。</span><span data-en>Everything in one zip: after extracting you get two follow-along prompt files — <code class="inline">跟我做-提示词.md</code> (terminal version, original) and <code class="inline">跟我做-提示词-desktop版.md</code> (no terminal needed, uses the Claude Code desktop app); also includes <code class="inline">homework-guide.md</code>, a sample client profile, and the Post-class Practice Guide. No domain of your own? Follow along with the Wealth KB Example on the right.</span></p>
     <div class="callout callout-tip">
-      📋 <strong>不知从何下手？</strong> 先看这份
-      <a href="../s2-study-guide.html" target="_blank" style="font-weight:700;">《课后实操指南 · 把第二节课变成你自己的能力》</a>——
-      从搭学习目录、记心得、走通演示，到换成自己领域建库出 PPT、写提交邮件，一步步带你把第二节课变成自己的能力。
+      📋 <strong><span data-zh>不知从何下手？</span><span data-en>Don't know where to start?</span></strong> <span data-zh>先看这份</span><span data-en>Read this</span>
+      <a href="../s2-study-guide.html" target="_blank" style="font-weight:700;"><span data-zh>《课后实操指南 · 把第二节课变成你自己的能力》</span><span data-en>Post-class Practice Guide · Turn Session 2 Into Real Skill</span></a>——
+      <span data-zh>从搭学习目录、记心得、走通演示，到换成自己领域建库出 PPT、写提交邮件，一步步带你把第二节课变成自己的能力。</span><span data-en>Step by step from setting up your learning folder, taking notes, running through the demo, to swapping in your own domain, building a KB, generating a PPT, and writing your submission email — turning Session 2 into real skill.</span>
     </div>
   </div>
 
   <div class="section" id="qa">
-    <h2 class="section-title">常用 Q&A</h2>
+    <h2 class="section-title"><span data-zh>常用 Q&A</span><span data-en>FAQ</span></h2>
     <div class="callout callout-tip" style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
-      <span style="flex:1;min-width:220px;">课后还有问题？课上没问够、自己做卡住了、有不懂的名词——都来问。老师会挑代表性问题回答到这里；留邮箱的会单独回复。</span>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSe4jTh-siQPNzW_l6vyFnh3aREjm4qUDv22hQk8VPHjSPHfIg/viewform?usp=pp_url&entry.1202496727=Session+2+%C2%B7+%E7%94%A8+Claude+Code+%E5%BB%BA%E7%9F%A5%E8%AF%86%E5%BA%93" target="_blank" class="btn-download" style="margin:0;white-space:nowrap;">✍️ 我要提问</a>
+      <span style="flex:1;min-width:220px;"><span data-zh>课后还有问题？课上没问够、自己做卡住了、有不懂的名词——都来问。老师会挑代表性问题回答到这里；留邮箱的会单独回复。</span><span data-en>Still have questions after class? Didn't get to ask during the session, got stuck doing it yourself, or came across a term you don't understand — just ask. The instructor will pick representative questions to answer here; those who leave an email will get a personal reply.</span></span>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSe4jTh-siQPNzW_l6vyFnh3aREjm4qUDv22hQk8VPHjSPHfIg/viewform?usp=pp_url&entry.1202496727=Session+2+%C2%B7+%E7%94%A8+Claude+Code+%E5%BB%BA%E7%9F%A5%E8%AF%86%E5%BA%93" target="_blank" class="btn-download" style="margin:0;white-space:nowrap;">✍️ <span data-zh>我要提问</span><span data-en>Ask a Question</span></a>
     </div>
-    <p style="color:var(--text-muted);margin-bottom:8px;">按主题分组，受众 AI 新手——先结论、少术语。标 ⚠️ 的涉及费用 / 隐私 / 能力边界。</p>
+    <p style="color:var(--text-muted);margin-bottom:8px;"><span data-zh>按主题分组，受众 AI 新手——先结论、少术语。标 ⚠️ 的涉及费用 / 隐私 / 能力边界。</span><span data-en>Grouped by topic, written for AI beginners — conclusions first, minimal jargon. Items marked ⚠️ involve billing / privacy / capability limits.</span></p>
     <!-- 自动生成自 student-qa/anticipated-questions.md，勿手改；改 md 后跑 gen_qa.py / build -->
     <h3>A. 安装 · 环境（课前作业）</h3>
     <div class="faq-item"><div class="faq-q">Claude Code 装不上 / 命令报错？</div><div class="faq-a">群里发报错截图，我帮你看；需要的话课前另约时间弄好。命令：Win <code class="inline">irm https://claude.ai/install.ps1 | iex</code>；Mac <code class="inline">curl -fsSL https://claude.ai/install.sh | bash</code>。不用先装 Node。</div></div>
@@ -161,10 +178,20 @@
 </div>
 
 <footer>
-  Session 2 · 从零上手 Claude &nbsp;|&nbsp;
+  Session 2 · <span data-zh>从零上手 Claude</span><span data-en>Learn Claude from Scratch</span> &nbsp;|&nbsp;
   <a href="https://github.com/austinxyz" target="_blank">GitHub</a> ·
   <a href="https://austinxyz.github.io/blogs/blog" target="_blank">Blog</a>
 </footer>
+
+<script>
+function setLang(lang) {
+  document.body.classList.toggle('lang-en', lang === 'en');
+  document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  localStorage.setItem('lang', lang);
+}
+(function() { setLang(localStorage.getItem('lang') || 'zh'); })();
+</script>
 
 </body>
 </html>

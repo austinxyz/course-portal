@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Session 1 学员区 · 从零上手 Claude</title>
+  <title>Session 1 · Student Portal · Learn Claude from Scratch</title>
   <link rel="stylesheet" href="../../style.css">
   <style>
     .hero {
@@ -74,57 +74,74 @@
       .section { padding: 24px 20px; }
       .step-title { font-size: 1.2rem; }
     }
+    .hero { position: relative; }
+    #lang-toggle { position: absolute; top: 14px; right: 18px; z-index: 10;
+      display: flex; align-items: center; gap: 2px;
+      background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 20px; padding: 4px 10px; font-size: 0.82rem; }
+    #lang-toggle button { background: none; border: none; cursor: pointer;
+      font-weight: 700; font-family: inherit; font-size: 0.82rem; padding: 2px 5px;
+      color: rgba(255,255,255,0.6); border-radius: 12px; transition: all 0.15s; }
+    #lang-toggle button.active { color: white; background: rgba(255,255,255,0.2); }
+    #lang-toggle span { color: rgba(255,255,255,0.4); font-size: 0.75rem; }
+    body:not(.lang-en) [data-en] { display: none; }
+    body.lang-en [data-zh] { display: none; }
   </style>
 </head>
 <body>
 
 <div class="hero">
-  <h1>Session 1 · 学员区</h1>
-  <p class="subtitle">从零开始用 Claude 和 Cowork — 录像 / 作业 / 常用 Q&A</p>
+  <div id="lang-toggle">
+    <button id="btn-zh" onclick="setLang('zh')">中</button>
+    <span>|</span>
+    <button id="btn-en" onclick="setLang('en')">EN</button>
+  </div>
+  <h1>Session 1 · <span data-zh>学员区</span><span data-en>Student Portal</span></h1>
+  <p class="subtitle"><span data-zh>从零开始用 Claude 和 Cowork — 录像 / 作业 / 常用 Q&A</span><span data-en>Claude &amp; Cowork from Zero — Recordings / Homework / FAQ</span></p>
 </div>
 
 <div class="container">
-  <p style="margin:16px 0;"><a href="../../index.html" style="color:var(--primary);font-weight:700;">← 返回课程主页</a></p>
+  <p style="margin:16px 0;"><a href="../../index.html" style="color:var(--primary);font-weight:700;"><span data-zh>← 返回课程主页</span><span data-en>← Back to Course</span></a></p>
 
   <!-- 录像 -->
   <div class="section" id="recording">
-    <h2 class="section-title">上课录像</h2>
-    <p>第一节课完整录播。托管在课程平台 EliteCoach101，需用你的报名账号登录后观看。</p>
-    <a class="btn-download" href="https://www.elitecoach101.com/home/lesson/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%94%A8-claude-%E5%92%8C-cowork-%E5%BD%95%E6%92%AD%E8%AF%BE/153" target="_blank">▶ 观看第一节课录像（登录后）</a>
-    <div class="callout callout-info">打不开或没权限？用报名邮箱登录 EliteCoach101；仍有问题在学习群里找老师。</div>
+    <h2 class="section-title"><span data-zh>上课录像</span><span data-en>Class Recording</span></h2>
+    <p><span data-zh>第一节课完整录播。托管在课程平台 EliteCoach101，需用你的报名账号登录后观看。</span><span data-en>Full recording of Session 1. Hosted on EliteCoach101 — log in with your enrollment account to watch.</span></p>
+    <a class="btn-download" href="https://www.elitecoach101.com/home/lesson/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%94%A8-claude-%E5%92%8C-cowork-%E5%BD%95%E6%92%AD%E8%AF%BE/153" target="_blank">▶ <span data-zh>观看第一节课录像（登录后）</span><span data-en>Watch Session 1 Recording (login required)</span></a>
+    <div class="callout callout-info"><span data-zh>打不开或没权限？用报名邮箱登录 EliteCoach101；仍有问题在学习群里找老师。</span><span data-en>Can't access? Log in to EliteCoach101 with your enrollment email. Still having issues? Ask in the student group.</span></div>
   </div>
 
   <!-- 课程幻灯片 -->
   <div class="section" id="slides">
-    <h2 class="section-title">课程幻灯片</h2>
-    <p>本节课完整幻灯片（含可点超链接：课程材料、作业材料下载等）。</p>
-    <a class="btn-download" href="../../dl/claude_course_s1.pptx">下载 Session 1 幻灯片（PPTX）</a>
+    <h2 class="section-title"><span data-zh>课程幻灯片</span><span data-en>Course Slides</span></h2>
+    <p><span data-zh>本节课完整幻灯片（含可点超链接：课程材料、作业材料下载等）。</span><span data-en>Full slides for Session 1 (with clickable links to course materials, homework downloads, etc.).</span></p>
+    <a class="btn-download" href="../../dl/claude_course_s1.pptx"><span data-zh>下载 Session 1 幻灯片（PPTX）</span><span data-en>Download Session 1 Slides (PPTX)</span></a>
   </div>
 
   <!-- 作业 -->
   <div class="section" id="homework">
-    <h2 class="section-title">课后作业</h2>
-    <p><strong>Part A（不交）：</strong>把 4-Agent 求职流水线自己跑一遍。<strong>Part B（要交）：</strong>选一个真实场景，设计 2–3 个 Agent，在 Cowork 跑通。</p>
-    <p><strong>提交：</strong>发邮件到 <code class="inline">austin.aicourse@gmail.com</code>，主题 <strong>【Session 1 作业】+ 你的名字</strong>；附：你写的 Agent 提示词 + 输出片段 + 200 字心得。</p>
+    <h2 class="section-title"><span data-zh>课后作业</span><span data-en>Homework</span></h2>
+    <p><strong><span data-zh>Part A（不交）：</span><span data-en>Part A (no submission):</span></strong><span data-zh>把 4-Agent 求职流水线自己跑一遍。</span><span data-en>Run the 4-Agent job-search pipeline yourself.</span><strong><span data-zh>Part B（要交）：</span><span data-en>Part B (submit):</span></strong><span data-zh>选一个真实场景，设计 2–3 个 Agent，在 Cowork 跑通。</span><span data-en>Pick a real scenario, design 2–3 Agents, and run them in Cowork.</span></p>
+    <p><strong><span data-zh>提交：</span><span data-en>Submit:</span></strong><span data-zh>发邮件到</span><span data-en>Email</span> <code class="inline">austin.aicourse@gmail.com</code>，<span data-zh>主题</span><span data-en>, </span><strong><span data-zh>【Session 1 作业】+ 你的名字</span><span data-en>Subject line: 【Session 1 Homework】+ your name</span></strong>；<span data-zh>附：你写的 Agent 提示词 + 输出片段 + 200 字心得。</span><span data-en>Attach: your Agent prompts + output snippets + 200-character reflection.</span></p>
     <p>
-      <a class="btn-download" href="../../dl/session1-homework-materials.zip" target="_blank">下载课程材料（含作业）</a>
+      <a class="btn-download" href="../../dl/session1-homework-materials.zip" target="_blank"><span data-zh>下载课程材料（含作业）</span><span data-en>Download Course Materials (includes homework)</span></a>
     </p>
-    <p style="color:var(--text-muted);font-size:14px;margin-top:-6px;">一个包搞定：解压后含 <code class="inline">跟我做-提示词.md</code>、<code class="inline">starter-project/</code>、两个 JD、作业指南。</p>
+    <p style="color:var(--text-muted);font-size:14px;margin-top:-6px;"><span data-zh>一个包搞定：解压后含</span><span data-en>Everything in one zip: unzip to find</span> <code class="inline">跟我做-提示词.md</code>、<code class="inline">starter-project/</code><span data-zh>、两个 JD、作业指南。</span><span data-en>, two JDs, and the homework guide.</span></p>
     <div class="callout callout-tip">
-      📋 <strong>不知从何下手？</strong> 先看这份
-      <a href="https://austinxyz.github.io/course-portal/c/s1-study-guide.html" target="_blank" style="font-weight:700;">《课后实操指南 · 5 步学习法》</a>——
-      从搭学习目录、记心得、自己跑 demo，到做作业、写提交邮件，一步步带你把第一节课变成自己的能力。
+      📋 <strong><span data-zh>不知从何下手？</span><span data-en>Don't know where to start?</span></strong> <span data-zh>先看这份</span><span data-en>Read this</span>
+      <a href="https://austinxyz.github.io/course-portal/c/s1-study-guide.html" target="_blank" style="font-weight:700;"><span data-zh>《课后实操指南 · 5 步学习法》</span><span data-en>Post-class Practice Guide · 5-Step Method</span></a>——
+      <span data-zh>从搭学习目录、记心得、自己跑 demo，到做作业、写提交邮件，一步步带你把第一节课变成自己的能力。</span><span data-en>From setting up your learning folder and taking notes, to running the demo yourself, completing homework, and writing your submission email — step by step, turning Session 1 into your own capability.</span>
     </div>
   </div>
 
   <!-- Q&A -->
   <div class="section" id="qa">
-    <h2 class="section-title">常用 Q&A</h2>
+    <h2 class="section-title"><span data-zh>常用 Q&A</span><span data-en>FAQ</span></h2>
     <div class="callout callout-tip" style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
-      <span style="flex:1;min-width:220px;">课后还有问题？课上没问够、自己做卡住了、有不懂的名词——都来问。老师会挑代表性问题回答到这里；留邮箱的会单独回复。</span>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSe4jTh-siQPNzW_l6vyFnh3aREjm4qUDv22hQk8VPHjSPHfIg/viewform?usp=pp_url&entry.1202496727=Session+1+%C2%B7+%E4%BB%8E%E9%9B%B6%E7%94%A8+Claude+%E5%92%8C+Cowork" target="_blank" class="btn-download" style="margin:0;white-space:nowrap;">✍️ 我要提问</a>
+      <span style="flex:1;min-width:220px;"><span data-zh>课后还有问题？课上没问够、自己做卡住了、有不懂的名词——都来问。老师会挑代表性问题回答到这里；留邮箱的会单独回复。</span><span data-en>Still have questions after class? Didn't get enough answered, got stuck doing it yourself, or encountered unfamiliar terms — ask away. The instructor will address representative questions here; those who leave their email will get a personal reply.</span></span>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSe4jTh-siQPNzW_l6vyFnh3aREjm4qUDv22hQk8VPHjSPHfIg/viewform?usp=pp_url&entry.1202496727=Session+1+%C2%B7+%E4%BB%8E%E9%9B%B6%E7%94%A8+Claude+%E5%92%8C+Cowork" target="_blank" class="btn-download" style="margin:0;white-space:nowrap;">✍️ <span data-zh>我要提问</span><span data-en>Ask a Question</span></a>
     </div>
-    <p style="color:var(--text-muted);margin-bottom:8px;">按主题分组，受众 AI 新手——先结论、少术语。标 ⚠️ 的涉及隐私 / 费用 / 数据。</p>
+    <p style="color:var(--text-muted);margin-bottom:8px;"><span data-zh>按主题分组，受众 AI 新手——先结论、少术语。标 ⚠️ 的涉及隐私 / 费用 / 数据。</span><span data-en>Grouped by topic, written for AI beginners — conclusions first, minimal jargon. Items marked ⚠️ involve privacy / billing / data.</span></p>
     <!-- 自动生成自 student-qa/anticipated-questions.md，勿手改；改 md 后跑 gen_qa.py / build -->
     <h3>A. 账号 · 注册 · 费用</h3>
     <div class="faq-item"><div class="faq-q">一定要付费吗？免费版够用吗？</div><div class="faq-a">免费版能体验对话；但今天演示的 Projects、连接器、Cowork、Dispatch 多属于付费档（Pro/Team）。想跟着搭完整流水线建议 Pro。先用免费熟悉，觉得有用再升级。</div></div>
@@ -181,10 +198,19 @@
 </div>
 
 <footer>
-  Session 1 · 从零上手 Claude &nbsp;|&nbsp;
+  Session 1 · <span data-zh>从零上手 Claude</span><span data-en>Learn Claude from Scratch</span> &nbsp;|&nbsp;
   <a href="https://github.com/austinxyz" target="_blank">GitHub</a> ·
   <a href="https://austinxyz.github.io/blogs/blog" target="_blank">Blog</a>
 </footer>
 
+<script>
+function setLang(lang) {
+  document.body.classList.toggle('lang-en', lang === 'en');
+  document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  localStorage.setItem('lang', lang);
+}
+(function() { setLang(localStorage.getItem('lang') || 'zh'); })();
+</script>
 </body>
 </html>

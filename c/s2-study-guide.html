@@ -35,18 +35,37 @@
              padding: 18px 24px; margin: 32px 0; font-size: 16px; }
   .summary b { color: var(--primary); }
   .step-no { color: var(--primary); font-weight: 700; }
+  #lang-toggle { position: fixed; top: 14px; right: 18px; z-index: 100;
+    display: flex; align-items: center; gap: 2px;
+    background: var(--primary); border: 1px solid var(--primary);
+    border-radius: 20px; padding: 4px 10px; font-size: 0.82rem; box-shadow: 0 2px 8px rgba(201,97,51,0.25); }
+  #lang-toggle button { background: none; border: none; cursor: pointer;
+    font-weight: 700; font-family: inherit; font-size: 0.82rem; padding: 2px 5px;
+    color: rgba(255,255,255,0.6); border-radius: 12px; transition: all 0.15s; }
+  #lang-toggle button.active { color: white; background: rgba(255,255,255,0.2); }
+  #lang-toggle span { color: rgba(255,255,255,0.4); font-size: 0.75rem; }
+  body:not(.lang-en) [data-en] { display: none; }
+  body.lang-en [data-zh] { display: none; }
 </style>
 </head>
 <body>
-  <h1>课后实操指南<br>把第二节课变成你自己的能力</h1>
-  <p class="lead">第二节课你看到的是：<strong>从空目录建一个知识库，再用它服务客户、出一份 PPT</strong>。
+<div id="lang-toggle">
+  <button id="btn-zh" onclick="setLang('zh')">中</button>
+  <span>|</span>
+  <button id="btn-en" onclick="setLang('en')">EN</button>
+</div>
+  <h1><span data-zh>课后实操指南<br>把第二节课变成你自己的能力</span><span data-en>Post-Class Practice Guide<br>Turn Session 2 Into Real Skill</span></h1>
+  <p class="lead"><span data-zh>第二节课你看到的是：<strong>从空目录建一个知识库，再用它服务客户、出一份 PPT</strong>。
      但 <strong>看懂 ≠ 会用</strong>。真正的能力，来自你把这套流程搬到<strong>一个你自己有知识的领域</strong>，亲手走一遍。
-     下面四步，请按顺序做，每一步都别跳过「记录心得」——这是整个方法的灵魂。</p>
+     下面四步，请按顺序做，每一步都别跳过「记录心得」——这是整个方法的灵魂。</span><span data-en>In Session 2 you saw: <strong>building a knowledge base from scratch, then using it to serve clients and generate a PPT</strong>.
+     But <strong>understanding ≠ being able to do it</strong>. Real skill comes from taking this workflow into <strong>a domain where you have your own knowledge</strong>, and doing it yourself.
+     Follow these four steps in order. Don't skip the "write reflections" part — it's the soul of this method.</span></p>
 
-  <h2><span class="step-no">第 0 步</span> 先搭好你的学习工作区</h2>
-  <p>打开 Claude Code，新建一个 <strong>空目录</strong> 作为你的课程学习项目（比如 <code>我的AI课程-S2</code>）。
-     空的就对了——接下来的内容由你和 AI 一起长出来。</p>
-  <p>建议的目录结构（边做边建，不用一次到位）：</p>
+  <h2><span class="step-no"><span data-zh>第 0 步</span><span data-en>Step 0</span></span> <span data-zh>先搭好你的学习工作区</span><span data-en>Set Up Your Learning Workspace</span></h2>
+  <p><span data-zh>打开 Claude Code，新建一个 <strong>空目录</strong> 作为你的课程学习项目（比如 <code>我的AI课程-S2</code>）。
+     空的就对了——接下来的内容由你和 AI 一起长出来。</span><span data-en>Open Claude Code and create an <strong>empty directory</strong> as your course project (e.g. <code>MyAICourse-S2</code>).
+     Starting empty is correct — you and the AI will grow the content together.</span></p>
+  <p><span data-zh>建议的目录结构（边做边建，不用一次到位）：</span><span data-en>Suggested directory structure (build gradually, not all at once):</span></p>
   <pre><code>我的AI课程-S2/
 ├── 课程心得/
 │   ├── ppt/                  # 把课程 PPT 放这里
@@ -59,95 +78,112 @@
     ├── wiki/
     └── output/</code></pre>
   <div class="tip">
-    💡 <strong>怕 <code>.md</code>？用 <code>.txt</code> 一样行。</strong> 上面那些 <code>.md</code> 文件，你嫌麻烦就全建成 <code>.txt</code>（系统自带记事本就能写），
-    AI 照样读得懂、照样帮你总结。<code>.md</code> 只是排版能好看一点，不影响用——别让格式挡住你动手。
+    💡 <strong><span data-zh>怕 <code>.md</code>？用 <code>.txt</code> 一样行。</span><span data-en>Afraid of <code>.md</code>? <code>.txt</code> works just as well.</span></strong> <span data-zh>上面那些 <code>.md</code> 文件，你嫌麻烦就全建成 <code>.txt</code>（系统自带记事本就能写），
+    AI 照样读得懂、照样帮你总结。<code>.md</code> 只是排版能好看一点，不影响用——别让格式挡住你动手。</span><span data-en>You can create all the <code>.md</code> files above as <code>.txt</code> (Notepad works fine),
+    and AI can still read and summarize them. <code>.md</code> just looks a bit prettier — don't let formatting stop you from getting started.</span>
   </div>
 
-  <h2><span class="step-no">第 1 步</span> 记心得 + 让 AI 帮你总结</h2>
-  <p><strong>先你写，再让 AI 补。</strong> 顺序很重要——AI 是来帮你深化的，不是替你回忆的。</p>
+  <h2><span class="step-no"><span data-zh>第 1 步</span><span data-en>Step 1</span></span> <span data-zh>记心得 + 让 AI 帮你总结</span><span data-en>Write Reflections + Let AI Summarize</span></h2>
+  <p><strong><span data-zh>先你写，再让 AI 补。</span><span data-en>Write first, then let AI fill in.</span></strong> <span data-zh>顺序很重要——AI 是来帮你深化的，不是替你回忆的。</span><span data-en>Order matters — AI is here to deepen your thinking, not recall it for you.</span></p>
   <div class="card">
     <ol>
-      <li>在 <code>我的心得.md</code> 里，尽量回忆课上听到的内容，记下你的体会。<strong>不用写得完善</strong>，碎片、半句话都行。</li>
-      <li>在 <code>不懂的名词.md</code> 里，记下你没太懂的术语和概念（比如 raw_material / wiki / Skill / Graph View）。</li>
-      <li>把 PPT 放进 <code>ppt/</code> 目录；再把下载包里的 <strong><code>跟我做-提示词.md</code></strong> 也放进 <code>课程心得/</code>——它是课堂演示用到的 <strong>提示词清单</strong>，每步还标了「这步在干嘛」，AI 翻它能准确还原每步在做什么。</li>
-      <li>然后让 AI 结合你的心得、PPT 和 <code>跟我做-提示词.md</code> 帮你总结。<strong>多问几次</strong>，每次问得更细，最后要求它 <strong>输出一个 <code>课程总结.md</code> 文件</strong>，方便你以后回看。</li>
+      <li><span data-zh>在 <code>我的心得.md</code> 里，尽量回忆课上听到的内容，记下你的体会。<strong>不用写得完善</strong>，碎片、半句话都行。</span><span data-en>In <code>我的心得.md</code>, recall what you heard in class and write down your impressions. <strong>No need to be thorough</strong> — fragments and half-sentences are fine.</span></li>
+      <li><span data-zh>在 <code>不懂的名词.md</code> 里，记下你没太懂的术语和概念（比如 raw_material / wiki / Skill / Graph View）。</span><span data-en>In <code>不懂的名词.md</code>, write down terms and concepts you didn't fully understand (e.g. raw_material / wiki / Skill / Graph View).</span></li>
+      <li><span data-zh>把 PPT 放进 <code>ppt/</code> 目录；再把下载包里的 <strong><code>跟我做-提示词.md</code></strong> 也放进 <code>课程心得/</code>——它是课堂演示用到的 <strong>提示词清单</strong>，每步还标了「这步在干嘛」，AI 翻它能准确还原每步在做什么。</span><span data-en>Put the PPT in the <code>ppt/</code> directory; also place <strong><code>跟我做-提示词.md</code></strong> from the download package into <code>课程心得/</code> — it's the <strong>prompt list</strong> used in the class demo, each step annotated with "what this step does," so AI can accurately reconstruct each step.</span></li>
+      <li><span data-zh>然后让 AI 结合你的心得、PPT 和 <code>跟我做-提示词.md</code> 帮你总结。<strong>多问几次</strong>，每次问得更细，最后要求它 <strong>输出一个 <code>课程总结.md</code> 文件</strong>，方便你以后回看。</span><span data-en>Then have AI summarize based on your reflections, PPT, and <code>跟我做-提示词.md</code>. <strong>Ask multiple times</strong>, going deeper each round, and finally ask it to <strong>output a <code>课程总结.md</code> file</strong> for future reference.</span></li>
     </ol>
   </div>
   <div class="tip">
-    📎 <strong><code>跟我做-提示词.md</code> 为什么重要</strong>：PPT 是「讲了什么」，<code>跟我做-提示词.md</code> 是「实际发了哪些提示词」。
-    你对某一步没看懂、或想不起演示细节时，让 AI 翻 <code>跟我做-提示词.md</code> 回答你，比凭空解释准得多。
+    📎 <strong><span data-zh><code>跟我做-提示词.md</code> 为什么重要</span><span data-en>Why <code>跟我做-提示词.md</code> matters</span></strong>：<span data-zh>PPT 是「讲了什么」，<code>跟我做-提示词.md</code> 是「实际发了哪些提示词」。
+    你对某一步没看懂、或想不起演示细节时，让 AI 翻 <code>跟我做-提示词.md</code> 回答你，比凭空解释准得多。</span><span data-en>The PPT covers "what was taught," while <code>跟我做-提示词.md</code> contains "what prompts were actually used."
+    When you don't understand a step or can't remember demo details, having AI reference <code>跟我做-提示词.md</code> is far more accurate than explaining from scratch.</span>
   </div>
   <div class="prompt">
-    <b>Prompt 示例</b>（直接抄，再改成你自己的）：
+    <b><span data-zh>Prompt 示例</span><span data-en>Prompt Examples</span></b><span data-zh>（直接抄，再改成你自己的）：</span><span data-en> (copy directly, then adapt to your own):</span>
     <ul>
-      <li>「请结合我的心得（<code>我的心得.md</code>）、PPT（<code>ppt/</code> 里的文件）和 <code>跟我做-提示词.md</code>，帮我总结这节课，保存到 <code>课程总结.md</code>。」</li>
-      <li>「我对演示里『___ 那一步』没看懂，请结合 <code>跟我做-提示词.md</code> 给我讲清楚那一步在干嘛、为什么这么做。」</li>
-      <li>「<code>raw_material/</code>、<code>wiki/</code>、<code>output/</code> 三层目录各是干嘛的？为什么要这么分？请加到总结里。」</li>
-      <li>「Skill 到底是什么？和我直接打提示词有啥区别？请用大白话 + 例子讲清楚，加到总结里。」</li>
+      <li>「<span data-zh>请结合我的心得（<code>我的心得.md</code>）、PPT（<code>ppt/</code> 里的文件）和 <code>跟我做-提示词.md</code>，帮我总结这节课，保存到 <code>课程总结.md</code>。</span><span data-en>Please summarize this class based on my reflections (<code>我的心得.md</code>), PPT (files in <code>ppt/</code>), and <code>跟我做-提示词.md</code>, and save to <code>课程总结.md</code>.</span>」</li>
+      <li>「<span data-zh>我对演示里『___ 那一步』没看懂，请结合 <code>跟我做-提示词.md</code> 给我讲清楚那一步在干嘛、为什么这么做。</span><span data-en>I didn't understand "___ step" in the demo. Please use <code>跟我做-提示词.md</code> to explain what that step does and why.</span>」</li>
+      <li>「<span data-zh><code>raw_material/</code>、<code>wiki/</code>、<code>output/</code> 三层目录各是干嘛的？为什么要这么分？请加到总结里。</span><span data-en>What are <code>raw_material/</code>, <code>wiki/</code>, and <code>output/</code> each for? Why this structure? Please add to the summary.</span>」</li>
+      <li>「<span data-zh>Skill 到底是什么？和我直接打提示词有啥区别？请用大白话 + 例子讲清楚，加到总结里。</span><span data-en>What exactly is a Skill? How does it differ from typing a prompt directly? Please explain in plain language with examples, and add to the summary.</span>」</li>
     </ul>
   </div>
 
-  <h2><span class="step-no">第 2 步</span> 亲手走通课堂演示（Part A）</h2>
-  <p><strong>只有自己做，才有真体会。</strong> 对着下载包里的 <code>demo/跟我做-提示词.md</code>，从一个<strong>空目录</strong>开始，
-     把今天的财务顾问演示自己跑一遍：建三层库 → <code>/wiki-extract</code> 写第一条 wiki → <code>/wealth-client-qa</code> 收集客户 → <code>/ppt-master</code> 出 PPT。约 30-40 分钟。</p>
+  <h2><span class="step-no"><span data-zh>第 2 步</span><span data-en>Step 2</span></span> <span data-zh>亲手走通课堂演示（Part A）</span><span data-en>Walk Through the Class Demo Yourself (Part A)</span></h2>
+  <p><strong><span data-zh>只有自己做，才有真体会。</span><span data-en>You only truly learn by doing.</span></strong> <span data-zh>对着下载包里的 <code>demo/跟我做-提示词.md</code>，从一个<strong>空目录</strong>开始，
+     把今天的财务顾问演示自己跑一遍：建三层库 → <code>/wiki-extract</code> 写第一条 wiki → <code>/wealth-client-qa</code> 收集客户 → <code>/ppt-master</code> 出 PPT。约 30-40 分钟。</span><span data-en>Follow the download package's <code>demo/跟我做-提示词.md</code>, start from an <strong>empty directory</strong>,
+     and run the financial advisor demo yourself: build the 3-tier structure → <code>/wiki-extract</code> write the first wiki → <code>/wealth-client-qa</code> collect clients → <code>/ppt-master</code> generate PPT. ~30-40 minutes.</span></p>
   <ul>
-    <li><strong>大胆自由发挥</strong>——AI 是能容错的，做错了不要紧。</li>
-    <li>某一步 Skill 输出质量不够，用 <code>demo/virtual-client-wang.md</code> 或 <code>virtual-client-li.md</code> 直接粘贴继续。</li>
-    <li>做的过程中，继续把心得、踩的坑、突然想通的点，记到 <code>课程心得/我的心得.md</code> 里，让 AI 帮你接着总结。</li>
+    <li><strong><span data-zh>大胆自由发挥</span><span data-en>Feel free to experiment</span></strong>——<span data-zh>AI 是能容错的，做错了不要紧。</span><span data-en>AI handles mistakes well.</span></li>
+    <li><span data-zh>某一步 Skill 输出质量不够，用 <code>demo/virtual-client-wang.md</code> 或 <code>virtual-client-li.md</code> 直接粘贴继续。</span><span data-en>If a Skill's output quality isn't good enough at some step, paste from <code>demo/virtual-client-wang.md</code> or <code>virtual-client-li.md</code> and continue.</span></li>
+    <li><span data-zh>做的过程中，继续把心得、踩的坑、突然想通的点，记到 <code>课程心得/我的心得.md</code> 里，让 AI 帮你接着总结。</span><span data-en>As you go, keep adding reflections, pitfalls, and "aha moments" to <code>课程心得/我的心得.md</code>, and have AI continue summarizing.</span></li>
   </ul>
-  <p class="muted">Part A 只是找手感、验证环境，<strong>不用提交</strong>。真正要交的是 Part B（第 3 步）。</p>
+  <p class="muted"><span data-zh>Part A 只是找手感、验证环境，<strong>不用提交</strong>。真正要交的是 Part B（第 3 步）。</span><span data-en>Part A is just for getting the feel and verifying your setup — <strong>no submission needed</strong>. The real deliverable is Part B (Step 3).</span></p>
 
-  <h2><span class="step-no">第 3 步</span> 换成你自己的领域做作业（Part B）</h2>
-  <p>作业不是交差，是 <strong>把这套流程搬到一个你有真实知识的领域</strong>——你能判断 AI 输出对不对的领域。
-     保险 / 律师 / 医疗 / 教育 / 房产都行；实在没有，就跟着做理财库。</p>
-  <p><strong>完整六步在 <code>homework-guide.md</code> 里</strong>，这里是骨架：</p>
+  <h2><span class="step-no"><span data-zh>第 3 步</span><span data-en>Step 3</span></span> <span data-zh>换成你自己的领域做作业（Part B）</span><span data-en>Redo It in Your Own Domain (Part B)</span></h2>
+  <p><span data-zh>作业不是交差，是 <strong>把这套流程搬到一个你有真实知识的领域</strong>——你能判断 AI 输出对不对的领域。
+     保险 / 律师 / 医疗 / 教育 / 房产都行；实在没有，就跟着做理财库。</span><span data-en>Homework isn't just a formality — it's about <strong>taking this workflow into a domain where you have real knowledge</strong> — a domain where you can judge whether the AI's output is correct.
+     Insurance / law / healthcare / education / real estate all work; if you don't have one, just follow along with the wealth KB.</span></p>
+  <p><strong><span data-zh>完整六步在 <code>homework-guide.md</code> 里</span><span data-en>The full 6 steps are in <code>homework-guide.md</code></span></strong><span data-zh>，这里是骨架：</span><span data-en> — here's the skeleton:</span></p>
   <table>
-    <tr><th>步骤</th><th>做什么</th><th>要交吗</th></tr>
-    <tr><td>Step 1-2</td><td>选定领域 + 建三层目录（<code>raw_material/ wiki/ output/</code> + CLAUDE.md）</td><td>—</td></tr>
-    <tr><td><strong>Step 3</strong></td><td>先建 <code>/wiki-extract</code> Skill，用它写 <strong>3 篇 wiki</strong>，每篇写完自己 Review 补行业判断</td><td><strong>是</strong></td></tr>
-    <tr><td>Step 4</td><td>用 superpowers（<code>/brainstorming</code>）针对一个具体客户/场景做定制方案</td><td>—</td></tr>
-    <tr><td><strong>Step 5</strong></td><td>用 <code>/ppt-master</code> 出一份 PPT，截图留好</td><td><strong>是</strong></td></tr>
-    <tr><td>Step 6 ★</td><td>（进阶可选）封装你领域的客户咨询 Skill</td><td>否</td></tr>
+    <tr><th><span data-zh>步骤</span><span data-en>Step</span></th><th><span data-zh>做什么</span><span data-en>What to Do</span></th><th><span data-zh>要交吗</span><span data-en>Submit?</span></th></tr>
+    <tr><td>Step 1-2</td><td><span data-zh>选定领域 + 建三层目录（<code>raw_material/ wiki/ output/</code> + CLAUDE.md）</span><span data-en>Choose your domain + build the 3-tier structure (<code>raw_material/ wiki/ output/</code> + CLAUDE.md)</span></td><td>—</td></tr>
+    <tr><td><strong>Step 3</strong></td><td><span data-zh>先建 <code>/wiki-extract</code> Skill，用它写 <strong>3 篇 wiki</strong>，每篇写完自己 Review 补行业判断</span><span data-en>Create <code>/wiki-extract</code> Skill, write <strong>3 wiki entries</strong> with it, review each and add your domain expertise</span></td><td><strong><span data-zh>是</span><span data-en>Yes</span></strong></td></tr>
+    <tr><td>Step 4</td><td><span data-zh>用 superpowers（<code>/brainstorming</code>）针对一个具体客户/场景做定制方案</span><span data-en>Use superpowers (<code>/brainstorming</code>) to create a custom plan for a specific client/scenario</span></td><td>—</td></tr>
+    <tr><td><strong>Step 5</strong></td><td><span data-zh>用 <code>/ppt-master</code> 出一份 PPT，截图留好</span><span data-en>Use <code>/ppt-master</code> to generate a PPT, save screenshots</span></td><td><strong><span data-zh>是</span><span data-en>Yes</span></strong></td></tr>
+    <tr><td>Step 6 ★</td><td><span data-zh>（进阶可选）封装你领域的客户咨询 Skill</span><span data-en>(Advanced, optional) Package a client consultation Skill for your domain</span></td><td><span data-zh>否</span><span data-en>No</span></td></tr>
   </table>
-  <p><strong>关键是迭代</strong>——质量不够好，先改 <code>output/</code> 里的方案/画像，再跑一次。<strong>知识库质量 &gt; 提示词技巧</strong>。
-     最重要的一步是 Step 3d：<strong>每篇 wiki 写完，把 AI 没提到的行业经验补进去</strong>——这一步让它从「AI 的系统」变成「你的系统」。</p>
+  <p><strong><span data-zh>关键是迭代</span><span data-en>Key is iteration</span></strong>——<span data-zh>质量不够好，先改 <code>output/</code> 里的方案/画像，再跑一次。<strong>知识库质量 &gt; 提示词技巧</strong>。
+     最重要的一步是 Step 3d：<strong>每篇 wiki 写完，把 AI 没提到的行业经验补进去</strong>——这一步让它从「AI 的系统」变成「你的系统」。</span><span data-en>if the quality isn't good enough, first improve the plans/profiles in <code>output/</code>, then run it again. <strong>KB quality &gt; prompt engineering</strong>.
+     The most important step is Step 3d: <strong>after writing each wiki, add the domain experience that AI missed</strong> — this turns it from "an AI system" into "your system."</span></p>
   <div class="prompt">
-    <b>建三层目录的 Prompt</b>（在新空目录里打开 Claude Code）：<br>
-    「请帮我初始化一个 [你的领域] 知识库项目，按三层结构组织：<code>raw_material/</code>（原始素材，留来源链接）、<code>wiki/</code>（结构化知识条目）、<code>output/</code>（客户档案，隐私区不进 Git）。创建这三个目录 + 一份 CLAUDE.md 说明结构和隐私规则，并把 <code>output/</code> 加进 <code>.gitignore</code>。」
+    <b><span data-zh>建三层目录的 Prompt</span><span data-en>Prompt for Initializing the 3-Tier Structure</span></b><span data-zh>（在新空目录里打开 Claude Code）：</span><span data-en> (open Claude Code in a new empty directory):</span><br>
+    「<span data-zh>请帮我初始化一个 [你的领域] 知识库项目，按三层结构组织：<code>raw_material/</code>（原始素材，留来源链接）、<code>wiki/</code>（结构化知识条目）、<code>output/</code>（客户档案，隐私区不进 Git）。创建这三个目录 + 一份 CLAUDE.md 说明结构和隐私规则，并把 <code>output/</code> 加进 <code>.gitignore</code>。</span><span data-en>Please initialize a [your domain] knowledge base project, organized in a 3-tier structure: <code>raw_material/</code> (raw materials, include source links), <code>wiki/</code> (structured knowledge entries), <code>output/</code> (client profiles, private — keep out of Git). Create these three directories + a CLAUDE.md explaining the structure and privacy rules, and add <code>output/</code> to <code>.gitignore</code>.</span>」
   </div>
 
-  <h2><span class="step-no">第 4 步</span> 让 AI 帮你给我写一封邮件 = 提交作业</h2>
-  <p>最后，结合你这一路的 <strong>心得体会</strong> 和 <strong>作业产出</strong>，让 AI 帮你写一封邮件发给我。</p>
+  <h2><span class="step-no"><span data-zh>第 4 步</span><span data-en>Step 4</span></span> <span data-zh>让 AI 帮你给我写一封邮件 = 提交作业</span><span data-en>Let AI Help You Write a Submission Email</span></h2>
+  <p><span data-zh>最后，结合你这一路的 <strong>心得体会</strong> 和 <strong>作业产出</strong>，让 AI 帮你写一封邮件发给我。</span><span data-en>Finally, let AI help you write a submission email based on your <strong>reflections</strong> and <strong>homework output</strong>.</span></p>
   <div class="tip">
-    📌 <strong>关键说明</strong>：这封邮件 <strong>就是你的作业提交</strong>——下面三样 <strong>一样都不能少</strong>。
-    让 AI 帮你写，不等于让 AI 帮你省。所以 prompt 里要把三项都点给 AI，让它逐项填满。
+    📌 <strong><span data-zh>关键说明</span><span data-en>Important note</span></strong>：<span data-zh>这封邮件 <strong>就是你的作业提交</strong>——下面三样 <strong>一样都不能少</strong>。
+    让 AI 帮你写，不等于让 AI 帮你省。所以 prompt 里要把三项都点给 AI，让它逐项填满。</span><span data-en>This email <strong>IS your homework submission</strong> — all three items below are <strong>required</strong>.
+    Having AI help you write doesn't mean having AI do it for you. Make sure your prompt specifies all three items so AI fills each one in full.</span>
   </div>
-  <p><strong>提交三样（邮件正文必须全部覆盖）：</strong></p>
+  <p><strong><span data-zh>提交三样（邮件正文必须全部覆盖）：</span><span data-en>Three Required Items (all must appear in the email body):</span></strong></p>
   <ol>
-    <li><strong>3 篇 wiki 片段</strong>——把 Step 3 写的 3 篇 wiki 内容贴进邮件（或截图），最好带上你自己补的行业判断。</li>
-    <li><strong><code>/ppt-master</code> 生成的 PPT 截图</strong>——Step 5 PPT 打开后的 1-2 张关键页截图。</li>
-    <li><strong>200 字心得</strong>——这次和 Session 1 的作业有什么不一样的感受？可参考：「工具」和「系统」有什么不同？哪里 AI 的答案让你想修改或补充？如果你有真实客户，会怎么用这套流程？（200 字以上，不设上限）</li>
+    <li><strong><span data-zh>3 篇 wiki 片段</span><span data-en>3 wiki excerpts</span></strong>——<span data-zh>把 Step 3 写的 3 篇 wiki 内容贴进邮件（或截图），最好带上你自己补的行业判断。</span><span data-en>Paste the 3 wiki entries from Step 3 into the email (or screenshot), ideally with your own domain expertise annotations.</span></li>
+    <li><strong><code>/ppt-master</code> <span data-zh>生成的 PPT 截图</span><span data-en>PPT screenshots generated by /ppt-master</span></strong>——<span data-zh>Step 5 PPT 打开后的 1-2 张关键页截图。</span><span data-en>1-2 key slide screenshots from Step 5's PPT.</span></li>
+    <li><strong><span data-zh>200 字心得</span><span data-en>200-character reflection</span></strong>——<span data-zh>这次和 Session 1 的作业有什么不一样的感受？可参考：「工具」和「系统」有什么不同？哪里 AI 的答案让你想修改或补充？如果你有真实客户，会怎么用这套流程？（200 字以上，不设上限）</span><span data-en>What felt different from Session 1 homework? Consider: what's the difference between a "tool" and a "system"? Where did AI's output make you want to revise or add more? If you have real clients, how would you use this workflow? (200+ characters, no upper limit)</span></li>
   </ol>
   <div class="prompt">
-    <b>Prompt 示例</b>（直接抄，把括号里的路径换成你自己的）：<br>
-    「请结合我的知识库项目（<code>知识库项目/</code> 目录）和课程心得（<code>课程心得/</code> 目录），帮我写一封发给老师的作业提交邮件。<b>下面三项必须完整出现在邮件正文里，一项都不能省</b>：
+    <b><span data-zh>Prompt 示例</span><span data-en>Prompt Example</span></b><span data-zh>（直接抄，把括号里的路径换成你自己的）：</span><span data-en> (copy directly, replace paths in brackets with your own):</span><br>
+    「<span data-zh>请结合我的知识库项目（<code>知识库项目/</code> 目录）和课程心得（<code>课程心得/</code> 目录），帮我写一封发给老师的作业提交邮件。<b>下面三项必须完整出现在邮件正文里，一项都不能省</b>：</span><span data-en>Please combine my knowledge base project (<code>知识库项目/</code> directory) and course reflections (<code>课程心得/</code> directory) to help me write a homework submission email to the instructor. <b>All three items below must appear in full in the email body — none can be skipped</b>:</span>
     <ol>
-      <li>我 Step 3 写的 3 篇 wiki：原样贴出内容，标出我自己补充的行业判断；</li>
-      <li>Step 5 的 PPT：说明在哪个领域、为哪个客户/场景做的（截图我会另附）；</li>
-      <li>学习心得：≥200 字，写清楚『工具 vs 系统』的体会、以及哪里我修改/补充了 AI 的输出。</li>
+      <li><span data-zh>我 Step 3 写的 3 篇 wiki：原样贴出内容，标出我自己补充的行业判断；</span><span data-en>My 3 wiki entries from Step 3: paste the full content, mark the domain expertise I added;</span></li>
+      <li><span data-zh>Step 5 的 PPT：说明在哪个领域、为哪个客户/场景做的（截图我会另附）；</span><span data-en>Step 5 PPT: describe the domain and the client/scenario it was made for (I'll attach screenshots separately);</span></li>
+      <li><span data-zh>学习心得：≥200 字，写清楚『工具 vs 系统』的体会、以及哪里我修改/补充了 AI 的输出。</span><span data-en>Learning reflection: ≥200 characters, clearly describing the "tool vs system" insight and where I revised/supplemented AI's output.</span></li>
     </ol>
-    末尾再补一段我还想请教的困惑。语气真诚、简洁。写完先列一个清单核对上面三项有没有遗漏。」
+    <span data-zh>末尾再补一段我还想请教的困惑。语气真诚、简洁。写完先列一个清单核对上面三项有没有遗漏。</span><span data-en>End with a paragraph about questions I still have. Keep the tone sincere and concise. After writing, list a checklist to verify all three items are covered.</span>」
   </div>
-  <p><strong>发送方式</strong>：邮件发到 <code>austin.aicourse@gmail.com</code>，主题必须是
-     <strong>【Session 2 作业】+ 你的名字</strong>。</p>
-  <p>我想看到的不是完美，而是 <strong>你真的动手了、真的在想</strong>。困惑和卡点尤其欢迎——那正是下一节课我能帮你的地方。</p>
+  <p><strong><span data-zh>发送方式</span><span data-en>How to Submit</span></strong>：<span data-zh>邮件发到 <code>austin.aicourse@gmail.com</code>，主题必须是
+     <strong>【Session 2 作业】+ 你的名字</strong>。</span><span data-en>Email to <code>austin.aicourse@gmail.com</code>, subject must be
+     <strong>【Session 2 Homework】+ your name</strong>.</span></p>
+  <p><span data-zh>我想看到的不是完美，而是 <strong>你真的动手了、真的在想</strong>。困惑和卡点尤其欢迎——那正是下一节课我能帮你的地方。</span><span data-en>I don't need perfection — I need to see that you <strong>actually did it and genuinely thought about it</strong>. Confusion and sticking points are especially welcome — those are exactly what I can help you with in the next class.</span></p>
 
   <div class="summary">
-    <b>一句话总结</b><br>
-    写心得 → 让 AI 总结 → 走通演示 → 换成自己领域建库出 PPT → 反馈给我。<br>
-    每一步都亲手做，每一步都留下记录。这门课的能力，是「做」出来的，不是「听」出来的。
+    <b><span data-zh>一句话总结</span><span data-en>One-sentence summary</span></b><br>
+    <span data-zh>写心得 → 让 AI 总结 → 走通演示 → 换成自己领域建库出 PPT → 反馈给我。<br>
+    每一步都亲手做，每一步都留下记录。这门课的能力，是「做」出来的，不是「听」出来的。</span><span data-en>Write reflections → Let AI summarize → Walk through demo → Build your domain KB and PPT → Send it back.<br>
+    Do every step yourself, document every step. The skill in this course is built by doing, not listening.</span>
   </div>
 
-  <p class="muted">—— 看不懂任何一步，截图发学习群，老师和同学帮你。没有笨问题。</p>
+  <p class="muted">—— <span data-zh>看不懂任何一步，截图发学习群，老师和同学帮你。没有笨问题。</span><span data-en>If anything is unclear, screenshot it and post in the student group — the instructor and classmates will help. No question is too basic.</span></p>
+<script>
+function setLang(lang) {
+  document.body.classList.toggle('lang-en', lang === 'en');
+  document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  localStorage.setItem('lang', lang);
+}
+(function() { setLang(localStorage.getItem('lang') || 'zh'); })();
+</script>
 </body>
 </html>
