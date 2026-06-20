@@ -188,6 +188,13 @@
     <div class="faq-item"><div class="faq-q">跟不上 / 做不完怎么办？</div><div class="faq-a">课上先看懂"为什么这么做"，材料和脚本课后能自己重跑；作业群里交，不强求当场完成。</div></div>
     <h3>J. 彩蛋（理财问答 Agent）</h3>
     <div class="faq-item"><div class="faq-q">最后那个问答 Agent 我能直接用吗？</div><div class="faq-a">那是个演示截图，展示"知识库能做成对话产品"的样子，<strong>暂不开放访问</strong>。想要这种效果，跟着课程把知识库搭起来，是下一步可以自己做的方向。</div></div>
+    <h3>K. 术语速查</h3>
+    <div class="faq-item"><div class="faq-q">终端 / Terminal 是什么？怎么打开？</div><div class="faq-a">终端 = 用文字输入命令操作电脑的窗口，是运行 Claude Code 的地方。你不需要知道所有命令，课上用到的全会给你。怎么打开：Mac → 聚焦搜索（⌘+空格）输入「Terminal」回车；Windows → 按 Win 键搜「PowerShell」或「cmd」。本质上和图形界面干的事一样，只是用打字代替点鼠标。</div></div>
+    <div class="faq-item"><div class="faq-q">Node.js / npm 是什么？为什么装 Claude Code 要装它？</div><div class="faq-a">Node.js = 让 JavaScript 能在电脑本地运行的程序（不是只在浏览器里）。Claude Code 用 Node.js 写的，所以电脑上得先有它。npm = Node 自带的"应用商店"，用来安装各种工具包，包括 Claude Code 本身（<code class="inline">npm install -g @anthropic-ai/claude-code</code>）。你不需要懂 JavaScript，安装好后只是跑 Claude Code 的"运行环境"，日常不会再碰到它。</div></div>
+    <div class="faq-item"><div class="faq-q">Markdown 是什么？为什么 AI 要用 Markdown？</div><div class="faq-a">Markdown = 一种用普通文字加简单符号来排版的格式。比如 <code class="inline"><strong>粗体</strong></code>、<code class="inline"># 一级标题</code>、<code class="inline">- 列表项</code>——纯文本写，任何编辑器都能打开，不依赖 Word/Pages 等特定软件。AI 偏爱 Markdown 有三个原因：① 结构清晰，AI 读写都高效；② 文件小、跨平台，知识库里几百篇文章不占多少空间；③ Obsidian / GitHub / Notion 等工具都能直接渲染成好看的格式。你不用"写" Markdown，让 Claude 帮你生成就行；你只需要能打开 .md 文件看内容。</div></div>
+    <div class="faq-item"><div class="faq-q">GitHub 必须用吗？不会 Git 能继续吗？</div><div class="faq-a">今天演示用 GitHub 存知识库，但不强制。知识库本质是一个普通文件夹，不上 GitHub 也能用 Claude Code 操作。GitHub 的价值：① 免费备份，换电脑不丢；② 公开仓库可以分享给别人。不会 Git 没关系——Claude Code 能帮你执行 git 命令，你告诉它"帮我存档"就行。如果完全不想碰 GitHub，把文件夹备份到 iCloud / Google Drive 也是一样的效果。</div></div>
+    <div class="faq-item"><div class="faq-q">LLM Wiki 方法论是什么？谁提出来的？</div><div class="faq-a">LLM Wiki 是 OpenAI 联合创始人 Andrej Karpathy 提出的知识管理方法：把你掌握的领域知识，用 AI 整理成一个结构化"百科"——每个条目有定义、为什么重要、常见问题、操作建议。他的原创推文链接在参考资料页。今天课上用的就是这套思路：raw_material/ 存原始资料，wiki/ 存 AI 整理后的结构化条目，让知识变得"可被调用"——你的客户问任何问题，知识库里都有现成的结构化答案可以调。</div></div>
+    <div class="faq-item"><div class="faq-q">知识库里的内容准确吗？AI 会幻觉吗？用于客户服务安全吗？</div><div class="faq-a">会。AI 可能生成听起来合理但实际不准确的内容——尤其是政策细节、税率、法规条文。怎么控制风险：① raw_material/ 放的是你找来的权威来源（IRS 官网、Investopedia），wiki 条目从这里提炼，有据可查；② 每篇 wiki 生成后你要 Review——把你的专业判断加进去，标注"此条目由顾问复核过"；③ 知识库是辅助，最终建议仍由你做出并承担专业责任。架构设计上，output/ 放本地、不进 Git，也是一道隔离。</div></div>
   </div>
 
 </div>

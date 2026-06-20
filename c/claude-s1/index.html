@@ -208,6 +208,13 @@
 ④ 找重复/大文件  → 去重工具（如 Gemini）+「管理」里的建议
 ⑤ 清空废纸篓     → 删除后清空才真正释放空间</pre>课上用法：把目标告诉 Claude，让它把这 5 步细化成"适合我这台 600GB MacBook Air 的清理清单"，照着做、边做边问。<strong>它陪你想、教你做，不替你自动清盘。</strong></div></div>
     <div class="faq-item"><div class="faq-q">这样的小白，课前需要准备什么？</div><div class="faq-a">只两件：① claude.ai 注册好账号（免费版，能登录即可）；② 想跟做的话，记下自己设备现状（如"600GB MacBook Air，主要音视频+照片"），课上拿真实例子让 Claude 出方案。其余课上带做。</div></div>
+    <h3>E. 术语速查</h3>
+    <div class="faq-item"><div class="faq-q">幻觉（Hallucination）是什么？AI 说的话都可信吗？</div><div class="faq-a">幻觉 = AI 用流畅的语气编造了一个不存在的事实。比如问它"这家公司的 CEO 是谁"，它可能自信地给出一个错误名字——听起来很像真的，但是错的。原因：LLM 本质是"预测下一个词"，不是"查数据库"，所以它优先选择听起来合理的内容，而不是保证准确。怎么应对：① 事实核查交给你，AI 负责文字加工；② 要求它提供来源，方便你验证；③ 上下文（Project 里的文件）越充分，幻觉越少——它用的不是猜测，而是你给的资料。</div></div>
+    <div class="faq-item"><div class="faq-q">上下文窗口是什么？和 token 有什么关系？</div><div class="faq-a">上下文窗口 = Claude 在一次对话里"能看见多少内容"的上限。类比：你对朋友讲一件事，你朋友只能记住最近 10 分钟听到的内容——再早的就"忘了"。Claude 也一样，超出上下文窗口的内容它就看不见了。Claude 的窗口是 200k tokens ≈ 约 15 万汉字，几乎等于一本小说。大多数工作场景完全够用。Token 就是计量这个大小的单位：1 个英文单词 ≈ 1 token，1 个汉字 ≈ 1–1.5 tokens。</div></div>
+    <div class="faq-item"><div class="faq-q">Pipeline / 流水线 是什么？</div><div class="faq-a">流水线 = 一组按固定顺序执行的任务，前一步的输出是下一步的输入。今天的 4-Agent Pipeline：JD 进来 → Agent 1 分析匹配度 → Agent 2 调研公司 → Agent 3 写 Outreach → Agent 4 更新追踪表。一次触发，依次完成。就像工厂流水线：零件一路传下去，每个工位干自己那道工序。</div></div>
+    <div class="faq-item"><div class="faq-q">Outreach 是什么？为什么要发？</div><div class="faq-a">Outreach = 主动联系目标公司的人（通常是 LinkedIn 私信或邮件）。不是投简历，而是在简历投出前/后，找到内部员工或招聘方，简短自我介绍 + 表达兴趣。为什么有用：很多职位内推成功率远高于盲投；即使没有内推，提前建立联系让你在候选人里更有辨识度。今天的 Agent 3 帮你起草这封信，语气和内容因公司而异。</div></div>
+    <div class="faq-item"><div class="faq-q">子代理（Subagent）是什么？和普通 Agent 有什么区别？</div><div class="faq-a">Agent = 接收指令、自主执行任务的 AI 工作单元；Subagent = 由主 Agent 派发出去的子任务执行者。类比：老板（你）吩咐项目经理（主 Agent）"帮我处理这条 JD"，项目经理拆分任务，分别派给分析师、调研员、文案（3 个 Subagent），各自完成后汇总结果。你只跟项目经理说了一句话，后面四个人各司其职。Cowork 的"4 个子代理"就是这套机制。</div></div>
+    <div class="faq-item"><div class="faq-q">多模态（Multimodal）是什么？</div><div class="faq-a">多模态 = 能同时处理多种类型输入——文字、图片、语音、视频等。PPT 里提到 Gemini"多模态能力强"，意思是它能看图、识别图表内容。Claude 也支持图片理解，你可以直接把截图或文档扫描件拖进对话让它解读。今天课上主要用文字，但多模态能力值得知道。</div></div>
   </div>
 
 </div>
