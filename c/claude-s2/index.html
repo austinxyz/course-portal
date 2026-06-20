@@ -97,6 +97,10 @@
     #lang-toggle span { color: rgba(255,255,255,0.4); font-size: 0.75rem; }
     body:not(.lang-en) [data-en] { display: none; }
     body.lang-en [data-zh] { display: none; }
+    .resource-card { display:flex;flex-direction:column;gap:7px;padding:18px;background:var(--white);border:1px solid var(--border);border-radius:10px;text-decoration:none;color:inherit;transition:.15s; }
+    .resource-card:hover { border-color:var(--primary); }
+    .resource-tag { font-size:11px;color:var(--accent);letter-spacing:.07em;font-weight:600; }
+    .resource-link { font-size:11px;color:var(--primary);margin-top:4px; }
   </style>
 </head>
 <body>
@@ -193,6 +197,51 @@
   <a href="https://github.com/austinxyz" target="_blank">GitHub</a> ·
   <a href="https://austinxyz.github.io/blogs/blog" target="_blank">Blog</a>
 </footer>
+
+
+  <div class='section' id='bonus-resources'>
+    <h2 class='section-title'><span data-zh>讲师额外分享</span><span data-en>Bonus Resources</span></h2>
+    <p style='color:var(--text-muted);margin-bottom:16px;'><span data-zh>课程之外，讲师公开的实战系统与方法论——学员专享。</span><span data-en>Open-sourced systems &amp; methodologies from the instructor — student exclusive.</span></p>
+    <div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-bottom:20px'>
+      <a href='https://docs.google.com/document/d/1WKpAwxwf2AXzJXqHQD-XjRBjY2tHdHWqdl2olZXeD7w/edit' target='_blank' class='resource-card'>
+        <span class='resource-tag'>✍️ AI WRITING</span>
+        <strong><span data-zh>AI 写作系统</span><span data-en>AI Writing System</span></strong>
+        <span style='font-size:12.5px;color:var(--text-muted)'><span data-zh>用 Claude 建立个人写作工作流，从选题到发布全流程。</span><span data-en>Build a personal writing workflow with Claude, from topic to publish.</span></span>
+        <span class='resource-link'>Google Docs →</span>
+      </a>
+      <a href='https://github.com/austinxyz/stock-analysis-lite/blob/main/docs/workflow-guide.md' target='_blank' class='resource-card'>
+        <span class='resource-tag'>📈 AI INVESTING</span>
+        <strong><span data-zh>AI 炒股系统</span><span data-en>AI Stock Analysis System</span></strong>
+        <span style='font-size:12.5px;color:var(--text-muted)'><span data-zh>普通人用 AI 选股、分析、判断入场和出场时机。</span><span data-en>Use AI to screen, analyze, and time entries &amp; exits.</span></span>
+        <span class='resource-link'>GitHub →</span>
+      </a>
+      <a href='https://github.com/austinxyz/agent-builder' target='_blank' class='resource-card'>
+        <span class='resource-tag'>🤖 AGENT BUILDER</span>
+        <strong><span data-zh>Agent 构建框架</span><span data-en>Agent Build Framework</span></strong>
+        <span style='font-size:12.5px;color:var(--text-muted)'><span data-zh>从零定义、构建和发布自己的 AI Agent 的完整流程。</span><span data-en>End-to-end workflow for building and publishing your own AI agents.</span></span>
+        <span class='resource-link'>GitHub →</span>
+      </a>
+      <a href='https://github.com/austinxyz/job-preparation/tree/main/methodology' target='_blank' class='resource-card'>
+        <span class='resource-tag'>💼 JOB SEARCH</span>
+        <strong><span data-zh>找工作方法论</span><span data-en>Job Search Methodology</span></strong>
+        <span style='font-size:12.5px;color:var(--text-muted)'><span data-zh>用 AI 准备简历、面试、Outreach 的完整方法体系。</span><span data-en>Complete AI-assisted system for resume, interviews, and outreach.</span></span>
+        <span class='resource-link'>GitHub →</span>
+      </a>
+      <a href='https://github.com/austinxyz/opsx-superpowers' target='_blank' class='resource-card'>
+        <span class='resource-tag'>⚙️ SDD / DEV</span>
+        <strong><span data-zh>SDD 软件开发系统</span><span data-en>SDD Software Dev System</span></strong>
+        <span style='font-size:12.5px;color:var(--text-muted)'><span data-zh>用 Claude Code 做 Subagent 驱动开发的实战框架。</span><span data-en>Subagent-driven development framework with Claude Code.</span></span>
+        <span class='resource-link'>GitHub →</span>
+      </a>
+    </div>
+    <div style='display:flex;gap:10px;flex-wrap:wrap;align-items:center;padding:14px 18px;background:var(--bg);border:1px solid var(--border);border-radius:10px'>
+      <span style='font-size:13px;color:var(--text-muted)'><span data-zh>更多持续更新 →</span><span data-en>More ongoing →</span></span>
+      <a href='https://juejin.cn/user/2719523382507658/posts' target='_blank' style='font-size:12px;color:var(--primary);border:1px solid var(--border);padding:5px 11px;border-radius:6px;text-decoration:none'>掘金</a>
+      <a href='https://austinxyz.github.io/blogs/blog' target='_blank' style='font-size:12px;color:var(--primary);border:1px solid var(--border);padding:5px 11px;border-radius:6px;text-decoration:none'>Blog</a>
+      <span style='font-size:12px;color:var(--text-muted)'><span data-zh>公众号：扫讲师介绍区二维码</span><span data-en>WeChat Official Account: scan QR in instructor section</span></span>
+    </div>
+  </div>
+
 
 <script>
 function setLang(lang) {
