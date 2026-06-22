@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin · Austin AI Course</title>
+<style>
+  :root {
+    --bg: #FAFAF7; --surface: #FFFFFF; --ink: #1A1A17; --muted: #73716A;
+    --line: #E7E4DC; --accent: #BF5B38; --accent-soft: #F4E7E0;
+    --mono: 'IBM Plex Mono', ui-monospace, monospace;
+    --sans: 'IBM Plex Sans', 'Noto Sans SC', system-ui, sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 48px 28px; }
+  h1 {
+    font-family: var(--mono);
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -.01em;
+    margin-bottom: 8px;
+    color: var(--accent);
+  }
+  .subtitle { font-size: 14px; color: var(--muted); margin-bottom: 40px; }
+  .section { margin-bottom: 36px; }
+  .section-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--line);
+  }
+  .link-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .link-list a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--ink);
+    font-size: 15px;
+    font-weight: 500;
+    transition: border-color .12s, box-shadow .12s;
+  }
+  .link-list a:hover {
+    border-color: var(--accent);
+    box-shadow: 0 2px 8px rgba(191,91,56,.10);
+  }
+  .link-list a .arrow {
+    font-size: 13px;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Admin Dashboard</h1>
+  <p class="subtitle">Austin AI Course · 内部管理页面</p>
+
+  <div class="section">
+    <div class="section-title">Google 表单数据</div>
+    <ul class="link-list">
+      <li>
+        <a href="https://docs.google.com/spreadsheets/d/1j2kbrcb7UOUwLiH37b8HZGYoNDJFlOwyYSv-NP0xyXM/edit?gid=305692449#gid=305692449" target="_blank" rel="noopener">
+          <span>Demo Day 报名</span>
+          <span class="arrow">↗</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://docs.google.com/spreadsheets/d/1Y-HtxGQ0iDn6C-0CyY3-Zc1UOc-MKGSHHXOmHV5pNCc/edit?gid=828928314#gid=828928314" target="_blank" rel="noopener">
+          <span>课后反馈</span>
+          <span class="arrow">↗</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://docs.google.com/spreadsheets/d/1bodJKizul-UWKH2doCvo58e1uUDPIJUpf9tbMhHqNOg/edit?gid=987622991#gid=987622991" target="_blank" rel="noopener">
+          <span>课后提问</span>
+          <span class="arrow">↗</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Notion 学员数据</div>
+    <ul class="link-list">
+      <li>
+        <a href="https://www.notion.so/1a8662722baa4615a5c746c49173dcc8" target="_blank" rel="noopener">
+          <span>学员库</span>
+          <span class="arrow">↗</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.notion.so/4b253ad7ad9644a0b466459e2b1eaed1" target="_blank" rel="noopener">
+          <span>互动记录</span>
+          <span class="arrow">↗</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>
