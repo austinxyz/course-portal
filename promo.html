@@ -12,18 +12,20 @@
   .hero { background: var(--primary); color: #fff; border-radius: 14px;
           padding: 28px 24px 24px; margin: 24px 0 20px; }
   .hero-label { font-size: 12px; letter-spacing: 2px; opacity: .7; text-transform: uppercase; margin-bottom: 8px; }
-  .hero h1 { font-size: 22px; font-weight: 700; line-height: 1.4; margin: 0 0 12px; color: #fff; }
-  .hero-instructor { font-size: 14px; opacity: .85; margin-bottom: 20px; line-height: 1.6; }
-  .hero-instructor strong { color: #fff; }
+  .hero h1 { font-size: 22px; font-weight: 700; line-height: 1.4; margin: 0 0 16px; color: #fff; }
 
-  .price-row { display: flex; flex-direction: column; gap: 10px; }
-  .price-card { background: rgba(255,255,255,.13); border-radius: 10px; padding: 12px 16px; }
-  .price-card .label { font-size: 13px; opacity: .8; }
-  .price-card .date { font-size: 12px; opacity: .65; margin-top: 2px; }
-  .price-card .amount { font-size: 20px; font-weight: 700; margin-top: 6px; color: #fff; }
-  .price-card.highlight { background: rgba(255,255,255,.22); border: 1.5px solid rgba(255,255,255,.4); }
-  .price-card .save { font-size: 12px; background: #f0a500; color: #333; border-radius: 20px;
-                      padding: 2px 8px; display: inline-block; margin-left: 6px; font-weight: 600; }
+  .instructor-card { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 18px; }
+  .instructor-avatar { width: 72px; height: 72px; border-radius: 50%; object-fit: cover;
+                       border: 2.5px solid rgba(255,255,255,.4); flex-shrink: 0; }
+  .instructor-meta { flex: 1; }
+  .instructor-name { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .instructor-title { font-size: 13px; opacity: .8; line-height: 1.5; }
+
+  .instructor-bio { font-size: 14px; line-height: 1.8; opacity: .9; margin-bottom: 14px; }
+
+  .tag-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag { background: rgba(255,255,255,.15); border-radius: 20px; padding: 4px 12px;
+         font-size: 12.5px; color: #fff; }
 
   .cta-btn { display: block; background: #f0a500; color: #1A1A17; text-decoration: none;
              text-align: center; border-radius: 10px; padding: 14px; font-size: 16px;
@@ -99,27 +101,22 @@
 <div class="hero">
   <div class="hero-label">Claude AI 实战课</div>
   <h1>从零上手 Claude，把 AI 真正用起来</h1>
-  <div class="hero-instructor">
-    <strong>Austin Xu</strong> · 硅谷 500 强工程经理<br>
-    20 年工程经验，管理支撑 $74B+ GMV 的云平台
-  </div>
-  <div class="price-row">
-    <div class="price-card">
-      <div class="label">Session 1 · Claude 与 Cowork 实战</div>
-      <div class="date">6 月 28 日 8:30 PM ET</div>
-      <div class="amount">$199</div>
-    </div>
-    <div class="price-card">
-      <div class="label">Session 2 · 用 Claude Code 造 AI 工具</div>
-      <div class="date">7 月 12 日 8:30 PM ET</div>
-      <div class="amount">$199</div>
-    </div>
-    <div class="price-card highlight">
-      <div class="label">两节合购</div>
-      <div class="amount">$349 <span class="save">省 $49</span></div>
+  <div class="instructor-card">
+    <img class="instructor-avatar" src="img/headshot.jpg" alt="Austin Xu">
+    <div class="instructor-meta">
+      <div class="instructor-name">Austin Xu</div>
+      <div class="instructor-title">硅谷 500 强工程经理<br>浙大硕士 · 20 年工程经验</div>
     </div>
   </div>
-  <a class="cta-btn" href="https://www.elitecoach101.com/" target="_blank">立即报名 →</a>
+  <div class="instructor-bio">
+    从基层程序员做到大厂资深工程经理，带领支撑 <strong style="color:#fff">$74B+ GMV</strong> 的云平台团队。公司内部 Claude Code 头号用户，把 MCP 和 Agent 真正落地生产环境，个人 PR 产出翻倍。业余自主开发 10+ AI 系统，覆盖理财、成长追踪、运动数据等场景。<br><br>
+    和你一样的华人路径，只是早一步踩进了 AI 这条赛道。他想分享的不是理论，而是在真实生产环境里踩过坑、跑通了的东西。
+  </div>
+  <div class="tag-row">
+    <span class="tag">🏆 USTA 全国网球冠军</span>
+    <span class="tag">📍 硅谷 San Jose</span>
+    <span class="tag">🤝 北美华人社区</span>
+  </div>
 </div>
 
 <!-- What is this -->
