@@ -141,6 +141,16 @@
   .bundle .b-p{font-family:var(--mono);font-size:24px;font-weight:600}
   .bundle .b-p del{color:#8b887e;font-size:16px;margin-right:8px}
 
+  /* S3/S4 featured */
+  .course.featured{border:2px solid var(--accent)}
+  .now-open{font-family:var(--mono);font-size:10.5px;color:#fff;background:var(--accent);padding:2px 8px;border-radius:4px;margin-left:8px;vertical-align:middle;letter-spacing:.04em;white-space:nowrap}
+  /* S3+S4 spotlight */
+  .s34-spot{margin-bottom:28px;border:2px solid var(--accent);border-radius:12px;background:var(--accent-soft);padding:20px 26px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+  .s34-spot .sp-tag{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:5px}
+  .s34-spot .sp-h{font-size:20px;font-weight:700;letter-spacing:-.01em;color:var(--ink)}
+  .s34-spot .sp-d{font-size:13.5px;color:#46443d;margin-top:5px}
+  @media(max-width:880px){.s34-spot{flex-direction:column;align-items:flex-start;gap:14px}}
+
   /* webinar */
   .webinar{background:var(--ink);color:#f1efe8}
   .web-grid{display:grid;grid-template-columns:1fr .9fr;gap:48px;align-items:center}
@@ -314,6 +324,14 @@
 <section id="curriculum">
   <div class="wrap">
     <div class="sec-head"><span class="sec-num">01</span><div><h2><span class="zh">课程内容</span><span class="en">Curriculum</span></h2><div class="sub"><span class="zh">四节动手课 · 每节 150 分钟</span><span class="en">Four hands-on sessions · 150 min each</span></div></div></div>
+    <div class="s34-spot">
+      <div style="flex:1;min-width:200px">
+        <span class="sp-tag">// 本轮重点推介</span>
+        <div class="sp-h"><span class="zh">Session 3 + 4 · 现已开放报名</span><span class="en">Session 3 &amp; 4 · Now Enrolling</span></div>
+        <div class="sp-d"><span class="zh">7月中下旬开课 · AI 炒股分析系统 + 专业网站从零上线，合买省 $49</span><span class="en">Mid–late July · AI stock analysis + professional website launch, bundle saves $49</span></div>
+      </div>
+      <a class="btn btn-primary" href="#enroll"><span class="zh">合买 S3+S4 省 $49 →</span><span class="en">Bundle S3+S4 →</span></a>
+    </div>
     <div class="courses">
       <div class="course">
         <div class="ctop"><span class="sidx">SESSION 1</span><span class="price">$199<small> <span class="zh">/单节</span><span class="en">/ session</span></small></span></div>
@@ -356,8 +374,8 @@
         <a class="btn btn-primary" href="#enroll" style="margin-top:18px;width:100%;justify-content:center"><span class="zh">立即报名 S2 →</span><span class="en">Enroll in S2 →</span></a>
         <a class="btn" href="https://forms.gle/2pjPiERkZe9RfDWk6" target="_blank" style="margin-top:10px;width:100%;justify-content:center;border-color:#BF5B38;color:#BF5B38;background:#F4E7E0;font-size:13px">⭐ <span class="zh">上完课了？花 2 分钟留个 Feedback</span><span class="en">Took the class? Leave feedback (2 min)</span></a>
       </div>
-      <div class="course">
-        <div class="ctop"><span class="sidx">SESSION 3</span><span class="price">$199<small> <span class="zh">/单节</span><span class="en">/ session</span></small></span></div>
+      <div class="course featured">
+        <div class="ctop"><span class="sidx">SESSION 3 <span class="now-open">开放报名</span></span><span class="price">$199<small> <span class="zh">/单节</span><span class="en">/ session</span></small></span></div>
         <h3><span class="zh">AI 炒股分析系统 — 从方法论到可运行 Skill</span><span class="en">AI Stock Analysis System — From Methodology to Runnable Skill</span></h3>
         <p class="desc">
           <span class="zh">讲师整合基本面与技术面分析理论，开发出课程专属炒股框架 stock-analysis-lite，带你拆解它的每一层设计逻辑——然后亲手写出属于自己的 /market-daily Skill。学完你不只是会用这个框架，而是真正懂得如何从零开发一个 Skill，从零搭建一套智能股票分析系统。</span>
@@ -367,6 +385,7 @@
           <li><span class="zh">150 分钟 · 理论 + 实操演示 + 答疑</span><span class="en">150 min · Theory + hands-on demo + Q&amp;A</span></li>
           <li><span class="zh">录像回放 · 专属学员群 · 作业批改</span><span class="en">Recording · Private student group · Homework review</span></li>
         </ul>
+        <span class="when-pill"><span class="zh">7月中下旬 · 即将开课</span><span class="en">Mid–late July · Coming Soon</span></span>
         <div class="res">
           <div class="res-label"><span class="zh">课程资源与入口</span><span class="en">Resources &amp; portal</span></div>
           <a class="rlink" href="c/s3-prep.html"><span>📋 <span class="zh">课前准备（装好 Git + VS Code + Python）</span><span class="en">Pre-class prep (Git + VS Code + Python)</span></span><span class="rt pub"><span class="zh">公开</span><span class="en">Public</span></span></a>
@@ -375,8 +394,8 @@
         <a class="btn btn-primary" href="#enroll" style="margin-top:18px;width:100%;justify-content:center"><span class="zh">立即报名 S3 →</span><span class="en">Enroll in S3 →</span></a>
         <a class="btn" href="https://forms.gle/2pjPiERkZe9RfDWk6" target="_blank" style="margin-top:10px;width:100%;justify-content:center;border-color:#BF5B38;color:#BF5B38;background:#F4E7E0;font-size:13px">⭐ <span class="zh">上完课了？花 2 分钟留个 Feedback</span><span class="en">Took the class? Leave feedback (2 min)</span></a>
       </div>
-      <div class="course">
-        <div class="ctop"><span class="sidx">SESSION 4</span><span class="price">$199<small> <span class="zh">/单节</span><span class="en">/ session</span></small></span></div>
+      <div class="course featured">
+        <div class="ctop"><span class="sidx">SESSION 4 <span class="now-open">开放报名</span></span><span class="price">$199<small> <span class="zh">/单节</span><span class="en">/ session</span></small></span></div>
         <h3><span class="zh">从设计到上线 — 用 Claude Design + Code 做专业网站</span><span class="en">Design to Launch — Build a Professional Website with Claude Design + Code</span></h3>
         <p class="desc">
           <span class="zh">七步完成一个真实上线的网站：Brief → 设计稿 → CLAUDE.md → HTML → 补充页面 → GitHub → Vercel。课程同时深入介绍 Claude Design 的完整设计能力——不只是建站，还包括 UI 原型、视觉排版、品牌风格定制等——带你真正用好这个设计工具。</span>
@@ -386,6 +405,7 @@
           <li><span class="zh">150 分钟 · 理论 + 实操演示 + 答疑</span><span class="en">150 min · Theory + hands-on demo + Q&amp;A</span></li>
           <li><span class="zh">录像回放 · 专属学员群 · 作业批改</span><span class="en">Recording · Private student group · Homework review</span></li>
         </ul>
+        <span class="when-pill"><span class="zh">7月中下旬 · 即将开课</span><span class="en">Mid–late July · Coming Soon</span></span>
         <div class="res">
           <div class="res-label"><span class="zh">课程资源与入口</span><span class="en">Resources &amp; portal</span></div>
           <a class="rlink" href="c/s4-prep.html"><span>📋 <span class="zh">课前准备（装好 Claude Code + Vercel）</span><span class="en">Pre-class prep (install Claude Code + Vercel)</span></span><span class="rt pub"><span class="zh">公开</span><span class="en">Public</span></span></a>
