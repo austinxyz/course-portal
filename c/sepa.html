@@ -1,0 +1,1055 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SEPA 炒股方法论精华整理</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:       #0A1628;
+  --navy-mid:   #1D3461;
+  --navy-soft:  #2A4A7F;
+  --blue:       #2563EB;
+  --blue-light: #3B82F6;
+  --bull:       #16A34A;
+  --bull-bg:    #F0FDF4;
+  --bear:       #DC2626;
+  --bear-bg:    #FEF2F2;
+  --warn:       #D97706;
+  --warn-bg:    #FFFBEB;
+  --bg:         #F5F7FA;
+  --surface:    #FFFFFF;
+  --border:     #DDE3ED;
+  --text:       #0F1E35;
+  --muted:      #64748B;
+  --label:      #94A3B8;
+
+  --font-sans:  -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono:  'SF Mono', 'Consolas', 'Menlo', monospace;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── HEADER ─────────────────────────────────────────────── */
+.site-header {
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;
+  padding: 56px 32px 48px;
+}
+
+/* chart grid texture */
+.site-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(to right, rgba(255,255,255,.04) 0 1px, transparent 1px 80px),
+    repeating-linear-gradient(to bottom, rgba(255,255,255,.04) 0 1px, transparent 1px 40px);
+  pointer-events: none;
+}
+
+/* sparkline decoration */
+.header-sparkline {
+  position: absolute;
+  right: 32px;
+  bottom: 0;
+  opacity: 0.12;
+}
+
+.header-inner {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.header-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--blue-light);
+  margin-bottom: 14px;
+}
+
+.header-title {
+  font-size: clamp(28px, 5vw, 42px);
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.15;
+  text-wrap: balance;
+  margin-bottom: 10px;
+}
+
+.header-title span {
+  color: var(--blue-light);
+}
+
+.header-subtitle {
+  color: #8BA8CE;
+  font-size: 14px;
+  margin-bottom: 28px;
+}
+
+.header-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+  color: #C4D4E8;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: .02em;
+}
+
+/* ── NAV ─────────────────────────────────────────────────── */
+.toc-strip {
+  background: var(--navy-mid);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  padding: 0 32px;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+
+.toc-strip::-webkit-scrollbar { display: none; }
+
+.toc-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  gap: 0;
+}
+
+.toc-link {
+  display: inline-block;
+  padding: 12px 16px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #8BA8CE;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: color .15s, border-color .15s;
+  letter-spacing: .01em;
+}
+
+.toc-link:hover {
+  color: #FFFFFF;
+  border-bottom-color: var(--blue-light);
+}
+
+/* ── MAIN ────────────────────────────────────────────────── */
+.main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+
+/* ── SECTIONS ────────────────────────────────────────────── */
+.section {
+  padding-top: 52px;
+}
+
+.section-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--label);
+  margin-bottom: 6px;
+}
+
+.section-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 16px;
+  text-wrap: balance;
+  line-height: 1.25;
+}
+
+.section-title .en {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted);
+  margin-left: 8px;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin-top: 52px;
+}
+
+/* ── CALLOUT ─────────────────────────────────────────────── */
+.callout {
+  background: var(--navy);
+  color: #C4D4E8;
+  border-left: 3px solid var(--blue-light);
+  border-radius: 0 6px 6px 0;
+  padding: 18px 20px;
+  font-size: 14.5px;
+  line-height: 1.65;
+  margin-bottom: 24px;
+  font-style: italic;
+}
+
+.callout strong {
+  color: #ffffff;
+  font-style: normal;
+}
+
+/* ── CORE STATS ROW ──────────────────────────────────────── */
+.stat-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.stat-card {
+  flex: 1;
+  min-width: 160px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px 20px;
+}
+
+.stat-value {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--navy);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+
+.stat-value.bull { color: var(--bull); }
+.stat-value.bear { color: var(--bear); }
+
+.stat-label {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+/* ── STAGE DIAGRAM ───────────────────────────────────────── */
+.stage-diagram {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 28px 24px 20px;
+  margin-bottom: 24px;
+  overflow-x: auto;
+}
+
+/* ── TABLES ──────────────────────────────────────────────── */
+.table-wrap {
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  margin-bottom: 24px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+  font-variant-numeric: tabular-nums;
+  background: var(--surface);
+}
+
+th {
+  background: #F0F3F9;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+td {
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+tr:last-child td { border-bottom: none; }
+
+tr:hover td { background: #F8FAFD; }
+
+.badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  letter-spacing: .04em;
+  white-space: nowrap;
+}
+
+.badge-bull  { background: var(--bull-bg);  color: var(--bull); }
+.badge-bear  { background: var(--bear-bg);  color: var(--bear); }
+.badge-warn  { background: var(--warn-bg);  color: var(--warn); }
+.badge-muted { background: #F1F5F9; color: var(--muted); }
+.badge-blue  { background: #EFF6FF; color: var(--blue); }
+
+/* row highlight */
+.row-highlight td { background: #EFF6FF; }
+.row-highlight td:first-child { border-left: 3px solid var(--blue); }
+
+/* ── CHECKLIST ───────────────────────────────────────────── */
+.checklist {
+  list-style: none;
+  display: grid;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.checklist li {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+
+.check-num {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  background: var(--navy);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+
+.check-content strong {
+  display: block;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 1px;
+}
+
+.check-content .detail {
+  color: var(--muted);
+  font-size: 12.5px;
+}
+
+/* ── FORMULA BOX ─────────────────────────────────────────── */
+.formula-box {
+  background: var(--navy);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: #A8C4E8;
+  line-height: 2;
+}
+
+.formula-box .comment {
+  color: #4A6A9A;
+  font-style: italic;
+}
+
+.formula-box .highlight {
+  color: #7DD3FC;
+  font-weight: 700;
+}
+
+/* ── STOP LOSS PHASES ────────────────────────────────────── */
+.phase-list {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.phase-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  align-items: start;
+}
+
+.phase-marker {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .04em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.phase-marker.p1 { background: #FEF9C3; color: #854D0E; }
+.phase-marker.p2 { background: #DCFCE7; color: #166534; }
+.phase-marker.p3 { background: #DBEAFE; color: #1E40AF; }
+
+.phase-title {
+  font-weight: 700;
+  color: var(--navy);
+  font-size: 13.5px;
+  margin-bottom: 3px;
+}
+
+.phase-detail {
+  color: var(--muted);
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+
+/* ── RULES BOX ───────────────────────────────────────────── */
+.rule-cards {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.rule-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 14px 16px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.rule-icon {
+  font-size: 16px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.rule-card strong { color: var(--navy); }
+
+/* ── VCP PATTERNS ────────────────────────────────────────── */
+.pattern-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.pattern-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+}
+
+.pattern-name {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+
+.pattern-name-en {
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.pattern-meta {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+.pattern-key {
+  font-size: 11.5px;
+  color: var(--blue);
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+/* ── IRON RULES ──────────────────────────────────────────── */
+.iron-rule {
+  background: var(--bear-bg);
+  border: 1px solid #FCA5A5;
+  border-left: 3px solid var(--bear);
+  border-radius: 0 7px 7px 0;
+  padding: 14px 16px;
+  font-size: 13.5px;
+  color: #7F1D1D;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+/* ── MARKET ENV ──────────────────────────────────────────── */
+.env-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 600px) {
+  .env-grid { grid-template-columns: 1fr; }
+  .stat-row { flex-direction: column; }
+  .pattern-grid { grid-template-columns: 1fr 1fr; }
+}
+
+.env-card {
+  border-radius: 8px;
+  padding: 16px;
+  border: 1px solid transparent;
+}
+
+.env-card.bull  { background: var(--bull-bg);  border-color: #BBF7D0; }
+.env-card.shake { background: var(--warn-bg);  border-color: #FDE68A; }
+.env-card.bear  { background: var(--bear-bg);  border-color: #FCA5A5; }
+
+.env-icon { font-size: 22px; margin-bottom: 8px; }
+.env-name { font-weight: 800; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+.env-detail { font-size: 12px; line-height: 1.5; color: var(--muted); }
+.env-risk { font-size: 13px; font-weight: 700; margin-top: 10px; }
+.env-risk.bull  { color: var(--bull); }
+.env-risk.shake { color: var(--warn); }
+.env-risk.bear  { color: var(--bear); }
+
+/* ── FOOTER ──────────────────────────────────────────────── */
+.site-footer {
+  background: var(--navy);
+  padding: 32px 24px;
+  text-align: center;
+  margin-top: 0;
+}
+
+.site-footer p {
+  color: #4A6A9A;
+  font-size: 12.5px;
+  line-height: 1.7;
+}
+
+.site-footer a { color: #6A9ACE; text-decoration: none; }
+
+/* ── SCORE BOX ───────────────────────────────────────────── */
+.score-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.score-chip {
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.score-chip.good { background: var(--bull-bg); color: var(--bull); }
+.score-chip.ok   { background: var(--warn-bg); color: var(--warn); }
+.score-chip.bad  { background: var(--bear-bg); color: var(--bear); }
+
+p { margin-bottom: 14px; color: var(--text); }
+
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ───────────────────────────────────────────── -->
+<header class="site-header">
+  <!-- sparkline SVG decoration -->
+  <svg class="header-sparkline" width="320" height="120" viewBox="0 0 320 120" fill="none" aria-hidden="true">
+    <polyline
+      points="0,95 30,90 55,85 70,92 90,75 110,68 130,60 145,72 155,55 170,40 185,35 200,28 215,32 230,20 250,15 270,22 285,10 310,5 320,8"
+      stroke="white" stroke-width="2" fill="none"/>
+    <polyline
+      points="0,95 30,90 55,85 70,92 90,75 110,68 130,60 145,72 155,55 170,40 185,35 200,28 215,32 230,20 250,15 270,22 285,10 310,5 320,8 320,120 0,120"
+      fill="white" fill-opacity="0.06"/>
+    <!-- VCP contraction markers -->
+    <line x1="90" y1="60" x2="90" y2="92" stroke="#2563EB" stroke-width="1" stroke-dasharray="3,2"/>
+    <line x1="155" y1="40" x2="155" y2="72" stroke="#2563EB" stroke-width="1" stroke-dasharray="3,2"/>
+    <line x1="215" y1="24" x2="215" y2="38" stroke="#2563EB" stroke-width="1" stroke-dasharray="3,2"/>
+    <circle cx="230" cy="20" r="4" fill="#2563EB" fill-opacity="0.8"/>
+    <text x="233" y="16" fill="#3B82F6" font-size="9" font-family="monospace">Pivot</text>
+  </svg>
+
+  <div class="header-inner">
+    <p class="header-eyebrow">S3 · Claude Code 实战课 · 配套资料</p>
+    <h1 class="header-title">SEPA 炒股方法论<span>精华整理</span></h1>
+    <p class="header-subtitle">Mark Minervini · Specific Entry Point Analysis · 七大核心模块</p>
+    <div class="header-tags">
+      <span class="tag">Stage 分析</span>
+      <span class="tag">趋势模板 8 条件</span>
+      <span class="tag">VCP 形态</span>
+      <span class="tag">入场规则</span>
+      <span class="tag">仓位管理</span>
+      <span class="tag">止损三阶段</span>
+      <span class="tag">市场环境</span>
+    </div>
+  </div>
+</header>
+
+<!-- ── NAV ──────────────────────────────────────────────── -->
+<nav class="toc-strip" aria-label="章节导航">
+  <div class="toc-inner">
+    <a class="toc-link" href="#philosophy">核心哲学</a>
+    <a class="toc-link" href="#stage">Stage 分析</a>
+    <a class="toc-link" href="#template">趋势模板</a>
+    <a class="toc-link" href="#vcp">VCP 形态</a>
+    <a class="toc-link" href="#entry">入场规则</a>
+    <a class="toc-link" href="#position">仓位 &amp; 止损</a>
+    <a class="toc-link" href="#market">市场环境</a>
+  </div>
+</nav>
+
+<!-- ── MAIN ──────────────────────────────────────────────── -->
+<main class="main">
+
+  <!-- 核心哲学 -->
+  <section class="section" id="philosophy">
+    <p class="section-label">Module 01</p>
+    <h2 class="section-title">核心哲学 <span class="en">Core Philosophy</span></h2>
+
+    <div class="callout">
+      <strong>买对的股票，在对的阶段，在精确的入场点，严格控制风险。</strong><br>
+      胜率约 50–55% — 盈利来自非对称风险回报（小亏损，大盈利），而非预测方向。
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="stat-value">50–55%</div>
+        <div class="stat-label">目标胜率</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value bull">≥ 2:1</div>
+        <div class="stat-label">最低风险回报比</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value bear">7–8%</div>
+        <div class="stat-label">最大单笔止损</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">Stage 2</div>
+        <div class="stat-label">唯一买入阶段</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- Stage 分析 -->
+  <section class="section" id="stage">
+    <p class="section-label">Module 02</p>
+    <h2 class="section-title">Stage 分析 — 四阶段理论 <span class="en">Stage Analysis</span></h2>
+
+    <p>每只股票循环经历四个阶段。<strong>只在 Stage 2 买入</strong>，其余阶段观望或离场。</p>
+
+    <!-- Stage cycle diagram -->
+    <div class="stage-diagram">
+      <svg viewBox="0 0 640 180" width="100%" aria-label="四阶段市场周期示意图">
+        <!-- price line -->
+        <path d="M 40,130 Q 100,128 130,120 Q 160,112 190,85 Q 230,50 270,38 Q 310,28 340,35 Q 380,48 410,80 Q 440,110 470,130 Q 510,148 570,150 Q 600,150 620,150"
+              stroke="#94A3B8" stroke-width="1.5" fill="none" stroke-dasharray="4,3"/>
+        <!-- Stage 2 highlight segment -->
+        <path d="M 130,120 Q 170,90 210,60 Q 240,40 270,38 Q 300,36 330,38"
+              stroke="#2563EB" stroke-width="2.5" fill="none"/>
+
+        <!-- stage bands -->
+        <!-- S1 -->
+        <rect x="20" y="10" width="110" height="160" fill="#F8FAFC" rx="4"/>
+        <text x="75" y="26" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="10" font-weight="700" fill="#94A3B8" letter-spacing="1">STAGE 1</text>
+        <text x="75" y="40" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="11" fill="#64748B">蓄势</text>
+        <text x="75" y="170" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="10" fill="#94A3B8">观望</text>
+
+        <!-- S2 -->
+        <rect x="132" y="10" width="200" height="160" fill="#EFF6FF" rx="4" stroke="#2563EB" stroke-width="1.5"/>
+        <text x="232" y="26" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="10" font-weight="800" fill="#2563EB" letter-spacing="1">STAGE 2 ★</text>
+        <text x="232" y="40" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="11" font-weight="700" fill="#1D3461">上涨</text>
+        <text x="232" y="56" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="10" fill="#2563EB" font-weight="700">唯一买入阶段</text>
+        <text x="232" y="170" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="10" fill="#2563EB" font-weight="600">建仓 / 持仓</text>
+
+        <!-- S3 -->
+        <rect x="334" y="10" width="140" height="160" fill="#FFFBEB" rx="4"/>
+        <text x="404" y="26" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="10" font-weight="700" fill="#D97706" letter-spacing="1">STAGE 3</text>
+        <text x="404" y="40" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="11" fill="#64748B">顶部</text>
+        <text x="404" y="170" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="10" fill="#D97706">减仓</text>
+
+        <!-- S4 -->
+        <rect x="476" y="10" width="150" height="160" fill="#FEF2F2" rx="4"/>
+        <text x="551" y="26" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="10" font-weight="700" fill="#DC2626" letter-spacing="1">STAGE 4</text>
+        <text x="551" y="40" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="11" fill="#64748B">下跌</text>
+        <text x="551" y="170" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="10" fill="#DC2626">持币离场</text>
+
+        <!-- labels -->
+        <line x1="132" y1="5" x2="132" y2="175" stroke="#2563EB" stroke-width="1" stroke-dasharray="2,2" opacity=".5"/>
+        <line x1="334" y1="5" x2="334" y2="175" stroke="#D97706" stroke-width="1" stroke-dasharray="2,2" opacity=".4"/>
+        <line x1="476" y1="5" x2="476" y2="175" stroke="#DC2626" stroke-width="1" stroke-dasharray="2,2" opacity=".4"/>
+      </svg>
+    </div>
+
+    <p class="section-label" style="margin-bottom:10px">Stage 2 内 Base 计数（越早越安全）</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Base 次数</th><th>风险程度</th><th>建议仓位</th></tr>
+        </thead>
+        <tbody>
+          <tr class="row-highlight">
+            <td><strong>Base 1–2</strong></td>
+            <td><span class="badge badge-bull">最安全</span></td>
+            <td>满仓</td>
+          </tr>
+          <tr>
+            <td>Base 3–4</td>
+            <td><span class="badge badge-warn">仍有效</span></td>
+            <td>缩小仓位</td>
+          </tr>
+          <tr>
+            <td>Base 5–6</td>
+            <td><span class="badge badge-warn">后期</span></td>
+            <td>半仓以下</td>
+          </tr>
+          <tr>
+            <td>Base 7+</td>
+            <td><span class="badge badge-bear">高风险</span></td>
+            <td>回避，可能 Stage 3</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- 趋势模板 -->
+  <section class="section" id="template">
+    <p class="section-label">Module 03</p>
+    <h2 class="section-title">趋势模板 — 8 个必要条件 <span class="en">Trend Template</span></h2>
+
+    <p><strong>全部 8 条必须同时满足</strong>，否则不符合入场资格。</p>
+
+    <ul class="checklist">
+      <li>
+        <div class="check-num">1</div>
+        <div class="check-content">
+          <strong>Price &gt; MA150 且 Price &gt; MA200</strong>
+          <span class="detail">价格在中长期均线上方 — MA 阶梯上层</span>
+        </div>
+      </li>
+      <li>
+        <div class="check-num">2</div>
+        <div class="check-content">
+          <strong>MA150 &gt; MA200</strong>
+          <span class="detail">均线阶梯排列正确 — MA 阶梯中层</span>
+        </div>
+      </li>
+      <li>
+        <div class="check-num">3</div>
+        <div class="check-content">
+          <strong>MA200 上升趋势 ≥ 1 个月（理想 4–5 个月）</strong>
+          <span class="detail">长期趋势方向向上，不是刚转向</span>
+        </div>
+      </li>
+      <li>
+        <div class="check-num">4</div>
+        <div class="check-content">
+          <strong>MA50 &gt; MA150 且 MA50 &gt; MA200</strong>
+          <span class="detail">短期均线在中长期均线上方 — 全阶梯确认</span>
+        </div>
+      </li>
+      <li>
+        <div class="check-num">5</div>
+        <div class="check-content">
+          <strong>Price &gt; MA50</strong>
+          <span class="detail">价格在短期均线上方，近期保持强势</span>
+        </div>
+      </li>
+      <li>
+        <div class="check-num">6</div>
+        <div class="check-content">
+          <strong>价格 ≥ 52 周低点 + 30%</strong>
+          <span class="detail">已充分脱离底部，有上涨动能积累</span>
+        </div>
+      </li>
+      <li>
+        <div class="check-num">7</div>
+        <div class="check-content">
+          <strong>价格在 52 周高点 25% 以内</strong>
+          <span class="detail">接近高点，不是在低位假装强势</span>
+        </div>
+      </li>
+      <li>
+        <div class="check-num">8</div>
+        <div class="check-content">
+          <strong>RS &gt; 70 百分位（最好 85–90+）</strong>
+          <span class="detail">相对强度领先市场，机构在买入</span>
+        </div>
+      </li>
+    </ul>
+
+    <p class="section-label" style="margin-bottom:10px">评分参考</p>
+    <div class="score-row">
+      <span class="score-chip good">8/8 — 完美，可建仓</span>
+      <span class="score-chip ok">6–7/8 — 强，缺失条件需说明</span>
+      <span class="score-chip bad">&lt; 5/8 — 不符合，Skip</span>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- VCP -->
+  <section class="section" id="vcp">
+    <p class="section-label">Module 04</p>
+    <h2 class="section-title">VCP 形态 — 旗舰入场形态 <span class="en">Volatility Contraction Pattern</span></h2>
+
+    <div class="callout" style="font-style:normal">
+      <strong>VCP 核心逻辑：</strong>每次回调深度收窄 + 成交量递减 = 卖压耗尽，强者持筹，等待突破。
+      <br>典型示例：<code style="color:#7DD3FC;font-family:monospace">20% → 12% → 6% → 3%</code>（深度依次缩小）
+    </div>
+
+    <p class="section-label" style="margin-bottom:10px">7 个识别要素</p>
+    <ul class="checklist" style="margin-bottom:28px">
+      <li><div class="check-num">1</div><div class="check-content"><strong>前提：Stage 2 上涨趋势</strong><span class="detail">VCP 只在上涨趋势中出现才有效</span></div></li>
+      <li><div class="check-num">2</div><div class="check-content"><strong>回调深度依次收窄</strong><span class="detail">每次回调幅度小于上次，说明卖压减轻</span></div></li>
+      <li><div class="check-num">3</div><div class="check-content"><strong>成交量递减 + VDU（量能干涸）</strong><span class="detail">最后收缩时成交量极低，说明没有大户出货</span></div></li>
+      <li><div class="check-num">4</div><div class="check-content"><strong>更高低点</strong><span class="detail">每次回调底部高于前次，趋势结构健康</span></div></li>
+      <li><div class="check-num">5</div><div class="check-content"><strong>清晰的轴心点（Pivot Point）</strong><span class="detail">整理区间高点 = 阻力转支撑位，突破即入场</span></div></li>
+      <li><div class="check-num">6</div><div class="check-content"><strong>RS &gt; 70（最好 85+）</strong><span class="detail">整理期间相对强度仍保持领先</span></div></li>
+      <li><div class="check-num">7</div><div class="check-content"><strong>市场处于牛市或中性环境</strong><span class="detail">大盘环境决定 VCP 成功率</span></div></li>
+    </ul>
+
+    <p class="section-label" style="margin-bottom:12px">其他有效形态</p>
+    <div class="pattern-grid">
+      <div class="pattern-card">
+        <div class="pattern-name">杯柄形态 <span class="pattern-name-en">Cup w/ Handle</span></div>
+        <div class="pattern-meta">杯：12–35%<br>柄：≤ 12%<br>时长：7–65 周</div>
+        <div class="pattern-key">U 形底 + 小柄整理</div>
+      </div>
+      <div class="pattern-card">
+        <div class="pattern-name">平台整理 <span class="pattern-name-en">Flat Base</span></div>
+        <div class="pattern-meta">回调：≤ 15%<br>时长：5–10 周</div>
+        <div class="pattern-key">前高附近紧密震荡</div>
+      </div>
+      <div class="pattern-card">
+        <div class="pattern-name">牛旗 <span class="pattern-name-en">Bull Flag</span></div>
+        <div class="pattern-meta">回调：≤ 旗杆 50%<br>时长：1–5 周</div>
+        <div class="pattern-key">急涨后小幅回落</div>
+      </div>
+      <div class="pattern-card" style="border-color:#FBBF24">
+        <div class="pattern-name">高紧旗 <span class="pattern-name-en">High Tight Flag</span></div>
+        <div class="pattern-meta">回调：≤ 25%<br>（需先涨 100%+）<br>时长：1–4 周</div>
+        <div class="pattern-key" style="color:#D97706">最罕见，最强力</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- 入场规则 -->
+  <section class="section" id="entry">
+    <p class="section-label">Module 05</p>
+    <h2 class="section-title">入场规则 <span class="en">Entry Rules</span></h2>
+
+    <div class="rule-cards">
+      <div class="rule-card">
+        <span class="rule-icon">🎯</span>
+        <div>
+          <strong>买入区间：轴心价 → 轴心价 + 5%</strong><br>
+          超过 +5% 不追，等下次形态。
+        </div>
+      </div>
+      <div class="rule-card">
+        <span class="rule-icon">📊</span>
+        <div>
+          <strong>突破量能 ≥ 20 日均量 × 1.5</strong><br>
+          2× 以上为强确认信号；量能不足的突破大概率失败。
+        </div>
+      </div>
+      <div class="rule-card">
+        <span class="rule-icon">📅</span>
+        <div>
+          <strong>财报前 2 周：避免入场</strong><br>
+          财报是随机事件，不符合非对称风险原则。
+        </div>
+      </div>
+    </div>
+
+    <p class="section-label" style="margin-bottom:10px">入场前必查：风险/回报验证</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>指标</th><th>要求</th><th>不满足时</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>止损距离</td>
+            <td><span class="badge badge-blue">≤ 7–8%</span></td>
+            <td>调整入场点或放弃</td>
+          </tr>
+          <tr class="row-highlight">
+            <td>目标收益 / 止损距离</td>
+            <td><span class="badge badge-bull">≥ 2:1（最好 3:1）</span></td>
+            <td>不入场</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- 仓位 & 止损 -->
+  <section class="section" id="position">
+    <p class="section-label">Module 06</p>
+    <h2 class="section-title">仓位管理 &amp; 止损演进 <span class="en">Position &amp; Stop Loss</span></h2>
+
+    <p class="section-label" style="margin-bottom:10px">仓位公式</p>
+    <div class="formula-box">
+      <span class="comment"># 每笔交易股数计算</span><br>
+      <span class="highlight">股数</span> = ( 账户价值 × <span class="highlight">单笔风险%</span> ) ÷ ( 入场价 − 止损价 )<br><br>
+      <span class="comment"># 示例：$100,000 账户，1% 风险，止损 5%</span><br>
+      股数 = ( 100,000 × 1% ) ÷ ( 50 × 5% ) = 1,000 ÷ 2.5 = <span class="highlight">400 股</span>
+    </div>
+
+    <p class="section-label" style="margin-bottom:12px">止损三阶段演进</p>
+    <div class="phase-list">
+      <div class="phase-item">
+        <div class="phase-marker p1">P1</div>
+        <div>
+          <div class="phase-title">初始止损 — 入场时设定</div>
+          <div class="phase-detail">硬止损：入场价 −7–8%，不可协商，不可移动（除非上移）。这是你为这笔交易付出的"保险费"。</div>
+        </div>
+      </div>
+      <div class="phase-item">
+        <div class="phase-marker p2">P2</div>
+        <div>
+          <div class="phase-title">保本 — 股价达 +8% 时</div>
+          <div class="phase-detail">卖出一半仓位锁利，剩余止损上移至入场价（保本位）。最坏情况：平手出局。</div>
+        </div>
+      </div>
+      <div class="phase-item">
+        <div class="phase-marker p3">P3</div>
+        <div>
+          <div class="phase-title">移动止损 — 股价达 +15% 时</div>
+          <div class="phase-detail">再卖 25% 锁利，剩余仓位止损沿 MA20 移动跟踪，让利润奔跑。</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="section-label" style="margin-bottom:10px">铁律</p>
+    <div class="iron-rule">止损只上移，永不下移。</div>
+    <div class="iron-rule">永不摊平亏损仓位（加仓在亏损中）。</div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- 市场环境 -->
+  <section class="section" id="market">
+    <p class="section-label">Module 07</p>
+    <h2 class="section-title">市场环境 <span class="en">Market Environment</span></h2>
+
+    <p>市场环境是<strong>仓位大小的主开关</strong>。环境不对，再好的股票也不建新仓。</p>
+
+    <div class="env-grid">
+      <div class="env-card bull">
+        <div class="env-icon">🐂</div>
+        <div class="env-name">牛市</div>
+        <div class="env-detail">SPY/Nasdaq 在 200MA 上方，市场广度扩张，大多数股票上涨</div>
+        <div class="env-risk bull">单笔风险：1–2% · 最多 6–8 支</div>
+      </div>
+      <div class="env-card shake">
+        <div class="env-icon">↔️</div>
+        <div class="env-name">震荡市</div>
+        <div class="env-detail">指数横盘，突破频繁失败，个股轮动快，难以持仓</div>
+        <div class="env-risk shake">单笔风险：0.5–1% · 最多 2–3 支</div>
+      </div>
+      <div class="env-card bear">
+        <div class="env-icon">🐻</div>
+        <div class="env-name">熊市</div>
+        <div class="env-detail">指数在 200MA 下方，&gt;50% 个股低于 200MA，系统性下跌</div>
+        <div class="env-risk bear">单笔风险：0% · 持币，不建新仓</div>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>判断信号</th><th>牛市</th><th>熊市</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>SPY / QQQ 位置</td>
+            <td><span class="badge badge-bull">200MA 上方</span></td>
+            <td><span class="badge badge-bear">200MA 下方</span></td>
+          </tr>
+          <tr>
+            <td>市场广度</td>
+            <td>扩张，上涨股占多数</td>
+            <td>收缩，下跌股占多数</td>
+          </tr>
+          <tr>
+            <td>突破成功率</td>
+            <td>高，形态有效</td>
+            <td>低，频繁假突破</td>
+          </tr>
+          <tr>
+            <td>VCP 有效性</td>
+            <td><span class="badge badge-bull">正常有效</span></td>
+            <td><span class="badge badge-bear">大幅降低</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── FOOTER ────────────────────────────────────────────── -->
+<footer class="site-footer">
+  <p>
+    <strong style="color:#8BA8CE">SEPA 炒股方法论精华整理</strong><br>
+    来源：Mark Minervini · <em>Trade Like a Stock Market Wizard</em> / <em>Think &amp; Trade Like a Champion</em><br>
+    北美华人 Claude AI 课程 · Session 3 配套资料 · <a href="https://learn.austinxyz.ai">learn.austinxyz.ai</a>
+  </p>
+</footer>
+
+</body>
+</html>
