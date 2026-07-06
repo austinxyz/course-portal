@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DN5RL2PFE6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-DN5RL2PFE6');
+</script>
+<meta charset="UTF-8">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session 3 课前准备 · Claude Design + Code 建站实战</title>
+<link rel="stylesheet" href="../style.css">
+<style>
+  body { font-family: "Microsoft YaHei", "PingFang SC", -apple-system, Arial, sans-serif;
+         max-width: 780px; margin: 40px auto; padding: 0 24px; line-height: 1.8; }
+  h1 { font-size: 28px; border-left: 5px solid var(--primary); padding-left: 14px; line-height: 1.4; }
+  h2 { font-size: 21px; margin-top: 44px; color: var(--primary);
+       border-bottom: 1.5px solid #F0E0D6; padding-bottom: 8px; }
+  ol, ul { padding-left: 22px; }
+  li { margin: 8px 0; }
+  code { background: var(--code-bg); padding: 2px 6px; border-radius: 4px; font-size: 14px;
+         font-family: "SF Mono", Consolas, monospace; }
+  pre { background: #2B2620; color: var(--code-bg); padding: 16px 18px; border-radius: 8px;
+        overflow-x: auto; font-size: 13.5px; line-height: 1.6; }
+  pre code { background: none; padding: 0; color: inherit; }
+  a { color: var(--primary); }
+  .lead { font-size: 16px; }
+  .card { background: var(--white); border: 1.5px solid #F0E8E2; border-radius: 10px;
+          padding: 16px 22px; margin: 18px 0; }
+  .tip  { background: var(--primary-light); border-left: 4px solid var(--primary);
+          padding: 12px 16px; border-radius: 6px; margin: 16px 0; font-size: 15px; }
+  .ok   { background: #F0FAF4; border-left: 4px solid #3A9E6A;
+          padding: 12px 16px; border-radius: 6px; margin: 16px 0; font-size: 15px; }
+  .done-box { background: #F6EFE9; border: 1.5px solid #F0E0D6; border-radius: 10px;
+              padding: 16px 22px; margin: 18px 0; }
+  .done-box ul { list-style: none; padding-left: 4px; }
+  .done-box li { margin: 6px 0; }
+  .done-box li::before { content: "✅ "; }
+  .step-badge { display: inline-block; background: var(--primary); color: #fff;
+                font-weight: 700; font-size: 13px; border-radius: 20px;
+                padding: 2px 12px; margin-right: 8px; }
+  table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 15px; }
+  th, td { border: 1px solid var(--border); padding: 10px 12px; text-align: left; vertical-align: top; }
+  th { background: #F6EFE9; }
+  .muted { color: var(--text-muted); font-size: 14px; }
+  .checklist { list-style: none; padding-left: 4px; }
+  .checklist li { margin: 10px 0; }
+  .checklist li::before { content: "☐ "; font-size: 16px; color: var(--primary); }
+  .summary { background: var(--white); border: 2px solid var(--primary); border-radius: 12px;
+             padding: 18px 24px; margin: 32px 0; font-size: 16px; }
+</style>
+</head>
+<body>
+
+<h1>Session 3 课前准备<br>Claude Design + Code 建站实战</h1>
+
+<p class="lead">
+  这节课在 <strong>第二课（Claude Code）基础上</strong>新增两个工具：GitHub（存代码）+ Vercel（自动部署上线）。
+  如果第二课的环境还正常跑着，<strong>今天约需 5 分钟</strong>：注册 GitHub + 注册 Vercel。
+</p>
+
+<!-- ===== S2 已有 ===== -->
+<h2>S2 已经准备好了，不用重复</h2>
+
+<div class="done-box">
+  <ul>
+    <li>Claude Pro 订阅（$20/月）</li>
+    <li>Claude Code 已安装并能正常运行（<code>claude --version</code> 有输出）</li>
+    <li>Claude Code 已登录 Anthropic 账号</li>
+  </ul>
+  <p class="muted" style="margin-top:12px;">如果以上任何一条不满足，回到 S2 学员页按课前准备补上。</p>
+</div>
+
+<!-- ===== 总览 ===== -->
+<h2>S3 新增：GitHub + Vercel</h2>
+
+<table>
+  <thead>
+    <tr><th>工具</th><th>用途</th><th>费用</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>GitHub 账号</strong></td>
+      <td>存放网站代码；Vercel 监听它自动部署</td>
+      <td>免费</td>
+    </tr>
+    <tr>
+      <td><strong>Vercel 账号</strong></td>
+      <td>网站部署平台，push 一下自动上线</td>
+      <td>免费</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ===== STEP 1 ===== -->
+<h2><span class="step-badge">第 1 步</span>注册 GitHub 账号 + 配置认证</h2>
+
+<h3 style="font-size:17px; margin-top:20px;">1a. 注册账号</h3>
+<ol>
+  <li>打开 <a href="https://github.com" target="_blank">github.com</a></li>
+  <li>点右上角 <strong>Sign up</strong>，填邮箱 → 密码 → 用户名</li>
+  <li>验证邮箱，完成注册</li>
+  <li>记下你的用户名（后面要用）</li>
+</ol>
+
+<div class="tip">
+  💡 Git（已装）是本地版本控制工具；GitHub 是存代码的云端平台。两者不同，都需要。
+</div>
+
+<h3 style="font-size:17px; margin-top:20px;">1b. 配置 GitHub 认证（一次性）</h3>
+
+<p>注册完账号后，打开 Claude Code（任意目录），输入：</p>
+
+<pre><code>帮我安装 GitHub CLI 并登录 GitHub</code></pre>
+
+<p>Claude Code 会自动运行 <code>winget install --id GitHub.cli</code>（Windows）或 <code>brew install gh</code>（Mac），
+然后执行 <code>gh auth login</code>——按提示选 <code>HTTPS</code> → <code>Login with a web browser</code>，浏览器弹出页面点授权。</p>
+
+<div class="ok">
+  ✅ 完成后终端显示 <code>Logged in to github.com</code>，之后所有 git push 自动带认证。
+</div>
+
+<div class="card">
+  <strong>🙋 没用过 Git / GitHub 怎么办？</strong><br>
+  不用担心——这节课里所有 Git 操作都通过 Claude Code 完成，<strong>不需要记任何命令</strong>。例如：
+  <ul style="margin-top:8px;">
+    <li><code>帮我把当前项目初始化成 git repo 并推到 GitHub</code></li>
+    <li><code>帮我保存这次改动并推到 GitHub</code></li>
+  </ul>
+</div>
+
+<!-- ===== STEP 2 ===== -->
+<h2><span class="step-badge">第 2 步</span>注册 Vercel 账号</h2>
+
+<ol>
+  <li>打开 <a href="https://vercel.com" target="_blank">vercel.com</a></li>
+  <li>点 <strong>Sign Up</strong>，<strong>推荐用 GitHub 账号登录</strong>（课堂上 Vercel 要连接你的 GitHub repo）</li>
+  <li>授权后完成注册</li>
+</ol>
+
+<div class="tip">
+  💡 Hobby（免费）套餐完全够用：无限静态网站、自定义域名、自动 HTTPS、全球 CDN。
+</div>
+
+<!-- ===== 验证 ===== -->
+<h2>验证（10 秒）</h2>
+
+<pre><code>claude --version   # 确认正常</code></pre>
+
+<!-- ===== 检查清单 ===== -->
+<h2>上课前检查清单</h2>
+
+<div class="summary">
+  <ul class="checklist">
+    <li>Claude Pro 有效，<code>claude --version</code> 正常</li>
+    <li>已注册 GitHub 账号，记下用户名</li>
+    <li>已完成 <code>gh auth login</code>，终端显示 <code>Logged in to github.com</code></li>
+    <li>已注册 Vercel 账号（用 GitHub 登录）</li>
+  </ul>
+  <p style="margin-top:16px;">✅ <strong>四项全 OK，上课见！</strong></p>
+</div>
+
+<div class="tip">
+  💬 遇到问题发到微信群，上课前有人帮你看。
+</div>
+
+<hr style="margin: 48px 0; border: none; border-top: 1px solid #E0D8D0;">
+<p class="muted" style="text-align:center;">
+  Session 3 · Claude Design + Code 建站实战<br>
+  Austin Xu · 北美华人 Claude AI 课程 ·
+  <a href="https://elitecoach101.com" target="_blank">elitecoach101.com</a>
+</p>
+
+</body>
+</html>

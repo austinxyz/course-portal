@@ -20,6 +20,7 @@
   :root{
     --bg:#FAFAF7; --surface:#FFFFFF; --ink:#1A1A17; --muted:#73716A;
     --line:#E7E4DC; --line-strong:#D6D2C8; --accent:#BF5B38; --accent-soft:#F4E7E0;
+    --primary:#BF5B38; --primary-light:#F4E7E0;
     --mono:'IBM Plex Mono',ui-monospace,monospace;
     --sans:'IBM Plex Sans','Noto Sans SC',system-ui,sans-serif;
     --maxw:1180px;
@@ -39,8 +40,10 @@
   /* top bar */
   header.bar{position:sticky;top:0;z-index:50;background:rgba(250,250,247,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
   .bar-in{display:flex;align-items:center;justify-content:space-between;height:60px;gap:18px}
-  .brand{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-weight:600;font-size:15px;letter-spacing:-.01em;white-space:nowrap}
-  .brand .dot{width:9px;height:9px;background:var(--accent);border-radius:2px}
+  .brand{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-weight:600;font-size:15px;letter-spacing:-.01em;white-space:nowrap;transition:color .18s}
+  .brand:hover{color:var(--accent)}
+  .brand .dot{width:9px;height:9px;background:var(--accent);border-radius:2px;transition:transform .18s}
+  .brand:hover .dot{transform:scale(1.4)}
   .nav{display:flex;align-items:center;gap:26px;font-size:13.5px;color:var(--muted)}
   .nav a:hover{color:var(--ink)}
   .nav-cta{font-family:var(--mono);font-size:12.5px;color:var(--ink);border:1px solid var(--line-strong);padding:8px 14px;border-radius:6px;white-space:nowrap}
@@ -73,12 +76,23 @@
   .blink{width:8px;height:8px;border-radius:50%;background:#3fa06a;box-shadow:0 0 0 0 rgba(63,160,106,.5);animation:pulse 2s infinite}
   @keyframes pulse{70%{box-shadow:0 0 0 7px rgba(63,160,106,0)}100%{box-shadow:0 0 0 0 rgba(63,160,106,0)}}
   .next-body{padding:18px}
-  .next-item{display:flex;gap:13px;padding:13px 0;border-bottom:1px solid var(--line)}
+  .next-item{display:flex;gap:13px;padding:13px 0;border-bottom:1px solid var(--line);transition:.12s}
+  a.next-item:hover{background:var(--accent-soft);border-radius:8px;padding-left:8px;padding-right:8px;margin:0 -8px}
   .next-item:last-child{border-bottom:0}
   .next-item .when{font-family:var(--mono);font-size:12px;color:var(--accent);min-width:52px;line-height:1.3}
   .next-item .what{font-size:14px;font-weight:500}
   .next-item .what small{display:block;color:var(--muted);font-weight:400;font-size:12.5px;margin-top:2px}
   .free-pill{font-family:var(--mono);font-size:10.5px;color:#2f7d52;background:#e6f1ea;padding:2px 7px;border-radius:4px;align-self:flex-start;white-space:nowrap}
+
+  /* demo day hero banner */
+  .demoday-banner{margin-top:24px;background:var(--accent);border-radius:12px;color:#fff;padding:18px 26px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+  .dd-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.8;display:block;margin-bottom:3px}
+  .dd-title{font-size:18px;font-weight:700;letter-spacing:-.01em}
+  .dd-sub{font-size:12.5px;opacity:.82;display:block;margin-top:3px}
+  .dd-when{font-family:var(--mono);font-size:22px;font-weight:600;white-space:nowrap;flex-shrink:0}
+  .dd-cta{font-family:var(--mono);font-size:12.5px;font-weight:600;background:#fff;color:var(--accent);padding:10px 18px;border-radius:7px;white-space:nowrap;flex-shrink:0;transition:.15s}
+  .dd-cta:hover{background:#f0ece8}
+  @media(max-width:880px){.demoday-banner{flex-direction:column;align-items:flex-start;gap:14px}.dd-when{font-size:18px}}
 
   /* section scaffold */
   section{padding:72px 0}
@@ -130,6 +144,16 @@
   .bundle .b-t{font-size:15px}
   .bundle .b-p{font-family:var(--mono);font-size:24px;font-weight:600}
   .bundle .b-p del{color:#8b887e;font-size:16px;margin-right:8px}
+
+  /* S3/S4 featured */
+  .course.featured{border:2px solid var(--accent)}
+  .now-open{font-family:var(--mono);font-size:10.5px;color:#fff;background:var(--accent);padding:2px 8px;border-radius:4px;margin-left:8px;vertical-align:middle;letter-spacing:.04em;white-space:nowrap}
+  /* S3+S4 spotlight */
+  .s34-spot{margin-bottom:28px;border:2px solid var(--accent);border-radius:12px;background:var(--accent-soft);padding:20px 26px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+  .s34-spot .sp-tag{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:5px}
+  .s34-spot .sp-h{font-size:20px;font-weight:700;letter-spacing:-.01em;color:var(--ink)}
+  .s34-spot .sp-d{font-size:13.5px;color:#46443d;margin-top:5px}
+  @media(max-width:880px){.s34-spot{flex-direction:column;align-items:flex-start;gap:14px}}
 
   /* webinar */
   .webinar{background:var(--ink);color:#f1efe8}
@@ -187,13 +211,14 @@
 </head>
 <body class="lang-zh">
 
+
 <header class="bar">
   <div class="wrap bar-in">
     <a class="brand" href="#top"><span class="dot"></span><span class="zh">从零上手 Claude</span><span class="en">Learn Claude</span></a>
     <nav class="nav">
       <a class="lk" href="#instructor"><span class="zh">讲师</span><span class="en">Instructor</span></a>
       <a class="lk" href="#curriculum"><span class="zh">课程</span><span class="en">Curriculum</span></a>
-      <a class="lk" href="#webinar"><span class="zh">免费公开课</span><span class="en">Free webinar</span></a>
+      <a class="lk" href="webinar.html"><span class="zh">免费公开课</span><span class="en">Free webinar</span></a>
       <a class="lk" href="#schedule"><span class="zh">日程</span><span class="en">Schedule</span></a>
       <a class="nav-cta" href="#enroll"><span class="zh">报名</span><span class="en">Enroll</span></a>
       <div class="langtog" role="group" aria-label="Language">
@@ -211,10 +236,11 @@
   <div class="wrap hero-grid">
     <div>
       <span class="eyebrow"><span class="zh">专为北美华人 · 中文全程</span><span class="en">For North American Chinese · Taught in Chinese</span></span>
+      <span style="display:inline-block;background:#BF5B38;color:#fff;font-size:11px;font-weight:700;letter-spacing:.08em;padding:3px 10px;border-radius:4px;margin-bottom:10px;">🚧 INTERNAL PREVIEW</span>
       <h1><span class="zh">从零上手 Claude</span><span class="en">Learn Claude from Scratch</span></h1>
       <p class="lede">
-        <span class="zh">两节课，从第一次打开 Claude，到搭起你自己的 AI 知识系统。全程动手、零基础友好。</span>
-        <span class="en">Two sessions — from opening Claude for the first time to building your own AI knowledge system. Hands-on and beginner-friendly.</span>
+        <span class="zh">四节课，从第一次打开 Claude，到搭起你自己的 AI 知识系统、智能分析工具和专业网站。全程动手、零基础友好。</span>
+        <span class="en">Four sessions — from opening Claude for the first time to building your own AI knowledge system, intelligent analysis tools, and a professional website. Hands-on and beginner-friendly.</span>
       </p>
       <div class="tags">
         <span class="tag"><span class="zh">动手实操</span><span class="en">Hands-on</span></span>
@@ -222,16 +248,29 @@
         <span class="tag"><span class="zh">中文全程</span><span class="en">In Chinese</span></span>
       </div>
       <div class="cta-row">
-        <a class="btn btn-primary" href="#webinar"><span class="zh">免费公开课资料 →</span><span class="en">Free webinar materials →</span></a>
+        <a class="btn btn-primary" href="webinar.html"><span class="zh">免费公开课资料 →</span><span class="en">Free webinar materials →</span></a>
         <a class="btn btn-ghost" href="#curriculum"><span class="zh">查看课程</span><span class="en">See curriculum</span></a>
       </div>
     </div>
     <div class="card next-card">
       <div class="next-head"><span class="zh">// 近期开课</span><span class="en">// Upcoming</span><span class="blink"></span></div>
       <div class="next-body">
-        <div class="next-item"><span class="when">06/28<br>8:30 ET</span><span class="what"><span class="zh">Session 1 · 第二轮</span><span class="en">Session 1 · Round 2</span><small>Claude &amp; Cowork from Zero</small></span></div>
+        <a class="next-item" href="webinar.html"><span class="when">07/08<br>9:00 ET</span><span class="what"><span class="zh">免费公开课 · 专业知识 × Claude</span><span class="en">Free Webinar · Expertise × Claude</span><small><span class="zh">公众开放 · 赠 理财知识库 + Design System</span><span class="en">Open to all · Free wealth KB + Design System</span></small></span></a>
+        <a class="next-item" href="demoday.html"><span class="when">07/11<br>8:30 ET</span><span class="what"><span class="zh">Demo Day · 公众开放</span><span class="en">Demo Day · Open to Public</span><small><span class="zh">学员成果展示 · 旁听免费</span><span class="en">Student showcase · Free to watch</span></small></span></a>
         <div class="next-item"><span class="when">07/12<br>8:30 ET</span><span class="what"><span class="zh">Session 2 · 第二轮</span><span class="en">Session 2 · Round 2</span><small>Build with Claude Code</small></span></div>
+        <div class="next-item"><span class="when">07/19<br>8:30 ET</span><span class="what"><span class="zh">Session 3 · 从设计到上线</span><span class="en">Session 3 · Design to Launch</span><small><span class="zh">Claude Design + Code 专业网站实战</span><span class="en">Claude Design + Code · Professional site</span></small></span></div>
       </div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="demoday-banner">
+      <div style="flex:1;min-width:180px">
+        <span class="dd-eyebrow"><span class="zh">// 即将开播 · 公众开放</span><span class="en">// Coming Up · Open to Public</span></span>
+        <div class="dd-title"><span class="zh">Demo Day · 学员 AI 作品现场展示</span><span class="en">Demo Day · Student AI Showcase</span></div>
+        <span class="dd-sub"><span class="zh">现场演示 · 免费旁听 · 欢迎带朋友</span><span class="en">Live demos · Free to watch · Bring a friend</span></span>
+      </div>
+      <div class="dd-when">07 / 11 &nbsp;·&nbsp; 8:30 ET</div>
+      <a class="dd-cta" href="demoday.html"><span class="zh">查看 Demo Day →</span><span class="en">See Demo Day →</span></a>
     </div>
   </div>
 </section>
@@ -243,9 +282,11 @@
       <div style="font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:4px"><span class="zh">已报名学员</span><span class="en">Enrolled students</span></div>
       <div style="font-size:15px;font-weight:600;color:var(--ink)"><span class="zh">直接进入学员专区 → 录像 / 作业 / 课程材料</span><span class="en">Go to student portal → recordings / homework / materials</span></div>
     </div>
-    <div style="display:flex;gap:10px;flex-shrink:0">
-      <a href="https://austinxyz.github.io/course-portal/c/claude-s1.html" target="_blank" style="display:inline-flex;align-items:center;gap:6px;padding:10px 18px;background:var(--primary);color:white;border-radius:8px;font-weight:700;font-size:14px;text-decoration:none">🔑 <span class="zh">S1 学员专区</span><span class="en">S1 Portal</span></a>
-      <a href="https://austinxyz.github.io/course-portal/c/claude-s2.html" target="_blank" style="display:inline-flex;align-items:center;gap:6px;padding:10px 18px;background:var(--primary);color:white;border-radius:8px;font-weight:700;font-size:14px;text-decoration:none">🔑 <span class="zh">S2 学员专区</span><span class="en">S2 Portal</span></a>
+    <div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap">
+      <a href="c/claude-s1.html" style="display:inline-flex;align-items:center;gap:6px;padding:10px 18px;background:var(--primary);color:white;border-radius:8px;font-weight:700;font-size:14px;text-decoration:none">🔑 <span class="zh">S1 学员专区</span><span class="en">S1 Portal</span></a>
+      <a href="c/claude-s2.html" style="display:inline-flex;align-items:center;gap:6px;padding:10px 18px;background:var(--primary);color:white;border-radius:8px;font-weight:700;font-size:14px;text-decoration:none">🔑 <span class="zh">S2 学员专区</span><span class="en">S2 Portal</span></a>
+      <a href="c/claude-s3.html" style="display:inline-flex;align-items:center;gap:6px;padding:10px 18px;background:var(--primary);color:white;border-radius:8px;font-weight:700;font-size:14px;text-decoration:none">🔑 <span class="zh">S3 学员专区</span><span class="en">S3 Portal</span></a>
+      <a href="c/claude-s4.html" style="display:inline-flex;align-items:center;gap:6px;padding:10px 18px;background:var(--primary);color:white;border-radius:8px;font-weight:700;font-size:14px;text-decoration:none">🔑 <span class="zh">S4 学员专区</span><span class="en">S4 Portal</span></a>
     </div>
   </div>
 </section>
@@ -284,7 +325,15 @@
 <!-- CURRICULUM -->
 <section id="curriculum">
   <div class="wrap">
-    <div class="sec-head"><span class="sec-num">01</span><div><h2><span class="zh">课程内容</span><span class="en">Curriculum</span></h2><div class="sub"><span class="zh">两节动手课 · 每节 150 分钟</span><span class="en">Two hands-on sessions · 150 min each</span></div></div></div>
+    <div class="sec-head"><span class="sec-num">01</span><div><h2><span class="zh">课程内容</span><span class="en">Curriculum</span></h2><div class="sub"><span class="zh">四节动手课 · 每节 150 分钟</span><span class="en">Four hands-on sessions · 150 min each</span></div></div></div>
+    <div class="s34-spot">
+      <div style="flex:1;min-width:200px">
+        <span class="sp-tag"><span class="zh">// 本轮重点推介</span><span class="en">// Featured This Round</span></span>
+        <div class="sp-h"><span class="zh">Session 3 · 现已开放报名</span><span class="en">Session 3 · Now Enrolling</span></div>
+        <div class="sp-d"><span class="zh">7月中下旬开课 · 七步完成专业网站 · 从 Brief 到 Vercel 上线</span><span class="en">Mid–late July · Seven steps to a live professional site · Brief to Vercel</span></div>
+      </div>
+      <a class="btn btn-primary" href="#enroll"><span class="zh">报名 S3 →</span><span class="en">Enroll in S3 →</span></a>
+    </div>
     <div class="courses">
       <div class="course">
         <div class="ctop"><span class="sidx">SESSION 1</span><span class="price">$199<small> <span class="zh">/单节</span><span class="en">/ session</span></small></span></div>
@@ -327,46 +376,57 @@
         <a class="btn btn-primary" href="#enroll" style="margin-top:18px;width:100%;justify-content:center"><span class="zh">立即报名 S2 →</span><span class="en">Enroll in S2 →</span></a>
         <a class="btn" href="https://forms.gle/2pjPiERkZe9RfDWk6" target="_blank" style="margin-top:10px;width:100%;justify-content:center;border-color:#BF5B38;color:#BF5B38;background:#F4E7E0;font-size:13px">⭐ <span class="zh">上完课了？花 2 分钟留个 Feedback</span><span class="en">Took the class? Leave feedback (2 min)</span></a>
       </div>
+      <div class="course featured">
+        <div class="ctop"><span class="sidx">SESSION 3 <span class="now-open"><span class="zh">开放报名</span><span class="en">Enrolling</span></span></span><span class="price">$199<small> <span class="zh">/单节</span><span class="en">/ session</span></small></span></div>
+        <h3><span class="zh">从设计到上线 — 用 Claude Design + Code 做专业网站</span><span class="en">Design to Launch — Build a Professional Website with Claude Design + Code</span></h3>
+        <p class="desc">
+          <span class="zh">七步完成一个真实上线的网站：Brief → 设计稿 → CLAUDE.md → HTML → 补充页面 → GitHub → Vercel。课程同时深入介绍 Claude Design 的完整设计能力——不只是建站，还包括 UI 原型、视觉排版、品牌风格定制等——带你真正用好这个设计工具。</span>
+          <span class="en">Seven steps to a live website: Brief → design → CLAUDE.md → HTML → extra pages → GitHub → Vercel. The course also dives deep into Claude Design's full capabilities — not just site-building, but UI prototyping, visual layout, and brand style customization — so you can truly master it as a design tool.</span>
+        </p>
+        <ul class="meta-list">
+          <li><span class="zh">150 分钟 · 理论 + 实操演示 + 答疑</span><span class="en">150 min · Theory + hands-on demo + Q&amp;A</span></li>
+          <li><span class="zh">录像回放 · 专属学员群 · 作业批改</span><span class="en">Recording · Private student group · Homework review</span></li>
+        </ul>
+        <span class="when-pill"><span class="zh">7月中下旬 · 即将开课</span><span class="en">Mid–late July · Coming Soon</span></span>
+        <div class="res">
+          <div class="res-label"><span class="zh">课程资源与入口</span><span class="en">Resources &amp; portal</span></div>
+          <a class="rlink" href="c/s3-prep.html"><span>📋 <span class="zh">课前准备（装好 Claude Code + GitHub + Vercel）</span><span class="en">Pre-class prep (Claude Code + GitHub + Vercel)</span></span><span class="rt pub"><span class="zh">公开</span><span class="en">Public</span></span></a>
+          <a class="rlink" href="c/claude-s3.html"><span>🔑 <span class="zh">学员专区 · 录像 / 作业 / Q&amp;A</span><span class="en">Student portal · videos / homework / Q&amp;A</span></span><span class="rt lock"><span class="zh">需 S3 密码</span><span class="en">S3 password</span></span></a>
+        </div>
+        <a class="btn btn-primary" href="#enroll" style="margin-top:18px;width:100%;justify-content:center"><span class="zh">立即报名 S3 →</span><span class="en">Enroll in S3 →</span></a>
+        <a class="btn" href="https://forms.gle/2pjPiERkZe9RfDWk6" target="_blank" style="margin-top:10px;width:100%;justify-content:center;border-color:#BF5B38;color:#BF5B38;background:#F4E7E0;font-size:13px">⭐ <span class="zh">上完课了？花 2 分钟留个 Feedback</span><span class="en">Took the class? Leave feedback (2 min)</span></a>
+      </div>
+      <div class="course featured">
+        <div class="ctop"><span class="sidx">SESSION 4</span><span class="price">$199<small> <span class="zh">/单节</span><span class="en">/ session</span></small></span></div>
+        <h3><span class="zh">AI 炒股分析系统 — 从方法论到可运行 Skill</span><span class="en">AI Stock Analysis System — From Methodology to Runnable Skill</span></h3>
+        <p class="desc">
+          <span class="zh">讲师整合基本面与技术面分析理论，开发出课程专属炒股框架 stock-analysis-lite，带你拆解它的每一层设计逻辑——然后亲手写出属于自己的 /market-daily Skill。学完你不只是会用这个框架，而是真正懂得如何从零开发一个 Skill，从零搭建一套智能股票分析系统。</span>
+          <span class="en">The instructor distilled fundamental and technical analysis theories into the course-exclusive stock-analysis-lite framework, then walks you through every design decision layer by layer — so you can build your own /market-daily Skill from scratch. You leave not just knowing how to use the framework, but understanding how to build an intelligent stock analysis system from the ground up.</span>
+        </p>
+        <ul class="meta-list">
+          <li><span class="zh">150 分钟 · 理论 + 实操演示 + 答疑</span><span class="en">150 min · Theory + hands-on demo + Q&amp;A</span></li>
+          <li><span class="zh">录像回放 · 专属学员群 · 作业批改</span><span class="en">Recording · Private student group · Homework review</span></li>
+        </ul>
+        <span class="when-pill"><span class="zh">7月中下旬 · 即将开课</span><span class="en">Mid–late July · Coming Soon</span></span>
+        <div class="res">
+          <div class="res-label"><span class="zh">课程资源与入口</span><span class="en">Resources &amp; portal</span></div>
+          <a class="rlink" href="c/s4-prep.html"><span>📋 <span class="zh">课前准备（装好 Git + VS Code + Python）</span><span class="en">Pre-class prep (Git + VS Code + Python)</span></span><span class="rt pub"><span class="zh">公开</span><span class="en">Public</span></span></a>
+          <a class="rlink" href="c/claude-s4.html"><span>🔑 <span class="zh">学员专区 · 录像 / 作业 / Q&amp;A</span><span class="en">Student portal · videos / homework / Q&amp;A</span></span><span class="rt lock"><span class="zh">需 S4 密码</span><span class="en">S4 password</span></span></a>
+        </div>
+        <p style="margin-top:18px;text-align:center;font-size:13.5px;color:var(--text-muted)"><span class="zh">报名渠道即将开放，敬请关注</span><span class="en">Enrollment coming soon — stay tuned</span></p>
+      </div>
       <div class="bundle">
-        <div class="b-t"><span class="zh">两节合买 · 一次拿下完整路径</span><span class="en">Bundle both sessions · the complete path</span></div>
+        <div class="b-t"><span class="zh">S1+S2 合买 · Claude 基础全覆盖</span><span class="en">S1+S2 Bundle · Full Claude foundation</span></div>
+        <div class="b-p"><del>$398</del>$349 <span style="font-size:13px;color:#e0ad97"><span class="zh">省 $49</span><span class="en">save $49</span></span></div>
+        <a class="btn btn-primary" href="#enroll" style="margin-top:16px;justify-content:center"><span class="zh">合买报名 →</span><span class="en">Bundle enroll →</span></a>
+      </div>
+      <div class="bundle">
+        <div class="b-t"><span class="zh">S2+S3 合买 · Claude Code + Design 全栈</span><span class="en">S2+S3 Bundle · Claude Code + Design Full Stack</span></div>
         <div class="b-p"><del>$398</del>$349 <span style="font-size:13px;color:#e0ad97"><span class="zh">省 $49</span><span class="en">save $49</span></span></div>
         <a class="btn btn-primary" href="#enroll" style="margin-top:16px;justify-content:center"><span class="zh">合买报名 →</span><span class="en">Bundle enroll →</span></a>
       </div>
     </div>
-    <p class="portal-note"><span class="zh">学员专区按所报课程分别登录：报了 Session 1 用 S1 密码，报了 Session 2 用 S2 密码，两区互相独立。课前准备与课后指南完全公开，无需密码。</span><span class="en">The student portal is gated per session — use the S1 password if you enrolled in Session 1, the S2 password for Session 2; the two are separate. Pre-class prep and the post-class guide are fully public, no password needed.</span></p>
-  </div>
-</section>
-
-<!-- WEBINAR -->
-<section class="webinar" id="webinar">
-  <div class="wrap web-grid">
-    <div>
-      <span class="eyebrow">🎁 <span class="zh">免费公开课 · 预习材料</span><span class="en">Free webinar · Preview materials</span></span>
-      <h2><span class="zh">你的 AI 为什么总是"差点意思"？</span><span class="en">Why Does Your AI Always Feel "Almost There"?</span></h2>
-      <p class="web-when"><span class="zh">📅 已举办（6月24日）· 以下预习材料仍完全免费</span><span class="en">📅 Held Jun 24 · Preview materials below remain free</span></p>
-      <ul class="web-list">
-        <li><span class="k">01</span><span><span class="zh">AI 给通用答案的根本原因</span><span class="en">Why AI gives generic answers</span></span></li>
-        <li><span class="k">02</span><span><span class="zh">怎么让 AI 调用你的专业积累</span><span class="en">How to make AI use your expertise</span></span></li>
-        <li><span class="k">03</span><span><span class="zh">三步走方法 + 真实领域案例演示</span><span class="en">3-step method + real case demos</span></span></li>
-      </ul>
-    </div>
-    <div class="web-cards">
-      <a class="web-card" href="https://austinxyz.github.io/blogs/wealth-guide.html">
-        <div class="t"><span class="zh">💰 财富知识入门教程</span><span class="en">💰 Wealth Knowledge Starter Guide</span></div>
-        <div class="d"><span class="zh">用 AI 建立个人财富知识库：投资分析、财务规划、美股基础速查。无需报名。</span><span class="en">Build a personal wealth knowledge base with AI: investment analysis, financial planning, US stock basics. No registration.</span></div>
-        <div class="go">OPEN GUIDE →</div>
-      </a>
-      <a class="web-card" href="https://austinxyz.github.io/blogs/life-compass-guide.html">
-        <div class="t"><span class="zh">🧭 人生罗盘入门教程</span><span class="en">🧭 Life Compass Starter Guide</span></div>
-        <div class="d"><span class="zh">用 Claude Cowork 做人生规划：价值观梳理、目标分解、定期复盘。无需报名。</span><span class="en">Use Claude Cowork for life planning: values clarification, goal breakdown, regular review. No registration.</span></div>
-        <div class="go">OPEN GUIDE →</div>
-      </a>
-      <a class="web-card" href="https://austinxyz.github.io/course-portal/dl/preclass-webinar.pptx">
-        <div class="t"><span class="zh">📊 课前直播 PPT</span><span class="en">📊 Pre-class webinar slides</span></div>
-        <div class="d"><span class="zh">公开课讲义：AI 如何改变个人财富管理、Claude 实操入门。</span><span class="en">Webinar slides: how AI is changing personal finance, plus a Claude intro.</span></div>
-        <div class="go">DOWNLOAD SLIDES ↓</div>
-      </a>
-    </div>
+    <p class="portal-note"><span class="zh">学员专区按所报课程分别登录：报了哪节课用哪节的密码，各区互相独立。课前准备与课后指南完全公开，无需密码。</span><span class="en">The student portal is gated per session — use the password for the session you enrolled in; portals are independent. Pre-class prep and post-class guides are fully public, no password needed.</span></p>
   </div>
 </section>
 
@@ -375,11 +435,13 @@
   <div class="wrap">
     <div class="sec-head"><span class="sec-num">02</span><h2><span class="zh">近期开课</span><span class="en">Upcoming sessions</span></h2></div>
     <div class="sched">
-      <div class="srow"><span class="sd">06/28 · 8:30 ET</span><span class="st"><span class="zh">Session 1 · 第二轮</span><span class="en">Session 1 · Round 2</span></span><span class="sk"><span class="zh">付费 · 限额</span><span class="en">Paid · Limited</span></span></div>
-      <div class="srow"><span class="sd">07/11 · 8:30 ET</span><span class="st"><span class="zh">Demo Day · 学员成果展示</span><span class="en">Demo Day · Student showcase</span><small><span class="zh">S1+S2 各5位学员现场演示真实 AI 项目</span><span class="en">10 students demo real AI projects live</span></small></span><span class="sk"><span class="zh">学员专属</span><span class="en">Students only</span></span></div>
+      <div class="srow"><span class="sd">06/28 · 8:30 ET</span><span class="st"><span class="zh">Session 1 · 第二轮</span><span class="en">Session 1 · Round 2</span></span><span class="sk"><span class="zh">已结束</span><span class="en">Ended</span></span></div>
+      <div class="srow"><span class="sd">07/08 · 9:00 ET</span><span class="st"><span class="zh">免费公开课 · 专业知识 × Claude = 可运行 AI 产品</span><span class="en">Free Webinar · Expertise × Claude = Runnable AI Product</span><small><span class="zh">公众开放 · 赠 理财知识库模板 + Design System 文件</span><span class="en">Open to all · Free wealth KB template + Design System</span></small></span><span class="sk free"><span class="zh">免费</span><span class="en">Free</span></span></div>
+      <div class="srow"><span class="sd">07/11 · 8:30 ET</span><span class="st"><span class="zh">Demo Day · 学员成果展示</span><span class="en">Demo Day · Student showcase</span><small><span class="zh">S1+S2 各6位学员现场演示真实 AI 项目 · 旁听公众开放 · 兴趣小组加入需学员身份</span><span class="en">12 students demo real AI projects live · Open to public to observe · Interest group requires student status</span></small></span><span class="sk free"><span class="zh">旁听免费</span><span class="en">Free to watch</span></span></div>
       <div class="srow"><span class="sd">07/12 · 8:30 ET</span><span class="st"><span class="zh">Session 2 · 第二轮</span><span class="en">Session 2 · Round 2</span></span><span class="sk"><span class="zh">付费 · 限额</span><span class="en">Paid · Limited</span></span></div>
       <div class="srow"><span class="sd"><span class="zh">7 月起</span><span class="en">From July</span></span><span class="st"><span class="zh">学员兴趣小组 · 4 个方向</span><span class="en">Student interest groups · 4 tracks</span><small><span class="zh">财富管理 · 炒股分析 · 内容创作 · 工作流自动化</span><span class="en">Wealth mgmt · Stock analysis · Content creation · Workflow automation</span></small></span><span class="sk"><span class="zh">学员专属</span><span class="en">Students only</span></span></div>
-      <div class="srow"><span class="sd"><span class="zh">敬请期待</span><span class="en">Coming soon</span></span><span class="st"><span class="zh">Claude Cowork / Code · Session 3 + 更多新课</span><span class="en">Claude Cowork / Code · Session 3 + more in development</span></span><span class="sk"><span class="zh">开发中</span><span class="en">In dev</span></span></div>
+      <div class="srow"><span class="sd">07/19 · 8:30 ET</span><span class="st"><span class="zh">Session 3 · 从设计到上线 · Claude Design + Code 专业网站</span><span class="en">Session 3 · Design to Launch · Professional Website</span></span><span class="sk"><span class="zh">付费 · 开放报名</span><span class="en">Paid · Enrolling</span></span></div>
+      <div class="srow"><span class="sd"><span class="zh">7 月中下旬</span><span class="en">Mid–late July</span></span><span class="st"><span class="zh">Session 4 · AI 炒股分析系统</span><span class="en">Session 4 · AI Stock Analysis System</span></span><span class="sk"><span class="zh">付费 · 即将开放</span><span class="en">Paid · Coming soon</span></span></div>
     </div>
   </div>
 </section>
@@ -477,13 +539,12 @@
 
       </div>
       <div class="panel">
-        <span class="eyebrow">🎤 Demo Day</span>
-        <h3><span class="zh">学员成果展示</span><span class="en">Student project showcase</span></h3>
-        <p><span class="zh">每人约 10 分钟。知识库、Skill、自动化流程……不需要完美，有成果就行。6 月底 Zoom 线上，名额约 10 人（S1 + S2 合并）。</span><span class="en">~10 min each. Knowledge bases, Skills, automation workflows — doesn't need to be perfect. Late June on Zoom, ~10 spots (S1 + S2 combined).</span></p>
-        <p class="mini"><span class="zh">超额时按项目类型多样性及作业成绩筛选，一周内通知。</span><span class="en">If oversubscribed, selection is by project diversity and homework scores; notified within a week.</span></p>
+        <span class="eyebrow">🎤 Demo Day · 7/11 8:30 PM ET</span>
+        <h3><span class="zh">学员成果展示夜</span><span class="en">Student showcase night</span></h3>
+        <p><span class="zh">12 位学员现场演示真实 AI 项目。三件事：① 见优秀学员的方法论可以直接用；② Demo 后有专项答疑课，no one left behind；③ 按方向组建兴趣小组，一起持续做下去。</span><span class="en">12 students demo real AI projects live. Three things: ① learn reusable methodology from top students; ② follow-up Q&amp;A session after — no one left behind; ③ interest groups by track for ongoing support.</span></p>
         <div class="cta-row" style="margin-top:18px">
-          <a class="btn btn-ghost" href="https://austinxyz.github.io/course-portal/demoday-5c.html"><span class="zh">📖 先导文章 5C</span><span class="en">📖 Intro article: 5C</span></a>
-          <a class="btn btn-primary" href="https://forms.gle/AyaZj3Vpzdq9q1So9"><span class="zh">📝 立即报名 →</span><span class="en">📝 Apply now →</span></a>
+          <a class="btn btn-primary" href="demoday.html"><span class="zh">🎤 Demo Day 详情 →</span><span class="en">🎤 Demo Day details →</span></a>
+          <a class="btn btn-ghost" href="demoday-5c.html"><span class="zh">📖 先导文章 5C</span><span class="en">📖 Intro article: 5C</span></a>
         </div>
       </div>
     </div>
