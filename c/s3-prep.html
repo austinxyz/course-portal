@@ -12,7 +12,7 @@
 <meta charset="UTF-8">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Session 3 课前准备 · AI 炒股分析系统</title>
+<title>Session 3 课前准备 · Claude Design + Code 建站实战</title>
 <link rel="stylesheet" href="../style.css">
 <style>
   body { font-family: "Microsoft YaHei", "PingFang SC", -apple-system, Arial, sans-serif;
@@ -52,21 +52,15 @@
   .checklist li::before { content: "☐ "; font-size: 16px; color: var(--primary); }
   .summary { background: var(--white); border: 2px solid var(--primary); border-radius: 12px;
              padding: 18px 24px; margin: 32px 0; font-size: 16px; }
-  .os-tabs { display: flex; gap: 8px; margin: 12px 0 4px; }
-  .os-tab { background: #F0E8E2; border: none; border-radius: 6px; padding: 5px 14px;
-            font-size: 14px; cursor: pointer; font-family: inherit; }
-  .os-tab.active { background: var(--primary); color: #fff; }
-  .os-block { display: none; }
-  .os-block.active { display: block; }
 </style>
 </head>
 <body>
 
-<h1>Session 3 课前准备<br>AI 炒股分析系统——从方法论到可运行 Skill</h1>
+<h1>Session 3 课前准备<br>Claude Design + Code 建站实战</h1>
 
 <p class="lead">
-  这节课在 <strong>第二课（Claude Code）基础上</strong>新增三个工具：Git（版本控制）、GitHub 账号（存代码）、VS Code（查看和编辑文件）。另外课程脚本用到 Python + yfinance，需要提前装好。<br>
-  <strong>预计准备时间：15–20 分钟。</strong>
+  这节课在 <strong>第二课（Claude Code）基础上</strong>新增两个工具：GitHub（存代码）+ Vercel（自动部署上线）。
+  如果第二课的环境还正常跑着，<strong>今天约需 5 分钟</strong>：注册 GitHub + 注册 Vercel。
 </p>
 
 <!-- ===== S2 已有 ===== -->
@@ -82,7 +76,7 @@
 </div>
 
 <!-- ===== 总览 ===== -->
-<h2>S3 新增工具一览</h2>
+<h2>S3 新增：GitHub + Vercel</h2>
 
 <table>
   <thead>
@@ -90,149 +84,72 @@
   </thead>
   <tbody>
     <tr>
-      <td><strong>Git</strong></td>
-      <td>本地版本控制；Claude Code 内部也依赖它</td>
-      <td>免费</td>
-    </tr>
-    <tr>
       <td><strong>GitHub 账号</strong></td>
-      <td>存放 stock-analysis-lite 工具包；后续课程也会用到</td>
+      <td>存放网站代码；Vercel 监听它自动部署</td>
       <td>免费</td>
     </tr>
     <tr>
-      <td><strong>VS Code</strong></td>
-      <td>查看和编辑 Skill 文件、Python 脚本</td>
-      <td>免费</td>
-    </tr>
-    <tr>
-      <td><strong>Python 3 + yfinance</strong></td>
-      <td>课程数据拉取脚本（<code>ticker_scan.py</code>）</td>
+      <td><strong>Vercel 账号</strong></td>
+      <td>网站部署平台，push 一下自动上线</td>
       <td>免费</td>
     </tr>
   </tbody>
 </table>
 
-<!-- ===== STEP 1: Git ===== -->
-<h2><span class="step-badge">第 1 步</span>安装 Git</h2>
+<!-- ===== STEP 1 ===== -->
+<h2><span class="step-badge">第 1 步</span>注册 GitHub 账号 + 配置认证</h2>
 
-<div class="os-tabs">
-  <button class="os-tab active" onclick="switchOS('win', this)">Windows</button>
-  <button class="os-tab" onclick="switchOS('mac', this)">macOS</button>
-</div>
-
-<div id="git-win" class="os-block active">
-  <ol>
-    <li>打开 <a href="https://git-scm.com/download/win" target="_blank">git-scm.com/download/win</a></li>
-    <li>下载安装包，双击运行，一路点 <strong>Next</strong>（默认选项即可）</li>
-    <li>安装完后打开 <strong>PowerShell</strong> 或 <strong>命令提示符</strong>，输入：
-      <pre><code>git --version</code></pre>
-    </li>
-  </ol>
-</div>
-
-<div id="git-mac" class="os-block">
-  <ol>
-    <li>打开 <strong>终端（Terminal）</strong>，输入：
-      <pre><code>xcode-select --install</code></pre>
-    </li>
-    <li>弹出对话框点 <strong>安装</strong>，等待完成（含 Git）</li>
-    <li>验证：
-      <pre><code>git --version</code></pre>
-    </li>
-  </ol>
-</div>
-
-<div class="ok">
-  ✅ 看到类似 <code>git version 2.x.x</code> 即为成功。
-</div>
-
-<!-- ===== STEP 2: GitHub ===== -->
-<h2><span class="step-badge">第 2 步</span>注册 GitHub 账号</h2>
-
+<h3 style="font-size:17px; margin-top:20px;">1a. 注册账号</h3>
 <ol>
   <li>打开 <a href="https://github.com" target="_blank">github.com</a></li>
   <li>点右上角 <strong>Sign up</strong>，填邮箱 → 密码 → 用户名</li>
   <li>验证邮箱，完成注册</li>
-  <li>记下你的 GitHub 用户名（后面 Clone 课程工具包要用）</li>
+  <li>记下你的用户名（后面要用）</li>
 </ol>
 
 <div class="tip">
-  💡 Git 是本地工具；GitHub 是云端平台。两者名字像但不是同一个东西，都需要。
+  💡 Git（已装）是本地版本控制工具；GitHub 是存代码的云端平台。两者不同，都需要。
 </div>
 
-<!-- ===== STEP 3: VS Code ===== -->
-<h2><span class="step-badge">第 3 步</span>安装 VS Code</h2>
+<h3 style="font-size:17px; margin-top:20px;">1b. 配置 GitHub 认证（一次性）</h3>
 
-<ol>
-  <li>打开 <a href="https://code.visualstudio.com" target="_blank">code.visualstudio.com</a></li>
-  <li>点蓝色 <strong>Download</strong> 按钮，下载对应系统的安装包</li>
-  <li>双击安装，保持默认选项</li>
-  <li>安装完打开 VS Code，确认能看到欢迎页即可</li>
-</ol>
+<p>注册完账号后，打开 Claude Code（任意目录），输入：</p>
 
-<div class="card">
-  <strong>课上 VS Code 用来做什么？</strong>
-  <ul style="margin-top:8px;">
-    <li>打开 <code>stock-analysis-lite</code> 工具包，浏览 Skill 文件结构</li>
-    <li>查看和编辑 <code>.claude/commands/</code> 里的 Skill 定义文件</li>
-    <li>查看 Python 脚本（不需要写 Python，只是看逻辑）</li>
-  </ul>
-  <p class="muted" style="margin-top:8px;">所有代码的实际编写和运行都通过 Claude Code 完成，VS Code 是你的"查看窗口"。</p>
-</div>
+<pre><code>帮我安装 GitHub CLI 并登录 GitHub</code></pre>
 
-<!-- ===== STEP 4: Python + yfinance ===== -->
-<h2><span class="step-badge">第 4 步</span>安装 Python 3 + yfinance</h2>
-
-<h3 style="font-size:17px; margin-top:20px;">4a. 检查 Python 是否已安装</h3>
-
-打开终端 / PowerShell，输入：
-
-<pre><code>python --version</code></pre>
-
-<p>如果看到 <code>Python 3.x.x</code>，跳到 4b 直接装 yfinance。<br>
-如果报错或显示 Python 2，按下方步骤安装。</p>
-
-<div class="os-tabs">
-  <button class="os-tab active" onclick="switchOS('pywin', this)">Windows</button>
-  <button class="os-tab" onclick="switchOS('pymac', this)">macOS</button>
-</div>
-
-<div id="python-pywin" class="os-block active">
-  <ol>
-    <li>打开 <a href="https://www.python.org/downloads/" target="_blank">python.org/downloads</a></li>
-    <li>下载最新 Python 3（点黄色大按钮）</li>
-    <li>安装时 <strong>必须勾选 "Add Python to PATH"</strong>（默认不勾，注意！）</li>
-    <li>安装完重新开一个 PowerShell 窗口，再运行 <code>python --version</code></li>
-  </ol>
-</div>
-
-<div id="python-pymac" class="os-block">
-  <ol>
-    <li>打开终端，输入：
-      <pre><code>brew install python</code></pre>
-      （没有 Homebrew？先运行 <code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code>）
-    </li>
-    <li>验证：<code>python3 --version</code></li>
-  </ol>
-</div>
-
-<h3 style="font-size:17px; margin-top:24px;">4b. 安装 yfinance</h3>
-
-<pre><code>pip install yfinance</code></pre>
-
-<p class="muted">macOS 用户如果 pip 报错，改用 <code>pip3 install yfinance</code>。</p>
+<p>Claude Code 会自动运行 <code>winget install --id GitHub.cli</code>（Windows）或 <code>brew install gh</code>（Mac），
+然后执行 <code>gh auth login</code>——按提示选 <code>HTTPS</code> → <code>Login with a web browser</code>，浏览器弹出页面点授权。</p>
 
 <div class="ok">
-  ✅ 验证：<code>python -c "import yfinance; print('ok')"</code> 输出 <code>ok</code> 即成功。
+  ✅ 完成后终端显示 <code>Logged in to github.com</code>，之后所有 git push 自动带认证。
+</div>
+
+<div class="card">
+  <strong>🙋 没用过 Git / GitHub 怎么办？</strong><br>
+  不用担心——这节课里所有 Git 操作都通过 Claude Code 完成，<strong>不需要记任何命令</strong>。例如：
+  <ul style="margin-top:8px;">
+    <li><code>帮我把当前项目初始化成 git repo 并推到 GitHub</code></li>
+    <li><code>帮我保存这次改动并推到 GitHub</code></li>
+  </ul>
+</div>
+
+<!-- ===== STEP 2 ===== -->
+<h2><span class="step-badge">第 2 步</span>注册 Vercel 账号</h2>
+
+<ol>
+  <li>打开 <a href="https://vercel.com" target="_blank">vercel.com</a></li>
+  <li>点 <strong>Sign Up</strong>，<strong>推荐用 GitHub 账号登录</strong>（课堂上 Vercel 要连接你的 GitHub repo）</li>
+  <li>授权后完成注册</li>
+</ol>
+
+<div class="tip">
+  💡 Hobby（免费）套餐完全够用：无限静态网站、自定义域名、自动 HTTPS、全球 CDN。
 </div>
 
 <!-- ===== 验证 ===== -->
-<h2>全部验证（1 分钟）</h2>
+<h2>验证（10 秒）</h2>
 
-<pre><code>claude --version          # Claude Code 正常
-git --version             # Git 已装
-python --version          # Python 3.x
-python -c "import yfinance; print('yfinance ok')"</code></pre>
+<pre><code>claude --version   # 确认正常</code></pre>
 
 <!-- ===== 检查清单 ===== -->
 <h2>上课前检查清单</h2>
@@ -240,13 +157,11 @@ python -c "import yfinance; print('yfinance ok')"</code></pre>
 <div class="summary">
   <ul class="checklist">
     <li>Claude Pro 有效，<code>claude --version</code> 正常</li>
-    <li>Git 已安装，<code>git --version</code> 有输出</li>
-    <li>GitHub 账号已注册，记下用户名</li>
-    <li>VS Code 已安装，能正常打开</li>
-    <li><code>python --version</code> 显示 Python 3.x</li>
-    <li><code>python -c "import yfinance; print('ok')"</code> 输出 <code>ok</code></li>
+    <li>已注册 GitHub 账号，记下用户名</li>
+    <li>已完成 <code>gh auth login</code>，终端显示 <code>Logged in to github.com</code></li>
+    <li>已注册 Vercel 账号（用 GitHub 登录）</li>
   </ul>
-  <p style="margin-top:16px;">✅ <strong>六项全 OK，上课见！</strong></p>
+  <p style="margin-top:16px;">✅ <strong>四项全 OK，上课见！</strong></p>
 </div>
 
 <div class="tip">
@@ -255,42 +170,10 @@ python -c "import yfinance; print('yfinance ok')"</code></pre>
 
 <hr style="margin: 48px 0; border: none; border-top: 1px solid #E0D8D0;">
 <p class="muted" style="text-align:center;">
-  Session 3 · AI 炒股分析系统——从方法论到可运行 Skill<br>
+  Session 3 · Claude Design + Code 建站实战<br>
   Austin Xu · 北美华人 Claude AI 课程 ·
   <a href="https://elitecoach101.com" target="_blank">elitecoach101.com</a>
 </p>
-
-<script>
-function switchOS(key, btn) {
-  // find all tabs and blocks in same section
-  var section = btn.closest('h2, .os-tabs').nextElementSibling || btn.parentElement;
-  var container = btn.parentElement; // .os-tabs
-  var prefix = '';
-  // determine prefix from sibling blocks
-  var blocks = document.querySelectorAll('.os-block');
-  blocks.forEach(function(b) { b.classList.remove('active'); });
-  container.querySelectorAll('.os-tab').forEach(function(t) { t.classList.remove('active'); });
-  btn.classList.add('active');
-  // find target block: next siblings of container that are .os-block
-  var el = container.nextElementSibling;
-  while (el && el.classList.contains('os-block')) {
-    if (el.id.endsWith('-' + key)) el.classList.add('active');
-    el = el.nextElementSibling;
-  }
-}
-// init: show first block in each tab group
-document.querySelectorAll('.os-tabs').forEach(function(tabs) {
-  var activeTab = tabs.querySelector('.os-tab.active');
-  if (activeTab) {
-    var key = activeTab.getAttribute('onclick').match(/'(\w+)'/)[1];
-    var el = tabs.nextElementSibling;
-    while (el && el.classList.contains('os-block')) {
-      if (el.id.endsWith('-' + key)) el.classList.add('active');
-      el = el.nextElementSibling;
-    }
-  }
-});
-</script>
 
 </body>
 </html>
