@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>从零上手 Claude，把 AI 真正用起来</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+<style>
+  body { max-width: 640px; margin: 0 auto; padding: 0 18px 60px; }
+
+  .hero { background: var(--primary); color: #fff; border-radius: 14px;
+          padding: 28px 24px 24px; margin: 24px 0 20px; }
+  .hero-label { font-size: 12px; letter-spacing: 2px; opacity: .7; text-transform: uppercase; margin-bottom: 8px; }
+  .hero h1 { font-size: 22px; font-weight: 700; line-height: 1.4; margin: 0 0 16px; color: #fff; }
+
+  .instructor-card { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 18px; }
+  .instructor-avatar { width: 72px; height: 72px; border-radius: 50%; object-fit: cover;
+                       border: 2.5px solid rgba(255,255,255,.4); flex-shrink: 0; }
+  .instructor-meta { flex: 1; }
+  .instructor-name { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .instructor-title { font-size: 13px; opacity: .8; line-height: 1.5; }
+
+  .instructor-bio { font-size: 14px; line-height: 1.8; opacity: .9; margin-bottom: 14px; }
+
+  .tag-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag { background: rgba(255,255,255,.15); border-radius: 20px; padding: 4px 12px;
+         font-size: 12.5px; color: #fff; }
+
+  .cta-btn { display: block; background: #f0a500; color: #1A1A17; text-decoration: none;
+             text-align: center; border-radius: 10px; padding: 14px; font-size: 16px;
+             font-weight: 700; margin-top: 18px; }
+
+  h2 { font-size: 19px; font-weight: 700; color: var(--primary); margin: 32px 0 14px;
+       padding-bottom: 8px; border-bottom: 2px solid var(--primary-light); }
+
+  .diff-item { display: flex; gap: 12px; margin-bottom: 14px; align-items: flex-start; }
+  .diff-num { background: var(--primary); color: #fff; border-radius: 6px; width: 28px; height: 28px;
+              display: flex; align-items: center; justify-content: center; font-size: 13px;
+              font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+  .diff-text strong { display: block; font-size: 15px; margin-bottom: 2px; }
+  .diff-text span { font-size: 14px; color: var(--text-muted); line-height: 1.5; }
+
+  .session-card { border: 1.5px solid var(--border); border-radius: 12px;
+                  overflow: hidden; margin-bottom: 20px; }
+  .session-header { background: var(--primary); color: #fff; padding: 14px 18px; }
+  .session-header h3 { margin: 0; font-size: 17px; font-weight: 700; color: #fff; }
+  .session-header .session-date { font-size: 13px; opacity: .8; margin-top: 3px; }
+  .session-body { padding: 16px 18px; }
+
+  .phase { margin-bottom: 16px; }
+  .phase-title { font-size: 12px; font-weight: 700; letter-spacing: 1.5px;
+                 text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+  .phase ul { margin: 0; padding-left: 18px; }
+  .phase li { font-size: 14px; line-height: 1.7; color: var(--text); }
+  .phase li strong { color: var(--primary); }
+
+  .hw-box { background: var(--primary-light); border-left: 3px solid var(--primary);
+            border-radius: 8px; padding: 12px 14px; margin-top: 10px; }
+  .hw-box .hw-title { font-size: 13px; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+  .hw-box ul { margin: 0; padding-left: 16px; }
+  .hw-box li { font-size: 13.5px; line-height: 1.65; color: var(--text); margin-bottom: 4px; }
+
+  .demo-highlight { background: var(--accent-light); border-radius: 8px; padding: 12px 14px;
+                    margin-top: 12px; font-size: 14px; line-height: 1.6; }
+  .demo-highlight .demo-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+                                 color: #a07a00; text-transform: uppercase; margin-bottom: 4px; }
+
+  .quote-card { border-left: 3px solid var(--primary); padding: 12px 16px;
+                margin-bottom: 14px; background: var(--white); border-radius: 0 8px 8px 0; }
+  .quote-text { font-size: 14px; line-height: 1.75; color: var(--text); font-style: italic; margin-bottom: 8px; }
+  .quote-attr { font-size: 13px; color: var(--text-muted); font-weight: 600; }
+
+  .demo-day-box { background: var(--white); border: 1.5px solid var(--border); border-radius: 12px;
+                  padding: 18px; margin-bottom: 16px; }
+  .demo-day-box h3 { margin: 0 0 6px; font-size: 16px; }
+  .demo-day-box .meta { font-size: 13px; color: var(--text-muted); margin-bottom: 12px; }
+  .demo-day-box ul { margin: 0; padding-left: 18px; }
+  .demo-day-box li { font-size: 14px; line-height: 1.7; }
+
+  .group-list { display: flex; flex-direction: column; gap: 10px; margin: 0; }
+  .group-item { background: var(--white); border: 1.5px solid var(--border); border-radius: 10px;
+                padding: 12px 16px; display: flex; align-items: flex-start; gap: 12px; }
+  .group-icon { font-size: 22px; flex-shrink: 0; }
+  .group-name { font-size: 14px; font-weight: 700; }
+  .group-desc { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
+  .signup-box { background: var(--primary); color: #fff; border-radius: 14px; padding: 24px 20px; }
+  .signup-box h2 { color: #fff; border-bottom-color: rgba(255,255,255,.2); margin-top: 0; }
+  .signup-row { display: flex; gap: 10px; margin-bottom: 12px; align-items: flex-start; }
+  .signup-label { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+                  opacity: .7; width: 52px; flex-shrink: 0; padding-top: 2px; }
+  .signup-value { font-size: 15px; line-height: 1.6; }
+  .signup-value a { color: #f0a500; word-break: break-all; }
+  .signup-note { font-size: 13px; opacity: .75; margin-top: 16px; line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-label">Claude AI 实战课</div>
+  <h1>从零上手 Claude，把 AI 真正用起来</h1>
+  <div class="instructor-card">
+    <img class="instructor-avatar" src="img/headshot.jpg" alt="Austin Xu">
+    <div class="instructor-meta">
+      <div class="instructor-name">Austin Xu</div>
+      <div class="instructor-title">硅谷 500 强工程经理<br>浙大硕士 · 20 年工程经验</div>
+    </div>
+  </div>
+  <div class="instructor-bio">
+    从基层程序员做到大厂资深工程经理，带领支撑 <strong style="color:#fff">$74B+ GMV</strong> 的云平台团队。公司内部 Claude Code 头号用户，把 MCP 和 Agent 真正落地生产环境，个人 PR 产出翻倍。业余自主开发 10+ AI 系统，覆盖理财、成长追踪、运动数据等场景。<br><br>
+    和你一样的华人路径，只是早一步踩进了 AI 这条赛道。他想分享的不是理论，而是在真实生产环境里踩过坑、跑通了的东西。
+  </div>
+  <div class="tag-row">
+    <span class="tag">🏆 USTA 全国网球冠军</span>
+    <span class="tag">📍 硅谷 San Jose</span>
+    <span class="tag">🤝 北美华人社区</span>
+  </div>
+</div>
+
+<!-- What is this -->
+<h2>这门课是什么</h2>
+<p style="font-size:15px;line-height:1.8;margin-bottom:14px;">
+  不教你"怎么和 AI 聊天"——教你把 AI 嵌进真实工作流，让它替你干活。
+</p>
+<p style="font-size:14px;color:var(--text-muted);margin-bottom:8px;font-weight:600;">适合你，如果你是：</p>
+<ul style="font-size:14px;line-height:1.8;padding-left:18px;margin:0;">
+  <li>职场人，想用 AI 处理每天的重复性工作（邮件、调研、整理）</li>
+  <li>专业人士（顾问、财务、创作者），想把专业积累变成 AI 工具</li>
+  <li>求职者，想用 AI 流水线跑完从投简历到约面试的全流程</li>
+</ul>
+
+<!-- Differentiators -->
+<h2>和其他 AI 课有什么不同</h2>
+<div class="diff-item">
+  <div class="diff-num">①</div>
+  <div class="diff-text">
+    <strong>选对产品</strong>
+    <span>专门讲 Claude 全套（Claude.ai + Cowork + Claude Code），不是通用"用AI"课</span>
+  </div>
+</div>
+<div class="diff-item">
+  <div class="diff-num">②</div>
+  <div class="diff-text">
+    <strong>真实 Demo，不是玩具案例</strong>
+    <span>课上直接演示能跑起来的完整工作流，下课就能自己跑</span>
+  </div>
+</div>
+<div class="diff-item">
+  <div class="diff-num">③</div>
+  <div class="diff-text">
+    <strong>实操第一</strong>
+    <span>150 分钟 = 理论讲解 + 现场 Demo + Q&amp;A，不是 PPT 念经</span>
+  </div>
+</div>
+<div class="diff-item">
+  <div class="diff-num">④</div>
+  <div class="diff-text">
+    <strong>课后有支持</strong>
+    <span>录像、作业批改、私人学员群、讲师直接答疑</span>
+  </div>
+</div>
+<div class="diff-item">
+  <div class="diff-num">⑤</div>
+  <div class="diff-text">
+    <strong>华人视角</strong>
+    <span>讲师是硅谷华人工程经理，案例贴近北美华人的真实场景</span>
+  </div>
+</div>
+
+<!-- Session 1 -->
+<h2>课程内容</h2>
+<div class="session-card">
+  <div class="session-header">
+    <h3>Session 1 · Claude 与 Cowork 实战</h3>
+    <div class="session-date">6 月 28 日 8:30 PM ET · $199</div>
+  </div>
+  <div class="session-body">
+    <div class="phase">
+      <div class="phase-title">课前 · 约30分钟</div>
+      <ul>
+        <li>安装 Claude + Cowork，跟着课前指南配置好</li>
+      </ul>
+    </div>
+    <div class="phase">
+      <div class="phase-title">课中 · 150分钟</div>
+      <ul>
+        <li>Claude 核心能力：为什么和别的 AI 不一样</li>
+        <li>Cowork 多 Agent 流水线：4 个 Agent 串联，自动完成复杂任务</li>
+        <li>Memory File：告诉 AI 你是谁，一次配置永久生效</li>
+        <li>Dispatch：手机发一句话，电脑自动完成并交付文件</li>
+        <li>Connectors：接入 Gmail，实现真正自动化</li>
+      </ul>
+      <div class="demo-highlight">
+        <div class="demo-label">现场 Demo</div>
+        输入一份 JD → 4 Agent 流水线 → 输出公司分析 + 定制外联邮件 + 申请追踪表
+      </div>
+    </div>
+    <div class="phase">
+      <div class="phase-title">课后</div>
+      <ul>
+        <li>录像复看</li>
+        <li>5C 求职方法论 + 课后实操指南</li>
+      </ul>
+      <div class="hw-box">
+        <div class="hw-title">作业（讲师逐份批改）</div>
+        <ul>
+          <li><strong>Part A：</strong>跟提示词清单跑一遍课上的 4 Agent 求职流水线——跑通才算真的会</li>
+          <li><strong>Part B：</strong>换成自己的真实场景，设计 2–3 个 Agent 在 Cowork 里跑通，发邮件提交</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Session 2 -->
+<div class="session-card">
+  <div class="session-header">
+    <h3>Session 2 · 用 Claude Code 造 AI 工具</h3>
+    <div class="session-date">7 月 12 日 8:30 PM ET · $199</div>
+  </div>
+  <div class="session-body">
+    <div class="phase">
+      <div class="phase-title">课前 · 约30分钟</div>
+      <ul>
+        <li>安装 Claude Code + Obsidian</li>
+      </ul>
+    </div>
+    <div class="phase">
+      <div class="phase-title">课中 · 150分钟</div>
+      <ul>
+        <li>从"用工具"到"造工具"：Skills 和 MCP 生态系统</li>
+        <li>知识库搭建：把专业积累结构化，让 AI 调用</li>
+        <li>自定义 Agent：针对你的场景，造一个专属工具</li>
+        <li>变现路径：如何把自己的 AI 工具包装成服务</li>
+      </ul>
+      <div class="demo-highlight">
+        <div class="demo-label">现场 Demo</div>
+        财务顾问场景——输入客户基本信息 → Claude Code 自动生成专业理财诊断报告
+      </div>
+    </div>
+    <div class="phase">
+      <div class="phase-title">课后</div>
+      <ul>
+        <li>录像复看</li>
+      </ul>
+      <div class="hw-box">
+        <div class="hw-title">作业（讲师逐份批改）</div>
+        <ul>
+          <li><strong>Part A：</strong>跟提示词清单把财务顾问演示自己跑一遍（建库 + 提炼 + 生成报告 + PPT）</li>
+          <li><strong>Part B：</strong>换成自己的专业领域，六步走完，提交 wiki 片段 + PPT 截图 + 200 字心得</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Testimonials -->
+<h2>学员怎么说</h2>
+
+<div class="quote-card">
+  <div class="quote-text">"它把原本要花一两个小时的杂活压缩到几分钟，还不容易出错。这第一次让我真切感觉到，AI 可以成为我业务流程里一个真正能干活的'助手'，而不只是聊天工具。"</div>
+  <div class="quote-attr">S.X. · 房产管理 · Session 1</div>
+</div>
+
+<div class="quote-card">
+  <div class="quote-text">"改结果是救一次火，改提示词是建一个系统。两者的成本和价值完全不一样。"</div>
+  <div class="quote-attr">N.L. · 领导力内容创作 · Session 1</div>
+</div>
+
+<div class="quote-card">
+  <div class="quote-text">"AI 的价值已经不仅是工具，而是在帮助个人拥有过去只有组织才能具备的执行能力。"</div>
+  <div class="quote-attr">Robin · 内容创作者 · Session 1</div>
+</div>
+
+<div class="quote-card">
+  <div class="quote-text">"Claude 主动搜到了'UnitedHealth Group 正在收购 Alegeus'这条消息——这是 Glassdoor 一个 8 年老员工在 2026 年 5 月的评论里提到的。如果我自己看，很可能忽略这条信息。但 Claude 把它列为'最关键风险因素'，直接影响了我对这个职位的判断。这种层次的情报，以前我根本不知道要去找。这不是让 AI 替我做决定，而是让 AI 帮我更一致地执行我自己的决定逻辑。这个区别很重要。"</div>
+  <div class="quote-attr">Sharon · 求职中 · Session 1</div>
+</div>
+
+<div class="quote-card">
+  <div class="quote-text">"第二堂课将 AI 打造成一个'专家咨询系统'。借助 wiki book 的支持，产出的内容往往已经可以达到 80%–90% 的完成度，整体质量较高。"</div>
+  <div class="quote-attr">L.D. · 生物医药行业 · Session 2</div>
+</div>
+
+<!-- Demo Day -->
+<h2>课后：Demo Day + 兴趣小组</h2>
+
+<div class="demo-day-box">
+  <h3>🎯 Demo Day · 7月11日</h3>
+  <div class="meta">Zoom 线上 · 约100分钟 · 每人9分钟上台 demo</div>
+  <p style="font-size:14px;line-height:1.7;margin:0 0 10px;">学员演示自己用 Claude 做出的真实系统，不讲 PPT，直接 demo。</p>
+  <p style="font-size:13px;font-weight:600;color:var(--text-muted);margin-bottom:6px;">已确认演示方向（部分）</p>
+  <ul>
+    <li>七 Agent 并行求职 Pipeline（简历→投递→跟进全链路）</li>
+    <li>视频全链路 5 Agent，直接跑出 MP4</li>
+    <li>医学文献 → 科普文章 2-Agent Pipeline</li>
+    <li>理财知识库 + PPT 引用框架</li>
+    <li>铝业专业知识库（含真实价格数据）</li>
+  </ul>
+</div>
+
+<p style="font-size:14px;line-height:1.7;margin-bottom:14px;">完课后加入对应兴趣群，每月 1–2 次 Zoom 小会，共享 GitHub 仓库（Skills、Prompts、成果）。</p>
+
+<div class="group-list">
+  <div class="group-item">
+    <div class="group-icon">💰</div>
+    <div>
+      <div class="group-name">财富管理</div>
+      <div class="group-desc">理财/税务/保险/退休规划知识库</div>
+    </div>
+  </div>
+  <div class="group-item">
+    <div class="group-icon">📈</div>
+    <div>
+      <div class="group-name">金融分析</div>
+      <div class="group-desc">个股/市场分析自动化，prompt pipeline</div>
+    </div>
+  </div>
+  <div class="group-item">
+    <div class="group-icon">✍️</div>
+    <div>
+      <div class="group-name">内容创作</div>
+      <div class="group-desc">公众号/视频脚本/PPT 生成工具箱</div>
+    </div>
+  </div>
+  <div class="group-item">
+    <div class="group-icon">⚙️</div>
+    <div>
+      <div class="group-name">工作流自动化</div>
+      <div class="group-desc">邮件/报告/日常办公自动化</div>
+    </div>
+  </div>
+</div>
+
+<p style="font-size:13px;color:var(--text-muted);margin-top:14px;">
+  所有付费学员均可访问共享 GitHub 仓库，下载现成 Skills 和 Prompts 直接用。
+</p>
+
+<!-- Signup -->
+<div class="signup-box">
+  <h2>报名方式</h2>
+  <div class="signup-row">
+    <div class="signup-label">价格</div>
+    <div class="signup-value">Session 1 或 2 各 $199<br>两节合购 $349（省 $49）</div>
+  </div>
+  <div class="signup-row">
+    <div class="signup-label">付款</div>
+    <div class="signup-value">Zelle 转账至<br><a href="mailto:info@elitecoach101.com">info@elitecoach101.com</a></div>
+  </div>
+  <div class="signup-row">
+    <div class="signup-label">确认</div>
+    <div class="signup-value">付款后加微信 <strong style="color:#f0a500">elitecoach101</strong>，发截图确认，即收到课程密码和入群邀请</div>
+  </div>
+  <a class="cta-btn" href="https://www.elitecoach101.com/" target="_blank" style="margin-top:20px;">前往讲武堂报名 →</a>
+  <div class="signup-note">有问题？添加微信 elitecoach101 直接咨询</div>
+</div>
+
+</body>
+</html>

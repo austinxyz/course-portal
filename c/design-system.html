@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design System · 北极星 / POLARIS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #FFFFFF;
+    color: #17211C;
+    font-family: 'Noto Sans SC', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  .mono { font-family: ui-monospace, Menlo, 'SF Mono', monospace; }
+
+  /* top banner */
+  .top-banner {
+    background: #1B3A5B;
+    color: #9DB4CE;
+    padding: 10px 28px;
+    font-family: ui-monospace, Menlo, monospace;
+    font-size: 11.5px;
+    letter-spacing: .12em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .top-banner strong { color: #FFFFFF; }
+</style>
+</head>
+<body>
+
+<!-- S4 学员专属提示 -->
+<div class="top-banner">
+  <span><strong>S4 学员专属</strong> · 北美华人 Claude AI 课程 · Session 4 赠品</span>
+  <span>导入 Claude Design → Projects → 选 Claude Cowork → Claude Design → Design System</span>
+</div>
+
+<div style="max-width:1140px;margin:0 auto;padding:0 28px 90px">
+
+  <!-- HEADER -->
+  <header style="border-bottom:1px solid #17211C;padding:70px 0 40px">
+    <div class="mono" style="font-size:12px;letter-spacing:.16em;color:#1B3A5B;margin-bottom:20px">DESIGN SYSTEM — 北极星 / POLARIS</div>
+    <h1 style="font-weight:900;font-size:clamp(40px,6vw,72px);line-height:1.02;letter-spacing:-.025em;margin:0 0 18px;max-width:900px">精密极简网格</h1>
+    <p style="font-size:18px;line-height:1.6;color:rgba(23,33,28,.62);margin:0 0 28px;max-width:620px">湾区华人财务顾问网站的设计规范。纯白底、无衬线粗标题、等宽标签、深蓝点缀、直角与 1px 硬网格线——冷静、精确，贴合工程师审美。</p>
+    <p style="font-size:14px;line-height:1.65;color:rgba(23,33,28,.5);max-width:700px;margin:0;padding:16px 20px;border-left:3px solid #1B3A5B;background:#F5F7FA">
+      <b style="color:#1B3A5B">使用方法：</b>把这份文件放进你的项目目录，在 Claude Code 里执行 import（步骤见 Step 2）。之后 Claude Code 生成的任何页面都会自动参照这里的颜色 / 字体 / 间距规范，不需要重复说明。
+    </p>
+  </header>
+
+  <!-- 01 COLOR -->
+  <section style="border-bottom:1px solid #17211C;padding:56px 0">
+    <div class="mono" style="font-size:12px;letter-spacing:.16em;color:#1B3A5B;margin-bottom:28px">01 — 色彩 TOKENS</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);border:1px solid #17211C;background:#17211C;gap:1px">
+
+      <div style="background:#FFFFFF">
+        <div style="height:120px;background:#1B3A5B"></div>
+        <div style="padding:20px 20px 22px">
+          <div style="font-weight:700;font-size:15px;margin-bottom:4px">Primary · 主色</div>
+          <div class="mono" style="font-size:13px;color:#1B3A5B;margin-bottom:10px">#1B3A5B</div>
+          <div style="font-size:13px;line-height:1.55;color:rgba(23,33,28,.6)">深蓝。CTA 按钮、强调数字、标签描边、序号编号。全站唯一高饱和色。</div>
+          <div class="mono" style="font-size:12px;color:rgba(23,33,28,.5);margin-top:10px">hover · #142B45</div>
+        </div>
+      </div>
+
+      <div style="background:#FFFFFF">
+        <div style="height:120px;background:#17211C"></div>
+        <div style="padding:20px 20px 22px">
+          <div style="font-weight:700;font-size:15px;margin-bottom:4px">Ink · 墨黑</div>
+          <div class="mono" style="font-size:13px;color:#1B3A5B;margin-bottom:10px">#17211C</div>
+          <div style="font-size:13px;line-height:1.55;color:rgba(23,33,28,.6)">正文与标题文字色，也是所有 1px 网格线、边框、深色 CTA 区块的底色。</div>
+        </div>
+      </div>
+
+      <div style="background:#FFFFFF">
+        <div style="height:120px;background:#FAF8F3;border-bottom:1px solid rgba(23,33,28,.14)"></div>
+        <div style="padding:20px 20px 22px">
+          <div style="font-weight:700;font-size:15px;margin-bottom:4px">Surface · 暖白</div>
+          <div class="mono" style="font-size:13px;color:#1B3A5B;margin-bottom:10px">#FAF8F3</div>
+          <div style="font-size:13px;line-height:1.55;color:rgba(23,33,28,.6)">交替区块底色（痛点、定价），与纯白 #FFFFFF 主背景形成节奏。</div>
+          <div class="mono" style="font-size:12px;color:rgba(23,33,28,.5);margin-top:10px">背景 · #FFFFFF</div>
+        </div>
+      </div>
+
+      <div style="background:#FFFFFF">
+        <div style="height:120px;background:#9DB4CE"></div>
+        <div style="padding:20px 20px 22px">
+          <div style="font-weight:700;font-size:15px;margin-bottom:4px">Secondary · 浅蓝</div>
+          <div class="mono" style="font-size:13px;color:#1B3A5B;margin-bottom:10px">#9DB4CE</div>
+          <div style="font-size:13px;line-height:1.55;color:rgba(23,33,28,.6)">深色区块上的次级文字与标签（如深蓝定价卡内的 mono 标注）。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- text opacity scale -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);border:1px solid #17211C;border-top:0;background:#17211C;gap:1px">
+      <div style="background:#FFFFFF;padding:20px">
+        <div style="font-size:15px;color:#17211C;font-weight:500;margin-bottom:6px">主文字 · 100%</div>
+        <div class="mono" style="font-size:12px;color:rgba(23,33,28,.5)">#17211C</div>
+      </div>
+      <div style="background:#FFFFFF;padding:20px">
+        <div style="font-size:15px;color:rgba(23,33,28,.64);font-weight:500;margin-bottom:6px">正文次级 · 62–68%</div>
+        <div class="mono" style="font-size:12px;color:rgba(23,33,28,.5)">rgba(23,33,28,.64)</div>
+      </div>
+      <div style="background:#FFFFFF;padding:20px">
+        <div class="mono" style="font-size:13px;color:rgba(23,33,28,.5);font-weight:500;margin-bottom:6px">标注 / 元信息 · 50%</div>
+        <div class="mono" style="font-size:12px;color:rgba(23,33,28,.5)">rgba(23,33,28,.5)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 TYPE -->
+  <section style="border-bottom:1px solid #17211C;padding:56px 0">
+    <div class="mono" style="font-size:12px;letter-spacing:.16em;color:#1B3A5B;margin-bottom:28px">02 — 字体规范</div>
+    <div style="display:grid;grid-template-columns:0.8fr 1.2fr;gap:48px;margin-bottom:40px">
+      <div>
+        <div style="font-weight:900;font-size:44px;letter-spacing:-.02em;line-height:1;margin-bottom:12px">Noto Sans SC</div>
+        <div style="font-size:15px;line-height:1.6;color:rgba(23,33,28,.62)">全站唯一正文/标题字体。四个字重：400 正文 · 500 按钮与导航 · 700 卡片小标题 · 900 大标题。中英文统一，不引入衬线体。</div>
+      </div>
+      <div>
+        <div class="mono" style="font-size:28px;letter-spacing:.02em;margin-bottom:12px">ui-monospace</div>
+        <div style="font-size:15px;line-height:1.6;color:rgba(23,33,28,.62)">系统等宽字（Menlo / SF Mono）。用于所有标签、序号、区块编号、日期与阅读时间、导航项、logo。这是本系统「精密感」的关键，永远配 letter-spacing。</div>
+      </div>
+    </div>
+
+    <!-- scale -->
+    <div style="border:1px solid #17211C;background:#17211C;display:grid;grid-template-columns:1fr;gap:1px">
+      <div style="background:#FFFFFF;padding:22px 26px;display:flex;align-items:baseline;justify-content:space-between;gap:20px">
+        <span style="font-weight:900;font-size:44px;letter-spacing:-.025em;line-height:1;flex:1">大标题 H1</span>
+        <span class="mono" style="font-size:12.5px;color:rgba(23,33,28,.55);white-space:nowrap">900 · clamp(40–88px) · ls -.025em</span>
+      </div>
+      <div style="background:#FFFFFF;padding:22px 26px;display:flex;align-items:baseline;justify-content:space-between;gap:20px">
+        <span style="font-weight:900;font-size:32px;letter-spacing:-.02em;line-height:1;flex:1">区块标题 H2</span>
+        <span class="mono" style="font-size:12.5px;color:rgba(23,33,28,.55);white-space:nowrap">900 · clamp(30–50px) · ls -.02em</span>
+      </div>
+      <div style="background:#FFFFFF;padding:22px 26px;display:flex;align-items:baseline;justify-content:space-between;gap:20px">
+        <span style="font-weight:700;font-size:21px;line-height:1;flex:1">卡片标题 H3</span>
+        <span class="mono" style="font-size:12.5px;color:rgba(23,33,28,.55);white-space:nowrap">700 · 19–22px</span>
+      </div>
+      <div style="background:#FFFFFF;padding:22px 26px;display:flex;align-items:baseline;justify-content:space-between;gap:20px">
+        <span style="font-weight:400;font-size:16px;line-height:1;color:rgba(23,33,28,.7);flex:1">正文 Body</span>
+        <span class="mono" style="font-size:12.5px;color:rgba(23,33,28,.55);white-space:nowrap">400 · 14–19px · lh 1.6</span>
+      </div>
+      <div style="background:#FFFFFF;padding:22px 26px;display:flex;align-items:baseline;justify-content:space-between;gap:20px">
+        <span class="mono" style="font-size:12px;letter-spacing:.16em;color:#1B3A5B;flex:1">标签 / 编号 LABEL</span>
+        <span class="mono" style="font-size:12.5px;color:rgba(23,33,28,.55);white-space:nowrap">mono · 11–13px · ls .06–.16em</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 SPACING -->
+  <section style="border-bottom:1px solid #17211C;padding:56px 0">
+    <div class="mono" style="font-size:12px;letter-spacing:.16em;color:#1B3A5B;margin-bottom:28px">03 — 间距规律</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);border:1px solid #17211C;background:#17211C;gap:1px">
+      <div style="background:#FFFFFF;padding:26px 22px">
+        <div class="mono" style="font-size:26px;font-weight:500;color:#1B3A5B;margin-bottom:10px">1140</div>
+        <div style="font-weight:700;font-size:14px;margin-bottom:4px">内容最大宽度</div>
+        <div style="font-size:13px;line-height:1.5;color:rgba(23,33,28,.6)">max-width 居中，两侧 padding 28px。</div>
+      </div>
+      <div style="background:#FFFFFF;padding:26px 22px">
+        <div class="mono" style="font-size:26px;font-weight:500;color:#1B3A5B;margin-bottom:10px">78</div>
+        <div style="font-weight:700;font-size:14px;margin-bottom:4px">区块纵向 padding</div>
+        <div style="font-size:13px;line-height:1.5;color:rgba(23,33,28,.6)">每个 section 上下 78px（首屏 72px）。</div>
+      </div>
+      <div style="background:#FFFFFF;padding:26px 22px">
+        <div class="mono" style="font-size:26px;font-weight:500;color:#1B3A5B;margin-bottom:10px">34/30</div>
+        <div style="font-weight:700;font-size:14px;margin-bottom:4px">卡片内边距</div>
+        <div style="font-size:13px;line-height:1.5;color:rgba(23,33,28,.6)">痛点/定价卡 34×30，文章卡 28×26。</div>
+      </div>
+      <div style="background:#FFFFFF;padding:26px 22px">
+        <div class="mono" style="font-size:26px;font-weight:500;color:#1B3A5B;margin-bottom:10px">20/1</div>
+        <div style="font-weight:700;font-size:14px;margin-bottom:4px">网格间隙</div>
+        <div style="font-size:13px;line-height:1.5;color:rgba(23,33,28,.6)">独立卡片 gap 20px；连体网格 gap 1px（露黑线）。</div>
+      </div>
+    </div>
+    <p style="font-size:14px;line-height:1.6;color:rgba(23,33,28,.6);margin:22px 0 0;max-width:720px">
+      核心节奏是 <b style="color:#17211C">4 的倍数</b>：常用步长 4 / 8 / 12 / 16 / 22 / 28 / 34 / 44 / 78。标题下 margin 多为 16–22px，段落间 18px。
+    </p>
+  </section>
+
+  <!-- 04 COMPONENTS -->
+  <section style="padding:56px 0 0">
+    <div class="mono" style="font-size:12px;letter-spacing:.16em;color:#1B3A5B;margin-bottom:28px">04 — 组件规则</div>
+
+    <!-- buttons -->
+    <div style="margin-bottom:44px">
+      <div style="font-weight:700;font-size:17px;margin-bottom:18px">按钮 · Button</div>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-bottom:16px">
+        <span style="padding:15px 26px;background:#1B3A5B;color:#FFFFFF;font-size:15px;font-weight:500;cursor:pointer">主按钮 →</span>
+        <span style="padding:15px 24px;background:#FFFFFF;border:1px solid #17211C;color:#17211C;font-size:15px;font-weight:500;cursor:pointer">次按钮</span>
+        <span style="padding:10px 18px;background:#1B3A5B;color:#FFFFFF;font-size:13px;font-weight:500;cursor:pointer">导航 CTA</span>
+      </div>
+      <div style="font-size:14px;line-height:1.6;color:rgba(23,33,28,.62);max-width:720px"><b class="mono" style="color:#1B3A5B;font-size:13px">规则</b>　直角（radius 0）· 字重 500 · 主按钮实心深蓝、hover 转 #142B45 · 次按钮白底黑框、hover 反色填黑 · 箭头统一用「→」不用图标。</div>
+    </div>
+
+    <!-- card -->
+    <div style="margin-bottom:44px">
+      <div style="font-weight:700;font-size:17px;margin-bottom:18px">卡片 · Card</div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:720px;margin-bottom:16px">
+        <div style="background:#FFFFFF;border:1px solid rgba(23,33,28,.14);padding:28px 26px">
+          <span class="mono" style="display:inline-block;font-size:11px;letter-spacing:.04em;color:#1B3A5B;border:1px solid #1B3A5B;padding:4px 9px;margin-bottom:18px">标签</span>
+          <div style="font-weight:700;font-size:19px;line-height:1.36;margin-bottom:10px">卡片标题示例</div>
+          <div style="font-size:14px;line-height:1.6;color:rgba(23,33,28,.62)">摘要两行截断，正文次级色。</div>
+        </div>
+        <div style="background:#FAF8F3;border:1px solid #17211C;padding:28px 26px">
+          <div class="mono" style="font-size:13px;color:#1B3A5B;margin-bottom:18px">01</div>
+          <div style="font-weight:700;font-size:19px;line-height:1.36;margin-bottom:10px">连体网格卡</div>
+          <div style="font-size:14px;line-height:1.6;color:rgba(23,33,28,.62)">共享 1px 黑线分隔，无独立圆角。</div>
+        </div>
+      </div>
+      <div style="font-size:14px;line-height:1.6;color:rgba(23,33,28,.62);max-width:720px"><b class="mono" style="color:#1B3A5B;font-size:13px">规则</b>　直角 · 两种描边：独立卡 <span class="mono" style="font-size:12.5px">rgba(23,33,28,.14)</span>、连体网格用 #17211C 硬线（靠 gap:1px + 深底露出）· 无阴影 · hover 时描边转深蓝 · 序号/标签一律 mono。</div>
+    </div>
+
+    <!-- nav -->
+    <div style="margin-bottom:60px">
+      <div style="font-weight:700;font-size:17px;margin-bottom:18px">导航与页脚 · Nav / Footer</div>
+      <div style="border:1px solid #17211C;margin-bottom:16px">
+        <div style="padding:16px 22px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #17211C">
+          <span class="mono" style="font-size:13px;font-weight:500;letter-spacing:.14em">北极星 / POLARIS</span>
+          <div style="display:flex;align-items:center;gap:22px">
+            <span class="mono" style="font-size:12.5px;letter-spacing:.06em;color:rgba(23,33,28,.62)">痛点</span>
+            <span class="mono" style="font-size:12.5px;letter-spacing:.06em;color:rgba(23,33,28,.62)">资源</span>
+            <span style="padding:10px 18px;background:#1B3A5B;color:#FFFFFF;font-size:13px;font-weight:500">预约咨询</span>
+          </div>
+        </div>
+        <div style="padding:16px 22px;display:flex;justify-content:space-between;align-items:center">
+          <span class="mono" style="font-size:13px;font-weight:500;letter-spacing:.14em">北极星 / POLARIS</span>
+          <span style="font-size:11.5px;color:rgba(23,33,28,.45)">© 2026 · 仅供教育参考，不构成投资建议</span>
+        </div>
+      </div>
+      <div style="font-size:14px;line-height:1.6;color:rgba(23,33,28,.62);max-width:720px"><b class="mono" style="color:#1B3A5B;font-size:13px">规则</b>　sticky 顶栏、半透明白底 + blur、底部 1px 黑线 · logo 用 mono 大写「北极星 / POLARIS」· 导航项 mono 小字 + letter-spacing · 唯一实心按钮是「预约咨询」· 页头页脚全站逐字一致。</div>
+    </div>
+  </section>
+
+</div>
+
+<!-- footer -->
+<footer style="background:#17211C;padding:32px 28px;text-align:center">
+  <p style="font-family:ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:.1em;color:#4A6A5A;margin:0 0 6px">DESIGN SYSTEM · 北极星 / POLARIS</p>
+  <p style="font-size:12.5px;color:#4A6A5A;margin:0">北美华人 Claude AI 课程 · Session 4 学员专属赠品 · <a href="https://learn.austinxyz.ai" style="color:#9DB4CE">learn.austinxyz.ai</a></p>
+</footer>
+
+</body>
+</html>
