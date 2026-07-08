@@ -12,7 +12,7 @@
 <meta charset="UTF-8">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Session 3 课前准备 · Claude Design + Code 建站实战</title>
+<title>Session 3 Pre-class Setup · Claude Design + Code</title>
 <link rel="stylesheet" href="../style.css">
 <style>
   body { font-family: "Microsoft YaHei", "PingFang SC", -apple-system, Arial, sans-serif;
@@ -52,81 +52,130 @@
   .checklist li::before { content: "☐ "; font-size: 16px; color: var(--primary); }
   .summary { background: var(--white); border: 2px solid var(--primary); border-radius: 12px;
              padding: 18px 24px; margin: 32px 0; font-size: 16px; }
+
+  /* Bilingual */
+  body:not(.lang-en) [data-en] { display: none; }
+  body.lang-en [data-zh] { display: none; }
+  #lang-toggle { position: fixed; top: 16px; right: 16px; z-index: 100;
+                 display: flex; background: #fff; border: 1.5px solid var(--border);
+                 border-radius: 20px; padding: 3px; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+  #lang-toggle button { border: none; background: none; cursor: pointer; font-size: 13px;
+                        padding: 4px 12px; border-radius: 16px; font-weight: 600;
+                        color: var(--text-muted); font-family: inherit; }
+  #lang-toggle button.active { background: var(--primary); color: #fff; }
 </style>
+<script>
+function setLang(l) {
+  document.body.classList.toggle('lang-en', l === 'en');
+  document.documentElement.lang = (l === 'en' ? 'en' : 'zh-CN');
+  ['btn-zh','btn-en'].forEach(function(id) {
+    var b = document.getElementById(id); if (b) b.classList.toggle('active', b.dataset.lang === l);
+  });
+  try { localStorage.setItem('lang', l); } catch(_) {}
+}
+(function() {
+  var p = new URLSearchParams(location.search).get('lang');
+  var s = null; try { s = localStorage.getItem('lang') || localStorage.getItem('cfs-lang'); } catch(_) {}
+  setLang(p || s || 'zh');
+})();
+</script>
 </head>
 <body>
 
-<h1>Session 3 课前准备<br>Claude Design + Code 建站实战</h1>
+<div id="lang-toggle">
+  <button id="btn-zh" data-lang="zh" onclick="setLang('zh')" class="active">中</button>
+  <button id="btn-en" data-lang="en" onclick="setLang('en')">EN</button>
+</div>
+
+<h1>
+  <span data-zh>Session 3 课前准备<br>Claude Design + Code 建站实战</span>
+  <span data-en>Session 3 Pre-class Setup<br>Claude Design + Code: Build &amp; Deploy a Website</span>
+</h1>
 
 <p class="lead">
-  这节课在 <strong>第二课（Claude Code）基础上</strong>新增两个工具：GitHub（存代码）+ Vercel（自动部署上线）。
-  如果第二课的环境还正常跑着，<strong>今天约需 5 分钟</strong>：注册 GitHub + 注册 Vercel。
+  <span data-zh>这节课在 <strong>第二课（Claude Code）基础上</strong>新增两个工具：GitHub（存代码）+ Vercel（自动部署上线）。
+  如果第二课的环境还正常跑着，<strong>今天约需 5 分钟</strong>：注册 GitHub + 注册 Vercel。</span>
+  <span data-en>This session builds on <strong>Session 2 (Claude Code)</strong> by adding two new tools: GitHub (code storage) + Vercel (auto-deploy). If your Session 2 environment is still working, <strong>this takes about 5 minutes</strong>: sign up for GitHub + Vercel.</span>
 </p>
 
 <!-- ===== S2 已有 ===== -->
-<h2>S2 已经准备好了，不用重复</h2>
+<h2><span data-zh>S2 已经准备好了，不用重复</span><span data-en>Already Set Up in S2 — Skip These</span></h2>
 
 <div class="done-box">
   <ul>
-    <li>Claude Pro 订阅（$20/月）</li>
-    <li>Claude Code 已安装并能正常运行（<code>claude --version</code> 有输出）</li>
-    <li>Claude Code 已登录 Anthropic 账号</li>
+    <li><span data-zh>Claude Pro 订阅（$20/月）</span><span data-en>Claude Pro subscription ($20/month)</span></li>
+    <li><span data-zh>Claude Code 已安装并能正常运行（<code>claude --version</code> 有输出）</span><span data-en>Claude Code installed and running (<code>claude --version</code> shows output)</span></li>
+    <li><span data-zh>Claude Code 已登录 Anthropic 账号</span><span data-en>Claude Code logged in to your Anthropic account</span></li>
   </ul>
-  <p class="muted" style="margin-top:12px;">如果以上任何一条不满足，回到 S2 学员页按课前准备补上。</p>
+  <p class="muted" style="margin-top:12px;"><span data-zh>如果以上任何一条不满足，回到 S2 学员页按课前准备补上。</span><span data-en>If any of the above is missing, go back to the S2 student page and complete the pre-class setup.</span></p>
 </div>
 
 <!-- ===== 总览 ===== -->
-<h2>S3 新增：GitHub + Vercel</h2>
+<h2><span data-zh>S3 新增：GitHub + Vercel</span><span data-en>New in S3: GitHub + Vercel</span></h2>
 
 <table>
   <thead>
-    <tr><th>工具</th><th>用途</th><th>费用</th></tr>
+    <tr>
+      <th><span data-zh>工具</span><span data-en>Tool</span></th>
+      <th><span data-zh>用途</span><span data-en>Purpose</span></th>
+      <th><span data-zh>费用</span><span data-en>Cost</span></th>
+    </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>GitHub 账号</strong></td>
-      <td>存放网站代码；Vercel 监听它自动部署</td>
-      <td>免费</td>
+      <td><strong>GitHub</strong></td>
+      <td><span data-zh>存放网站代码；Vercel 监听它自动部署</span><span data-en>Store your website code; Vercel watches it and auto-deploys</span></td>
+      <td><span data-zh>免费</span><span data-en>Free</span></td>
     </tr>
     <tr>
-      <td><strong>Vercel 账号</strong></td>
-      <td>网站部署平台，push 一下自动上线</td>
-      <td>免费</td>
+      <td><strong>Vercel</strong></td>
+      <td><span data-zh>网站部署平台，push 一下自动上线</span><span data-en>Website hosting platform — one push and your site goes live</span></td>
+      <td><span data-zh>免费</span><span data-en>Free</span></td>
     </tr>
   </tbody>
 </table>
 
 <!-- ===== STEP 1 ===== -->
-<h2><span class="step-badge">第 1 步</span>注册 GitHub 账号 + 配置认证</h2>
+<h2>
+  <span class="step-badge"><span data-zh>第 1 步</span><span data-en>Step 1</span></span>
+  <span data-zh>注册 GitHub 账号 + 配置认证</span><span data-en>Sign Up for GitHub + Set Up Authentication</span>
+</h2>
 
-<h3 style="font-size:17px; margin-top:20px;">1a. 注册账号</h3>
+<h3 style="font-size:17px; margin-top:20px;"><span data-zh>1a. 注册账号</span><span data-en>1a. Create an account</span></h3>
 <ol>
-  <li>打开 <a href="https://github.com" target="_blank">github.com</a></li>
-  <li>点右上角 <strong>Sign up</strong>，填邮箱 → 密码 → 用户名</li>
-  <li>验证邮箱，完成注册</li>
-  <li>记下你的用户名（后面要用）</li>
+  <li><span data-zh>打开 <a href="https://github.com" target="_blank">github.com</a></span><span data-en>Go to <a href="https://github.com" target="_blank">github.com</a></span></li>
+  <li><span data-zh>点右上角 <strong>Sign up</strong>，填邮箱 → 密码 → 用户名</span><span data-en>Click <strong>Sign up</strong> (top right), enter email → password → username</span></li>
+  <li><span data-zh>验证邮箱，完成注册</span><span data-en>Verify your email to finish registration</span></li>
+  <li><span data-zh>记下你的用户名（后面要用）</span><span data-en>Write down your username — you'll need it later</span></li>
 </ol>
 
 <div class="tip">
-  💡 Git（已装）是本地版本控制工具；GitHub 是存代码的云端平台。两者不同，都需要。
+  <span data-zh>💡 Git（已装）是本地版本控制工具；GitHub 是存代码的云端平台。两者不同，都需要。</span>
+  <span data-en>💡 Git (already installed) is a local version control tool; GitHub is a cloud platform for storing code. They're different — you need both.</span>
 </div>
 
-<h3 style="font-size:17px; margin-top:20px;">1b. 配置 GitHub 认证（一次性）</h3>
+<h3 style="font-size:17px; margin-top:20px;"><span data-zh>1b. 配置 GitHub 认证（一次性）</span><span data-en>1b. Set Up GitHub Authentication (one-time)</span></h3>
 
-<p>注册完账号后，打开 Claude Code（任意目录），输入：</p>
+<p><span data-zh>注册完账号后，打开 Claude Code（任意目录），输入：</span><span data-en>After creating your account, open Claude Code (any directory) and type:</span></p>
 
 <pre><code>帮我安装 GitHub CLI 并登录 GitHub</code></pre>
 
-<p>Claude Code 会自动运行 <code>winget install --id GitHub.cli</code>（Windows）或 <code>brew install gh</code>（Mac），
-然后执行 <code>gh auth login</code>——按提示选 <code>HTTPS</code> → <code>Login with a web browser</code>，浏览器弹出页面点授权。</p>
+<p>
+  <span data-zh>Claude Code 会自动运行 <code>winget install --id GitHub.cli</code>（Windows）或 <code>brew install gh</code>（Mac），
+  然后执行 <code>gh auth login</code>——按提示选 <code>HTTPS</code> → <code>Login with a web browser</code>，浏览器弹出页面点授权。</span>
+  <span data-en>Claude Code will automatically run <code>winget install --id GitHub.cli</code> (Windows) or <code>brew install gh</code> (Mac),
+  then run <code>gh auth login</code> — choose <code>HTTPS</code> → <code>Login with a web browser</code> and authorize in the browser popup.</span>
+</p>
 
 <div class="ok">
-  ✅ 完成后终端显示 <code>Logged in to github.com</code>，之后所有 git push 自动带认证。
+  <span data-zh>✅ 完成后终端显示 <code>Logged in to github.com</code>，之后所有 git push 自动带认证。</span>
+  <span data-en>✅ When done, your terminal shows <code>Logged in to github.com</code>. All future git push commands will authenticate automatically.</span>
 </div>
 
 <div class="card">
-  <strong>🙋 没用过 Git / GitHub 怎么办？</strong><br>
-  不用担心——这节课里所有 Git 操作都通过 Claude Code 完成，<strong>不需要记任何命令</strong>。例如：
+  <strong><span data-zh>🙋 没用过 Git / GitHub 怎么办？</span><span data-en>🙋 Never used Git / GitHub before?</span></strong><br>
+  <span data-zh>不用担心——这节课里所有 Git 操作都通过 Claude Code 完成，<strong>不需要记任何命令</strong>。例如：</span>
+  <span data-en>No worries — all Git operations in this session go through Claude Code. <strong>You don't need to memorize any commands.</strong> For example:</span>
   <ul style="margin-top:8px;">
     <li><code>帮我把当前项目初始化成 git repo 并推到 GitHub</code></li>
     <li><code>帮我保存这次改动并推到 GitHub</code></li>
@@ -134,45 +183,53 @@
 </div>
 
 <!-- ===== STEP 2 ===== -->
-<h2><span class="step-badge">第 2 步</span>注册 Vercel 账号</h2>
+<h2>
+  <span class="step-badge"><span data-zh>第 2 步</span><span data-en>Step 2</span></span>
+  <span data-zh>注册 Vercel 账号</span><span data-en>Sign Up for Vercel</span>
+</h2>
 
 <ol>
-  <li>打开 <a href="https://vercel.com" target="_blank">vercel.com</a></li>
-  <li>点 <strong>Sign Up</strong>，<strong>推荐用 GitHub 账号登录</strong>（课堂上 Vercel 要连接你的 GitHub repo）</li>
-  <li>授权后完成注册</li>
+  <li><span data-zh>打开 <a href="https://vercel.com" target="_blank">vercel.com</a></span><span data-en>Go to <a href="https://vercel.com" target="_blank">vercel.com</a></span></li>
+  <li><span data-zh>点 <strong>Sign Up</strong>，<strong>推荐用 GitHub 账号登录</strong>（课堂上 Vercel 要连接你的 GitHub repo）</span><span data-en>Click <strong>Sign Up</strong> — <strong>use your GitHub account</strong> (Vercel needs to connect to your GitHub repos during class)</span></li>
+  <li><span data-zh>授权后完成注册</span><span data-en>Authorize and complete registration</span></li>
 </ol>
 
 <div class="tip">
-  💡 Hobby（免费）套餐完全够用：无限静态网站、自定义域名、自动 HTTPS、全球 CDN。
+  <span data-zh>💡 Hobby（免费）套餐完全够用：无限静态网站、自定义域名、自动 HTTPS、全球 CDN。</span>
+  <span data-en>💡 The Hobby (free) plan is all you need: unlimited static sites, custom domains, automatic HTTPS, global CDN.</span>
 </div>
 
 <!-- ===== 验证 ===== -->
-<h2>验证（10 秒）</h2>
+<h2><span data-zh>验证（10 秒）</span><span data-en>Verify (10 seconds)</span></h2>
 
-<pre><code>claude --version   # 确认正常</code></pre>
+<pre><code>claude --version   # <span data-zh>确认正常</span><span data-en>confirm working</span></code></pre>
 
 <!-- ===== 检查清单 ===== -->
-<h2>上课前检查清单</h2>
+<h2><span data-zh>上课前检查清单</span><span data-en>Pre-class Checklist</span></h2>
 
 <div class="summary">
   <ul class="checklist">
-    <li>Claude Pro 有效，<code>claude --version</code> 正常</li>
-    <li>已注册 GitHub 账号，记下用户名</li>
-    <li>已完成 <code>gh auth login</code>，终端显示 <code>Logged in to github.com</code></li>
-    <li>已注册 Vercel 账号（用 GitHub 登录）</li>
+    <li><span data-zh>Claude Pro 有效，<code>claude --version</code> 正常</span><span data-en>Claude Pro active, <code>claude --version</code> works</span></li>
+    <li><span data-zh>已注册 GitHub 账号，记下用户名</span><span data-en>GitHub account created, username written down</span></li>
+    <li><span data-zh>已完成 <code>gh auth login</code>，终端显示 <code>Logged in to github.com</code></span><span data-en><code>gh auth login</code> complete, terminal shows <code>Logged in to github.com</code></span></li>
+    <li><span data-zh>已注册 Vercel 账号（用 GitHub 登录）</span><span data-en>Vercel account created (signed in with GitHub)</span></li>
   </ul>
-  <p style="margin-top:16px;">✅ <strong>四项全 OK，上课见！</strong></p>
+  <p style="margin-top:16px;"><span data-zh>✅ <strong>四项全 OK，上课见！</strong></span><span data-en>✅ <strong>All four done — see you in class!</strong></span></p>
 </div>
 
 <div class="tip">
-  💬 遇到问题发到微信群，上课前有人帮你看。
+  <span data-zh>💬 遇到问题发到微信群，上课前有人帮你看。</span>
+  <span data-en>💬 Questions? Post in the WeChat group — someone will help before class starts.</span>
 </div>
 
 <hr style="margin: 48px 0; border: none; border-top: 1px solid #E0D8D0;">
 <p class="muted" style="text-align:center;">
-  Session 3 · Claude Design + Code 建站实战<br>
+  <span data-zh>Session 3 · Claude Design + Code 建站实战<br>
   Austin Xu · 北美华人 Claude AI 课程 ·
-  <a href="https://elitecoach101.com" target="_blank">elitecoach101.com</a>
+  <a href="https://elitecoach101.com" target="_blank">elitecoach101.com</a></span>
+  <span data-en>Session 3 · Claude Design + Code Website Workshop<br>
+  Austin Xu · Claude AI Course for North American Chinese Professionals ·
+  <a href="https://elitecoach101.com" target="_blank">elitecoach101.com</a></span>
 </p>
 
 </body>

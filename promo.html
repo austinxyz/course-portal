@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>从零上手 Claude，把 AI 真正用起来</title>
+<title>从零上手 Claude，把 AI 真正用起来 · Claude AI Course</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="style.css">
 <style>
@@ -93,121 +93,240 @@
   .signup-value { font-size: 15px; line-height: 1.6; }
   .signup-value a { color: #f0a500; word-break: break-all; }
   .signup-note { font-size: 13px; opacity: .75; margin-top: 16px; line-height: 1.6; }
+
+  /* Bilingual */
+  body:not(.lang-en) [data-en] { display: none; }
+  body.lang-en [data-zh] { display: none; }
+  #lang-toggle { position: fixed; top: 16px; right: 16px; z-index: 100;
+                 display: flex; background: #fff; border: 1.5px solid var(--border);
+                 border-radius: 20px; padding: 3px; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+  #lang-toggle button { border: none; background: none; cursor: pointer; font-size: 13px;
+                        padding: 4px 12px; border-radius: 16px; font-weight: 600;
+                        color: var(--text-muted); font-family: inherit; }
+  #lang-toggle button.active { background: var(--primary); color: #fff; }
 </style>
+<script>
+function setLang(l) {
+  document.body.classList.toggle('lang-en', l === 'en');
+  document.documentElement.lang = (l === 'en' ? 'en' : 'zh-CN');
+  ['btn-zh','btn-en'].forEach(function(id) {
+    var b = document.getElementById(id); if (b) b.classList.toggle('active', b.dataset.lang === l);
+  });
+  try { localStorage.setItem('lang', l); } catch(_) {}
+}
+(function() {
+  var p = new URLSearchParams(location.search).get('lang');
+  var s = null; try { s = localStorage.getItem('lang') || localStorage.getItem('cfs-lang'); } catch(_) {}
+  setLang(p || s || 'zh');
+})();
+</script>
 </head>
 <body>
 
+<div id="lang-toggle">
+  <button id="btn-zh" data-lang="zh" onclick="setLang('zh')" class="active">中</button>
+  <button id="btn-en" data-lang="en" onclick="setLang('en')">EN</button>
+</div>
+
 <!-- Hero -->
 <div class="hero">
-  <div class="hero-label">Claude AI 实战课</div>
-  <h1>从零上手 Claude，把 AI 真正用起来</h1>
+  <div class="hero-label">
+    <span data-zh>Claude AI 实战课</span>
+    <span data-en>Claude AI Hands-On Course</span>
+  </div>
+  <h1>
+    <span data-zh>从零上手 Claude，把 AI 真正用起来</span>
+    <span data-en>Start Using Claude from Zero — Put AI to Real Work</span>
+  </h1>
   <div class="instructor-card">
     <img class="instructor-avatar" src="img/headshot.jpg" alt="Austin Xu">
     <div class="instructor-meta">
       <div class="instructor-name">Austin Xu</div>
-      <div class="instructor-title">硅谷 500 强工程经理<br>浙大硕士 · 20 年工程经验</div>
+      <div class="instructor-title">
+        <span data-zh>硅谷 500 强工程经理<br>浙大硕士 · 20 年工程经验</span>
+        <span data-en>Fortune 500 Engineering Manager, Silicon Valley<br>Zhejiang Univ. M.S. · 20 years of engineering</span>
+      </div>
     </div>
   </div>
   <div class="instructor-bio">
-    从基层程序员做到大厂资深工程经理，带领支撑 <strong style="color:#fff">$74B+ GMV</strong> 的云平台团队。公司内部 Claude Code 头号用户，把 MCP 和 Agent 真正落地生产环境，个人 PR 产出翻倍。业余自主开发 10+ AI 系统，覆盖理财、成长追踪、运动数据等场景。<br><br>
-    和你一样的华人路径，只是早一步踩进了 AI 这条赛道。他想分享的不是理论，而是在真实生产环境里踩过坑、跑通了的东西。
+    <span data-zh>
+      从基层程序员做到大厂资深工程经理，带领支撑 <strong style="color:#fff">$74B+ GMV</strong> 的云平台团队。公司内部 Claude Code 头号用户，把 MCP 和 Agent 真正落地生产环境，个人 PR 产出翻倍。业余自主开发 10+ AI 系统，覆盖理财、成长追踪、运动数据等场景。<br><br>
+      和你一样的华人路径，只是早一步踩进了 AI 这条赛道。他想分享的不是理论，而是在真实生产环境里踩过坑、跑通了的东西。
+    </span>
+    <span data-en>
+      Worked his way from junior developer to senior engineering manager at a Fortune 500, leading the cloud platform team supporting <strong style="color:#fff">$74B+ GMV</strong>. #1 internal user of Claude Code, with MCP and Agent deployed in production and a 2× increase in personal PR output. Has built 10+ AI systems in his free time covering personal finance, habit tracking, fitness data, and more.<br><br>
+      Same path as you — just one step ahead on the AI track. What he shares isn't theory; it's what he's actually built and shipped in a real production environment.
+    </span>
   </div>
   <div class="tag-row">
-    <span class="tag">🏆 USTA 全国网球冠军</span>
-    <span class="tag">📍 硅谷 San Jose</span>
-    <span class="tag">🤝 北美华人社区</span>
+    <span class="tag">🏆 <span data-zh>USTA 全国网球冠军</span><span data-en>USTA National Tennis Champion</span></span>
+    <span class="tag">📍 <span data-zh>硅谷 San Jose</span><span data-en>Silicon Valley, San Jose</span></span>
+    <span class="tag">🤝 <span data-zh>北美华人社区</span><span data-en>North American Chinese Community</span></span>
   </div>
 </div>
 
 <!-- What is this -->
-<h2>这门课是什么</h2>
+<h2><span data-zh>这门课是什么</span><span data-en>What Is This Course</span></h2>
 <p style="font-size:15px;line-height:1.8;margin-bottom:14px;">
-  不教你"怎么和 AI 聊天"——教你把 AI 嵌进真实工作流，让它替你干活。
+  <span data-zh>不教你"怎么和 AI 聊天"——教你把 AI 嵌进真实工作流，让它替你干活。</span>
+  <span data-en>We don't teach you how to chat with AI — we teach you how to embed AI into real workflows so it does the actual work.</span>
 </p>
-<p style="font-size:14px;color:var(--text-muted);margin-bottom:8px;font-weight:600;">适合你，如果你是：</p>
+<p style="font-size:14px;color:var(--text-muted);margin-bottom:8px;font-weight:600;">
+  <span data-zh>适合你，如果你是：</span>
+  <span data-en>This is for you if you are:</span>
+</p>
 <ul style="font-size:14px;line-height:1.8;padding-left:18px;margin:0;">
-  <li>职场人，想用 AI 处理每天的重复性工作（邮件、调研、整理）</li>
-  <li>专业人士（顾问、财务、创作者），想把专业积累变成 AI 工具</li>
-  <li>求职者，想用 AI 流水线跑完从投简历到约面试的全流程</li>
+  <li>
+    <span data-zh>职场人，想用 AI 处理每天的重复性工作（邮件、调研、整理）</span>
+    <span data-en>A professional who wants AI to handle your daily repetitive tasks (email, research, organizing)</span>
+  </li>
+  <li>
+    <span data-zh>专业人士（顾问、财务、创作者），想把专业积累变成 AI 工具</span>
+    <span data-en>A specialist (consultant, finance professional, creator) who wants to turn your expertise into AI tools</span>
+  </li>
+  <li>
+    <span data-zh>求职者，想用 AI 流水线跑完从投简历到约面试的全流程</span>
+    <span data-en>A job seeker who wants an AI pipeline to run the entire process from submitting applications to scheduling interviews</span>
+  </li>
 </ul>
 
 <!-- Differentiators -->
-<h2>和其他 AI 课有什么不同</h2>
+<h2><span data-zh>和其他 AI 课有什么不同</span><span data-en>What Sets This Course Apart</span></h2>
 <div class="diff-item">
   <div class="diff-num">①</div>
   <div class="diff-text">
-    <strong>选对产品</strong>
-    <span>专门讲 Claude 全套（Claude.ai + Cowork + Claude Code），不是通用"用AI"课</span>
+    <strong><span data-zh>选对产品</span><span data-en>Right tool focus</span></strong>
+    <span>
+      <span data-zh>专门讲 Claude 全套（Claude.ai + Cowork + Claude Code），不是通用"用AI"课</span>
+      <span data-en>Teaches the full Claude suite (Claude.ai + Cowork + Claude Code) — not a generic "how to use AI" course</span>
+    </span>
   </div>
 </div>
 <div class="diff-item">
   <div class="diff-num">②</div>
   <div class="diff-text">
-    <strong>真实 Demo，不是玩具案例</strong>
-    <span>课上直接演示能跑起来的完整工作流，下课就能自己跑</span>
+    <strong><span data-zh>真实 Demo，不是玩具案例</span><span data-en>Real demos, not toy examples</span></strong>
+    <span>
+      <span data-zh>课上直接演示能跑起来的完整工作流，下课就能自己跑</span>
+      <span data-en>Live demos of complete, runnable workflows during class — you can run them yourself right after</span>
+    </span>
   </div>
 </div>
 <div class="diff-item">
   <div class="diff-num">③</div>
   <div class="diff-text">
-    <strong>实操第一</strong>
-    <span>150 分钟 = 理论讲解 + 现场 Demo + Q&amp;A，不是 PPT 念经</span>
+    <strong><span data-zh>实操第一</span><span data-en>Hands-on first</span></strong>
+    <span>
+      <span data-zh>150 分钟 = 理论讲解 + 现场 Demo + Q&amp;A，不是 PPT 念经</span>
+      <span data-en>150 minutes = theory + live demo + Q&amp;A — not a slideshow lecture</span>
+    </span>
   </div>
 </div>
 <div class="diff-item">
   <div class="diff-num">④</div>
   <div class="diff-text">
-    <strong>课后有支持</strong>
-    <span>录像、作业批改、私人学员群、讲师直接答疑</span>
+    <strong><span data-zh>课后有支持</span><span data-en>Post-class support</span></strong>
+    <span>
+      <span data-zh>录像、作业批改、私人学员群、讲师直接答疑</span>
+      <span data-en>Recordings, homework grading, private student group, direct Q&amp;A with the instructor</span>
+    </span>
   </div>
 </div>
 <div class="diff-item">
   <div class="diff-num">⑤</div>
   <div class="diff-text">
-    <strong>华人视角</strong>
-    <span>讲师是硅谷华人工程经理，案例贴近北美华人的真实场景</span>
+    <strong><span data-zh>华人视角</span><span data-en>Chinese-American perspective</span></strong>
+    <span>
+      <span data-zh>讲师是硅谷华人工程经理，案例贴近北美华人的真实场景</span>
+      <span data-en>Instructor is a Silicon Valley Chinese-American engineering manager; examples match real North American Chinese professional scenarios</span>
+    </span>
   </div>
 </div>
 
 <!-- Session 1 -->
-<h2>课程内容</h2>
+<h2><span data-zh>课程内容</span><span data-en>Course Content</span></h2>
 <div class="session-card">
   <div class="session-header">
-    <h3>Session 1 · Claude 与 Cowork 实战</h3>
-    <div class="session-date">6 月 28 日 8:30 PM ET · $199</div>
+    <h3>
+      <span data-zh>Session 1 · Claude 与 Cowork 实战</span>
+      <span data-en>Session 1 · Claude &amp; Cowork in Practice</span>
+    </h3>
+    <div class="session-date">6 月 28 日 / Jun 28 · 8:30 PM ET · $199</div>
   </div>
   <div class="session-body">
     <div class="phase">
-      <div class="phase-title">课前 · 约30分钟</div>
+      <div class="phase-title">
+        <span data-zh>课前 · 约30分钟</span>
+        <span data-en>Pre-class · ~30 min</span>
+      </div>
       <ul>
-        <li>安装 Claude + Cowork，跟着课前指南配置好</li>
+        <li>
+          <span data-zh>安装 Claude + Cowork，跟着课前指南配置好</span>
+          <span data-en>Install Claude + Cowork, configure using the pre-class guide</span>
+        </li>
       </ul>
     </div>
     <div class="phase">
-      <div class="phase-title">课中 · 150分钟</div>
+      <div class="phase-title">
+        <span data-zh>课中 · 150分钟</span>
+        <span data-en>In class · 150 min</span>
+      </div>
       <ul>
-        <li>Claude 核心能力：为什么和别的 AI 不一样</li>
-        <li>Cowork 多 Agent 流水线：4 个 Agent 串联，自动完成复杂任务</li>
-        <li>Memory File：告诉 AI 你是谁，一次配置永久生效</li>
-        <li>Dispatch：手机发一句话，电脑自动完成并交付文件</li>
-        <li>Connectors：接入 Gmail，实现真正自动化</li>
+        <li>
+          <span data-zh>Claude 核心能力：为什么和别的 AI 不一样</span>
+          <span data-en>Claude's core capabilities: what makes it different from other AI</span>
+        </li>
+        <li>
+          <span data-zh>Cowork 多 Agent 流水线：4 个 Agent 串联，自动完成复杂任务</span>
+          <span data-en>Cowork multi-agent pipeline: 4 agents chained together to automatically complete complex tasks</span>
+        </li>
+        <li>
+          <span data-zh>Memory File：告诉 AI 你是谁，一次配置永久生效</span>
+          <span data-en>Memory File: tell AI who you are — configure once and it always applies</span>
+        </li>
+        <li>
+          <span data-zh>Dispatch：手机发一句话，电脑自动完成并交付文件</span>
+          <span data-en>Dispatch: send one message from your phone, computer auto-completes and delivers the file</span>
+        </li>
+        <li>
+          <span data-zh>Connectors：接入 Gmail，实现真正自动化</span>
+          <span data-en>Connectors: integrate Gmail for real automation</span>
+        </li>
       </ul>
       <div class="demo-highlight">
-        <div class="demo-label">现场 Demo</div>
-        输入一份 JD → 4 Agent 流水线 → 输出公司分析 + 定制外联邮件 + 申请追踪表
+        <div class="demo-label">
+          <span data-zh>现场 Demo</span>
+          <span data-en>Live Demo</span>
+        </div>
+        <span data-zh>输入一份 JD → 4 Agent 流水线 → 输出公司分析 + 定制外联邮件 + 申请追踪表</span>
+        <span data-en>Input a job description → 4-agent pipeline → output company analysis + customized outreach email + application tracker</span>
       </div>
     </div>
     <div class="phase">
-      <div class="phase-title">课后</div>
+      <div class="phase-title">
+        <span data-zh>课后</span>
+        <span data-en>After class</span>
+      </div>
       <ul>
-        <li>录像复看</li>
-        <li>5C 求职方法论 + 课后实操指南</li>
+        <li><span data-zh>录像复看</span><span data-en>Review recordings</span></li>
+        <li><span data-zh>5C 求职方法论 + 课后实操指南</span><span data-en>5C job-hunting methodology + hands-on guide</span></li>
       </ul>
       <div class="hw-box">
-        <div class="hw-title">作业（讲师逐份批改）</div>
+        <div class="hw-title">
+          <span data-zh>作业（讲师逐份批改）</span>
+          <span data-en>Homework (graded by instructor)</span>
+        </div>
         <ul>
-          <li><strong>Part A：</strong>跟提示词清单跑一遍课上的 4 Agent 求职流水线——跑通才算真的会</li>
-          <li><strong>Part B：</strong>换成自己的真实场景，设计 2–3 个 Agent 在 Cowork 里跑通，发邮件提交</li>
+          <li>
+            <strong>Part A：</strong>
+            <span data-zh>跟提示词清单跑一遍课上的 4 Agent 求职流水线——跑通才算真的会</span>
+            <span data-en>Follow the prompt list to run the 4-agent job-hunting pipeline from class — you've got it when it actually works</span>
+          </li>
+          <li>
+            <strong>Part B：</strong>
+            <span data-zh>换成自己的真实场景，设计 2–3 个 Agent 在 Cowork 里跑通，发邮件提交</span>
+            <span data-en>Adapt it to your own real scenario, design 2–3 agents and run them in Cowork, submit by email</span>
+          </li>
         </ul>
       </div>
     </div>
@@ -217,39 +336,81 @@
 <!-- Session 2 -->
 <div class="session-card">
   <div class="session-header">
-    <h3>Session 2 · 用 Claude Code 造 AI 工具</h3>
-    <div class="session-date">7 月 12 日 8:30 PM ET · $199</div>
+    <h3>
+      <span data-zh>Session 2 · 用 Claude Code 造 AI 工具</span>
+      <span data-en>Session 2 · Building AI Tools with Claude Code</span>
+    </h3>
+    <div class="session-date">7 月 12 日 / Jul 12 · 8:30 PM ET · $199</div>
   </div>
   <div class="session-body">
     <div class="phase">
-      <div class="phase-title">课前 · 约30分钟</div>
+      <div class="phase-title">
+        <span data-zh>课前 · 约30分钟</span>
+        <span data-en>Pre-class · ~30 min</span>
+      </div>
       <ul>
-        <li>安装 Claude Code + Obsidian</li>
+        <li>
+          <span data-zh>安装 Claude Code + Obsidian</span>
+          <span data-en>Install Claude Code + Obsidian</span>
+        </li>
       </ul>
     </div>
     <div class="phase">
-      <div class="phase-title">课中 · 150分钟</div>
+      <div class="phase-title">
+        <span data-zh>课中 · 150分钟</span>
+        <span data-en>In class · 150 min</span>
+      </div>
       <ul>
-        <li>从"用工具"到"造工具"：Skills 和 MCP 生态系统</li>
-        <li>知识库搭建：把专业积累结构化，让 AI 调用</li>
-        <li>自定义 Agent：针对你的场景，造一个专属工具</li>
-        <li>变现路径：如何把自己的 AI 工具包装成服务</li>
+        <li>
+          <span data-zh>从"用工具"到"造工具"：Skills 和 MCP 生态系统</span>
+          <span data-en>From using tools to building them: Skills and the MCP ecosystem</span>
+        </li>
+        <li>
+          <span data-zh>知识库搭建：把专业积累结构化，让 AI 调用</span>
+          <span data-en>Building a knowledge base: structure your professional expertise for AI to use</span>
+        </li>
+        <li>
+          <span data-zh>自定义 Agent：针对你的场景，造一个专属工具</span>
+          <span data-en>Custom Agent: build a tool tailored to your specific scenario</span>
+        </li>
+        <li>
+          <span data-zh>变现路径：如何把自己的 AI 工具包装成服务</span>
+          <span data-en>Monetization: how to package your AI tools as a service</span>
+        </li>
       </ul>
       <div class="demo-highlight">
-        <div class="demo-label">现场 Demo</div>
-        财务顾问场景——输入客户基本信息 → Claude Code 自动生成专业理财诊断报告
+        <div class="demo-label">
+          <span data-zh>现场 Demo</span>
+          <span data-en>Live Demo</span>
+        </div>
+        <span data-zh>财务顾问场景——输入客户基本信息 → Claude Code 自动生成专业理财诊断报告</span>
+        <span data-en>Financial advisor scenario: input basic client info → Claude Code auto-generates a professional financial diagnosis report</span>
       </div>
     </div>
     <div class="phase">
-      <div class="phase-title">课后</div>
+      <div class="phase-title">
+        <span data-zh>课后</span>
+        <span data-en>After class</span>
+      </div>
       <ul>
-        <li>录像复看</li>
+        <li><span data-zh>录像复看</span><span data-en>Review recordings</span></li>
       </ul>
       <div class="hw-box">
-        <div class="hw-title">作业（讲师逐份批改）</div>
+        <div class="hw-title">
+          <span data-zh>作业（讲师逐份批改）</span>
+          <span data-en>Homework (graded by instructor)</span>
+        </div>
         <ul>
-          <li><strong>Part A：</strong>跟提示词清单把财务顾问演示自己跑一遍（建库 + 提炼 + 生成报告 + PPT）</li>
-          <li><strong>Part B：</strong>换成自己的专业领域，六步走完，提交 wiki 片段 + PPT 截图 + 200 字心得</li>
+          <li>
+            <strong>Part A：</strong>
+            <span data-zh>跟提示词清单把财务顾问演示自己跑一遍（建库 + 提炼 + 生成报告 + PPT）</span>
+            <span data-en>Follow the prompt list to run the financial advisor demo yourself (build knowledge base + refine + generate report + PPT)</span>
+          </li>
+          <li>
+            <strong>Part B：</strong>
+            <span data-zh>换成自己的专业领域，六步走完，提交 wiki 片段 + PPT 截图 + 200 字心得</span>
+            <span data-en>Apply it to your own professional field, complete the 6 steps, submit a wiki excerpt + PPT screenshot + 200-word reflection</span>
+          </li>
         </ul>
       </div>
     </div>
@@ -257,104 +418,148 @@
 </div>
 
 <!-- Testimonials -->
-<h2>学员怎么说</h2>
+<h2><span data-zh>学员怎么说</span><span data-en>What Students Say</span></h2>
 
 <div class="quote-card">
-  <div class="quote-text">"它把原本要花一两个小时的杂活压缩到几分钟，还不容易出错。这第一次让我真切感觉到，AI 可以成为我业务流程里一个真正能干活的'助手'，而不只是聊天工具。"</div>
-  <div class="quote-attr">S.X. · 房产管理 · Session 1</div>
+  <div class="quote-text">
+    <span data-zh>"它把原本要花一两个小时的杂活压缩到几分钟，还不容易出错。这第一次让我真切感觉到，AI 可以成为我业务流程里一个真正能干活的'助手'，而不只是聊天工具。"</span>
+    <span data-en>"It compressed tasks that used to take one to two hours down to a few minutes, with fewer errors. For the first time, I genuinely felt that AI could be a real working 'assistant' in my workflow — not just a chat tool."</span>
+  </div>
+  <div class="quote-attr"><span data-zh>S.X. · 房产管理 · Session 1</span><span data-en>S.X. · Property Management · Session 1</span></div>
 </div>
 
 <div class="quote-card">
-  <div class="quote-text">"改结果是救一次火，改提示词是建一个系统。两者的成本和价值完全不一样。"</div>
-  <div class="quote-attr">N.L. · 领导力内容创作 · Session 1</div>
+  <div class="quote-text">
+    <span data-zh>"改结果是救一次火，改提示词是建一个系统。两者的成本和价值完全不一样。"</span>
+    <span data-en>"Tweaking the output puts out one fire. Tweaking the prompt builds a system. The cost and value are completely different."</span>
+  </div>
+  <div class="quote-attr"><span data-zh>N.L. · 领导力内容创作 · Session 1</span><span data-en>N.L. · Leadership Content Creator · Session 1</span></div>
 </div>
 
 <div class="quote-card">
-  <div class="quote-text">"AI 的价值已经不仅是工具，而是在帮助个人拥有过去只有组织才能具备的执行能力。"</div>
-  <div class="quote-attr">Robin · 内容创作者 · Session 1</div>
+  <div class="quote-text">
+    <span data-zh>"AI 的价值已经不仅是工具，而是在帮助个人拥有过去只有组织才能具备的执行能力。"</span>
+    <span data-en>"AI's value is no longer just as a tool — it's helping individuals acquire the execution capacity that used to belong only to organizations."</span>
+  </div>
+  <div class="quote-attr"><span data-zh>Robin · 内容创作者 · Session 1</span><span data-en>Robin · Content Creator · Session 1</span></div>
 </div>
 
 <div class="quote-card">
-  <div class="quote-text">"Claude 主动搜到了'UnitedHealth Group 正在收购 Alegeus'这条消息——这是 Glassdoor 一个 8 年老员工在 2026 年 5 月的评论里提到的。如果我自己看，很可能忽略这条信息。但 Claude 把它列为'最关键风险因素'，直接影响了我对这个职位的判断。这种层次的情报，以前我根本不知道要去找。这不是让 AI 替我做决定，而是让 AI 帮我更一致地执行我自己的决定逻辑。这个区别很重要。"</div>
-  <div class="quote-attr">Sharon · 求职中 · Session 1</div>
+  <div class="quote-text">
+    <span data-zh>"Claude 主动搜到了'UnitedHealth Group 正在收购 Alegeus'这条消息——这是 Glassdoor 一个 8 年老员工在 2026 年 5 月的评论里提到的。如果我自己看，很可能忽略这条信息。但 Claude 把它列为'最关键风险因素'，直接影响了我对这个职位的判断。这种层次的情报，以前我根本不知道要去找。这不是让 AI 替我做决定，而是让 AI 帮我更一致地执行我自己的决定逻辑。这个区别很重要。"</span>
+    <span data-en>"Claude surfaced the fact that 'UnitedHealth Group is acquiring Alegeus' — from an 8-year Glassdoor employee's comment in May 2026. I probably would have missed it on my own. But Claude flagged it as the 'most critical risk factor,' which directly changed my read on that job. This is the kind of intelligence I didn't even know to look for before. This isn't AI making decisions for me — it's AI helping me apply my own decision logic more consistently. That distinction matters."</span>
+  </div>
+  <div class="quote-attr"><span data-zh>Sharon · 求职中 · Session 1</span><span data-en>Sharon · Job Seeker · Session 1</span></div>
 </div>
 
 <div class="quote-card">
-  <div class="quote-text">"第二堂课将 AI 打造成一个'专家咨询系统'。借助 wiki book 的支持，产出的内容往往已经可以达到 80%–90% 的完成度，整体质量较高。"</div>
-  <div class="quote-attr">L.D. · 生物医药行业 · Session 2</div>
+  <div class="quote-text">
+    <span data-zh>"第二堂课将 AI 打造成一个'专家咨询系统'。借助 wiki book 的支持，产出的内容往往已经可以达到 80%–90% 的完成度，整体质量较高。"</span>
+    <span data-en>"The second session turns AI into an 'expert consulting system.' With the wiki book backing it up, the output often reaches 80–90% completion quality right away."</span>
+  </div>
+  <div class="quote-attr"><span data-zh>L.D. · 生物医药行业 · Session 2</span><span data-en>L.D. · Biopharma Industry · Session 2</span></div>
 </div>
 
 <!-- Demo Day -->
-<h2>课后：Demo Day + 兴趣小组</h2>
+<h2><span data-zh>课后：Demo Day + 兴趣小组</span><span data-en>After the Course: Demo Day + Interest Groups</span></h2>
 
 <div class="demo-day-box">
-  <h3>🎯 Demo Day · 7月11日</h3>
-  <div class="meta">Zoom 线上 · 约100分钟 · 每人9分钟上台 demo</div>
-  <p style="font-size:14px;line-height:1.7;margin:0 0 10px;">学员演示自己用 Claude 做出的真实系统，不讲 PPT，直接 demo。</p>
-  <p style="font-size:13px;font-weight:600;color:var(--text-muted);margin-bottom:6px;">已确认演示方向（部分）</p>
+  <h3>🎯 Demo Day · <span data-zh>7月11日</span><span data-en>July 11</span></h3>
+  <div class="meta">
+    <span data-zh>Zoom 线上 · 约100分钟 · 每人9分钟上台 demo</span>
+    <span data-en>Zoom online · ~100 minutes · 9 minutes each to demo</span>
+  </div>
+  <p style="font-size:14px;line-height:1.7;margin:0 0 10px;">
+    <span data-zh>学员演示自己用 Claude 做出的真实系统，不讲 PPT，直接 demo。</span>
+    <span data-en>Students demo the real systems they built with Claude. No slides — live demos only.</span>
+  </p>
+  <p style="font-size:13px;font-weight:600;color:var(--text-muted);margin-bottom:6px;">
+    <span data-zh>已确认演示方向（部分）</span>
+    <span data-en>Confirmed demos (partial list)</span>
+  </p>
   <ul>
-    <li>七 Agent 并行求职 Pipeline（简历→投递→跟进全链路）</li>
-    <li>视频全链路 5 Agent，直接跑出 MP4</li>
-    <li>医学文献 → 科普文章 2-Agent Pipeline</li>
-    <li>理财知识库 + PPT 引用框架</li>
-    <li>铝业专业知识库（含真实价格数据）</li>
+    <li><span data-zh>七 Agent 并行求职 Pipeline（简历→投递→跟进全链路）</span><span data-en>7-agent parallel job-hunting pipeline (resume → application → follow-up, full chain)</span></li>
+    <li><span data-zh>视频全链路 5 Agent，直接跑出 MP4</span><span data-en>End-to-end 5-agent video pipeline that outputs MP4 directly</span></li>
+    <li><span data-zh>医学文献 → 科普文章 2-Agent Pipeline</span><span data-en>Medical literature → popular science article 2-agent pipeline</span></li>
+    <li><span data-zh>理财知识库 + PPT 引用框架</span><span data-en>Personal finance knowledge base + PPT citation framework</span></li>
+    <li><span data-zh>铝业专业知识库（含真实价格数据）</span><span data-en>Aluminum industry knowledge base (with real price data)</span></li>
   </ul>
 </div>
 
-<p style="font-size:14px;line-height:1.7;margin-bottom:14px;">完课后加入对应兴趣群，每月 1–2 次 Zoom 小会，共享 GitHub 仓库（Skills、Prompts、成果）。</p>
+<p style="font-size:14px;line-height:1.7;margin-bottom:14px;">
+  <span data-zh>完课后加入对应兴趣群，每月 1–2 次 Zoom 小会，共享 GitHub 仓库（Skills、Prompts、成果）。</span>
+  <span data-en>After completing the course, join the corresponding interest group — monthly Zoom meetups and a shared GitHub repository (Skills, Prompts, projects).</span>
+</p>
 
 <div class="group-list">
   <div class="group-item">
     <div class="group-icon">💰</div>
     <div>
-      <div class="group-name">财富管理</div>
-      <div class="group-desc">理财/税务/保险/退休规划知识库</div>
+      <div class="group-name"><span data-zh>财富管理</span><span data-en>Wealth Management</span></div>
+      <div class="group-desc"><span data-zh>理财/税务/保险/退休规划知识库</span><span data-en>Personal finance, tax, insurance, retirement planning knowledge base</span></div>
     </div>
   </div>
   <div class="group-item">
     <div class="group-icon">📈</div>
     <div>
-      <div class="group-name">金融分析</div>
-      <div class="group-desc">个股/市场分析自动化，prompt pipeline</div>
+      <div class="group-name"><span data-zh>金融分析</span><span data-en>Financial Analysis</span></div>
+      <div class="group-desc"><span data-zh>个股/市场分析自动化，prompt pipeline</span><span data-en>Stock and market analysis automation, prompt pipeline</span></div>
     </div>
   </div>
   <div class="group-item">
     <div class="group-icon">✍️</div>
     <div>
-      <div class="group-name">内容创作</div>
-      <div class="group-desc">公众号/视频脚本/PPT 生成工具箱</div>
+      <div class="group-name"><span data-zh>内容创作</span><span data-en>Content Creation</span></div>
+      <div class="group-desc"><span data-zh>公众号/视频脚本/PPT 生成工具箱</span><span data-en>WeChat articles, video scripts, PPT generation toolkit</span></div>
     </div>
   </div>
   <div class="group-item">
     <div class="group-icon">⚙️</div>
     <div>
-      <div class="group-name">工作流自动化</div>
-      <div class="group-desc">邮件/报告/日常办公自动化</div>
+      <div class="group-name"><span data-zh>工作流自动化</span><span data-en>Workflow Automation</span></div>
+      <div class="group-desc"><span data-zh>邮件/报告/日常办公自动化</span><span data-en>Email, reports, daily office automation</span></div>
     </div>
   </div>
 </div>
 
 <p style="font-size:13px;color:var(--text-muted);margin-top:14px;">
-  所有付费学员均可访问共享 GitHub 仓库，下载现成 Skills 和 Prompts 直接用。
+  <span data-zh>所有付费学员均可访问共享 GitHub 仓库，下载现成 Skills 和 Prompts 直接用。</span>
+  <span data-en>All paid students can access the shared GitHub repository and download ready-to-use Skills and Prompts.</span>
 </p>
 
 <!-- Signup -->
 <div class="signup-box">
-  <h2>报名方式</h2>
+  <h2><span data-zh>报名方式</span><span data-en>How to Enroll</span></h2>
   <div class="signup-row">
-    <div class="signup-label">价格</div>
-    <div class="signup-value">Session 1 或 2 各 $199<br>两节合购 $349（省 $49）</div>
+    <div class="signup-label"><span data-zh>价格</span><span data-en>Price</span></div>
+    <div class="signup-value">
+      <span data-zh>Session 1 或 2 各 $199<br>两节合购 $349（省 $49）</span>
+      <span data-en>$199 per session<br>$349 for both (save $49)</span>
+    </div>
   </div>
   <div class="signup-row">
-    <div class="signup-label">付款</div>
-    <div class="signup-value">Zelle 转账至<br><a href="mailto:info@elitecoach101.com">info@elitecoach101.com</a></div>
+    <div class="signup-label"><span data-zh>付款</span><span data-en>Payment</span></div>
+    <div class="signup-value">
+      <span data-zh>Zelle 转账至<br></span>
+      <span data-en>Zelle to<br></span>
+      <a href="mailto:info@elitecoach101.com">info@elitecoach101.com</a>
+    </div>
   </div>
   <div class="signup-row">
-    <div class="signup-label">确认</div>
-    <div class="signup-value">付款后加微信 <strong style="color:#f0a500">elitecoach101</strong>，发截图确认，即收到课程密码和入群邀请</div>
+    <div class="signup-label"><span data-zh>确认</span><span data-en>Confirm</span></div>
+    <div class="signup-value">
+      <span data-zh>付款后加微信 <strong style="color:#f0a500">elitecoach101</strong>，发截图确认，即收到课程密码和入群邀请</span>
+      <span data-en>After payment, add WeChat <strong style="color:#f0a500">elitecoach101</strong>, send a screenshot, and you'll receive your course password and group invite</span>
+    </div>
   </div>
-  <a class="cta-btn" href="https://www.elitecoach101.com/" target="_blank" style="margin-top:20px;">前往讲武堂报名 →</a>
-  <div class="signup-note">有问题？添加微信 elitecoach101 直接咨询</div>
+  <a class="cta-btn" href="https://www.elitecoach101.com/" target="_blank" style="margin-top:20px;">
+    <span data-zh>前往讲武堂报名 →</span>
+    <span data-en>Enroll at Elitecoach101 →</span>
+  </a>
+  <div class="signup-note">
+    <span data-zh>有问题？添加微信 elitecoach101 直接咨询</span>
+    <span data-en>Questions? Add WeChat elitecoach101 to ask directly</span>
+  </div>
 </div>
 
 </body>
