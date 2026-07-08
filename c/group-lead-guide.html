@@ -54,7 +54,7 @@ function setLang(l) {
 }
 (function() {
   var p = new URLSearchParams(location.search).get('lang');
-  var s = null; try { s = localStorage.getItem('lang'); } catch(_) {}
+  var s = null; try { s = localStorage.getItem('lang') || localStorage.getItem('cfs-lang'); } catch(_) {}
   setLang(p || s || 'zh');
 })();
 </script>

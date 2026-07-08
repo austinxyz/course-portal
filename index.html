@@ -573,12 +573,12 @@
       document.body.classList.add('lang-'+l);
       document.documentElement.lang = (l==='en'?'en':'zh');
       btns.forEach(function(b){ b.classList.toggle('on', b.dataset.lang===l); });
-      try{ localStorage.setItem('cfs-lang', l); }catch(e){}
+      try{ localStorage.setItem('lang', l); localStorage.setItem('cfs-lang', l); }catch(e){}
     }
     var saved = 'zh';
     try{
       var p = new URLSearchParams(location.search).get('lang');
-      saved = p || localStorage.getItem('cfs-lang') || 'zh';
+      saved = p || localStorage.getItem('lang') || localStorage.getItem('cfs-lang') || 'zh';
     }catch(e){}
     setLang(saved);
     btns.forEach(function(b){ b.addEventListener('click', function(){ setLang(b.dataset.lang); }); });
