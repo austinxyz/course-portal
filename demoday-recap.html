@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DN5RL2PFE6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DN5RL2PFE6');
+</script>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo Day 回顾：12个人，让我记住了一件事</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { line-height: 1.9; }
+    .hero {
+      background: linear-gradient(135deg, var(--primary) 0%, #8a3e1f 100%);
+      color: white; padding: 48px 24px 40px; text-align: center;
+    }
+    .hero .badge { display: inline-block; background: var(--accent); color: #1e2a22; font-size: 0.78rem; font-weight: 700; padding: 4px 14px; border-radius: 20px; margin-bottom: 16px; }
+    .hero h1 { font-size: 1.8rem; font-weight: 700; line-height: 1.4; max-width: 680px; margin: 0 auto 12px; }
+    .hero .sub { font-size: 0.95rem; opacity: 0.8; max-width: 560px; margin: 0 auto; }
+    .container { max-width: 720px; margin: 0 auto; padding: 40px 24px 60px; }
+    h2 { font-size: 1.25rem; font-weight: 700; color: var(--primary); margin: 32px 0 12px; }
+    p { margin-bottom: 16px; }
+    strong { color: var(--text); }
+    .closing {
+      background: linear-gradient(135deg, var(--primary) 0%, #8a3e1f 100%);
+      color: white; border-radius: 12px; padding: 24px 28px; margin-top: 32px;
+      font-size: 1.05rem; line-height: 1.8;
+    }
+    .back-link { margin-top: 36px; font-size: 0.9rem; }
+    .back-link a { color: var(--primary); font-weight: 700; text-decoration: none; }
+    .back-link a:hover { text-decoration: underline; }
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 1.4rem; }
+      .container { padding: 28px 18px 48px; }
+    }
+    .hero { position: relative; }
+    #lang-toggle { position: absolute; top: 14px; right: 18px; z-index: 10;
+      display: flex; align-items: center; gap: 2px;
+      background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 20px; padding: 4px 10px; font-size: 0.82rem; }
+    #lang-toggle button { background: none; border: none; cursor: pointer;
+      font-weight: 700; font-family: inherit; font-size: 0.82rem; padding: 2px 5px;
+      color: rgba(255,255,255,0.6); border-radius: 12px; transition: all 0.15s; }
+    #lang-toggle button.active { color: white; background: rgba(255,255,255,0.2); }
+    #lang-toggle span { color: rgba(255,255,255,0.4); font-size: 0.75rem; }
+    body:not(.lang-en) [data-en] { display: none; }
+    body.lang-en [data-zh] { display: none; }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <div id="lang-toggle">
+    <button id="btn-zh" onclick="setLang('zh')">中</button>
+    <span>|</span>
+    <button id="btn-en" onclick="setLang('en')">EN</button>
+  </div>
+  <div class="badge"><span data-zh>🎬 Demo Day 回顾 · 2026-07-11</span><span data-en>🎬 Demo Day Recap · 2026-07-11</span></div>
+  <h1><span data-zh>12个人，让我记住了一件事</span><span data-en>Twelve People, One Lesson I Won't Forget</span></h1>
+  <p class="sub"><span data-zh>Austin 写在 Demo Day 之后</span><span data-en>Written by Austin after Demo Day</span></p>
+</div>
+
+<div class="container">
+
+  <p><span data-zh>今天 Demo Day，12个学员分两组上下半场演示，大家都意犹未尽，花了3个多小时。</span><span data-en>Demo Day today: twelve students presented in two halves, and everyone wanted more — we ran over three hours.</span></p>
+
+  <p><span data-zh>结果台上站的，是餐馆老板、金融顾问、新闻工作者、医疗研究员、硬件工程师、铝材料交易商。没有专业程序员出身的。</span><span data-en>Who was on stage? A restaurant owner, a financial advisor, a journalist, a medical researcher, a hardware engineer, an aluminum trader. Not one professional programmer.</span></p>
+
+  <p><span data-zh>他们做出来的东西给我惊艳，好几个我自己想不到要去解决，更不会想到这样解决。</span><span data-en>What they built genuinely amazed me. Several tackled problems I'd never thought to solve — let alone solve that way.</span></p>
+
+  <h2><span data-zh>专业背景，比技术背景更值钱</span><span data-en>Domain Expertise Beats Technical Background</span></h2>
+
+  <p><span data-zh>Danny 是硬件工程师。他搭的 LLM 知识库能做根因分析、输出分析报告，效果完全达到同行业资深工程师的水平。</span><span data-en>Danny is a hardware engineer. His LLM knowledge base performs root-cause analysis and produces reports at the level of a senior engineer in his field.</span></p>
+
+  <p><span data-zh>毅勇是医疗研究行业专家。他的知识库可以给出专业医药研究的产品研发路线。</span><span data-en>Yiyong is a medical research expert. His knowledge base maps out professional pharmaceutical R&amp;D roadmaps.</span></p>
+
+  <p><span data-zh>Tracy 是金融专家。她在开源项目基础上，搭了一个投资委员会，各个角色互相辩论，输出专业投资建议。</span><span data-en>Tracy is a finance expert. Building on an open-source project, she assembled an "investment committee" of AI roles that debate each other and produce professional investment advice.</span></p>
+
+  <p><span data-zh>他们做的不是通用工具，是把自己十几年的专业判断，装进了一个 AI 可以调用的系统里。知识库的质量，取决于谁在填它。</span><span data-en>None of these are generic tools. They packed a decade-plus of professional judgment into systems AI can call on. The quality of a knowledge base depends on who fills it.</span></p>
+
+  <h2><span data-zh>不懂代码，不是障碍</span><span data-en>Not Knowing How to Code Is Not a Barrier</span></h2>
+
+  <p><span data-zh>Dottie 是新闻工作者，她自己说是计算机小白。她做了 Social Media Post Pipeline，解决了工作中几个真实的痛点，新客户沟通、内容优化都有了。</span><span data-en>Dottie is a journalist — a self-described computer novice. She built a social media post pipeline that solves real pain points in her work: new client communication, content optimization, all covered.</span></p>
+
+  <p><span data-zh>Sumei 从国内连线过来，上完课，短短几周做了10多个项目，管潜在客户用工作流，管铝材料专业交易用知识库。</span><span data-en>Sumei joined live from China. In just a few weeks after class she built over ten projects — workflows for managing prospects, a knowledge base for professional aluminum trading.</span></p>
+
+  <p><span data-zh>以前定制这类系统，要找程序员。现在 Sumei 自己问下 Claude 轻松搞定。</span><span data-en>Systems like these used to require hiring a programmer. Now Sumei just asks Claude and gets it done herself.</span></p>
+
+  <p><span data-zh><strong>这不是 AI 降低了门槛，是门槛变了。技术不再是瓶颈，领域知识才是。</strong></span><span data-en><strong>It's not that AI lowered the bar — the bar moved. Technology is no longer the bottleneck; domain knowledge is.</strong></span></p>
+
+  <h2><span data-zh>重复的事，可以跑起来</span><span data-en>Repetitive Work Can Run on Its Own</span></h2>
+
+  <p><span data-zh>Zhong 是餐馆老板。他用5个 Agent 做出了专业视频，素材库、知识库、PPT 都准备好了，能熟练调用课上学过的各种工具。</span><span data-en>Zhong owns a restaurant. He used five agents to produce professional videos — asset library, knowledge base, and slides all in place, fluently wielding every tool from class.</span></p>
+
+  <p><span data-zh>Robin 做7个 Agent，从跑步录音到长短视频发布，链路自动跑完。他还在不断优化流程。</span><span data-en>Robin built seven agents that take him from a running-session voice memo all the way to published long- and short-form videos, fully automated. He's still optimizing the pipeline.</span></p>
+
+  <p><span data-zh>Song 是数据科学家，科普文章 Pipeline 做得非常严谨，质量可控，对第一堂课的内容举一反三。</span><span data-en>Song is a data scientist. His science-writing pipeline is rigorous and quality-controlled — taking Session 1's material and running far beyond it.</span></p>
+
+  <p><span data-zh>三个人的方向不同，但有一个共同点，把一个复杂的多步骤流程，固化成可以反复跑的工作流。以前要花几个小时，现在发出去就等结果。</span><span data-en>Three different directions, one thing in common: they turned complex multi-step processes into workflows that run again and again. What used to take hours now runs while you wait.</span></p>
+
+  <div class="closing">
+    <p><span data-zh>今天12个人，我记住了一件事。</span><span data-en>Twelve people today, and one thing stuck with me.</span></p>
+    <p><span data-zh><strong>专业知识依然有用。加上 AI 之后，就好像 1 后面加了多个 0，威力倍增。</strong></span><span data-en><strong>Domain expertise still matters. Add AI, and it's like appending zeros after a 1 — the power multiplies.</strong></span></p>
+    <p><span data-zh>技术门槛低了，但不是说什么都容易了。容易的是执行。难的是你得先知道，你的行业里哪个地方最痛，值得把它自动化。</span><span data-en>The technical bar is lower, but that doesn't make everything easy. Execution got easy. What's hard is knowing which pain point in your industry is worth automating.</span></p>
+    <p style="margin-bottom:0"><span data-zh>这个，AI 帮不了你。只有你自己知道。</span><span data-en>That part, AI can't do for you. Only you know.</span></p>
+  </div>
+
+  <div class="back-link">
+    <p>← <a href="demoday.html"><span data-zh>返回 Demo Day</span><span data-en>Back to Demo Day</span></a> &nbsp;·&nbsp; <a href="./index.html"><span data-zh>课程门户</span><span data-en>Course Portal</span></a></p>
+  </div>
+
+</div>
+<script>
+function setLang(lang) {
+  document.body.classList.toggle('lang-en', lang === 'en');
+  document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  localStorage.setItem('lang', lang);
+}
+(function() { var p = new URLSearchParams(location.search).get('lang'); setLang(p || localStorage.getItem('lang') || 'zh'); })();
+</script>
+</body>
+</html>
