@@ -257,8 +257,8 @@ function setLang(l) {
 <div class="section" id="github">
   <h2 class="section-title"><span data-zh>共享空间 · GitHub</span><span data-en>Shared Space · GitHub</span></h2>
   <p>
-    <span data-zh>一个公共仓库，按方向分目录，所有付费学员可访问和下载。<strong>不需要懂 git</strong>——直接下载 zip 或单个文件即可。</span>
-    <span data-en>One public repository, organized by direction. All paid students can access and download. <strong>No git knowledge required</strong> — just download the zip or individual files.</span>
+    <span data-zh>一个公共仓库，按小组分目录，所有付费学员可访问和下载。<strong>不需要懂 git</strong>——直接下载 zip 或单个文件即可。</span>
+    <span data-en>One public repository, organized by group. All paid students can access and download. <strong>No git knowledge required</strong> — just download the zip or individual files.</span>
   </p>
 
   <p><a href="https://github.com/claude-ai-community/community" target="_blank" style="color:#1a6b3a;font-weight:700;">github.com/claude-ai-community/community</a></p>
@@ -266,27 +266,48 @@ function setLang(l) {
   <div class="github-block">
 <span class="comment">claude-ai-community/community/</span>
 ├── <span class="dir">财富管理/</span>
-│   ├── <span class="dir">skills/</span>       <span class="comment"># .claude/commands/ 文件</span>
+│   ├── <span class="file">README.md</span>     <span class="comment"># 内容索引（自动更新）</span>
+│   ├── <span class="dir">skills/</span>       <span class="comment"># Claude Code skill 文件</span>
 │   ├── <span class="dir">prompts/</span>      <span class="comment"># 提示词模板</span>
 │   ├── <span class="dir">wiki/</span>         <span class="comment"># 知识库条目（Markdown）</span>
 │   └── <span class="dir">笔记/</span>         <span class="comment"># 会议记录、idea、心得</span>
-├── <span class="dir">金融分析/</span>
-├── <span class="dir">内容创作/</span>
-└── <span class="dir">其他/</span>
+├── <span class="dir">金融分析/</span>      <span class="comment"># 同上结构</span>
+├── <span class="dir">内容创作/</span>      <span class="comment"># 同上结构</span>
+└── <span class="dir">其他/</span>          <span class="comment"># 同上结构</span>
   </div>
 
-  <h3><span data-zh>怎么用</span><span data-en>How to use</span></h3>
+  <h3><span data-zh>现有内容举例</span><span data-en>Example Content</span></h3>
   <ul>
-    <li><span data-zh><strong>下载整个仓库：</strong>点页面右上角 Code → Download ZIP，解压后按目录取文件</span><span data-en><strong>Download the whole repo:</strong> click Code → Download ZIP (top right), unzip and pick files from the right folder</span></li>
-    <li><span data-zh><strong>下载单个文件：</strong>进对应目录，点文件名 → 右上角 Download raw file</span><span data-en><strong>Download a single file:</strong> navigate to the folder, click the filename → Download raw file (top right)</span></li>
-    <li><span data-zh><strong>会 git 的成员：</strong>直接 fork → 加文件 → 提 PR，组长 review 后合并</span><span data-en><strong>Know git?</strong> Fork → add files → submit a PR; the leader will review and merge</span></li>
+    <li>
+      <span data-zh><strong>金融分析 → skills：</strong><a href="https://github.com/claude-ai-community/community/tree/main/金融分析/skills/investment-committee" target="_blank" style="color:#1a6b3a;">AI 投资委员会</a>——输入股票代码，7 个投资大师人格（Buffett / Munger / Burry 等）并行分析，经多空辩论由 CIO 裁决，输出完整报告（Tracy Li 案例）</span>
+      <span data-en><strong>Financial Analysis → skills:</strong> <a href="https://github.com/claude-ai-community/community/tree/main/金融分析/skills/investment-committee" target="_blank" style="color:#1a6b3a;">AI Investment Committee</a> — enter a ticker, 7 investor personas (Buffett / Munger / Burry, etc.) analyze in parallel, debate, and a CIO delivers a final verdict (Tracy Li case)</span>
+    </li>
+    <li>
+      <span data-zh><strong>内容创作 → 笔记：</strong><a href="https://github.com/claude-ai-community/community/blob/main/内容创作/笔记/LibTV-Agent-视频工作流.md" target="_blank" style="color:#1a6b3a;">LibTV Agent 视频工作流</a>——100+ AI 视频 Skill，输入想法自动生成分镜节点工作流</span>
+      <span data-en><strong>Content Creation → notes:</strong> <a href="https://github.com/claude-ai-community/community/blob/main/内容创作/笔记/LibTV-Agent-视频工作流.md" target="_blank" style="color:#1a6b3a;">LibTV Agent Video Workflow</a> — 100+ AI video Skills, auto-generates storyboard node workflows from your idea</span>
+    </li>
   </ul>
 
-  <h3><span data-zh>贡献流程（不懂 git 版）</span><span data-en>Contributing (if you don't know git)</span></h3>
+  <h3><span data-zh>怎么用仓库里的内容</span><span data-en>How to use repo content</span></h3>
+  <ul>
+    <li><span data-zh><strong>下载整个仓库：</strong>点页面右上角 Code → Download ZIP，解压后按目录取文件</span><span data-en><strong>Download the whole repo:</strong> click Code → Download ZIP (top right), unzip and pick files by folder</span></li>
+    <li><span data-zh><strong>下载单个文件：</strong>进对应目录，点文件名 → 右上角 Download raw file</span><span data-en><strong>Download a single file:</strong> navigate to the folder, click the filename → Download raw file (top right)</span></li>
+    <li><span data-zh><strong>查看各小组内容：</strong>进对应目录，打开 README.md，里面有该小组所有内容的索引和一句话描述</span><span data-en><strong>Browse group content:</strong> go to the group folder and open README.md — it lists everything with a one-line description</span></li>
+  </ul>
+
+  <h3><span data-zh>贡献流程（成员版）</span><span data-en>Contributing (for members)</span></h3>
   <ol>
-    <li><span data-zh>在微信群发你的 prompt / skill 截图或文字</span><span data-en>Post your prompt / skill (screenshot or text) in the WeChat group</span></li>
-    <li><span data-zh>组长整理格式，上传到对应目录</span><span data-en>The leader formats it and uploads it to the right folder</span></li>
+    <li><span data-zh>在微信群发你的 prompt / skill / 笔记（文字或截图）</span><span data-en>Post your prompt / skill / note (text or screenshot) in the WeChat group</span></li>
+    <li><span data-zh>组长用 Claude Code 整理格式，上传到对应目录，<strong>小组 README 自动更新</strong></span><span data-en>The leader uses Claude Code to format and upload it; <strong>the group README auto-updates</strong></span></li>
     <li><span data-zh>其他成员进 GitHub 下载使用</span><span data-en>Other members download and use it from GitHub</span></li>
+  </ol>
+
+  <h3><span data-zh>贡献流程（组长版 · Claude 全程操作）</span><span data-en>Contributing (for leaders · Claude handles everything)</span></h3>
+  <ol>
+    <li><span data-zh>在 community 目录下打开 Claude Code</span><span data-en>Open Claude Code in the community directory</span></li>
+    <li><span data-zh>输入 <code>/内容上传 金融分析</code>，把内容贴给 Claude</span><span data-en>Type <code>/内容上传 金融分析</code> and paste the content to Claude</span></li>
+    <li><span data-zh>Claude 自动判断类型、写入文件、更新小组 README 索引</span><span data-en>Claude auto-detects the type, writes the file, and updates the group README index</span></li>
+    <li><span data-zh>说"帮我提交并推送"，Claude 完成 git commit + push</span><span data-en>Say "帮我提交并推送" and Claude handles git commit + push</span></li>
   </ol>
 
   <div class="callout callout-tip">
