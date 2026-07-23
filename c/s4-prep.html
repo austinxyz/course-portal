@@ -99,10 +99,10 @@ function setLang(l) {
 </h1>
 
 <p class="lead">
-  <span data-zh>这节课在 <strong>第三课（Claude Design + Code）基础上</strong>新增三个工具：Git（版本控制）、GitHub 账号（存代码）、VS Code（查看和编辑文件）。另外课程脚本用到 Python + yfinance，需要提前装好。<br>
-  <strong>预计准备时间：15–20 分钟。</strong></span>
-  <span data-en>This session adds three tools on top of <strong>Session 3 (Claude Design + Code)</strong>: Git (version control), a GitHub account (code storage), and VS Code (file viewing and editing). The course script also uses Python + yfinance, which need to be installed in advance.<br>
-  <strong>Estimated setup time: 15–20 minutes.</strong></span>
+  <span data-zh>这节课在 <strong>第三课（Claude Design + Code）基础上</strong>新增两个工具：Git + Python 3。yfinance 课后做跟我做练习时由 Claude Code 帮你安装，不用提前装。<br>
+  <strong>预计准备时间：10 分钟。</strong></span>
+  <span data-en>This session adds two tools on top of <strong>Session 3 (Claude Design + Code)</strong>: Git and Python 3. yfinance will be installed by Claude Code when you do the post-class follow-along exercise — no need to pre-install.<br>
+  <strong>Estimated setup time: 10 minutes.</strong></span>
 </p>
 
 <!-- ===== S2/S3 已有 ===== -->
@@ -113,9 +113,8 @@ function setLang(l) {
     <li><span data-zh>Claude Pro 订阅（$20/月）</span><span data-en>Claude Pro subscription ($20/month)</span></li>
     <li><span data-zh>Claude Code 已安装并能正常运行（<code>claude --version</code> 有输出）</span><span data-en>Claude Code installed and running (<code>claude --version</code> shows output)</span></li>
     <li><span data-zh>Claude Code 已登录 Anthropic 账号</span><span data-en>Claude Code logged in to your Anthropic account</span></li>
-    <li><span data-zh>GitHub 账号已注册（S3 装好了）</span><span data-en>GitHub account registered (done in S3)</span></li>
   </ul>
-  <p class="muted" style="margin-top:12px;"><span data-zh>如果以上任何一条不满足，回到对应课程学员页按课前准备补上。</span><span data-en>If any of the above is missing, go back to that session's student page and follow the pre-class setup.</span></p>
+  <p class="muted" style="margin-top:12px;"><span data-zh>如果 Claude Code 还没装，<strong>先去<a href="claude-s2.html">第二课学员页</a>完成课前准备</strong>，再回来继续。</span><span data-en>If Claude Code is not installed yet, <strong>go to the <a href="claude-s2.html">Session 2 student page</a> first</strong> and complete the pre-class setup, then come back here.</span></p>
 </div>
 
 <!-- ===== 总览 ===== -->
@@ -131,18 +130,13 @@ function setLang(l) {
   </thead>
   <tbody>
     <tr>
-      <td><strong>Git</strong></td>
+      <td><strong>Git</strong> ⭐ <span data-zh>必装</span><span data-en>Required</span></td>
       <td><span data-zh>本地版本控制；Claude Code 内部也依赖它</span><span data-en>Local version control; Claude Code relies on it internally</span></td>
       <td><span data-zh>免费</span><span data-en>Free</span></td>
     </tr>
     <tr>
-      <td><strong>VS Code</strong></td>
-      <td><span data-zh>查看和编辑 Skill 文件、Python 脚本</span><span data-en>View and edit Skill files and Python scripts</span></td>
-      <td><span data-zh>免费</span><span data-en>Free</span></td>
-    </tr>
-    <tr>
-      <td><strong>Python 3 + yfinance</strong></td>
-      <td><span data-zh>课程数据拉取脚本（<code>ticker_scan.py</code>）</span><span data-en>Course data-fetching script (<code>ticker_scan.py</code>)</span></td>
+      <td><strong>Python 3</strong> ⭐ <span data-zh>必装</span><span data-en>Required</span></td>
+      <td><span data-zh>课程数据拉取脚本（<code>ticker_scan.py</code>）的运行环境；yfinance 上课时由 Claude Code 帮你装</span><span data-en>Runtime for the course data script (<code>ticker_scan.py</code>); yfinance will be installed by Claude Code during class</span></td>
       <td><span data-zh>免费</span><span data-en>Free</span></td>
     </tr>
   </tbody>
@@ -191,36 +185,17 @@ function setLang(l) {
   <span data-en>✅ You should see something like <code>git version 2.x.x</code> — that means success.</span>
 </div>
 
-<!-- ===== STEP 2: VS Code ===== -->
+<!-- ===== STEP 2: Python ===== -->
 <h2>
   <span class="step-badge"><span data-zh>第 2 步</span><span data-en>Step 2</span></span>
-  <span data-zh>安装 VS Code</span><span data-en>Install VS Code</span>
+  <span data-zh>安装 Python 3</span><span data-en>Install Python 3</span>
 </h2>
-
-<ol>
-  <li><span data-zh>打开 <a href="https://code.visualstudio.com" target="_blank">code.visualstudio.com</a></span><span data-en>Go to <a href="https://code.visualstudio.com" target="_blank">code.visualstudio.com</a></span></li>
-  <li><span data-zh>点蓝色 <strong>Download</strong> 按钮，下载对应系统的安装包</span><span data-en>Click the blue <strong>Download</strong> button and download the installer for your OS</span></li>
-  <li><span data-zh>双击安装，保持默认选项</span><span data-en>Double-click to install, keeping the default options</span></li>
-  <li><span data-zh>安装完打开 VS Code，确认能看到欢迎页即可</span><span data-en>Open VS Code after installation and confirm you see the welcome screen</span></li>
-</ol>
-
-<div class="card">
-  <strong><span data-zh>课上 VS Code 用来做什么？</span><span data-en>What will VS Code be used for in class?</span></strong>
-  <ul style="margin-top:8px;">
-    <li><span data-zh>打开 <code>stock-analysis-lite</code> 工具包，浏览 Skill 文件结构</span><span data-en>Open the <code>stock-analysis-lite</code> toolkit and browse the Skill file structure</span></li>
-    <li><span data-zh>查看和编辑 <code>.claude/commands/</code> 里的 Skill 定义文件</span><span data-en>View and edit Skill definition files in <code>.claude/commands/</code></span></li>
-    <li><span data-zh>查看 Python 脚本（不需要写 Python，只是看逻辑）</span><span data-en>View Python scripts (no need to write Python — just reading the logic)</span></li>
-  </ul>
-  <p class="muted" style="margin-top:8px;"><span data-zh>所有代码的实际编写和运行都通过 Claude Code 完成，VS Code 是你的"查看窗口"。</span><span data-en>All actual code writing and execution happens through Claude Code. VS Code is just your "viewing window."</span></p>
+<div class="tip" style="margin-bottom:8px;">
+  <span data-zh>💡 <strong>yfinance 不需要提前装</strong>——做课后「跟我做」练习时，输入一条提示词让 Claude Code 帮你装即可。这步只需要装 Python 3 本体。</span>
+  <span data-en>💡 <strong>You don't need to pre-install yfinance</strong> — when you do the post-class "follow-along" exercise, one prompt will have Claude Code install it for you. This step only requires Python 3 itself.</span>
 </div>
 
-<!-- ===== STEP 3: Python + yfinance ===== -->
-<h2>
-  <span class="step-badge"><span data-zh>第 3 步</span><span data-en>Step 3</span></span>
-  <span data-zh>安装 Python 3 + yfinance</span><span data-en>Install Python 3 + yfinance</span>
-</h2>
-
-<h3 style="font-size:17px; margin-top:20px;"><span data-zh>3a. 检查 Python 是否已安装</span><span data-en>3a. Check if Python is already installed</span></h3>
+<h3 style="font-size:17px; margin-top:20px;"><span data-zh>2a. 检查 Python 是否已安装</span><span data-en>2a. Check if Python is already installed</span></h3>
 
 <p><span data-zh>打开终端 / PowerShell，输入：</span><span data-en>Open Terminal / PowerShell and type:</span></p>
 
@@ -259,15 +234,9 @@ function setLang(l) {
   </ol>
 </div>
 
-<h3 style="font-size:17px; margin-top:24px;"><span data-zh>3b. 安装 yfinance</span><span data-en>3b. Install yfinance</span></h3>
-
-<pre><code>pip install yfinance</code></pre>
-
-<p class="muted"><span data-zh>macOS 用户如果 pip 报错，改用 <code>pip3 install yfinance</code>。</span><span data-en>macOS users: if pip errors, use <code>pip3 install yfinance</code> instead.</span></p>
-
 <div class="ok">
-  <span data-zh>✅ 验证：<code>python -c "import yfinance; print('ok')"</code> 输出 <code>ok</code> 即成功。</span>
-  <span data-en>✅ Verify: <code>python -c "import yfinance; print('ok')"</code> outputs <code>ok</code> — that means it worked.</span>
+  <span data-zh>✅ 验证：<code>python --version</code> 显示 <code>Python 3.x.x</code> 即成功。yfinance 上课时 Claude Code 帮你装。</span>
+  <span data-en>✅ Verify: <code>python --version</code> shows <code>Python 3.x.x</code> — that's all you need. yfinance will be installed by Claude Code during class.</span>
 </div>
 
 <!-- ===== 验证 ===== -->
@@ -275,8 +244,8 @@ function setLang(l) {
 
 <pre><code>claude --version          # <span data-zh>Claude Code 正常</span><span data-en>Claude Code working</span>
 git --version             # <span data-zh>Git 已装</span><span data-en>Git installed</span>
-python --version          # Python 3.x
-python -c "import yfinance; print('yfinance ok')"</code></pre>
+python --version          # Python 3.x</code></pre>
+<p class="muted"><span data-zh>yfinance 不用提前验证，上课时 Claude Code 安装后再验。</span><span data-en>No need to verify yfinance in advance — Claude Code installs it during class.</span></p>
 
 <!-- ===== 检查清单 ===== -->
 <h2><span data-zh>上课前检查清单</span><span data-en>Pre-class Checklist</span></h2>
@@ -285,12 +254,9 @@ python -c "import yfinance; print('yfinance ok')"</code></pre>
   <ul class="checklist">
     <li><span data-zh>Claude Pro 有效，<code>claude --version</code> 正常</span><span data-en>Claude Pro active, <code>claude --version</code> works</span></li>
     <li><span data-zh>Git 已安装，<code>git --version</code> 有输出</span><span data-en>Git installed, <code>git --version</code> shows output</span></li>
-    <li><span data-zh>GitHub 账号已注册，记下用户名</span><span data-en>GitHub account registered, username noted</span></li>
-    <li><span data-zh>VS Code 已安装，能正常打开</span><span data-en>VS Code installed and opens normally</span></li>
     <li><span data-zh><code>python --version</code> 显示 Python 3.x</span><span data-en><code>python --version</code> shows Python 3.x</span></li>
-    <li><span data-zh><code>python -c "import yfinance; print('ok')"</code> 输出 <code>ok</code></span><span data-en><code>python -c "import yfinance; print('ok')"</code> outputs <code>ok</code></span></li>
   </ul>
-  <p style="margin-top:16px;"><span data-zh>✅ <strong>六项全 OK，上课见！</strong></span><span data-en>✅ <strong>All six done — see you in class!</strong></span></p>
+  <p style="margin-top:16px;"><span data-zh>✅ <strong>三项全 OK，上课见！</strong>（yfinance 做课后跟我做练习时 Claude Code 帮你装）</span><span data-en>✅ <strong>All three done — see you in class!</strong> (yfinance will be installed by Claude Code when you do the post-class follow-along exercise)</span></p>
 </div>
 
 <div class="tip">
