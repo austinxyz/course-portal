@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DN5RL2PFE6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-DN5RL2PFE6');
+</script>
+<meta charset="UTF-8">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session 4 缩写速查表 · AI 炒股分析系统</title>
+<link rel="stylesheet" href="../style.css">
+<style>
+  body { font-family: "Microsoft YaHei", "PingFang SC", -apple-system, Arial, sans-serif;
+         max-width: 860px; margin: 40px auto; padding: 0 24px; line-height: 1.8; }
+  h1 { font-size: 28px; border-left: 5px solid var(--primary); padding-left: 14px; line-height: 1.4; }
+  h2 { font-size: 19px; margin-top: 40px; color: var(--primary);
+       border-bottom: 1.5px solid #F0E0D6; padding-bottom: 8px; display:flex; align-items:center; gap:8px; }
+  .lead { font-size: 16px; color: var(--text-muted); }
+  table { border-collapse: collapse; width: 100%; margin: 14px 0 8px; font-size: 14.5px; }
+  th, td { border: 1px solid var(--border); padding: 9px 12px; text-align: left; vertical-align: top; }
+  th { background: #F6EFE9; font-size: 13px; color: var(--text-muted); font-weight: 700; }
+  td.term { font-family: "SF Mono", Consolas, monospace; font-weight: 700; color: var(--primary); white-space: nowrap; }
+  td.full { color: var(--text-muted); font-size: 13.5px; }
+  .muted { color: var(--text-muted); font-size: 14px; }
+  code { background: var(--code-bg); padding: 2px 6px; border-radius: 4px; font-size: 13.5px;
+         font-family: "SF Mono", Consolas, monospace; }
+  .tip { background: var(--primary-light); border-left: 4px solid var(--primary);
+         padding: 12px 16px; border-radius: 6px; margin: 20px 0; font-size: 14.5px; }
+  .toc { background: var(--white); border: 1px solid var(--border); border-radius: 10px;
+         padding: 14px 20px; margin: 20px 0; font-size: 14px; }
+  .toc a { color: var(--primary); text-decoration: none; }
+  .toc ul { margin: 6px 0 0; padding-left: 20px; columns: 2; }
+  .back-top { position: fixed; bottom: 20px; right: 20px; background: var(--primary); color: #fff;
+              border-radius: 50%; width: 40px; height: 40px; display:flex; align-items:center; justify-content:center;
+              text-decoration: none; font-size: 18px; box-shadow: 0 2px 8px rgba(0,0,0,.15); opacity: .85; }
+</style>
+</head>
+<body>
+
+<h1>Session 4 缩写速查表<br><span style="font-size:17px;color:var(--text-muted);font-weight:400">AI 炒股分析系统 · 课件术语解释</span></h1>
+
+<p class="lead">课件里出现了不少缩写和行话——不是要你记住，是查的时候能秒懂。按用到的地方分类，遇到看不懂的词直接 Ctrl+F 搜。</p>
+
+<div class="toc">
+  <strong>速查目录</strong>
+  <ul>
+    <li><a href="#framework">① 三大方法论框架</a></li>
+    <li><a href="#technical">② 技术分析术语</a></li>
+    <li><a href="#finance">③ 财务与估值术语</a></li>
+    <li><a href="#market">④ 市场结构术语</a></li>
+    <li><a href="#ai">⑤ AI / Skill 工程术语</a></li>
+    <li><a href="#chip">⑥ 半导体/硬件赛道术语</a></li>
+    <li><a href="#etf">⑦ 赛道 ETF 速查</a></li>
+  </ul>
+</div>
+
+<h2 id="framework">① 三大方法论框架</h2>
+<table>
+  <tr><th style="width:130px">缩写/名称</th><th>全称</th><th>解释</th></tr>
+  <tr>
+    <td class="term">SEPA</td>
+    <td class="full">Stage Analysis + EPS + Price Action + Accumulation</td>
+    <td>Mark Minervini 的趋势交易框架——判断股票处在 Stage 1-4 哪个阶段，只在 Stage 2（上涨阶段）买入。对应 <code>/stock-entry</code>。</td>
+  </tr>
+  <tr>
+    <td class="term">BAIT</td>
+    <td class="full">Behavioral · Analytical · Informational · Technical</td>
+    <td>课程里的错误定价四维评分框架（借鉴 Mauboussin 思路），核心问题是"市场为什么错了"。每维 0-3 分，总分 /12。对应 <code>/stock-analyze</code>。</td>
+  </tr>
+  <tr>
+    <td class="term">Moneyball</td>
+    <td class="full">—（非缩写，借用棒球数据分析的意象）</td>
+    <td>课程里特指"三情景加权期望值定价"框架：Bull/Base/Bear 三种情景算 EV，判断赔率是否值得下注。对应 <code>/stock-entry</code> + <code>/stock-exit</code>。</td>
+  </tr>
+</table>
+
+<h2 id="technical">② 技术分析术语</h2>
+<table>
+  <tr><th style="width:130px">缩写</th><th>全称</th><th>解释</th></tr>
+  <tr><td class="term">MA</td><td class="full">Moving Average</td><td>移动均线。课件里的 MA50 / MA150 / MA200 指 50/150/200 日均线。</td></tr>
+  <tr><td class="term">RS</td><td class="full">Relative Strength</td><td>相对强度——个股涨幅相对大盘的百分位排名，越高代表越强势（课件要求 &gt;70，最好 85-90+）。</td></tr>
+  <tr><td class="term">ATR</td><td class="full">Average True Range</td><td>真实波动幅度均值，衡量一只股票的日常波动大小，用来算自适应止损宽度（如 2×ATR14）。</td></tr>
+  <tr><td class="term">VCP</td><td class="full">Volatility Contraction Pattern</td><td>波动收缩形态——股价回调幅度一次比一次浅（如 20%→12%→6%→3%），是理想的入场前信号。</td></tr>
+  <tr><td class="term">VDU</td><td class="full">Volume Dry-Up</td><td>量能干涸——整理阶段成交量持续萎缩，配合 VCP 一起看，代表抛压耗尽。</td></tr>
+  <tr><td class="term">R/R</td><td class="full">Risk/Reward Ratio</td><td>风险回报比。课程铁律：R/R ≥ 2:1 才值得入场（潜在盈利至少是潜在亏损的 2 倍）。</td></tr>
+  <tr><td class="term">Stage 1-4</td><td class="full">SEPA 阶段分析</td><td>Stage 1 蓄势（观望）→ Stage 2 上涨（唯一买入阶段）→ Stage 3 顶部（减仓）→ Stage 4 下跌（持币远离）。</td></tr>
+  <tr><td class="term">Pivot</td><td class="full">轴心点 / 突破点</td><td>股价形态里最关键的买入触发价位，通常是整理区间的上边界。</td></tr>
+  <tr><td class="term">Gap-Up</td><td class="full">跳空高开</td><td>股价开盘直接跳过前一天的价格区间，通常由超预期财报触发，是强烈的基本面确认信号。</td></tr>
+</table>
+
+<h2 id="finance">③ 财务与估值术语</h2>
+<table>
+  <tr><th style="width:130px">缩写</th><th>全称</th><th>解释</th></tr>
+  <tr><td class="term">EV</td><td class="full">Expected Value（本课程语境）</td><td>期望值 = Bull价×概率 + Base价×概率 + Bear价×概率。<span class="muted">⚠️ 注意：金融圈更常见的 EV 缩写是 Enterprise Value（企业价值），本课程特指期望值，别混淆。</span></td></tr>
+  <tr><td class="term">YoY</td><td class="full">Year over Year</td><td>同比增速——和去年同期比，课件常用来判断营收/EPS 是否在加速增长。</td></tr>
+  <tr><td class="term">TTM</td><td class="full">Trailing Twelve Months</td><td>过去连续 12 个月的滚动数据，比单季度数字更能反映真实经营水平。</td></tr>
+  <tr><td class="term">TAM</td><td class="full">Total Addressable Market</td><td>总潜在市场规模——赛道的天花板有多高，课件要求 &gt;百亿美元才算"大赛道"。</td></tr>
+  <tr><td class="term">Backlog</td><td class="full">订单储备 / 在手订单</td><td>已签约但还没交付确认收入的订单金额，Backlog &gt; 当年营收是强信号（案例：SMCI）。</td></tr>
+  <tr><td class="term">13F</td><td class="full">SEC Form 13F</td><td>美国证监会（SEC）要求管理规模超 1 亿美元的机构每季度披露持仓的报告，课件用来判断"机构是否在建仓"。</td></tr>
+  <tr><td class="term">Asymmetry Ratio</td><td class="full">非对称比</td><td>= Bull 上涨空间% ÷ Bear 下跌空间%，衡量赔率是否划算，课程要求 ≥ 2:1。</td></tr>
+</table>
+
+<h2 id="market">④ 市场结构术语</h2>
+<table>
+  <tr><th style="width:130px">缩写</th><th>全称</th><th>解释</th></tr>
+  <tr><td class="term">OTC</td><td class="full">Over-the-Counter</td><td>场外交易市场——不在 NYSE/Nasdaq 主板挂牌的股票，流动性差，课程铁律：小市值必须排除 OTC。</td></tr>
+  <tr><td class="term">ETF</td><td class="full">Exchange-Traded Fund</td><td>交易所交易基金——一篮子股票打包成一支可以像股票一样买卖的基金，用来替代"无合适个股"的赛道。</td></tr>
+  <tr><td class="term">IPO</td><td class="full">Initial Public Offering</td><td>首次公开募股——公司第一次在交易所挂牌上市。</td></tr>
+  <tr><td class="term">NYSE / Nasdaq</td><td class="full">New York Stock Exchange / Nasdaq</td><td>美股两大主板交易所，课程要求候选股必须在这两个交易所挂牌（非 OTC）。</td></tr>
+  <tr><td class="term">REIT</td><td class="full">Real Estate Investment Trust</td><td>房地产投资信托——把房地产资产证券化、可以像股票一样交易的基金形式。</td></tr>
+  <tr><td class="term">PropTech</td><td class="full">Property Technology</td><td>房地产科技——用技术改造房地产交易/管理流程的公司（如课件里的 OPEN、COMP）。</td></tr>
+</table>
+
+<h2 id="ai">⑤ AI / Skill 工程术语</h2>
+<table>
+  <tr><th style="width:130px">缩写</th><th>全称</th><th>解释</th></tr>
+  <tr><td class="term">LLM</td><td class="full">Large Language Model</td><td>大语言模型——Claude 这类能理解和生成自然语言的 AI 模型，课程里的"分析层"由 LLM 负责。</td></tr>
+  <tr><td class="term">MCP</td><td class="full">Model Context Protocol</td><td>模型上下文协议——让 AI 连接外部工具/数据源的标准协议。课程刻意不用复杂 MCP，只靠 yfinance 脚本即可完成。</td></tr>
+  <tr><td class="term">API</td><td class="full">Application Programming Interface</td><td>应用程序编程接口——程序之间互相调用数据/功能的约定接口，yfinance 就是调用雅虎财经数据的一层 API 封装。</td></tr>
+  <tr><td class="term">JSON</td><td class="full">JavaScript Object Notation</td><td>一种结构化数据格式，课程里 Python 数据层输出的就是 JSON，供 LLM 分析层读取。</td></tr>
+  <tr><td class="term">Skill</td><td class="full">Claude Code 自定义命令</td><td>本课程的核心概念——把专家方法写成一个 <code>.md</code> 文件（如 <code>ticker-scan.md</code>），Claude Code 读取后就能重复执行，即 <code>/ticker-scan</code> 这类斜杠命令。</td></tr>
+</table>
+
+<h2 id="chip">⑥ 半导体/硬件赛道术语</h2>
+<table>
+  <tr><th style="width:130px">缩写</th><th>全称</th><th>解释</th></tr>
+  <tr><td class="term">HBM</td><td class="full">High Bandwidth Memory</td><td>高带宽内存——AI 芯片需要的高速存储器，是"存储/半导体"赛道的核心需求来源。</td></tr>
+  <tr><td class="term">DRAM</td><td class="full">Dynamic Random Access Memory</td><td>动态随机存取存储器，常规内存芯片，HBM 是其中的高端形态。</td></tr>
+  <tr><td class="term">SiC</td><td class="full">Silicon Carbide（碳化硅）</td><td>一种耐高压高温的半导体材料，用在功率半导体/电网储能领域，是"电网/储能"赛道的核心技术。</td></tr>
+  <tr><td class="term">CoWoS / SoIC</td><td class="full">Chip-on-Wafer-on-Substrate / System on Integrated Chips</td><td>台积电的两种先进封装技术，AI 芯片算力提升的关键瓶颈，对应"半导体封装测试"赛道。</td></tr>
+</table>
+
+<h2 id="etf">⑦ 赛道 ETF 速查</h2>
+<p class="muted">课件第 6/10 页提到的赛道 ETF，全称一次列清楚：</p>
+<table>
+  <tr><th style="width:90px">代码</th><th>全称</th><th>对应赛道</th></tr>
+  <tr><td class="term">SOXX</td><td class="full">iShares Semiconductor ETF</td><td>存储/半导体（首选，持仓分散）</td></tr>
+  <tr><td class="term">SMH</td><td class="full">VanEck Semiconductor ETF</td><td>存储/半导体（权重更集中于 NVDA）</td></tr>
+  <tr><td class="term">UFO</td><td class="full">Procure Space ETF</td><td>低轨卫星通信（流动性最佳）</td></tr>
+  <tr><td class="term">ARKX</td><td class="full">ARK Space Exploration & Innovation ETF</td><td>低轨卫星通信（主动管理基金）</td></tr>
+  <tr><td class="term">GRID</td><td class="full">First Trust NASDAQ Clean Edge Smart GRID Infrastructure Fund</td><td>电网升级/储能（最贴合 SiC/超导主题）</td></tr>
+  <tr><td class="term">ICLN / TAN</td><td class="full">iShares Global Clean Energy ETF / Invesco Solar ETF</td><td>清洁能源发电端（方向略偏电网赛道）</td></tr>
+  <tr><td class="term">REMX</td><td class="full">VanEck Rare Earth/Strategic Metals ETF</td><td>关键矿产（首选，专注稀土/关键矿产）</td></tr>
+  <tr><td class="term">LIT / PICK</td><td class="full">Global X Lithium & Battery Tech ETF / iShares MSCI Global Metals &amp; Mining Producers ETF</td><td>关键矿产（LIT 偏锂电，PICK 过于宽泛）</td></tr>
+  <tr><td class="term">IYR / VNQ</td><td class="full">iShares U.S. Real Estate ETF / Vanguard Real Estate ETF</td><td>房地产（偏传统 REIT，非 PropTech）</td></tr>
+  <tr><td class="term">QQQ</td><td class="full">Invesco QQQ Trust</td><td>纳斯达克 100 指数基金（大盘科技股参照）</td></tr>
+</table>
+
+<div class="tip">
+  💬 表里没查到的词，发到微信群，@Austin 补上。
+</div>
+
+<hr style="margin: 44px 0; border: none; border-top: 1px solid #E0D8D0;">
+<p class="muted" style="text-align:center;">
+  Session 4 · AI 炒股分析系统 · Austin Xu · 北美华人 Claude AI 课程 ·
+  <a href="https://elitecoach101.com" target="_blank">elitecoach101.com</a>
+</p>
+
+<a href="#" class="back-top" title="回到顶部">↑</a>
+
+</body>
+</html>
