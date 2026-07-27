@@ -11,7 +11,7 @@
   <meta charset="UTF-8">
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>兴趣小组指南 · Claude AI 课程社区</title>
+  <title>Interest Group Guide · Claude AI Course Community</title>
   <link rel="stylesheet" href="../../style.css">
   <style>
     .hero {
@@ -70,193 +70,287 @@
     footer { text-align: center; padding: 32px 16px; color: var(--text-muted); font-size: 0.9rem; }
     footer a { color: var(--text-muted); text-decoration: none; }
     footer a:hover { color: var(--primary); }
+
+    /* Bilingual */
+    body:not(.lang-en) [data-en] { display: none; }
+    body.lang-en [data-zh] { display: none; }
+    #lang-toggle { position: fixed; top: 16px; right: 16px; z-index: 100;
+                   display: flex; background: #fff; border: 1.5px solid var(--border);
+                   border-radius: 20px; padding: 3px; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+    #lang-toggle button { border: none; background: none; cursor: pointer; font-size: 13px;
+                          padding: 4px 12px; border-radius: 16px; font-weight: 600;
+                          color: var(--text-muted); font-family: inherit; }
+    #lang-toggle button.active { background: #1a6b3a; color: #fff; }
   </style>
+<script>
+function setLang(l) {
+  document.body.classList.toggle('lang-en', l === 'en');
+  document.documentElement.lang = (l === 'en' ? 'en' : 'zh-CN');
+  ['btn-zh','btn-en'].forEach(function(id) {
+    var b = document.getElementById(id); if (b) b.classList.toggle('active', b.dataset.lang === l);
+  });
+  try { localStorage.setItem('lang', l); } catch(_) {}
+}
+(function() {
+  var p = new URLSearchParams(location.search).get('lang');
+  var s = null; try { s = localStorage.getItem('lang') || localStorage.getItem('cfs-lang'); } catch(_) {}
+  setLang(p || s || 'zh');
+})();
+</script>
 </head>
 <body>
 
+<div id="lang-toggle">
+  <button id="btn-zh" data-lang="zh" onclick="setLang('zh')" class="active">中</button>
+  <button id="btn-en" data-lang="en" onclick="setLang('en')">EN</button>
+</div>
+
 <div class="hero">
-  <div class="badge">Phase 2 · 社区共创</div>
-  <h1>兴趣小组指南</h1>
-  <p class="subtitle">4 个方向，各有组长，每月 Zoom + GitHub 共享——一起把 Claude 用到真实场景里</p>
+  <div class="badge"><span data-zh>Phase 2 · 社区共创</span><span data-en>Phase 2 · Community Co-creation</span></div>
+  <h1><span data-zh>兴趣小组指南</span><span data-en>Interest Group Guide</span></h1>
+  <p class="subtitle">
+    <span data-zh>4 个方向，各有组长，每月 Zoom + GitHub 共享——一起把 Claude 用到真实场景里</span>
+    <span data-en>4 directions, each with a leader — monthly Zoom meetups + shared GitHub resources to put Claude to work in real scenarios</span>
+  </p>
 </div>
 
 <div class="toc container">
-  <h2>目录</h2>
+  <h2><span data-zh>目录</span><span data-en>Contents</span></h2>
   <ol>
-    <li><a href="#groups">4 个兴趣小组</a></li>
-    <li><a href="#how">怎么参与</a></li>
-    <li><a href="#monthly">每月运营节奏</a></li>
-    <li><a href="#github">共享空间 · GitHub</a></li>
-    <li><a href="#faq">常见问题</a></li>
+    <li><a href="#groups"><span data-zh>4 个兴趣小组</span><span data-en>4 Interest Groups</span></a></li>
+    <li><a href="#how"><span data-zh>怎么参与</span><span data-en>How to Join</span></a></li>
+    <li><a href="#monthly"><span data-zh>每月运营节奏</span><span data-en>Monthly Rhythm</span></a></li>
+    <li><a href="#github"><span data-zh>共享空间 · GitHub</span><span data-en>Shared Space · GitHub</span></a></li>
+    <li><a href="#faq"><span data-zh>常见问题</span><span data-en>FAQ</span></a></li>
   </ol>
 </div>
 
 <!-- Section 1: 4 Groups -->
 <div class="section" id="groups">
-  <h2 class="section-title">4 个兴趣小组</h2>
-  <p>每个小组聚焦一个 AI 应用方向，有固定组长，每月开 Zoom 讨论 + 共建 GitHub 资源库。所有付费学员（S1 / S2）均可加入感兴趣的小组。</p>
+  <h2 class="section-title"><span data-zh>4 个兴趣小组</span><span data-en>4 Interest Groups</span></h2>
+  <p>
+    <span data-zh>每个小组聚焦一个 AI 应用方向，有固定组长，每月开 Zoom 讨论 + 共建 GitHub 资源库。所有付费学员（S1 / S2）均可加入感兴趣的小组。</span>
+    <span data-en>Each group focuses on one AI application direction, with a dedicated leader. Monthly Zoom discussions + shared GitHub resource library. All paid students (S1/S2) can join any group they're interested in.</span>
+  </p>
 
   <div class="groups-grid">
     <div class="group-card">
       <div class="emoji">💰</div>
-      <div class="group-name">财富管理</div>
-      <div class="group-leader">组长：<strong>达莱</strong></div>
-      <div class="group-desc">北美华人理财 / 税务 / 保险 / 退休规划，用 Claude Code 建个人知识库、自动化财务分析流程。</div>
+      <div class="group-name"><span data-zh>财富管理</span><span data-en>Wealth Management</span></div>
+      <div class="group-leader"><span data-zh>组长：</span><span data-en>Leader: </span><strong>达莱</strong></div>
+      <div class="group-desc">
+        <span data-zh>北美华人理财 / 税务 / 保险 / 退休规划，用 Claude Code 建个人知识库、自动化财务分析流程。</span>
+        <span data-en>Personal finance, tax, insurance, and retirement planning for North American Chinese. Build a knowledge base with Claude Code and automate financial analysis workflows.</span>
+      </div>
     </div>
     <div class="group-card">
       <div class="emoji">📈</div>
-      <div class="group-name">金融分析</div>
-      <div class="group-leader">组长：<strong>Tracy</strong></div>
-      <div class="group-desc">股票 / 市场 / 基金分析自动化，Skill + prompt pipeline 模板，打造每日量化分析系统。</div>
+      <div class="group-name"><span data-zh>金融分析</span><span data-en>Financial Analysis</span></div>
+      <div class="group-leader"><span data-zh>组长：</span><span data-en>Leader: </span><strong>Tracy</strong></div>
+      <div class="group-desc">
+        <span data-zh>股票 / 市场 / 基金分析自动化，Skill + prompt pipeline 模板，打造每日量化分析系统。</span>
+        <span data-en>Automate stock, market, and fund analysis. Skill + prompt pipeline templates to build a daily quantitative analysis system.</span>
+      </div>
     </div>
     <div class="group-card">
       <div class="emoji">✍️</div>
-      <div class="group-name">内容创作</div>
-      <div class="group-leader">组长：<strong>Robin Xu</strong></div>
-      <div class="group-desc">公众号 / 视频脚本 / PPT 生成，Claude Cowork 工具箱，AI 辅助内容生产全流程。</div>
+      <div class="group-name"><span data-zh>内容创作</span><span data-en>Content Creation</span></div>
+      <div class="group-leader"><span data-zh>组长：</span><span data-en>Leader: </span><strong>Robin Xu</strong></div>
+      <div class="group-desc">
+        <span data-zh>公众号 / 视频脚本 / PPT 生成，Claude Cowork 工具箱，AI 辅助内容生产全流程。</span>
+        <span data-en>Generate WeChat articles, video scripts, and slides. Claude Cowork toolkit for AI-assisted content production from start to finish.</span>
+      </div>
     </div>
     <div class="group-card">
       <div class="emoji">⚙️</div>
-      <div class="group-name">其他方向</div>
-      <div class="group-leader">组长：<strong>June</strong></div>
-      <div class="group-desc">职场自动化及各类 Claude 应用——邮件 / 报告 / 日常工具，凡是不归上面三类的都在这里。</div>
+      <div class="group-name"><span data-zh>其他方向</span><span data-en>Other Directions</span></div>
+      <div class="group-leader"><span data-zh>组长：</span><span data-en>Leader: </span><strong>June</strong></div>
+      <div class="group-desc">
+        <span data-zh>职场自动化及各类 Claude 应用——邮件 / 报告 / 日常工具，凡是不归上面三类的都在这里。</span>
+        <span data-en>Workplace automation and other Claude applications — email, reports, daily tools. Anything that doesn't fit the other three groups goes here.</span>
+      </div>
     </div>
   </div>
 
   <div class="callout callout-tip">
-    不确定加哪个？加"其他"就行——活动开始后可以换。
+    <span data-zh>不确定加哪个？加"其他"就行——活动开始后可以换。</span>
+    <span data-en>Not sure which to join? Start with "Other" — you can switch after the first session.</span>
   </div>
 </div>
 
 <!-- Section 2: How to join -->
 <div class="section" id="how">
-  <h2 class="section-title">怎么参与</h2>
+  <h2 class="section-title"><span data-zh>怎么参与</span><span data-en>How to Join</span></h2>
 
-  <h3>加入流程（3 步）</h3>
+  <h3><span data-zh>加入流程（3 步）</span><span data-en>How to Join (3 steps)</span></h3>
   <ol>
-    <li><strong>在微信大群报名</strong>——回复"我要加入 XX 小组"，组长会记下你的名字</li>
-    <li><strong>参加第一次 Zoom</strong>——每人 1 分钟自我介绍（背景 + 想在这个方向做什么），然后自由讨论</li>
-    <li><strong>按自己节奏参与</strong>——不强制出勤，有 Zoom 录屏，随时回看</li>
+    <li>
+      <span data-zh><strong>在微信大群报名</strong>——回复"我要加入 XX 小组"，组长会记下你的名字</span>
+      <span data-en><strong>Sign up in the main WeChat group</strong> — reply "I want to join [group name]" and the leader will note your name</span>
+    </li>
+    <li>
+      <span data-zh><strong>参加第一次 Zoom</strong>——每人 1 分钟自我介绍（背景 + 想在这个方向做什么），然后自由讨论</span>
+      <span data-en><strong>Join the first Zoom</strong> — 1-minute intro per person (background + what you want to do in this direction), then open discussion</span>
+    </li>
+    <li>
+      <span data-zh><strong>按自己节奏参与</strong>——不强制出勤，有 Zoom 录屏，随时回看</span>
+      <span data-en><strong>Participate at your own pace</strong> — no mandatory attendance; Zoom sessions are recorded so you can watch anytime</span>
+    </li>
   </ol>
 
-  <h3>参与方式（自由选）</h3>
+  <h3><span data-zh>参与方式（自由选）</span><span data-en>Ways to Participate (your choice)</span></h3>
   <ul>
-    <li><strong>看</strong>：参加 Zoom，看别人演示，吸收灵感</li>
-    <li><strong>分享</strong>：把自己做的 prompt / skill 发到群里，组长整理上传 GitHub</li>
-    <li><strong>发起项目</strong>：有想做的东西，群里喊一声，看谁加入</li>
-    <li><strong>提交 PR</strong>：会 git 的直接 fork 仓库提 PR</li>
+    <li><span data-zh><strong>看</strong>：参加 Zoom，看别人演示，吸收灵感</span><span data-en><strong>Watch</strong>: join Zoom sessions, see demos, get inspired</span></li>
+    <li><span data-zh><strong>分享</strong>：把自己做的 prompt / skill 发到群里，组长整理上传 GitHub</span><span data-en><strong>Share</strong>: post your prompts / skills in the group; the leader will organize and upload them to GitHub</span></li>
+    <li><span data-zh><strong>发起项目</strong>：有想做的东西，群里喊一声，看谁加入</span><span data-en><strong>Start a project</strong>: have an idea? Post it in the group and see who joins</span></li>
+    <li><span data-zh><strong>提交 PR</strong>：会 git 的直接 fork 仓库提 PR</span><span data-en><strong>Submit a PR</strong>: if you know git, fork the repo and submit a PR directly</span></li>
   </ul>
 
   <div class="callout callout-info">
-    内容质量不是门槛——能跑通、对你自己有用就值得分享。组长帮整理格式，你只管发链接或截图。
+    <span data-zh>内容质量不是门槛——能跑通、对你自己有用就值得分享。组长帮整理格式，你只管发链接或截图。</span>
+    <span data-en>Content quality is not a barrier — if it runs and is useful to you, it's worth sharing. The leader handles formatting; just send a link or screenshot.</span>
   </div>
 </div>
 
 <!-- Section 3: Monthly rhythm -->
 <div class="section" id="monthly">
-  <h2 class="section-title">每月运营节奏</h2>
-  <p>每月 1–2 次 Zoom，约 60 分钟。组长负责组织，Austin 支持首次会议并每月 review GitHub 内容。</p>
+  <h2 class="section-title"><span data-zh>每月运营节奏</span><span data-en>Monthly Rhythm</span></h2>
+  <p>
+    <span data-zh>每月 1–2 次 Zoom，约 60 分钟。组长负责组织，Austin 支持首次会议并每月 review GitHub 内容。</span>
+    <span data-en>1–2 Zoom sessions per month, about 60 minutes each. The group leader organizes; Austin supports the first session and does a monthly review of GitHub content.</span>
+  </p>
 
   <div class="timeline">
     <div class="timeline-item">
-      <div class="timeline-week">第 1 周</div>
+      <div class="timeline-week"><span data-zh>第 1 周</span><span data-en>Week 1</span></div>
       <div class="timeline-content">
-        <strong>组长在微信大群发通知</strong>
-        <p>发本月 Zoom 时间 + 主题，感兴趣的成员报名参加</p>
+        <strong><span data-zh>组长在微信大群发通知</span><span data-en>Leader announces in the main WeChat group</span></strong>
+        <p><span data-zh>发本月 Zoom 时间 + 主题，感兴趣的成员报名参加</span><span data-en>Share this month's Zoom time + topic; interested members sign up</span></p>
       </div>
     </div>
     <div class="timeline-item">
-      <div class="timeline-week">第 2–3 周</div>
+      <div class="timeline-week"><span data-zh>第 2–3 周</span><span data-en>Week 2–3</span></div>
       <div class="timeline-content">
-        <strong>Zoom 小会（60 分钟）</strong>
-        <p>自我介绍 → 本月项目进展 → 问题讨论 → 自愿演示 → 定下次时间</p>
+        <strong><span data-zh>Zoom 小会（60 分钟）</span><span data-en>Zoom meetup (60 min)</span></strong>
+        <p><span data-zh>自我介绍 → 本月项目进展 → 问题讨论 → 自愿演示 → 定下次时间</span><span data-en>Intros → project updates → Q&amp;A → volunteer demos → schedule next session</span></p>
       </div>
     </div>
     <div class="timeline-item">
-      <div class="timeline-week">第 4 周</div>
+      <div class="timeline-week"><span data-zh>第 4 周</span><span data-en>Week 4</span></div>
       <div class="timeline-content">
-        <strong>组长整理 + 归档 GitHub</strong>
-        <p>把 Zoom 里分享的好东西（prompt / skill / wiki 笔记）整理上传，其他成员下载即可</p>
+        <strong><span data-zh>组长整理 + 归档 GitHub</span><span data-en>Leader organizes + archives to GitHub</span></strong>
+        <p><span data-zh>把 Zoom 里分享的好东西（prompt / skill / wiki 笔记）整理上传，其他成员下载即可</span><span data-en>Upload good stuff from Zoom (prompts / skills / wiki notes); other members download anytime</span></p>
       </div>
     </div>
   </div>
 
-  <h3>第一次 Zoom 怎么开</h3>
+  <h3><span data-zh>第一次 Zoom 怎么开</span><span data-en>How to Run the First Zoom</span></h3>
   <ol>
-    <li>每人 1 分钟自我介绍：背景 + 想在这个方向做什么</li>
-    <li>Austin 或组长演示一个简单成品开场</li>
-    <li>自由讨论：大家最想解决什么问题？</li>
-    <li>确认下次时间</li>
+    <li><span data-zh>每人 1 分钟自我介绍：背景 + 想在这个方向做什么</span><span data-en>1-minute intro per person: background + what you want to do in this direction</span></li>
+    <li><span data-zh>Austin 或组长演示一个简单成品开场</span><span data-en>Austin or the leader demos a simple working example to kick things off</span></li>
+    <li><span data-zh>自由讨论：大家最想解决什么问题？</span><span data-en>Open discussion: what problem does everyone most want to solve?</span></li>
+    <li><span data-zh>确认下次时间</span><span data-en>Confirm the next session time</span></li>
   </ol>
 </div>
 
 <!-- Section 4: GitHub -->
 <div class="section" id="github">
-  <h2 class="section-title">共享空间 · GitHub</h2>
-  <p>一个公共仓库，按方向分目录，所有付费学员可访问和下载。<strong>不需要懂 git</strong>——直接下载 zip 或单个文件即可。</p>
+  <h2 class="section-title"><span data-zh>共享空间 · GitHub</span><span data-en>Shared Space · GitHub</span></h2>
+  <p>
+    <span data-zh>一个公共仓库，按小组分目录，所有付费学员可访问和下载。<strong>不需要懂 git</strong>——直接下载 zip 或单个文件即可。</span>
+    <span data-en>One public repository, organized by group. All paid students can access and download. <strong>No git knowledge required</strong> — just download the zip or individual files.</span>
+  </p>
 
   <p><a href="https://github.com/claude-ai-community/community" target="_blank" style="color:#1a6b3a;font-weight:700;">github.com/claude-ai-community/community</a></p>
 
   <div class="github-block">
 <span class="comment">claude-ai-community/community/</span>
 ├── <span class="dir">财富管理/</span>
-│   ├── <span class="dir">skills/</span>       <span class="comment"># .claude/commands/ 文件</span>
+│   ├── <span class="file">README.md</span>     <span class="comment"># 内容索引（自动更新）</span>
+│   ├── <span class="dir">skills/</span>       <span class="comment"># Claude Code skill 文件</span>
 │   ├── <span class="dir">prompts/</span>      <span class="comment"># 提示词模板</span>
 │   ├── <span class="dir">wiki/</span>         <span class="comment"># 知识库条目（Markdown）</span>
 │   └── <span class="dir">笔记/</span>         <span class="comment"># 会议记录、idea、心得</span>
-├── <span class="dir">金融分析/</span>
-├── <span class="dir">内容创作/</span>
-└── <span class="dir">其他/</span>
+├── <span class="dir">金融分析/</span>      <span class="comment"># 同上结构</span>
+├── <span class="dir">内容创作/</span>      <span class="comment"># 同上结构</span>
+└── <span class="dir">其他/</span>          <span class="comment"># 同上结构</span>
   </div>
 
-  <h3>怎么用</h3>
+  <h3><span data-zh>现有内容举例</span><span data-en>Example Content</span></h3>
   <ul>
-    <li><strong>下载整个仓库：</strong>点页面右上角 Code → Download ZIP，解压后按目录取文件</li>
-    <li><strong>下载单个文件：</strong>进对应目录，点文件名 → 右上角 Download raw file</li>
-    <li><strong>会 git 的成员：</strong>直接 fork → 加文件 → 提 PR，组长 review 后合并</li>
+    <li>
+      <span data-zh><strong>财富管理 → 财富知识库：</strong><a href="https://github.com/claude-ai-community/community/blob/main/财富管理/财富知识库/使用手册.md" target="_blank" style="color:#1a6b3a;">使用手册</a>——fork <a href="https://github.com/austinxyz/wealth-llm-wiki" target="_blank" style="color:#1a6b3a;">wealth-llm-wiki</a> 即用，约 80 篇原始资料、105 个知识条目、5 个配套 Skill（<code>/wealth-advise</code> <code>/wealth-extract</code> <code>/wealth-sync</code> <code>/wealth-audit</code> <code>/wealth-freshness</code>），另有 8 个理财咨询场景 <a href="https://github.com/claude-ai-community/community/tree/main/财富管理/prompts" target="_blank" style="color:#1a6b3a;">prompt 模板</a>（退休规划、FIRE、跨境税务等）</span>
+      <span data-en><strong>Wealth Management → Knowledge Base:</strong> <a href="https://github.com/claude-ai-community/community/blob/main/财富管理/财富知识库/使用手册.md" target="_blank" style="color:#1a6b3a;">Usage Guide</a> — fork <a href="https://github.com/austinxyz/wealth-llm-wiki" target="_blank" style="color:#1a6b3a;">wealth-llm-wiki</a> and go, ~80 source articles, 105 wiki entries, 5 companion Skills (<code>/wealth-advise</code> <code>/wealth-extract</code> <code>/wealth-sync</code> <code>/wealth-audit</code> <code>/wealth-freshness</code>), plus 8 <a href="https://github.com/claude-ai-community/community/tree/main/财富管理/prompts" target="_blank" style="color:#1a6b3a;">consultation prompt templates</a> (retirement planning, FIRE, cross-border tax, etc.)</span>
+    </li>
+    <li>
+      <span data-zh><strong>金融分析 → skills：</strong><a href="https://github.com/claude-ai-community/community/tree/main/金融分析/skills/investment-committee" target="_blank" style="color:#1a6b3a;">AI 投资委员会</a>——输入股票代码，7 个投资大师人格（Buffett / Munger / Burry 等）并行分析，经多空辩论由 CIO 裁决，输出完整报告（Tracy Li 案例）</span>
+      <span data-en><strong>Financial Analysis → skills:</strong> <a href="https://github.com/claude-ai-community/community/tree/main/金融分析/skills/investment-committee" target="_blank" style="color:#1a6b3a;">AI Investment Committee</a> — enter a ticker, 7 investor personas (Buffett / Munger / Burry, etc.) analyze in parallel, debate, and a CIO delivers a final verdict (Tracy Li case)</span>
+    </li>
+    <li>
+      <span data-zh><strong>内容创作 → 笔记：</strong><a href="https://github.com/claude-ai-community/community/blob/main/内容创作/笔记/LibTV-Agent-视频工作流.md" target="_blank" style="color:#1a6b3a;">LibTV Agent 视频工作流</a>——100+ AI 视频 Skill，输入想法自动生成分镜节点工作流</span>
+      <span data-en><strong>Content Creation → notes:</strong> <a href="https://github.com/claude-ai-community/community/blob/main/内容创作/笔记/LibTV-Agent-视频工作流.md" target="_blank" style="color:#1a6b3a;">LibTV Agent Video Workflow</a> — 100+ AI video Skills, auto-generates storyboard node workflows from your idea</span>
+    </li>
   </ul>
 
-  <h3>贡献流程（不懂 git 版）</h3>
+  <h3><span data-zh>怎么用仓库里的内容</span><span data-en>How to use repo content</span></h3>
+  <ul>
+    <li><span data-zh><strong>下载整个仓库：</strong>点页面右上角 Code → Download ZIP，解压后按目录取文件</span><span data-en><strong>Download the whole repo:</strong> click Code → Download ZIP (top right), unzip and pick files by folder</span></li>
+    <li><span data-zh><strong>下载单个文件：</strong>进对应目录，点文件名 → 右上角 Download raw file</span><span data-en><strong>Download a single file:</strong> navigate to the folder, click the filename → Download raw file (top right)</span></li>
+    <li><span data-zh><strong>查看各小组内容：</strong>进对应目录，打开 README.md，里面有该小组所有内容的索引和一句话描述</span><span data-en><strong>Browse group content:</strong> go to the group folder and open README.md — it lists everything with a one-line description</span></li>
+  </ul>
+
+  <h3><span data-zh>贡献流程（成员版）</span><span data-en>Contributing (for members)</span></h3>
   <ol>
-    <li>在微信群发你的 prompt / skill 截图或文字</li>
-    <li>组长整理格式，上传到对应目录</li>
-    <li>其他成员进 GitHub 下载使用</li>
+    <li><span data-zh>在微信群发你的 prompt / skill / 笔记（文字或截图）</span><span data-en>Post your prompt / skill / note (text or screenshot) in the WeChat group</span></li>
+    <li><span data-zh>组长用 Claude Code 整理格式，上传到对应目录，<strong>小组 README 自动更新</strong></span><span data-en>The leader uses Claude Code to format and upload it; <strong>the group README auto-updates</strong></span></li>
+    <li><span data-zh>其他成员进 GitHub 下载使用</span><span data-en>Other members download and use it from GitHub</span></li>
+  </ol>
+
+  <h3><span data-zh>贡献流程（组长版 · Claude 全程操作）</span><span data-en>Contributing (for leaders · Claude handles everything)</span></h3>
+  <ol>
+    <li><span data-zh>在 community 目录下打开 Claude Code</span><span data-en>Open Claude Code in the community directory</span></li>
+    <li><span data-zh>输入 <code>/内容上传 金融分析</code>，把内容贴给 Claude</span><span data-en>Type <code>/内容上传 金融分析</code> and paste the content to Claude</span></li>
+    <li><span data-zh>Claude 自动判断类型、写入文件、更新小组 README 索引</span><span data-en>Claude auto-detects the type, writes the file, and updates the group README index</span></li>
+    <li><span data-zh>说"帮我提交并推送"，Claude 完成 git commit + push</span><span data-en>Say "帮我提交并推送" and Claude handles git commit + push</span></li>
   </ol>
 
   <div class="callout callout-tip">
-    有好东西不知道怎么上传？直接发群里，说一句"这个可以放 GitHub 吗"，组长来处理。
+    <span data-zh>有好东西不知道怎么上传？直接发群里，说一句"这个可以放 GitHub 吗"，组长来处理。</span>
+    <span data-en>Have something good but not sure how to upload? Just post it in the group and say "Can this go on GitHub?" — the leader will take care of it.</span>
   </div>
 </div>
 
 <!-- Section 5: FAQ -->
 <div class="section" id="faq">
-  <h2 class="section-title">常见问题</h2>
+  <h2 class="section-title"><span data-zh>常见问题</span><span data-en>FAQ</span></h2>
 
   <div class="faq-item">
-    <div class="faq-q">可以加多个小组吗？</div>
-    <div class="faq-a">可以。但建议先深入一个，把第一次 Zoom 跑起来再看是否加入第二个。</div>
+    <div class="faq-q"><span data-zh>可以加多个小组吗？</span><span data-en>Can I join more than one group?</span></div>
+    <div class="faq-a"><span data-zh>可以。但建议先深入一个，把第一次 Zoom 跑起来再看是否加入第二个。</span><span data-en>Yes. But we suggest going deep in one first — run the first Zoom before deciding whether to join a second.</span></div>
   </div>
   <div class="faq-item">
-    <div class="faq-q">必须参加每次 Zoom 吗？</div>
-    <div class="faq-a">不强制。每次 Zoom 都有录屏，错过了回看即可。有 Zoom 就在群里报名；没时间就跳过。</div>
+    <div class="faq-q"><span data-zh>必须参加每次 Zoom 吗？</span><span data-en>Do I have to attend every Zoom?</span></div>
+    <div class="faq-a"><span data-zh>不强制。每次 Zoom 都有录屏，错过了回看即可。有 Zoom 就在群里报名；没时间就跳过。</span><span data-en>No. Every session is recorded, so you can catch up anytime. Sign up in the group if you can make it; skip if you're busy.</span></div>
   </div>
   <div class="faq-item">
-    <div class="faq-q">我没有什么可分享的，可以只听吗？</div>
-    <div class="faq-a">完全可以。"只听"也是正当参与方式。看别人演示、提问、给反馈都有价值。</div>
+    <div class="faq-q"><span data-zh>我没有什么可分享的，可以只听吗？</span><span data-en>I don't have anything to share — can I just listen?</span></div>
+    <div class="faq-a"><span data-zh>完全可以。"只听"也是正当参与方式。看别人演示、提问、给反馈都有价值。</span><span data-en>Absolutely. Listening is a legitimate way to participate. Watching demos, asking questions, and giving feedback are all valuable.</span></div>
   </div>
   <div class="faq-item">
-    <div class="faq-q">我的领域不在这 4 类里怎么办？</div>
-    <div class="faq-a">加"其他"小组，或者在微信大群直接喊——如果同一方向的人多，可以另建新群。</div>
+    <div class="faq-q"><span data-zh>我的领域不在这 4 类里怎么办？</span><span data-en>My field doesn't fit any of the 4 groups — what do I do?</span></div>
+    <div class="faq-a"><span data-zh>加"其他"小组，或者在微信大群直接喊——如果同一方向的人多，可以另建新群。</span><span data-en>Join the "Other" group, or just say it in the main WeChat group — if enough people share your direction, a new group can be started.</span></div>
   </div>
   <div class="faq-item">
-    <div class="faq-q">小组什么时候正式启动？</div>
-    <div class="faq-a">7/11 Demo Day 当天宣布并发入群二维码，7 月第 3 周各群开始发第一次 Zoom 通知。</div>
+    <div class="faq-q"><span data-zh>小组什么时候正式启动？</span><span data-en>When do the groups officially launch?</span></div>
+    <div class="faq-a"><span data-zh>7/11 Demo Day 当天宣布并发入群二维码，7 月第 3 周各群开始发第一次 Zoom 通知。</span><span data-en>Groups are announced and QR codes are shared on Demo Day (7/11). Each group will send their first Zoom announcement in the third week of July.</span></div>
   </div>
 </div>
 
 <footer>
-  兴趣小组 · <a href="../../index.html">返回主页</a> &nbsp;|&nbsp;
-  问题联系 Austin：微信 <strong>elitecoach101</strong>
+  <span data-zh>兴趣小组 · <a href="../../index.html">返回主页</a> &nbsp;|&nbsp;
+  问题联系 Austin：微信 <strong>elitecoach101</strong></span>
+  <span data-en>Interest Groups · <a href="../../index.html">Back to Home</a> &nbsp;|&nbsp;
+  Questions? Contact Austin: WeChat <strong>elitecoach101</strong></span>
 </footer>
 
 </body>
